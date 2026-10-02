@@ -1,0 +1,54 @@
+<!DOCTYPE html><html dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Admin - كاترو شوب</title>
+<style>body{background:#111;color:#fff;font-family:sans-serif;padding:15px}.box{background:#222;padding:12px;margin:10px 0;border-radius:10px}button{border:none;padding:6px 10px;border-radius:6px;margin:3px;font-weight:bold;cursor:pointer}.ok{background:#ffcc00}.done{background:#00ff88}.cancel{background:#ff3333;color:#fff}</style></head><body>
+<script>
+let myPass = "0100454995mm";
+let enter = prompt("🔒 ادخل كلمة سر الادمن");
+if(enter!== myPass){
+  alert("كلمة السر غلط");
+  window.location.href = "index.html";
+}
+</script>
+<h2>لوحة تحكم كاترو شوب - سرية 🔒</h2>
+<div id="pend"></div><h3>الطلبات قيد التنفيذ</h3><div id="ords"></div>
+<script>
+let p=JSON.parse(localStorage.getItem('pending')||'[]');
+document.getElementById('pend').innerHTML='<h3>اشعارات شحن المحفظة</h3>'+p.map((x,i)=>`
+<div class=box>
+  ${x.amount}ج - ${x.date} - الحالة: ${x.status}<br><br>
+  <button class="ok" onclick="approve(${i},${x.amount})">✅ موافق ونزل الرصيد</button>
+  <button class="cancel" onclick="rejectPending(${i})">❌ اشعار مزور / ملغي</button>
+</div>`).join('');
+
+function approve(i,amt){
+  let w=parseInt(localStorage.getItem('wallet')||0)+parseInt(amt);
+  localStorage.setItem('wallet',w);
+  p.splice(i,1);
+  localStorage.setItem('pending',JSON.stringify(p));
+  alert('تم اضافة '+amt);
+  location.reload();
+}
+function rejectPending(i){
+  if(!confirm('متأكد الاشعار ده مزور وتحذفو؟')) return;
+  p.splice(i,1);
+  localStorage.setItem('pending',JSON.stringify(p));
+  alert('تم الغاء الاشعار المزور');
+  location.reload();
+}
+
+let o=JSON.parse(localStorage.getItem('orders')||'[]');
+document.getElementById('ords').innerHTML=o.map((x,i)=>`
+<div class=box>
+  ${x.pack} - ID:${x.id} - ${x.price}ج - الحالة: ${x.status}<br><br>
+  <button class="done" onclick="done(${i})">✅ مكتمل</button>
+  <button class="cancel" onclick="cancelOrder(${i})">❌ ملغي - ID غلط</button>
+</div>`).join('');
+
+function done(i){o[i].status='مكتمل'; localStorage.setItem('orders',JSON.stringify(o)); location.reload();}
+function cancelOrder(i){
+  let w=parseInt(localStorage.getItem('wallet')||0)+parseInt(o[i].price);
+  localStorage.setItem('wallet',w);
+  o[i].status='ملغي - ID غلط';
+  localStorage.setItem('orders',JSON.stringify(o));
+  location.reload();
+}
+</script></body></html>
