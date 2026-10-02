@@ -1,21 +1,33 @@
-<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>شحن المحفظة</title>
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>شحن المحفظة - KATRO SHOP</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800&display=swap');
-*{font-family:'Tajawal';box-sizing:border-box;margin:0}body{background:#f4f0ff}
-.top{background:#6a33ff;color:#fff;padding:12px;display:flex;justify-content:space-between}
-.box{background:#fff;margin:12px;border-radius:16px;padding:14px;box-shadow:0 4px 12px #0001}
-.inp{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:6px 0;background:#faf8ff}
-.bank{border:2px solid #6a33ff;background:#f0eaff;border-radius:12px;padding:12px;margin:8px 0}
-.btn{width:100%;background:linear-gradient(90deg,#6a33ff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:16px}
-</style></head><body>
+*{font-family:'Tajawal',sans-serif;box-sizing:border-box;margin:0}
+body{background:#f4f0ff;padding-bottom:20px}
+.top{background:#6a33ff;color:#fff;padding:12px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99}
+.box{background:#fff;margin:12px;border-radius:16px;padding:14px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.inp{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:6px 0;background:#faf8ff;outline:none}
+.bank{border:2px solid #6a33ff;background:#f0eaff;border-radius:14px;padding:14px;margin:10px 0}
+.btn{width:100%;background:linear-gradient(90deg,#6a33ff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:16px;cursor:pointer}
+.okbox{background:#e8f5e9;border:2px dashed #00c853;border-radius:12px;padding:10px;margin-top:8px;text-align:center;display:none}
+.preview{width:100%;border-radius:12px;margin-top:10px;display:none;max-height:320px;object-fit:contain;background:#000}
+</style>
+</head>
+<body>
 <div class="top"><b>KATRO SHOP</b><span>شحن المحفظة</span></div>
+
 <div class="box">
-<b>تفاصيل الدفع - حسابك البنكي الرسمي</b><br><br>
+<b>💳 حسابك الرسمي للتحويل</b><br><br>
 <div class="bank">
-<b>🏦 بنك الخرطوم - بنكك</b><br>
+<b>🏦 بنك الخرطوم - بنكك</b><br><br>
 اسم الحساب: <b>خالد حسين محمد حامد</b><br>
-رقم الحساب: <b style="font-size:18px;background:#ffe58a;padding:4px 10px;border-radius:8px">2673843</b> <button onclick="navigator.clipboard.writeText('2673843');alert('تم نسخ رقم الحساب 2673843')">📋 نسخ</button><br>
-<small>انسخ الرقم وحول عليه وارفع الاشعار</small>
+رقم الحساب: <b style="font-size:20px;background:#ffe58a;padding:6px 14px;border-radius:10px">2673843</b><br><br>
+<button onclick="navigator.clipboard.writeText('2673843');alert('تم نسخ رقم الحساب 2673843')" style="background:#000;color:#fff;border:none;padding:8px 14px;border-radius:8px">📋 نسخ رقم الحساب</button>
+<br><br><small>حول المبلغ على الرقم ده وارفع صورة الإشعار تحت</small>
 </div>
 </div>
 
@@ -23,35 +35,67 @@
 <b>تفاصيل الفاتورة</b>
 <input id="fn" class="inp" placeholder="الاسم الأول *">
 <input id="ln" class="inp" placeholder="الاسم الأخير *">
-<input id="ph" class="inp" placeholder="الهاتف * 0100454995" value="0100454995">
-<input id="em" class="inp" placeholder="البريد *">
+<input id="ph" class="inp" placeholder="رقم الهاتف * 0100454995" value="0100454995">
+<input id="em" class="inp" placeholder="البريد الالكتروني *">
 <input id="am" class="inp" type="number" placeholder="المبلغ المراد شحنه - مثلا 10000" value="10000">
-<b>ارفق صورة الإشعار *</b><input type="file" class="inp">
-<br><label><input type="checkbox" checked> أوافق على الشروط</label><br><br>
+
+<br><br><b>📷 ارفق صورة الإشعار البنكي *</b>
+<input id="proof" type="file" accept="image/*" class="inp" onchange="previewFile(event)">
+<img id="prev" class="preview">
+<div id="ok" class="okbox">✅ تم رفع الإشعار بنجاح - جاهز للإرسال للأدمن</div>
+
+<br><br><label><input type="checkbox" checked> لقد قرأت الشروط وأوافق عليها</label><br><br>
 <button class="btn" onclick="confirmOrder()">تأكيد الطلب ✅</button>
 </div>
 
 <script>
+let proofBase64='';
+let proofName='';
+
+function previewFile(e){
+let file=e.target.files[0];
+if(!file)return;
+proofName=file.name;
+let reader=new FileReader();
+reader.onload=function(){
+proofBase64=reader.result;
+document.getElementById('prev').src=proofBase64;
+document.getElementById('prev').style.display='block';
+document.getElementById('ok').style.display='block';
+};
+reader.readAsDataURL(file);
+}
+
 function confirmOrder(){
 let am=document.getElementById('am').value;
+let ph=document.getElementById('ph').value;
+let em=document.getElementById('em').value;
+
 if(!am){alert('اكتب المبلغ');return}
-// كل عملية برقم براها عشوائي
-let orderId = Math.floor(60000 + Math.random()*39999);
-let date = new Date().toLocaleDateString('ar-EG');
-let pend=JSON.parse(localStorage.getItem('pending')||'[]');
-pend.push({
+if(!proofBase64){alert('ارفع صورة الإشعار أولاً 📷');return}
+
+let orderId=Math.floor(60000+Math.random()*39999);
+let date=new Date().toLocaleDateString('ar-EG');
+let userAcc=localStorage.getItem('user_acc')||Math.floor(10000+Math.random()*89999);
+
+let pending=JSON.parse(localStorage.getItem('pending')||'[]');
+pending.push({
 id:orderId,
 amount:am,
 bank:'بنك الخرطوم',
 bankAcc:'2673843 - خالد حسين محمد حامد',
 date:date,
 status:'معلق - بانتظار التأكيد',
-email:document.getElementById('em').value||localStorage.getItem('user_email')
+email:em||localStorage.getItem('user_email')||'بدون ايميل',
+phone:ph,
+userAcc:userAcc,
+proofImg:proofBase64,
+proofName:proofName
 });
-localStorage.setItem('pending',JSON.stringify(pend));
+localStorage.setItem('pending',JSON.stringify(pending));
 
 document.body.innerHTML=`
-<div style="padding:16px;text-align:center">
+<div style="padding:16px;text-align:center;font-family:Tajawal">
 <div style="background:#6a33ff;color:#fff;border-radius:18px;padding:20px">
 <div style="width:64px;height:64px;background:#fff;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:32px;color:#6a33ff">✓</div>
 <h2 style="margin-top:10px">شكراً لطلبك!</h2>
@@ -61,12 +105,15 @@ document.body.innerHTML=`
 <b>تفاصيل الطلب #${orderId}</b><br>
 التاريخ: ${date}<br>
 المبلغ: ${am} ج.س<br>
+رقم محفظتك: ${userAcc}<br>
 محول إلى: 2673843 - خالد حسين محمد حامد<br>
-الحالة: معلق<br><br>
-<small>سيتم تأكيد رصيدك بعد مراجعة الإشعار في لوحة الأدمن</small>
+الحالة: <span style="background:orange;color:#fff;padding:2px 8px;border-radius:10px">معلق</span><br><br>
+<img src="${proofBase64}" style="width:100%;border-radius:10px;max-height:250px;object-fit:contain;background:#000">
+<br><br><small>سيتم تأكيد رصيدك بعد مراجعة الإشعار في لوحة الأدمن</small>
 </div><br>
-<button onclick="location.href='wallet.html'" style="width:100%;background:#6a33ff;color:#fff;border:none;padding:14px;border-radius:14px">الذهاب لطلباتي</button>
+<button onclick="location.href='wallet.html'" style="width:100%;background:#6a33ff;color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800">الذهاب لطلباتي</button>
 </div>`;
 }
 </script>
-</body></html>
+</body>
+</html>
