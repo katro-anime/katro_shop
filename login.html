@@ -1,5 +1,4 @@
-<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>التسجيل - KATRO SHOP</title>
+<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KATRO SHOP - دخول</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800&display=swap');
 *{font-family:'Tajawal';box-sizing:border-box;margin:0}body{background:#f4f0ff}
@@ -7,34 +6,84 @@
 .tabs{display:flex;background:#fff;margin:12px;border-radius:14px;overflow:hidden;border:1px solid #e8deff}
 .tabs div{flex:1;text-align:center;padding:12px;font-weight:800;cursor:pointer}.tabs div.active{background:#6a33ff;color:#fff}
 .box{background:#fff;margin:12px;border-radius:16px;padding:16px;box-shadow:0 4px 14px #0001}
-.gbtn{border:1px solid #ddd;border-radius:12px;padding:12px;display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:14px;background:#fff;cursor:pointer}
-.inp{width:100%;padding:13px;border:1px solid #e8deff;border-radius:12px;margin:6px 0;background:#faf8ff}
-.mainbtn{width:100%;background:linear-gradient(90deg,#6a33ff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:16px;margin-top:10px}
+.gbtn{border:1px solid #ddd;border-radius:12px;padding:12px;display:flex;justify-content:center;gap:10px;background:#fff;margin-bottom:12px;cursor:pointer}
+.inp{width:100%;padding:13px;border:1px solid #e8deff;border-radius:12px;margin:6px 0;background:#faf8ff;outline:none}
+.mainbtn{width:100%;background:linear-gradient(90deg,#6a33ff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;margin-top:8px}
 </style></head><body>
 <div class="top"><b>KATRO SHOP</b><a href="index.html" style="color:#fff;text-decoration:none">🏠</a></div>
-<div class="tabs"><div class="active">التسجيل</div><div>دخول</div></div>
-<div class="box">
-<div class="gbtn" onclick="register()"><img src="https://www.svgrepo.com/show/475656/google-color.svg" width="20"><b>التسجيل عن طريق قوقل</b></div>
-<input id="email" class="inp" placeholder="Email - البريد" value="mmmzzz1260389@gmail.com">
-<input id="fname" class="inp" placeholder="First Name - محمد">
-<input id="lname" class="inp" placeholder="Last Name - خالد">
-<input id="phone" class="inp" placeholder="رقم الهاتف - 0100454995" value="0100454995">
-<input id="pass" class="inp" type="password" placeholder="Password">
-<button class="mainbtn" onclick="register()">التسجيل</button>
+
+<div class="tabs">
+<div id="tabReg" class="active" onclick="switchMode('reg')">التسجيل</div>
+<div id="tabLog" onclick="switchMode('log')">تسجيل الدخول</div>
 </div>
+
+<div class="box">
+<div class="gbtn" onclick="googleAuth()"><img src="https://www.svgrepo.com/show/475656/google-color.svg" width="20"><b>الدخول عن طريق قوقل</b></div>
+
+<div id="regFields">
+<input id="email" class="inp" placeholder="البريد - mmmzzz1260389@gmail.com">
+<input id="fname" class="inp" placeholder="الاسم الأول">
+<input id="phone" class="inp" placeholder="رقم الهاتف - 0100454995">
+<input id="pass" class="inp" type="password" placeholder="كلمة السر">
+<input id="cpass" class="inp" type="password" placeholder="تأكيد كلمة السر">
+<button class="mainbtn" onclick="doRegister()">إنشاء حساب جديد ✅</button>
+</div>
+
+<div id="logFields" style="display:none">
+<input id="logEmail" class="inp" placeholder="البريد الالكتروني">
+<input id="logPass" class="inp" type="password" placeholder="كلمة السر">
+<button class="mainbtn" onclick="doLogin()">تسجيل الدخول 🔓</button>
+</div>
+
+</div>
+
 <script>
-function register(){
-let email=document.getElementById('email').value;
-if(!email){alert('اكتب الايميل');return}
-// كل زول ياخد رقم محفظة براهو عشوائي
-let accNum = Math.floor(10000 + Math.random()*89999);
-let walletId = 'KATRO-'+accNum;
-localStorage.setItem('user_email',email);
+function switchMode(m){
+if(m=='reg'){tabReg.classList.add('active');tabLog.classList.remove('active');regFields.style.display='';logFields.style.display='none'}
+else{tabLog.classList.add('active');tabReg.classList.remove('active');logFields.style.display='';regFields.style.display='none'}
+}
+
+function doRegister(){
+let e=email.value,p=pass.value,cp=cpass.value,ph=phone.value;
+if(!e||!p){alert('اكتب البريد وكلمة السر');return}
+if(p!=cp){alert('كلمة السر ما متطابقة');return}
+let users=JSON.parse(localStorage.getItem('katro_users')||'[]');
+if(users.find(u=>u.email==e)){alert('الايميل ده مسجل قبل كده - اعمل تسجيل دخول');switchMode('log');return}
+let accNum=Math.floor(10000+Math.random()*89999);
+let user={email:e,pass:p,phone:ph,acc:accNum,wallet:0,name:fname.value};
+users.push(user);
+localStorage.setItem('katro_users',JSON.stringify(users));
+localStorage.setItem('user_email',e);
 localStorage.setItem('user_acc',accNum);
-localStorage.setItem('wallet_id',walletId);
 localStorage.setItem('wallet','0');
-if(!localStorage.getItem('orders')) localStorage.setItem('orders','[]');
-alert('تم التسجيل ✅ رقم محفظتك الجديد: '+accNum+' - خاص بيك براك');
+localStorage.setItem('current_user',JSON.stringify(user));
+alert('تم التسجيل ✅ رقم محفظتك: '+accNum);
+location.href='wallet.html';
+}
+
+function doLogin(){
+let e=logEmail.value,p=logPass.value;
+let users=JSON.parse(localStorage.getItem('katro_users')||'[]');
+let u=users.find(x=>x.email==e && x.pass==p);
+if(!u){alert('البريد أو كلمة السر غلط ❌');return}
+localStorage.setItem('user_email',u.email);
+localStorage.setItem('user_acc',u.acc);
+localStorage.setItem('wallet',u.wallet||0);
+localStorage.setItem('current_user',JSON.stringify(u));
+alert('مرحب بيك راجع ✅ '+u.email);
+location.href='wallet.html';
+}
+
+function googleAuth(){
+let accNum=Math.floor(10000+Math.random()*89999);
+let fakeEmail='mmmzzz1260389@gmail.com';
+let users=JSON.parse(localStorage.getItem('katro_users')||'[]');
+if(!users.find(u=>u.email==fakeEmail)){
+users.push({email:fakeEmail,pass:'google',phone:'0100454995',acc:accNum,wallet:0,name:'محمد'});
+localStorage.setItem('katro_users',JSON.stringify(users));
+}
+localStorage.setItem('user_email',fakeEmail);
+localStorage.setItem('user_acc',accNum);
 location.href='wallet.html';
 }
 </script>
