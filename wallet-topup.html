@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>شحن المحفظة - كاترو شوب</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*{font-family:'Tajawal',sans-serif;box-sizing:border-box;margin:0}
+body{background:#f8f8ff;padding-bottom:90px}
+.top{background:#6c3cff;color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.badge{display:block;margin:12px auto;background:#d6a44a;color:#fff;padding:6px 20px;border-radius:20px;width:fit-content;font-size:13px}
+.box{background:#fff;margin:12px;border-radius:16px;padding:14px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.title{font-weight:800;margin-bottom:10px}
+.inp{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:6px 0;background:#f9f9f9}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{border:1px solid #ddd;border-radius:12px;padding:12px;text-align:center;cursor:pointer;background:#fff}
+.opt.active{border-color:#6c3cff;background:#ede6ff}
+.bank{border:2px solid #6c3cff;border-radius:12px;padding:12px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;background:#f6f0ff}
+.btn{width:100%;background:linear-gradient(90deg,#6c3cff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:16px;margin-top:12px}
+.bottom{position:fixed;bottom:10px;left:10px;right:10px;background:#1a1333;border-radius:30px;display:flex;justify-content:space-around;padding:10px}
+.bottom a{color:#8a8a9a;text-decoration:none;text-align:center;font-size:12px;display:flex;flex-direction:column;align-items:center}
+.bottom a.active{color:#a78cff}
+</style>
+</head>
+<body>
+<div class="top"><div>🛒</div><div style="font-weight:800">KATRO SHOP</div><div>☰</div></div>
+<span class="badge">رقم حسابك: 2673843</span>
+
+<div class="box">
+<div class="title">قيمة شحن المحفظة *</div>
+<div class="grid2">
+<div class="opt" onclick="selectAmt(10000,this)">10,000 ج.س</div>
+<div class="opt" onclick="selectAmt(20000,this)">20,000 ج.س</div>
+<div class="opt" onclick="selectAmt(50000,this)">50,000 ج.س</div>
+<div class="opt" onclick="selectAmt(100000,this)">100,000 ج.س</div>
+</div>
+<div style="margin-top:10px">
+<label>أو اكتب المبلغ المراد تحويله</label>
+<input id="amount" class="inp" type="number" placeholder="مثلا 15000">
+</div>
+</div>
+
+<div class="box">
+<div class="title">تفاصيل الفاتورة</div>
+<div style="background:#efeef6;border-radius:10px;padding:12px">
+<div style="display:flex;justify-content:space-between"><span>Wallet Topup</span><span id="showAmt">0 ج.س</span></div>
+<div style="display:flex;justify-content:space-between;font-weight:800;margin-top:8px;border-top:1px dashed #ccc;padding-top:8px"><span>الإجمالي</span><span id="total">0 ج.س</span></div>
+</div>
+</div>
+
+<div class="box">
+<div class="title">معلوماتك</div>
+<div class="grid2">
+<input class="inp" placeholder="الاسم الأول">
+<input class="inp" placeholder="اسم العائلة">
+</div>
+<input class="inp" placeholder="رقم الهاتف *">
+<input class="inp" placeholder="البريد الالكتروني (اختياري)">
+
+<div class="title" style="margin-top:12px">طريقة الدفع</div>
+<div class="bank"><div><b>تحويل بنكي - بنكك</b><br><small>2673843 باسم خالد حسين محمد حامد</small></div><div>●</div></div>
+
+<div style="margin-top:12px">
+<label>أرفق صورة الإشعار البنكي *</label>
+<input id="receipt" type="file" class="inp">
+<small style="color:#777">الحد الأقصى لحجم الملف 5MB</small>
+</div>
+
+<button class="btn" onclick="
