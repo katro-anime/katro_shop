@@ -1,12 +1,66 @@
-<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin</title>
-<style>body{background:#0f0f14;color:#fff;font-family:sans-serif;padding:12px}.card{background:#1e1e2e;padding:12px;border-radius:12px;margin:10px 0}button{border:none;padding:8px 12px;border-radius:8px;margin:4px;font-weight:700;cursor:pointer}.ok{background:#ffcc00}.done{background:#00ff88}.bad{background:#ff3b3b;color:#fff}</style></head><body>
-<script>let p="0100454995mm"; if(prompt("🔒 كلمة سر الادمن")!==p){alert("غلط");location.href="index.html"}</script>
-<h2>لوحة تحكم كاترو شوب PRO</h2><div id="pend"></div><h3>الطلبات</h3><div id="ords"></div>
+<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>لوحة الأدمن - KATRO</title>
+<style>
+*{font-family:Tahoma;box-sizing:border-box;margin:0}body{background:#0f0c1f;color:#fff;padding:12px}
+.top{background:#6a33ff;padding:12px;border-radius:12px;display:flex;justify-content:space-between}
+.card{background:#1e1940;border-radius:14px;padding:12px;margin:10px 0;border:1px solid #3a2f7a}
+.card img{width:100%;border-radius:10px;margin-top:8px;max-height:300px;object-fit:contain;background:#000}
+.btn{padding:10px 14px;border:none;border-radius:10px;font-weight:800;margin:4px;cursor:pointer}
+.ok{background:#00c853;color:#fff}.no{background:#d50000;color:#fff}
+.badge{background:#ff8a00;padding:4px 10px;border-radius:20px;font-size:12px}
+</style></head><body>
+<div class="top"><b>👑 لوحة تحكم KATRO SHOP</b><span>حسابك: 2673843</span></div>
+
+<div style="background:#fff;color:#000;padding:10px;border-radius:10px;margin-top:12px">
+<b>إجمالي الطلبات المعلقة: <span id="count">0</span></b>
+</div>
+
+<div id="list"></div>
+
 <script>
-let pe=JSON.parse(localStorage.getItem('pending')||'[]'); document.getElementById('pend').innerHTML='<h4>اشعارات الشحن</h4>'+pe.map((x,i)=>`<div class=card>${x.amount}ج - ${x.date}<br><button class=ok onclick="approve(${i},${x.amount})">✅ موافق</button><button class=bad onclick="reject(${i})">❌ مزور/ملغي</button></div>`).join('')||'لا يوجد';
-function approve(i,a){let w=parseInt(localStorage.getItem('wallet')||0)+parseInt(a);localStorage.setItem('wallet',w);pe.splice(i,1);localStorage.setItem('pending',JSON.stringify(pe));location.reload()}
-function reject(i){if(confirm('حذف الاشعار المزور؟')){pe.splice(i,1);localStorage.setItem('pending',JSON.stringify(pe));location.reload()}}
-let o=JSON.parse(localStorage.getItem('orders')||'[]'); document.getElementById('ords').innerHTML=o.map((x,i)=>`<div class=card>${x.pack} - ${x.price}ج - ID:${x.id}<br>الحالة: ${x.status}<br><button class=done onclick="done(${i})">✅ مكتمل</button><button class=bad onclick="cancelO(${i})">❌ ملغي ID غلط + ارجاع</button></div>`).join('')||'لا يوجد';
-function done(i){o[i].status='مكتمل';localStorage.setItem('orders',JSON.stringify(o));location.reload()}
-function cancelO(i){let w=parseInt(localStorage.getItem('wallet')||0)+parseInt(o[i].price);localStorage.setItem('wallet',w);o[i].status='ملغي - ID غلط';localStorage.setItem('orders',JSON.stringify(o));location.reload()}
-</script></body></html>
+function load(){
+let pend=JSON.parse(localStorage.getItem('pending')||'[]');
+document.getElementById('count').innerText=pend.filter(x=>x.status.includes('معلق')).length;
+let html='';
+pend.reverse().forEach((o,i)=>{
+let realIndex = pend.length-1-i;
+html+=`
+<div class="card">
+<div style="display:flex;justify-content:space-between"><b>طلب #${o.id}</b><span class="badge">${o.status}</span></div>
+<small>${o.date} - ${o.email||'بدون ايميل'}</small><br>
+<b>المبلغ: ${o.amount} ج.س</b> - محول إلى: ${o.bankAcc||'2673843 - خالد حسين محمد حامد'}<br>
+رقم هاتف العميل: ${o.phone||'0100454995'}<br>
+رقم محفظة العميل: ${o.userAcc||'غير معروف'}<br>
+${o.proofImg? `<img src="${o.proofImg}">` : `<div style="background:#333;padding:20px;text-align:center;border-radius:10px;margin-top:8px">📷 الإشعار: ${o.proofName||'لم يرفع صورة'}</div>`}
+<div style="margin-top:10px">
+<button class="btn ok" onclick="approve(${realIndex})">✅ قبول وشحن المحفظة</button>
+<button class="btn no" onclick="reject(${realIndex})">❌ رفض</button>
+</div>
+</div>`;
+});
+document.getElementById('list').innerHTML=html||'لا يوجد طلبات';
+}
+
+function approve(idx){
+let pend=JSON.parse(localStorage.getItem('pending')||'[]');
+let o=pend[idx];
+o.status='تم التأكيد ✅';
+pend[idx]=o;
+// زيد الرصيد
+let users=JSON.parse(localStorage.getItem('katro_users')||'[]');
+let u=users.find(x=>x.acc==o.userAcc);
+if(u){u.wallet=(parseInt(u.wallet||0)+parseInt(o.amount)).toString();localStorage.setItem('katro_users',JSON.stringify(users));}
+localStorage.setItem('pending',JSON.stringify(pend));
+alert('تم شحن '+o.amount+' لصاحب المحفظة '+o.userAcc);
+load();
+}
+
+function reject(idx){
+let pend=JSON.parse(localStorage.getItem('pending')||'[]');
+pend[idx].status='مرفوض ❌';
+localStorage.setItem('pending',JSON.stringify(pend));
+load();
+}
+
+load();
+</script>
+</body></html>
