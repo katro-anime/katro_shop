@@ -1,59 +1,68 @@
 <!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>محفظتي - KATRO</title><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800&display=swap" rel="stylesheet">
-<style>*{font-family:Tajawal;box-sizing:border-box;margin:0}body{background:#f6f2ff;padding-bottom:100px}
-.top{background:#6a35ff;color:#fff;padding:12px;display:flex;justify-content:space-between;position:sticky;top:0}
-.card{background:#fff;margin:12px;border-radius:16px;padding:14px;box-shadow:0 4px 12px #0001}
-.badge{background:#d6a44a;color:#fff;padding:6px 16px;border-radius:20px;font-size:12px;display:inline-block;margin-bottom:8px}
-.btn{width:100%;background:linear-gradient(90deg,#6a35ff,#ff8a00);color:#fff;border:none;padding:13px;border-radius:12px;font-weight:800;margin-top:10px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.opt{border:1px solid #ddd;border-radius:10px;padding:10px;text-align:center;background:#fff;cursor:pointer}.opt.active{border-color:#6a35ff;background:#ece6ff}
-.bottom{position:fixed;bottom:10px;left:10px;right:10px;background:#15112a;border-radius:28px;display:flex;justify-content:space-around;padding:10px}
-.bottom a{color:#7e7e90;text-decoration:none;font-size:11px;text-align:center;display:flex;flex-direction:column;align-items:center}.bottom a.active{color:#b18cff}
+<title>محفظتي - KATRO</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800&display=swap');
+*{font-family:'Tajawal';box-sizing:border-box;margin:0}body{background:#f4f0ff;padding-bottom:90px}
+.top{background:#6a33ff;color:#fff;padding:12px;display:flex;justify-content:space-between}
+.card{background:#fff;margin:12px;border-radius:18px;padding:16px;box-shadow:0 4px 14px #0001}
+.green{background:#e8f5e9;border-radius:14px;padding:16px;text-align:center;margin:10px 0}
+.badge{background:#c69c3a;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;display:inline-block;font-weight:800}
+.btn{width:100%;background:linear-gradient(90deg,#6a33ff,#ff8a00);color:#fff;border:none;padding:13px;border-radius:12px;font-weight:800;margin-top:8px}
+.bottom{position:fixed;bottom:10px;left:10px;right:10px;height:62px;background:#16112e;border-radius:30px;display:flex;justify-content:space-around;align-items:center}
+.bottom a{color:#8d8da6;text-decoration:none;font-size:10px;display:flex;flex-direction:column;align-items:center}.bottom a.active{color:#bda7ff}
 </style></head><body>
-<div class="top"><b>KATRO SHOP</b><a href="index.html" style="color:#fff;text-decoration:none">🏠</a></div>
+<div class="top"><b>KATRO SHOP</b><span>MY ACCOUNT</span></div>
 
-<div class="card">
-<span class="badge">رقم حسابك: <span id="acc">18904</span></span>
-<h3>محفظتي</h3>
-<div style="background:#f0ecff;border-radius:12px;padding:12px;margin:10px 0;text-align:center">
-<b>رصيد محفظتك هو</b><br><span id="bal" style="font-size:28px;font-weight:900;color:#6a35ff">0.00 ج.س</span>
-</div>
-<div class="grid2">
-<button class="btn" onclick="location.href='wallet-topup.html'">تحويل الرصيد</button>
-<button class="btn" style="background:#eee;color:#333" onclick="alert('سجل المعاملات فاضي')">سجل المعاملات</button>
-</div>
+<div class="card" style="background:linear-gradient(135deg,#7c4dff,#ff8a00);color:#fff">
+<div id="greet">مساء الخير 👋</div>
+<small>رقم محفظتك الخاص</small>
 </div>
 
 <div class="card">
-<h3>طلباتي - #66861 زي الفيديو</h3>
-<div id="orders"></div>
+<div class="badge">رقم حسابك: <span id="accNum">-----</span></div>
+<h3 style="margin-top:10px">محفظتي</h3>
+<div class="green">
+<b>رصيد محفظتك هو</b><br>
+<span id="bal" style="font-size:30px;font-weight:900">0.00 ج.س</span>
+</div>
+<button class="btn" onclick="location.href='wallet-topup.html'">تحويل الرصيد + شحن المحفظة</button>
+<button class="btn" style="background:#f0eaff;color:#333" onclick="showOrders()">سجل المعاملات و الطلبات</button>
 </div>
 
-<div class="card">
-<h3>MY ACCOUNT</h3>
-<p>مساء الخير يا <span id="email">khalid</span></p><br>
-<div style="display:grid;gap:8px">
-<div style="background:#f9f5ff;padding:12px;border-radius:10px">📁 محفظتي</div>
-<div style="background:#f9f5ff;padding:12px;border-radius:10px" onclick="location.href='wallet.html'">📦 طلباتي</div>
-<div style="background:#f9f5ff;padding:12px;border-radius:10px">⚙️ اعدادات الحساب</div>
-<div style="background:#ffecec;padding:12px;border-radius:10px;color:#c00">🚪 تسجيل الخروج</div>
-</div>
+<div class="card" id="ordersBox">
+<h3>طلباتي</h3>
+<div id="ordersList">لا يوجد طلبات بعد</div>
 </div>
 
 <div class="bottom">
-<a href="index.html"><div>🏠</div>الرئيسية</a>
-<a class="active"><div>💳</div>المحفظة</a>
+<a href="login.html"><div>👤</div>دخول</a>
 <a href="wallet.html"><div>🧾</div>الطلبات</a>
-<a href="wallet.html"><div>👤</div>دخول</a>
+<a class="active"><div>💳</div>المحفظة</a>
+<a href="index.html"><div>🏠</div>الرئيسية</a>
 </div>
+
 <script>
-let bal=parseInt(localStorage.getItem('wallet')||0);
-document.getElementById('bal').innerText=bal.toLocaleString()+'.00 ج.س';
-let orders=JSON.parse(localStorage.getItem('orders')||'[]');
-let pending=JSON.parse(localStorage.getItem('pending')||'[]');
-let h='';[...pending,...orders].reverse().forEach(o=>{
-h+=`<div style="border:1px solid #eee;border-radius:10px;padding:10px;margin:6px 0"><b>طلب #${Math.floor(Math.random()*90000)+10000}</b><br><small>${o.date||''}</small><br><b>الإجمالي: ${o.amount||o.price} ج.س</b><br><span style="background:orange;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px">${o.status||'معلق'}</span></div>`;
+let acc = localStorage.getItem('user_acc') || Math.floor(10000+Math.random()*89999);
+if(!localStorage.getItem('user_acc')){localStorage.setItem('user_acc',acc)}
+document.getElementById('accNum').innerText=acc;
+let email=localStorage.getItem('user_email')||'زائر';
+document.getElementById('greet').innerText='مساء الخير يا '+email+' 👋';
+document.getElementById('bal').innerText=(localStorage.getItem('wallet')||0)+'.00 ج.س';
+
+function showOrders(){
+let pend=JSON.parse(localStorage.getItem('pending')||'[]');
+let html='';
+pend.reverse().forEach(o=>{
+html+=`<div style="border:1px dashed #6a33ff;border-radius:10px;padding:10px;margin:8px 0;background:#faf5ff">
+<b>طلب #${o.id}</b><br>
+<small>${o.date}</small><br>
+الإجمالي: <b>${o.amount} ج.س</b><br>
+الحالة: <span style="background:orange;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px">${o.status}</span><br>
+محول إلى: بنكك ${o.bankAcc}
+</div>`;
 });
-document.getElementById('orders').innerHTML=h||'لا توجد طلبات';
+document.getElementById('ordersList').innerHTML=html||'لا يوجد طلبات';
+}
+showOrders();
 </script>
 </body></html>
