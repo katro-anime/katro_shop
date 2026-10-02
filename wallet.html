@@ -1,35 +1,52 @@
-<!DOCTYPE html><html dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>كاترو شوب - محفظتي</title>
+<!DOCTYPE html>
+<html dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>محفظتي - كاترو شوب</title>
 <style>
-body{background:#0f0f0f;color:#fff;font-family:sans-serif;padding:15px}
-.box{background:#1c1c1c;padding:15px;border-radius:12px;margin-bottom:15px}
-input{width:100%;padding:10px;margin:5px 0;border-radius:8px;border:none;background:#2a2a2a;color:#fff;box-sizing:border-box}
-button{background:#ffcc00;padding:10px;width:100%;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
-.wallet-header{display:flex;align-items:center;gap:10px}
-.wallet-icon{width:36px;height:32px;background:#ffcc00;border-radius:6px;position:relative;display:inline-block}
-.wallet-icon:before{content:'';position:absolute;right:-6px;top:8px;width:8px;height:16px;background:#e6b800;border-radius:0 4px 4px 0}
-.wallet-icon:after{content:'$';position:absolute;left:11px;top:4px;color:#111;font-weight:bold;font-size:18px}
+body{margin:0;font-family:sans-serif;background:#f5f5f5}
+.header{background:#6a3de8;color:#fff;padding:10px 15px;display:flex;justify-content:space-between;align-items:center}
+.card{margin:15px;background:linear-gradient(135deg,#e0f8e0,#fff);padding:20px;border-radius:15px;text-align:right}
+.card h2{margin:0;color:#333}
+.card .bal{color:#ff7a00;font-size:28px;font-weight:bold;margin:10px 0}
+.btns{background:#fff;margin:15px;border-radius:15px;overflow:hidden}
+.btns div{padding:15px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.bottom-nav{position:fixed;bottom:10px;left:10px;right:10px;background:#1a1a2e;border-radius:20px;display:flex;justify-content:space-around;padding:10px;color:#fff}
+.bottom-nav a{color:#fff;text-decoration:none;font-size:12px;text-align:center}
+.active{color:#a56eff !important}
+.badge{background:#6a3de8;color:#fff;padding:8px 20px;border-radius:20px;text-align:center;margin:10px auto;width:fit-content}
 </style></head><body>
-<a href="index.html" style="color:#ffcc00">رجوع لكاترو شوب</a>
+<div class="header"><span>☰</span><b>ALHBANI SHOP</b><span>🛒</span></div>
+<div class="badge">رقم حسابك: 69058</div>
 
-<div class="box">
-<div class="wallet-header">
-<div class="wallet-icon"></div>
-<h3 style="margin:0">محفظة كاترو شوب</h3>
-</div>
-<h1 id="bal">0 جنيه</h1>
-<p>حول في بنكك: <b>2673843</b> باسم خالد حسين محمد حامد</p>
-<input type="number" id="amount" placeholder="المبلغ المراد تحويله">
-<input type="file" id="receipt">
-<button onclick="upload()">رفع الاشعار</button>
-<p id="msg"></p>
+<div class="card">
+<div style="text-align:right">💳 محفظتي</div>
+<div class="bal" id="bal">0.00 ج.س</div>
 </div>
 
-<div class="box"><h3>طلباتي في كاترو شوب</h3><div id="orders"></div></div>
+<div class="btns">
+<div onclick="location.href='wallet-topup.html'">شحن المحفظة <span>⊕</span></div>
+<div>تحويل الرصيد <span>⇄</span></div>
+<div>سجل المعاملات <span>📄</span></div>
+</div>
+
+<div style="margin:15px;background:#e8f5e9;padding:15px;border-radius:15px">
+<h3>لوحة المحفظة</h3>
+<p>لا توجد معاملات</p>
+<div id="orders"></div>
+</div>
+
+<div class="bottom-nav">
+<a href="index.html">الرئيسية</a>
+<a class="active" href="wallet.html">المحفظة</a>
+<a href="#">الطلبات</a>
+<a href="#">حسابي</a>
+</div>
 
 <script>
-let w=localStorage.getItem('wallet')||0; document.getElementById('bal').innerText=w+' جنيه';
-function upload(){let amt=document.getElementById('amount').value; if(!amt){alert('اكتب المبلغ');return}
-let pend=JSON.parse(localStorage.getItem('pending')||'[]'); pend.push({amount:amt,date:new Date().toLocaleString(),status:'بانتظار'}); localStorage.setItem('pending',JSON.stringify(pend)); document.getElementById('msg').innerText='تم الرفع لكاترو شوب';}
-let orders=JSON.parse(localStorage.getItem('orders')||'[]'); let html=''; orders.reverse().forEach(o=>{html+=`<div style="border-bottom:1px solid #333;padding:8px 0">${o.pack} - ${o.price}ج - ID:${o.id}<br>الحالة: <b style="color:${o.status=='مكتمل'?'#0f0':o.status.includes('ملغي')?'#f33':'#ffcc00'}">${o.status}</b></div>`}); document.getElementById('orders').innerHTML=html||'لا يوجد';
+let w=localStorage.getItem('wallet')||0;
+document.getElementById('bal').innerText=w+'.00 ج.س';
+let orders=JSON.parse(localStorage.getItem('orders')||'[]');
+let html='';
+orders.forEach(o=>{html+=`<div style="padding:8px;border-bottom:1px solid #ccc">${o.pack} - ${o.price}ج - ID:${o.id} - الحالة: <b>${o.status}</b></div>`});
+document.getElementById('orders').innerHTML=html;
 </script>
 </body></html>
