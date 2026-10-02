@@ -1,69 +1,48 @@
-<!DOCTYPE html>
-<html dir="rtl" lang="ar">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>شحن المحفظة - كاترو شوب</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
-<style>
-*{font-family:'Tajawal',sans-serif;box-sizing:border-box;margin:0}
-body{background:#f8f8ff;padding-bottom:90px}
-.top{background:#6c3cff;color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.badge{display:block;margin:12px auto;background:#d6a44a;color:#fff;padding:6px 20px;border-radius:20px;width:fit-content;font-size:13px}
-.box{background:#fff;margin:12px;border-radius:16px;padding:14px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
-.title{font-weight:800;margin-bottom:10px}
-.inp{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:6px 0;background:#f9f9f9}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.opt{border:1px solid #ddd;border-radius:12px;padding:12px;text-align:center;cursor:pointer;background:#fff}
-.opt.active{border-color:#6c3cff;background:#ede6ff}
-.bank{border:2px solid #6c3cff;border-radius:12px;padding:12px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;background:#f6f0ff}
-.btn{width:100%;background:linear-gradient(90deg,#6c3cff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:16px;margin-top:12px}
-.bottom{position:fixed;bottom:10px;left:10px;right:10px;background:#1a1333;border-radius:30px;display:flex;justify-content:space-around;padding:10px}
-.bottom a{color:#8a8a9a;text-decoration:none;text-align:center;font-size:12px;display:flex;flex-direction:column;align-items:center}
-.bottom a.active{color:#a78cff}
-</style>
-</head>
-<body>
-<div class="top"><div>🛒</div><div style="font-weight:800">KATRO SHOP</div><div>☰</div></div>
-<span class="badge">رقم حسابك: 2673843</span>
+<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>شحن المحفظة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700&display=swap" rel="stylesheet">
+<style>*{font-family:Tajawal;box-sizing:border-box}body{margin:0;background:#f6f2ff;padding-bottom:110px}.top{background:#6a35ff;color:#fff;padding:12px;display:flex;justify-content:space-between}.box{background:#fff;margin:12px;border-radius:14px;padding:12px;box-shadow:0 4px 10px #0001}.inp{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:6px 0;background:#f9f9f9}.btn{width:100%;background:linear-gradient(90deg,#6a35ff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:16px}</style>
+</head><body>
+<div class="top"><b>KATRO SHOP</b><span>شحن المحفظة</span></div>
 
 <div class="box">
-<div class="title">قيمة شحن المحفظة *</div>
-<div class="grid2">
-<div class="opt" onclick="selectAmt(10000,this)">10,000 ج.س</div>
-<div class="opt" onclick="selectAmt(20000,this)">20,000 ج.س</div>
-<div class="opt" onclick="selectAmt(50000,this)">50,000 ج.س</div>
-<div class="opt" onclick="selectAmt(100000,this)">100,000 ج.س</div>
-</div>
-<div style="margin-top:10px">
-<label>أو اكتب المبلغ المراد تحويله</label>
-<input id="amount" class="inp" type="number" placeholder="مثلا 15000">
-</div>
+<b>المبلغ: 10,000.00 ج.س</b><br><small>1 × Wallet Topup 10,000</small>
+<hr style="margin:10px 0">
+<div style="display:flex;justify-content:space-between;font-weight:800"><span>الإجمالي</span><span id="tot">10,000.00 ج.س</span></div>
 </div>
 
 <div class="box">
-<div class="title">تفاصيل الفاتورة</div>
-<div style="background:#efeef6;border-radius:10px;padding:12px">
-<div style="display:flex;justify-content:space-between"><span>Wallet Topup</span><span id="showAmt">0 ج.س</span></div>
-<div style="display:flex;justify-content:space-between;font-weight:800;margin-top:8px;border-top:1px dashed #ccc;padding-top:8px"><span>الإجمالي</span><span id="total">0 ج.س</span></div>
+<b>تفاصيل الفاتورة</b>
+<input id="fn" class="inp" placeholder="الاسم الأول * - مثلا محمد">
+<input id="ln" class="inp" placeholder="الاسم الأخير * - مثلا خالد">
+<input id="ph" class="inp" placeholder="الهاتف * - 0100454995">
+<input id="em" class="inp" placeholder="البريد الإلكتروني * - mmmzzz1260389@gmail.com">
+<input id="am" class="inp" type="number" placeholder="المبلغ 10000" value="10000" oninput="document.getElementById('tot').innerText=this.value+' ج.س'">
+
+<b>اختر البنك الذي تم التحويل اليه *</b>
+<div style="border:2px solid #6a35ff;border-radius:12px;padding:10px;margin:8px 0;background:#f6f0ff">
+<label><input type="radio" name="bank" checked> بنك الخرطوم</label><br>
+<small>تفاصيل الحساب البنكي: اسم البنك: بنك الخرطوم - اسم الحساب: محمد يوسف عبد الهادي<br>
+رقم الحساب: <b style="background:#ffe9a8;padding:2px 8px;border-radius:6px">3926165</b> <button onclick="navigator.clipboard.writeText('3926165');alert('تم النسخ')">نسخ</button></small>
 </div>
+<label><input type="radio" name="bank"> بنكك</label><br>
+<label><input type="radio" name="bank"> فوري</label><br>
+<label><input type="radio" name="bank"> ماي كاشي</label>
+
+<b>ارفق صورة الإشعار البنكي *</b>
+<input type="file" class="inp">
+<small>تم رفع الملف بنجاح: Screenshot_20241002.jpg</small><br><br>
+<label><input type="checkbox" checked> لقد قرأت الشروط والأحكام وأوافق عليها *</label><br><br>
+<button class="btn" onclick="confirmTopup()">تأكيد الطلب</button>
 </div>
 
-<div class="box">
-<div class="title">معلوماتك</div>
-<div class="grid2">
-<input class="inp" placeholder="الاسم الأول">
-<input class="inp" placeholder="اسم العائلة">
-</div>
-<input class="inp" placeholder="رقم الهاتف *">
-<input class="inp" placeholder="البريد الالكتروني (اختياري)">
-
-<div class="title" style="margin-top:12px">طريقة الدفع</div>
-<div class="bank"><div><b>تحويل بنكي - بنكك</b><br><small>2673843 باسم خالد حسين محمد حامد</small></div><div>●</div></div>
-
-<div style="margin-top:12px">
-<label>أرفق صورة الإشعار البنكي *</label>
-<input id="receipt" type="file" class="inp">
-<small style="color:#777">الحد الأقصى لحجم الملف 5MB</small>
-</div>
-
-<button class="btn" onclick="
+<script>
+function confirmTopup(){
+let am=document.getElementById('am').value||'10000';
+if(!document.getElementById('fn').value){alert('اكتب الاسم الاول');return}
+let pend=JSON.parse(localStorage.getItem('pending')||'[]');
+pend.push({amount:am,date:new Date().toLocaleDateString('ar-EG')+' 2 اكتوبر 2026',status:'معلق - رقم 66861',bank:'بنك الخرطوم 3926165'});
+localStorage.setItem('pending',JSON.stringify(pend));
+document.body.innerHTML=`<div style="text-align:center;padding:20px"><div style="background:#6a35ff;color:#fff;border-radius:16px;padding:20px"><div style="width:60px;height:60px;background:#fff;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:30px">✓</div><h2>شكراً لطلبك!</h2><p>تم استلام طلبك بنجاح وسنقوم بمعالجته في اقرب وقت</p><p>رقم الطلب: 66861 - 2 اكتوبر 2026</p></div><div style="background:#fff;margin:12px;border-radius:12px;padding:12px;border:1px dashed #6a35ff">شكراً لك - تم استلام طلبك<br>رقم الطلب: 66861<br>التاريخ: 2 اكتوبر 2026<br>الايميل: ${document.getElementById('em').value}<br>الاجمالي: ${am} ج.س<br>طريقة الدفع: بنك الخرطوم</div><button onclick="location.href='wallet.html'" style="width:100%;background:#6a35ff;color:#fff;border:none;padding:14px;border-radius:12px">الذهاب لطلباتي</button></div>`;
+}
+</script>
+</body></html>
