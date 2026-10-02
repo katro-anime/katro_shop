@@ -1,31 +1,40 @@
-<!DOCTYPE html><html dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>كاترو شوب - الباقات</title>
-<style>body{background:#0f0f0f;color:#fff;font-family:sans-serif;padding:15px}.item{background:#1c1c1c;padding:12px;margin:10px 0;border-radius:10px;display:flex;justify-content:space-between}button{background:#ffcc00;border:none;padding:8px 15px;border-radius:8px;font-weight:bold}</style></head><body>
-<a href="index.html" style="color:#ffcc00">← رجوع لكاترو شوب</a><h2 id="title"></h2>
-<input id="playerId" placeholder="اكتب ID اللاعب / الرقم" style="width:100%;padding:10px;border-radius:8px"><br><br>
-<div id="list"></div>
+<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>المنتج</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<style>*{font-family:Tajawal;box-sizing:border-box}body{margin:0;background:#f8f8ff;padding-bottom:90px}.top{background:#6c3cff;color:#fff;padding:10px 12px;display:flex;justify-content:space-between}.price{color:#6c3cff;font-weight:800;text-align:center;padding:10px}.opt{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}.opt label{border:1px solid #ddd;border-radius:10px;padding:10px;text-align:center;background:#fff;cursor:pointer}.opt input{display:none}.opt input:checked+label{border-color:#6c3cff;background:#ede6ff}
+.detail{background:#efeef6;margin:12px;border-radius:14px;padding:12px}.detail.row{display:flex;justify-content:space-between;background:#fff;border-radius:10px;padding:10px;margin-top:8px}
+.inp{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:8px 0}
+.btn{width:94%;margin:10px auto;display:block;background:linear-gradient(90deg,#6c3cff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:16px}
+.bottom{position:fixed;bottom:10px;left:10px;right:10px;background:#1a1333;border-radius:30px;display:flex;justify-content:space-around;padding:10px;z-index:100}
+.bottom a{color:#8a8a9a;text-decoration:none;text-align:center;font-size:12px;display:flex;flex-direction:column;align-items:center}
+</style></head><body>
+<div class="top"><div>☰</div><div>ALHBANI SHOP</div><div>🛒</div></div>
+<h3 id="gtitle" style="padding:12px">شحن فري فاير مباشر 24 ساعة</h3>
+<div class="price" id="prange">ج.س. 2,900 - ج.س. 162,000</div>
+<p style="text-align:center;font-size:13px">تسليم فوري ⚡</p>
+<h4 style="padding:12px">قيمة البطاقة</h4>
+<div class="opt" id="options"></div>
+<div class="detail"><b>تفاصيل الاختيار</b><div class="row"><span>السعر</span><span id="selPrice">-</span></div><button style="width:100%;margin-top:8px;background:#6c3cff;color:#fff;border:none;padding:8px;border-radius:8px" onclick="document.getElementById('selPrice').innerText='-'">إعادة التعيين</button></div>
+<div style="padding:12px">
+<label>* معرف اللاعب (ID)</label><input id="pid" class="inp" placeholder="مثال 12345678">
+<label>* واتساب للتواصل</label><input id="wpp" class="inp" placeholder="09xxxxxxxx">
+<button class="btn" onclick="buy()">إضافة إلى السلة - شراء فوري</button>
+</div>
+<div class="bottom"><a href="wallet.html"><div>👤</div>دخول</a><a href="wallet.html"><div>🧾</div>الطلبات</a><a href="wallet.html"><div>💳</div>المحفظة</a><a href="index.html"><div>🏠</div>الرئيسية</a></div>
 <script>
-const data={
-freefire_id:[{n:"110 جوهرة",p:8100},{n:"231 جوهرة",p:16200},{n:"583 جوهرة",p:40500},{n:"1188 جوهرة",p:81000},{n:"2420 جوهرة",p:162000},{n:"تصريح مستوى",p:35000},{n:"عضوية اسبوعية",p:18500},{n:"عضوية شهرية",p:89000}],
-pubg:[{n:"60 شدة",p:7500},{n:"325 شدة",p:37500},{n:"385 شدة",p:45000},{n:"660 شدة",p:75000},{n:"720 شدة RP",p:82500},{n:"1800 شدة",p:187500},{n:"3850 شدة",p:375000},{n:"8100 شدة",p:750000}],
-pes:[{n:"130 كوينز",p:10000},{n:"300 كوينز",p:22000},{n:"550 كوينز",p:39000},{n:"750 كوينز",p:52000},{n:"1040 كوينز",p:71000}],
-tiktok:[{n:"70 عملة",p:5500},{n:"140 عملة",p:11000},{n:"350 عملة",p:27500},{n:"1000 عملة",p:76000},{n:"7000 عملة",p:530000}],
-rasid:[{n:"رصيد 1000",p:1000},{n:"رصيد 5000",p:5000}],
-freefire_account:[{n:"310 جوهرة (حساب)",p:19500},{n:"520 جوهرة",p:32500},{n:"1080 جوهرة",p:65000},{n:"2180 جوهرة",p:130000},{n:"5600 جوهرة",p:325000}]
-}
-let type=new URLSearchParams(location.search).get('type'); document.getElementById('title').innerText="كاترو شوب - "+type;
-let list=document.getElementById('list');
-data[type].forEach(x=>{
-list.innerHTML+=`<div class=item><span>${x.n} - ${x.p}ج</span><button onclick="order('${x.n}',${x.p})">طلب</button></div>`;
-});
-function order(name,price){
+let params=new URLSearchParams(location.search); let g=params.get('g')||'freefire';
+let packs={freefire:[{n:'110 جوهرة',p:2900},{n:'231 جوهرة',p:5800},{n:'583 جوهرة',p:11600},{n:'1180 جوهرة',p:22000},{n:'عضوية أسبوعية',p:6000},{n:'عضوية شهرية',p:28000}],pubg:[{n:'60 UC',p:3500},{n:'325 UC',p:17000},{n:'660 UC',p:34000}],tiktok:[{n:'350 عملة',p:32500},{n:'700 عملة',p:65000},{n:'1400 عملة',p:130000}],playstation:[{n:'10$ PSN',p:45000},{n:'25$ PSN',p:110000}]};
+let cur=packs[g]||packs.freefire;
+document.getElementById('gtitle').innerText=g=='freefire'?'شحن فري فاير مباشر 24ساعة':g=='pubg'?'شحن ببجي UC':g=='tiktok'?'عملات تيك توك':'بلايستيشن';
+let html='';cur.forEach((x,i)=>{html+=`<input type=radio name=pack id=p${i} onchange="document.getElementById('selPrice').innerText='${x.p} ج.س';window.sel=x"><label for=p${i}>${x.n}</label>`});document.getElementById('options').innerHTML=html;
+function buy(){
+let id=document.getElementById('pid').value; if(!id){alert('اكتب الـID');return}
+if(!window.sel){alert('اختار الباقة');return}
 let wallet=parseInt(localStorage.getItem('wallet')||0);
-let id=document.getElementById('playerId').value;
-if(!id){alert('اكتب الـ ID اول');return}
-if(wallet<price){alert('رصيدك غير كافي '+wallet); location.href='wallet.html'; return}
-wallet-=price; localStorage.setItem('wallet',wallet);
+if(wallet<window.sel.p){alert('رصيد محفظتك غير كافي، اشحن المحفظة أولا'); location.href='wallet.html'; return}
+localStorage.setItem('wallet',wallet-window.sel.p);
 let orders=JSON.parse(localStorage.getItem('orders')||'[]');
-orders.push({game:type,pack:name,price,id,status:'قيد التنفيذ',date:new Date().toLocaleString()});
+orders.push({pack:window.sel.n,price:window.sel.p,id:id,status:'قيد التنفيذ',date:new Date().toLocaleString()});
 localStorage.setItem('orders',JSON.stringify(orders));
-alert('تم الطلب من كاترو شوب - المتبقي '+wallet); location.href='wallet.html';
+alert('تم الشراء بنجاح، تابع طلباتك'); location.href='wallet.html';
 }
 </script></body></html>
