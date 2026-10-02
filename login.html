@@ -1,0 +1,41 @@
+<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>التسجيل - KATRO SHOP</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800&display=swap');
+*{font-family:'Tajawal';box-sizing:border-box;margin:0}body{background:#f4f0ff}
+.top{background:#6a33ff;color:#fff;padding:12px;display:flex;justify-content:space-between}
+.tabs{display:flex;background:#fff;margin:12px;border-radius:14px;overflow:hidden;border:1px solid #e8deff}
+.tabs div{flex:1;text-align:center;padding:12px;font-weight:800;cursor:pointer}.tabs div.active{background:#6a33ff;color:#fff}
+.box{background:#fff;margin:12px;border-radius:16px;padding:16px;box-shadow:0 4px 14px #0001}
+.gbtn{border:1px solid #ddd;border-radius:12px;padding:12px;display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:14px;background:#fff;cursor:pointer}
+.inp{width:100%;padding:13px;border:1px solid #e8deff;border-radius:12px;margin:6px 0;background:#faf8ff}
+.mainbtn{width:100%;background:linear-gradient(90deg,#6a33ff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:16px;margin-top:10px}
+</style></head><body>
+<div class="top"><b>KATRO SHOP</b><a href="index.html" style="color:#fff;text-decoration:none">🏠</a></div>
+<div class="tabs"><div class="active">التسجيل</div><div>دخول</div></div>
+<div class="box">
+<div class="gbtn" onclick="register()"><img src="https://www.svgrepo.com/show/475656/google-color.svg" width="20"><b>التسجيل عن طريق قوقل</b></div>
+<input id="email" class="inp" placeholder="Email - البريد" value="mmmzzz1260389@gmail.com">
+<input id="fname" class="inp" placeholder="First Name - محمد">
+<input id="lname" class="inp" placeholder="Last Name - خالد">
+<input id="phone" class="inp" placeholder="رقم الهاتف - 0100454995" value="0100454995">
+<input id="pass" class="inp" type="password" placeholder="Password">
+<button class="mainbtn" onclick="register()">التسجيل</button>
+</div>
+<script>
+function register(){
+let email=document.getElementById('email').value;
+if(!email){alert('اكتب الايميل');return}
+// كل زول ياخد رقم محفظة براهو عشوائي
+let accNum = Math.floor(10000 + Math.random()*89999);
+let walletId = 'KATRO-'+accNum;
+localStorage.setItem('user_email',email);
+localStorage.setItem('user_acc',accNum);
+localStorage.setItem('wallet_id',walletId);
+localStorage.setItem('wallet','0');
+if(!localStorage.getItem('orders')) localStorage.setItem('orders','[]');
+alert('تم التسجيل ✅ رقم محفظتك الجديد: '+accNum+' - خاص بيك براك');
+location.href='wallet.html';
+}
+</script>
+</body></html>
