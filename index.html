@@ -1,16 +1,56 @@
-<!DOCTYPE html><html dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>كاترو شوب</title>
-<style>body{font-family:sans-serif;background:#0f0f0f;color:#fff;padding:15px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:#1c1c1c;border-radius:12px;padding:10px;text-align:center}.card img{width:100%;border-radius:10px}.btn{background:#ffcc00;color:#000;padding:8px 12px;border-radius:8px;display:block;text-decoration:none;margin-top:8px;font-weight:bold}</style></head><body>
-<h2>🔥 كاترو شوب - Catro Shop</h2>
-<p style="background:#1c1c1c;padding:10px;border-radius:8px">💳 للتحويل: <b>2673843</b> باسم <b>خالد حسين محمد حامد</b></p>
-<p>رصيدك: <span id="myWallet">0</span> جنيه | <a href="wallet.html" style="color:#ffcc00">المحفظة وطلباتي</a></p>
-<div class="grid">
-<div class="card"><img src="https://i.imgur.com/8Km9tLL.png"><b>فري فاير ID</b><a class="btn" href="game.html?type=freefire_id">عرض الباقات</a></div>
-<div class="card"><img src="https://i.imgur.com/QlAfT6f.png"><b>فري فاير حساب</b><a class="btn" href="game.html?type=freefire_account">عرض الباقات</a></div>
-<div class="card"><img src="https://i.imgur.com/k2o8P4p.png"><b>ببجي موبايل</b><a class="btn" href="game.html?type=pubg">عرض الباقات</a></div>
-<div class="card"><img src="https://i.imgur.com/6o5a6qY.png"><b>بيس eFootball</b><a class="btn" href="game.html?type=pes">عرض الباقات</a></div>
-<div class="card"><img src="https://i.imgur.com/3y2n8tM.png"><b>تيك توك</b><a class="btn" href="game.html?type=tiktok">عرض الباقات</a></div>
-<div class="card"><img src="https://i.imgur.com/mZ5q7kQ.png"><b>رصيد زين و MTN</b><a class="btn" href="game.html?type=rasid">شحن</a></div>
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>كاترو شوب | KATRO SHOP</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*{font-family:'Tajawal',sans-serif;box-sizing:border-box;margin:0}
+body{background:#f8f8ff;color:#222;padding-bottom:90px}
+.top{background:#6c3cff;color:#fff;padding:10px 12px;position:sticky;top:0;z-index:99;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:20px;letter-spacing:1px}
+.logo span{color:#ffb700}
+.icons{display:flex;gap:10px}
+.ic{width:38px;height:38px;background:#4b26b3;border-radius:50%;display:grid;place-items:center;cursor:pointer;color:#fff}
+.banner{margin:12px;border-radius:18px;overflow:hidden;background:linear-gradient(90deg,#6c3cff,#ff8a00);padding:18px;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.banner h2{font-size:22px;line-height:1.2}
+.circle-row{display:flex;gap:12px;overflow:auto;padding:10px 12px}
+.cir{flex:0 0 80px;text-align:center}
+.cir div{width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#6c3cff,#1a0b4d);display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+.sec-title{text-align:center;margin:18px 0 8px}
+.sec-title span{background:#d6a44a;color:#fff;padding:6px 22px;border-radius:20px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08);text-align:center;position:relative;padding-top:12px}
+.card:before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:22px;height:8px;background:#eee;border-radius:10px}
+.card img{width:92%;border-radius:12px;aspect-ratio:1}
+.card p{padding:8px;font-weight:700}
+.card b{color:#6c3cff;font-size:12px}
+.bottom{position:fixed;bottom:10px;left:10px;right:10px;background:#1a1333;border-radius:30px;display:flex;justify-content:space-around;padding:10px;z-index:100}
+.bottom a{color:#8a8a9a;text-decoration:none;text-align:center;font-size:12px;display:flex;flex-direction:column;align-items:center}
+.bottom a.active{color:#a78cff}
+.wa{position:fixed;bottom:95px;left:14px;background:#7d3bff;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:26px;z-index:99}
+</style>
+</head>
+<body>
+<div class="top"><div class="icons"><a href="wallet.html" class="ic">🛒</a></div><div class="logo">KATRO<span> SHOP</span></div><div class="ic">☰</div></div>
+<div class="banner"><div><h2>كل شي تحتاجه<br>اطلبه ببطاقة!</h2><small>شحن فوري - آمن - مضمون</small></div><div style="font-size:50px">🎮</div></div>
+<div class="circle-row">
+<a href="game.html?g=freefire" class="cir" style="text-decoration:none;color:#222"><div>FREE FIRE</div><p>فري فاير</p></a>
+<a href="game.html?g=pubg" class="cir" style="text-decoration:none;color:#222"><div style="background:radial-gradient(circle at 30% 30%,#ffb700,#6d4b00)">PUBG UC</div><p>ببجي</p></a>
+<a href="game.html?g=tiktok" class="cir" style="text-decoration:none;color:#222"><div style="background:radial-gradient(circle at 30% 30%,#ff2d55,#000)">TikTok</div><p>تيك توك</p></a>
 </div>
-<script>
-let w=localStorage.getItem('wallet')||0; document.getElementById('myWallet').innerText=w;
-</script></body></html>
+<div class="sec-title"><span>الأكثر شراء</span></div>
+<div class="grid">
+<a href="game.html?g=pubg" style="text-decoration:none;color:#222" class="card"><img src="https://i.ibb.co/0X1vJzQ/pubg.jpg" onerror="this.src='https://via.placeholder.com/300x300?text=PUBG'"><p>شحن ببجي UC</p><b>من 3,500 ج.س</b></a>
+<a href="game.html?g=freefire" style="text-decoration:none;color:#222" class="card"><img src="https://i.ibb.co/6n0H0yQ/free.jpg" onerror="this.src='https://via.placeholder.com/300x300?text=FreeFire'"><p>شحن فري فاير (فوري)</p><b>من 2,900 ج.س</b></a>
+<a href="game.html?g=tiktok" style="text-decoration:none;color:#222" class="card"><img src="https://via.placeholder.com/300x300/000000/ffffff?text=TikTok"><p>عملات تيك توك</p><b>من 32,500 ج.س</b></a>
+<a href="game.html?g=playstation" style="text-decoration:none;color:#222" class="card"><img src="https://via.placeholder.com/300x300/0033cc/ffffff?text=PSN"><p>بلايستيشن ستور</p><b>متوفر</b></a>
+</div>
+<div class="wa">💬</div>
+<div class="bottom">
+<a href="wallet.html"><div>👤</div>دخول</a>
+<a href="wallet.html"><div>🧾</div>الطلبات</a>
+<a href="wallet.html"><div>💳</div>المحفظة</a>
+<a class="active" href="index.html"><div>🏠</div>الرئيسية</a>
+</div>
+</body></html>
