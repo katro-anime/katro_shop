@@ -1,15 +1,35 @@
 <!DOCTYPE html><html dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>كاترو شوب - محفظتي</title>
-<style>body{background:#0f0f0f;color:#fff;font-family:sans-serif;padding:15px}.box{background:#1c1c1c;padding:15px;border-radius:12px;margin-bottom:15px}input{width:100%;padding:10px;margin:5px 0;border-radius:8px}button{background:#ffcc00;padding:10px;width:100%;border:none;border-radius:8px;font-weight:bold}</style></head><body>
+<style>
+body{background:#0f0f0f;color:#fff;font-family:sans-serif;padding:15px}
+.box{background:#1c1c1c;padding:15px;border-radius:12px;margin-bottom:15px}
+input{width:100%;padding:10px;margin:5px 0;border-radius:8px;border:none;background:#2a2a2a;color:#fff;box-sizing:border-box}
+button{background:#ffcc00;padding:10px;width:100%;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
+.wallet-header{display:flex;align-items:center;gap:10px}
+.wallet-icon{width:36px;height:32px;background:#ffcc00;border-radius:6px;position:relative;display:inline-block}
+.wallet-icon:before{content:'';position:absolute;right:-6px;top:8px;width:8px;height:16px;background:#e6b800;border-radius:0 4px 4px 0}
+.wallet-icon:after{content:'$';position:absolute;left:11px;top:4px;color:#111;font-weight:bold;font-size:18px}
+</style></head><body>
 <a href="index.html" style="color:#ffcc00">رجوع لكاترو شوب</a>
-<div class="box"><h3>💰 محفظة كاترو شوب</h3><h1 id="bal">0 جنيه</h1>
+
+<div class="box">
+<div class="wallet-header">
+<div class="wallet-icon"></div>
+<h3 style="margin:0">محفظة كاترو شوب</h3>
+</div>
+<h1 id="bal">0 جنيه</h1>
 <p>حول في بنكك: <b>2673843</b> باسم خالد حسين محمد حامد</p>
-<input type="number" id="amount" placeholder="المبلغ الحولتو">
-<input type="file" id="receipt"><button onclick="upload()">رفع الاشعار</button>
-<p id="msg"></p></div>
+<input type="number" id="amount" placeholder="المبلغ المراد تحويله">
+<input type="file" id="receipt">
+<button onclick="upload()">رفع الاشعار</button>
+<p id="msg"></p>
+</div>
+
 <div class="box"><h3>طلباتي في كاترو شوب</h3><div id="orders"></div></div>
+
 <script>
 let w=localStorage.getItem('wallet')||0; document.getElementById('bal').innerText=w+' جنيه';
 function upload(){let amt=document.getElementById('amount').value; if(!amt){alert('اكتب المبلغ');return}
 let pend=JSON.parse(localStorage.getItem('pending')||'[]'); pend.push({amount:amt,date:new Date().toLocaleString(),status:'بانتظار'}); localStorage.setItem('pending',JSON.stringify(pend)); document.getElementById('msg').innerText='تم الرفع لكاترو شوب';}
-let orders=JSON.parse(localStorage.getItem('orders')||'[]'); let html=''; orders.reverse().forEach(o=>{html+=`<div style="border-bottom:1px solid #333;padding:8px 0">${o.pack} - ${o.price}ج - ID:${o.id}<br>الحالة: <b>${o.status}</b></div>`}); document.getElementById('orders').innerHTML=html||'لا يوجد';
-</script></body></html>
+let orders=JSON.parse(localStorage.getItem('orders')||'[]'); let html=''; orders.reverse().forEach(o=>{html+=`<div style="border-bottom:1px solid #333;padding:8px 0">${o.pack} - ${o.price}ج - ID:${o.id}<br>الحالة: <b style="color:${o.status=='مكتمل'?'#0f0':o.status.includes('ملغي')?'#f33':'#ffcc00'}">${o.status}</b></div>`}); document.getElementById('orders').innerHTML=html||'لا يوجد';
+</script>
+</body></html>
