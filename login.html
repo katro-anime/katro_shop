@@ -1,90 +1,716 @@
-<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KATRO SHOP - دخول</title>
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KATRO SHOP - تسجيل الدخول</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800&display=swap');
-*{font-family:'Tajawal';box-sizing:border-box;margin:0}body{background:#f4f0ff}
-.top{background:#6a33ff;color:#fff;padding:12px;display:flex;justify-content:space-between}
-.tabs{display:flex;background:#fff;margin:12px;border-radius:14px;overflow:hidden;border:1px solid #e8deff}
-.tabs div{flex:1;text-align:center;padding:12px;font-weight:800;cursor:pointer}.tabs div.active{background:#6a33ff;color:#fff}
-.box{background:#fff;margin:12px;border-radius:16px;padding:16px;box-shadow:0 4px 14px #0001}
-.gbtn{border:1px solid #ddd;border-radius:12px;padding:12px;display:flex;justify-content:center;gap:10px;background:#fff;margin-bottom:12px;cursor:pointer}
-.inp{width:100%;padding:13px;border:1px solid #e8deff;border-radius:12px;margin:6px 0;background:#faf8ff;outline:none}
-.mainbtn{width:100%;background:linear-gradient(90deg,#6a33ff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;margin-top:8px}
-</style></head><body>
-<div class="top"><b>KATRO SHOP</b><a href="index.html" style="color:#fff;text-decoration:none">🏠</a></div>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
+
+*{
+    font-family:'Tajawal',sans-serif;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#f4f0ff;
+    min-height:100vh;
+}
+
+.top{
+    background:#6a33ff;
+    color:#fff;
+    padding:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.top a{
+    color:#fff;
+    text-decoration:none;
+    font-size:20px;
+}
+
+.tabs{
+    display:flex;
+    background:#fff;
+    margin:14px 12px;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid #e8deff;
+}
+
+.tabs div{
+    flex:1;
+    text-align:center;
+    padding:13px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.tabs div.active{
+    background:#6a33ff;
+    color:#fff;
+}
+
+.box{
+    background:#fff;
+    margin:12px;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 4px 16px rgba(0,0,0,.07);
+}
+
+.logo{
+    width:70px;
+    height:70px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#6a33ff,#ff8a00);
+    color:#fff;
+    display:grid;
+    place-items:center;
+    margin:0 auto 12px;
+    font-size:22px;
+    font-weight:900;
+}
+
+.subtitle{
+    text-align:center;
+    color:#777;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.inp{
+    width:100%;
+    padding:13px;
+    border:1px solid #e3dcf5;
+    border-radius:12px;
+    margin:6px 0;
+    background:#faf8ff;
+    outline:none;
+    font-size:14px;
+}
+
+.inp:focus{
+    border-color:#6a33ff;
+}
+
+.mainbtn{
+    width:100%;
+    background:linear-gradient(90deg,#6a33ff,#ff8a00);
+    color:#fff;
+    border:none;
+    padding:14px;
+    border-radius:14px;
+    font-weight:800;
+    margin-top:10px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.mainbtn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.msg{
+    display:none;
+    padding:11px;
+    border-radius:10px;
+    margin-top:12px;
+    font-size:13px;
+    text-align:center;
+    line-height:1.6;
+    white-space:pre-line;
+}
+
+.error{
+    background:#ffebee;
+    color:#c62828;
+}
+
+.success{
+    background:#e8f5e9;
+    color:#2e7d32;
+}
+
+.note{
+    text-align:center;
+    color:#888;
+    font-size:11px;
+    margin-top:14px;
+    line-height:1.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+    <b>KATRO SHOP</b>
+    <a href="index.html">🏠</a>
+</div>
 
 <div class="tabs">
-<div id="tabReg" class="active" onclick="switchMode('reg')">التسجيل</div>
-<div id="tabLog" onclick="switchMode('log')">تسجيل الدخول</div>
+
+    <div id="tabReg"
+         class="active"
+         onclick="switchMode('reg')">
+        التسجيل
+    </div>
+
+    <div id="tabLog"
+         onclick="switchMode('log')">
+        تسجيل الدخول
+    </div>
+
 </div>
 
 <div class="box">
-<div class="gbtn" onclick="googleAuth()"><img src="https://www.svgrepo.com/show/475656/google-color.svg" width="20"><b>الدخول عن طريق قوقل</b></div>
 
-<div id="regFields">
-<input id="email" class="inp" placeholder="البريد - mmmzzz1260389@gmail.com">
-<input id="fname" class="inp" placeholder="الاسم الأول">
-<input id="phone" class="inp" placeholder="رقم الهاتف - 0100454995">
-<input id="pass" class="inp" type="password" placeholder="كلمة السر">
-<input id="cpass" class="inp" type="password" placeholder="تأكيد كلمة السر">
-<button class="mainbtn" onclick="doRegister()">إنشاء حساب جديد ✅</button>
+    <div class="logo">
+        K
+    </div>
+
+    <h3 style="text-align:center;">
+        مرحباً بك في KATRO SHOP
+    </h3>
+
+    <div class="subtitle">
+        أنشئ حسابك وابدأ باستخدام المتجر
+    </div>
+
+
+    <!-- التسجيل -->
+
+    <div id="regFields">
+
+        <input
+            id="fname"
+            class="inp"
+            type="text"
+            placeholder="الاسم الأول *">
+
+        <input
+            id="phone"
+            class="inp"
+            type="tel"
+            placeholder="رقم الهاتف *">
+
+        <input
+            id="email"
+            class="inp"
+            type="email"
+            placeholder="البريد الإلكتروني *">
+
+        <input
+            id="pass"
+            class="inp"
+            type="password"
+            placeholder="كلمة السر *">
+
+        <input
+            id="cpass"
+            class="inp"
+            type="password"
+            placeholder="تأكيد كلمة السر *">
+
+        <button
+            id="registerBtn"
+            class="mainbtn"
+            onclick="doRegister()">
+            إنشاء حساب جديد ✅
+        </button>
+
+    </div>
+
+
+    <!-- تسجيل الدخول -->
+
+    <div id="logFields" style="display:none">
+
+        <input
+            id="logEmail"
+            class="inp"
+            type="email"
+            placeholder="البريد الإلكتروني">
+
+        <input
+            id="logPass"
+            class="inp"
+            type="password"
+            placeholder="كلمة السر">
+
+        <button
+            id="loginBtn"
+            class="mainbtn"
+            onclick="doLogin()">
+            تسجيل الدخول 🔓
+        </button>
+
+    </div>
+
+
+    <div id="msg" class="msg"></div>
+
+
+    <div class="note">
+        بيانات الحساب يتم التعامل معها من خلال Supabase.
+        <br>
+        لا تشارك كلمة السر مع أي شخص.
+    </div>
+
 </div>
 
-<div id="logFields" style="display:none">
-<input id="logEmail" class="inp" placeholder="البريد الالكتروني">
-<input id="logPass" class="inp" type="password" placeholder="كلمة السر">
-<button class="mainbtn" onclick="doLogin()">تسجيل الدخول 🔓</button>
-</div>
-
-</div>
 
 <script>
-function switchMode(m){
-if(m=='reg'){tabReg.classList.add('active');tabLog.classList.remove('active');regFields.style.display='';logFields.style.display='none'}
-else{tabLog.classList.add('active');tabReg.classList.remove('active');logFields.style.display='';regFields.style.display='none'}
+
+/* ==============================
+   Supabase
+================================ */
+
+const SUPABASE_URL =
+    'https://uwmrzvsygeoequscpinx.supabase.co';
+
+const SUPABASE_PUBLISHABLE_KEY =
+    'sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts';
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+/* ==============================
+   تبديل الصفحات
+================================ */
+
+function switchMode(mode){
+
+    const tabReg =
+        document.getElementById('tabReg');
+
+    const tabLog =
+        document.getElementById('tabLog');
+
+    const regFields =
+        document.getElementById('regFields');
+
+    const logFields =
+        document.getElementById('logFields');
+
+    clearMessage();
+
+    if(mode === 'reg'){
+
+        tabReg.classList.add('active');
+        tabLog.classList.remove('active');
+
+        regFields.style.display = '';
+        logFields.style.display = 'none';
+
+    }else{
+
+        tabLog.classList.add('active');
+        tabReg.classList.remove('active');
+
+        logFields.style.display = '';
+        regFields.style.display = 'none';
+
+    }
+
 }
 
-function doRegister(){
-let e=email.value,p=pass.value,cp=cpass.value,ph=phone.value;
-if(!e||!p){alert('اكتب البريد وكلمة السر');return}
-if(p!=cp){alert('كلمة السر ما متطابقة');return}
-let users=JSON.parse(localStorage.getItem('katro_users')||'[]');
-if(users.find(u=>u.email==e)){alert('الايميل ده مسجل قبل كده - اعمل تسجيل دخول');switchMode('log');return}
-let accNum=Math.floor(10000+Math.random()*89999);
-let user={email:e,pass:p,phone:ph,acc:accNum,wallet:0,name:fname.value};
-users.push(user);
-localStorage.setItem('katro_users',JSON.stringify(users));
-localStorage.setItem('user_email',e);
-localStorage.setItem('user_acc',accNum);
-localStorage.setItem('wallet','0');
-localStorage.setItem('current_user',JSON.stringify(user));
-alert('تم التسجيل ✅ رقم محفظتك: '+accNum);
-location.href='wallet.html';
+
+/* ==============================
+   الرسائل
+================================ */
+
+function showMessage(message,type){
+
+    const box =
+        document.getElementById('msg');
+
+    box.innerText = message;
+
+    box.className =
+        'msg ' + type;
+
+    box.style.display = 'block';
+
 }
 
-function doLogin(){
-let e=logEmail.value,p=logPass.value;
-let users=JSON.parse(localStorage.getItem('katro_users')||'[]');
-let u=users.find(x=>x.email==e && x.pass==p);
-if(!u){alert('البريد أو كلمة السر غلط ❌');return}
-localStorage.setItem('user_email',u.email);
-localStorage.setItem('user_acc',u.acc);
-localStorage.setItem('wallet',u.wallet||0);
-localStorage.setItem('current_user',JSON.stringify(u));
-alert('مرحب بيك راجع ✅ '+u.email);
-location.href='wallet.html';
+
+function clearMessage(){
+
+    const box =
+        document.getElementById('msg');
+
+    box.style.display = 'none';
+
+    box.innerText = '';
+
 }
 
-function googleAuth(){
-let accNum=Math.floor(10000+Math.random()*89999);
-let fakeEmail='mmmzzz1260389@gmail.com';
-let users=JSON.parse(localStorage.getItem('katro_users')||'[]');
-if(!users.find(u=>u.email==fakeEmail)){
-users.push({email:fakeEmail,pass:'google',phone:'0100454995',acc:accNum,wallet:0,name:'محمد'});
-localStorage.setItem('katro_users',JSON.stringify(users));
+
+/* ==============================
+   التسجيل
+================================ */
+
+async function doRegister(){
+
+    clearMessage();
+
+    const name =
+        document.getElementById('fname').value.trim();
+
+    const phone =
+        document.getElementById('phone').value.trim();
+
+    const email =
+        document.getElementById('email').value.trim();
+
+    const password =
+        document.getElementById('pass').value;
+
+    const confirmPassword =
+        document.getElementById('cpass').value;
+
+    const button =
+        document.getElementById('registerBtn');
+
+
+    if(!name){
+
+        showMessage(
+            'اكتب الاسم الأول أولاً.',
+            'error'
+        );
+
+        return;
+    }
+
+
+    if(!phone){
+
+        showMessage(
+            'اكتب رقم الهاتف أولاً.',
+            'error'
+        );
+
+        return;
+    }
+
+
+    if(!email){
+
+        showMessage(
+            'اكتب البريد الإلكتروني.',
+            'error'
+        );
+
+        return;
+    }
+
+
+    if(!password){
+
+        showMessage(
+            'اكتب كلمة السر.',
+            'error'
+        );
+
+        return;
+    }
+
+
+    if(password.length < 6){
+
+        showMessage(
+            'كلمة السر يجب أن تكون 6 أحرف أو أكثر.',
+            'error'
+        );
+
+        return;
+    }
+
+
+    if(password !== confirmPassword){
+
+        showMessage(
+            'كلمتا السر غير متطابقتين.',
+            'error'
+        );
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    button.innerText =
+        'جاري إنشاء الحساب...';
+
+
+    try{
+
+        const { data, error } =
+            await supabaseClient.auth.signUp({
+
+                email:email,
+
+                password:password,
+
+                options:{
+                    data:{
+                        full_name:name,
+                        phone:phone
+                    }
+                }
+
+            });
+
+
+        if(error){
+
+            showMessage(
+                error.message ||
+                'حدث خطأ أثناء إنشاء الحساب.',
+                'error'
+            );
+
+            return;
+        }
+
+
+        if(!data.session){
+
+            showMessage(
+                'تم إنشاء الحساب بنجاح ✅\nافتح بريدك الإلكتروني واضغط رابط تأكيد الحساب، ثم ارجع إلى صفحة تسجيل الدخول.',
+                'success'
+            );
+
+
+            document.getElementById('email').value = '';
+
+            document.getElementById('pass').value = '';
+
+            document.getElementById('cpass').value = '';
+
+
+            setTimeout(function(){
+
+                switchMode('log');
+
+            },2500);
+
+
+            return;
+        }
+
+
+        showMessage(
+            'تم إنشاء حسابك بنجاح ✅',
+            'success'
+        );
+
+
+        setTimeout(function(){
+
+            window.location.href =
+                'wallet.html';
+
+        },1000);
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            'حدث خطأ غير متوقع. حاول مرة أخرى.',
+            'error'
+        );
+
+    }finally{
+
+        button.disabled = false;
+
+        button.innerText =
+            'إنشاء حساب جديد ✅';
+
+    }
+
 }
-localStorage.setItem('user_email',fakeEmail);
-localStorage.setItem('user_acc',accNum);
-location.href='wallet.html';
+
+
+/* ==============================
+   تسجيل الدخول
+================================ */
+
+async function doLogin(){
+
+    clearMessage();
+
+    const email =
+        document.getElementById('logEmail').value.trim();
+
+    const password =
+        document.getElementById('logPass').value;
+
+    const button =
+        document.getElementById('loginBtn');
+
+
+    if(!email){
+
+        showMessage(
+            'اكتب البريد الإلكتروني.',
+            'error'
+        );
+
+        return;
+    }
+
+
+    if(!password){
+
+        showMessage(
+            'اكتب كلمة السر.',
+            'error'
+        );
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    button.innerText =
+        'جاري تسجيل الدخول...';
+
+
+    try{
+
+        const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+
+                email:email,
+
+                password:password
+
+            });
+
+
+        if(error){
+
+            console.error(error);
+
+            showMessage(
+                'البريد الإلكتروني أو كلمة السر غير صحيحة.',
+                'error'
+            );
+
+            return;
+        }
+
+
+        if(!data.session){
+
+            showMessage(
+                'لم يتم إنشاء جلسة تسجيل الدخول. حاول مرة أخرى.',
+                'error'
+            );
+
+            return;
+        }
+
+
+        showMessage(
+            'تم تسجيل الدخول بنجاح ✅',
+            'success'
+        );
+
+
+        setTimeout(function(){
+
+            window.location.href =
+                'wallet.html';
+
+        },700);
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            'حدث خطأ أثناء تسجيل الدخول.',
+            'error'
+        );
+
+    }finally{
+
+        button.disabled = false;
+
+        button.innerText =
+            'تسجيل الدخول 🔓';
+
+    }
+
 }
+
+
+/* ==============================
+   فحص الجلسة الحالية
+================================ */
+
+async function checkExistingSession(){
+
+    try{
+
+        const { data } =
+            await supabaseClient.auth.getSession();
+
+
+        if(data && data.session){
+
+            const go =
+                confirm(
+                    'أنت مسجل الدخول بالفعل.\nهل تريد الذهاب إلى محفظتك؟'
+                );
+
+
+            if(go){
+
+                window.location.href =
+                    'wallet.html';
+
+            }
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+checkExistingSession();
+
 </script>
-</body></html>
+
+</body>
+  </html>
