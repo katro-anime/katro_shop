@@ -1,0 +1,31 @@
+<!DOCTYPE html><html dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>كاترو شوب - الباقات</title>
+<style>body{background:#0f0f0f;color:#fff;font-family:sans-serif;padding:15px}.item{background:#1c1c1c;padding:12px;margin:10px 0;border-radius:10px;display:flex;justify-content:space-between}button{background:#ffcc00;border:none;padding:8px 15px;border-radius:8px;font-weight:bold}</style></head><body>
+<a href="index.html" style="color:#ffcc00">← رجوع لكاترو شوب</a><h2 id="title"></h2>
+<input id="playerId" placeholder="اكتب ID اللاعب / الرقم" style="width:100%;padding:10px;border-radius:8px"><br><br>
+<div id="list"></div>
+<script>
+const data={
+freefire_id:[{n:"110 جوهرة",p:8100},{n:"231 جوهرة",p:16200},{n:"583 جوهرة",p:40500},{n:"1188 جوهرة",p:81000},{n:"2420 جوهرة",p:162000},{n:"تصريح مستوى",p:35000},{n:"عضوية اسبوعية",p:18500},{n:"عضوية شهرية",p:89000}],
+pubg:[{n:"60 شدة",p:7500},{n:"325 شدة",p:37500},{n:"385 شدة",p:45000},{n:"660 شدة",p:75000},{n:"720 شدة RP",p:82500},{n:"1800 شدة",p:187500},{n:"3850 شدة",p:375000},{n:"8100 شدة",p:750000}],
+pes:[{n:"130 كوينز",p:10000},{n:"300 كوينز",p:22000},{n:"550 كوينز",p:39000},{n:"750 كوينز",p:52000},{n:"1040 كوينز",p:71000}],
+tiktok:[{n:"70 عملة",p:5500},{n:"140 عملة",p:11000},{n:"350 عملة",p:27500},{n:"1000 عملة",p:76000},{n:"7000 عملة",p:530000}],
+rasid:[{n:"رصيد 1000",p:1000},{n:"رصيد 5000",p:5000}],
+freefire_account:[{n:"310 جوهرة (حساب)",p:19500},{n:"520 جوهرة",p:32500},{n:"1080 جوهرة",p:65000},{n:"2180 جوهرة",p:130000},{n:"5600 جوهرة",p:325000}]
+}
+let type=new URLSearchParams(location.search).get('type'); document.getElementById('title').innerText="كاترو شوب - "+type;
+let list=document.getElementById('list');
+data[type].forEach(x=>{
+list.innerHTML+=`<div class=item><span>${x.n} - ${x.p}ج</span><button onclick="order('${x.n}',${x.p})">طلب</button></div>`;
+});
+function order(name,price){
+let wallet=parseInt(localStorage.getItem('wallet')||0);
+let id=document.getElementById('playerId').value;
+if(!id){alert('اكتب الـ ID اول');return}
+if(wallet<price){alert('رصيدك غير كافي '+wallet); location.href='wallet.html'; return}
+wallet-=price; localStorage.setItem('wallet',wallet);
+let orders=JSON.parse(localStorage.getItem('orders')||'[]');
+orders.push({game:type,pack:name,price,id,status:'قيد التنفيذ',date:new Date().toLocaleString()});
+localStorage.setItem('orders',JSON.stringify(orders));
+alert('تم الطلب من كاترو شوب - المتبقي '+wallet); location.href='wallet.html';
+}
+</script></body></html>
