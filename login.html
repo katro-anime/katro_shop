@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html dir="rtl" lang="ar">
-
-<head>
+<!DOCTYPE html><html dir="rtl" lang="ar"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KATRO SHOP - تسجيل الدخول</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
+<title>KATRO SHOP - تسجيل الدخول</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
 
 *{
@@ -149,133 +142,105 @@ body{
     margin-top:14px;
     line-height:1.7;
 }
-</style>
-</head>
-
-<body>
-
-<div class="top">
+</style></head><body><div class="top">
     <b>KATRO SHOP</b>
     <a href="index.html">🏠</a>
+</div><div class="tabs"><div id="tabReg"
+     class="active"
+     onclick="switchMode('reg')">
+    التسجيل
 </div>
 
-<div class="tabs">
-
-    <div id="tabReg"
-         class="active"
-         onclick="switchMode('reg')">
-        التسجيل
-    </div>
-
-    <div id="tabLog"
-         onclick="switchMode('log')">
-        تسجيل الدخول
-    </div>
-
+<div id="tabLog"
+     onclick="switchMode('log')">
+    تسجيل الدخول
 </div>
 
-<div class="box">
+</div><div class="box"><div class="logo">
+    K
+</div>
 
-    <div class="logo">
-        K
-    </div>
+<h3 style="text-align:center;">
+    مرحباً بك في KATRO SHOP
+</h3>
 
-    <h3 style="text-align:center;">
-        مرحباً بك في KATRO SHOP
-    </h3>
+<div class="subtitle">
+    أنشئ حسابك وابدأ باستخدام المتجر
+</div>
 
-    <div class="subtitle">
-        أنشئ حسابك وابدأ باستخدام المتجر
-    </div>
+<div id="regFields">
 
+    <input
+        id="fname"
+        class="inp"
+        type="text"
+        placeholder="الاسم الأول *">
 
-    <!-- التسجيل -->
+    <input
+        id="phone"
+        class="inp"
+        type="tel"
+        placeholder="رقم الهاتف *">
 
-    <div id="regFields">
+    <input
+        id="email"
+        class="inp"
+        type="email"
+        placeholder="البريد الإلكتروني *">
 
-        <input
-            id="fname"
-            class="inp"
-            type="text"
-            placeholder="الاسم الأول *">
+    <input
+        id="pass"
+        class="inp"
+        type="password"
+        placeholder="كلمة السر *">
 
-        <input
-            id="phone"
-            class="inp"
-            type="tel"
-            placeholder="رقم الهاتف *">
+    <input
+        id="cpass"
+        class="inp"
+        type="password"
+        placeholder="تأكيد كلمة السر *">
 
-        <input
-            id="email"
-            class="inp"
-            type="email"
-            placeholder="البريد الإلكتروني *">
-
-        <input
-            id="pass"
-            class="inp"
-            type="password"
-            placeholder="كلمة السر *">
-
-        <input
-            id="cpass"
-            class="inp"
-            type="password"
-            placeholder="تأكيد كلمة السر *">
-
-        <button
-            id="registerBtn"
-            class="mainbtn"
-            onclick="doRegister()">
-            إنشاء حساب جديد ✅
-        </button>
-
-    </div>
-
-
-    <!-- تسجيل الدخول -->
-
-    <div id="logFields" style="display:none">
-
-        <input
-            id="logEmail"
-            class="inp"
-            type="email"
-            placeholder="البريد الإلكتروني">
-
-        <input
-            id="logPass"
-            class="inp"
-            type="password"
-            placeholder="كلمة السر">
-
-        <button
-            id="loginBtn"
-            class="mainbtn"
-            onclick="doLogin()">
-            تسجيل الدخول 🔓
-        </button>
-
-    </div>
-
-
-    <div id="msg" class="msg"></div>
-
-
-    <div class="note">
-        بيانات الحساب يتم التعامل معها من خلال Supabase.
-        <br>
-        لا تشارك كلمة السر مع أي شخص.
-    </div>
+    <button
+        id="registerBtn"
+        class="mainbtn"
+        onclick="doRegister()">
+        إنشاء حساب جديد ✅
+    </button>
 
 </div>
 
+<div id="logFields" style="display:none">
 
-<script>
+    <input
+        id="logEmail"
+        class="inp"
+        type="email"
+        placeholder="البريد الإلكتروني">
 
-/* ==============================
-   Supabase
-================================ */
+    <input
+        id="logPass"
+        class="inp"
+        type="password"
+        placeholder="كلمة السر">
+
+    <button
+        id="loginBtn"
+        class="mainbtn"
+        onclick="doLogin()">
+        تسجيل الدخول 🔓
+    </button>
+
+</div>
+
+<div id="msg" class="msg"></div>
+
+<div class="note">
+    بيانات الحساب يتم التعامل معها من خلال Supabase.
+    <br>
+    لا تشارك كلمة السر مع أي شخص.
+</div>
+
+</div><script>
 
 const SUPABASE_URL =
     'https://uwmrzvsygeoequscpinx.supabase.co';
@@ -289,10 +254,6 @@ const supabaseClient =
         SUPABASE_PUBLISHABLE_KEY
     );
 
-
-/* ==============================
-   تبديل الصفحات
-================================ */
 
 function switchMode(mode){
 
@@ -331,10 +292,6 @@ function switchMode(mode){
 }
 
 
-/* ==============================
-   الرسائل
-================================ */
-
 function showMessage(message,type){
 
     const box =
@@ -361,10 +318,6 @@ function clearMessage(){
 
 }
 
-
-/* ==============================
-   التسجيل
-================================ */
 
 async function doRegister(){
 
@@ -553,10 +506,6 @@ async function doRegister(){
 }
 
 
-/* ==============================
-   تسجيل الدخول
-================================ */
-
 async function doLogin(){
 
     clearMessage();
@@ -604,19 +553,23 @@ async function doLogin(){
         const { data, error } =
             await supabaseClient.auth.signInWithPassword({
 
-                email:email,
+                email: email,
 
-                password:password
+                password: password
 
             });
 
 
         if(error){
 
-            console.error(error);
+            console.error(
+                'Supabase Login Error:',
+                error
+            );
 
             showMessage(
-                'البريد الإلكتروني أو كلمة السر غير صحيحة.',
+                'خطأ تسجيل الدخول:\n' +
+                error.message,
                 'error'
             );
 
@@ -624,10 +577,10 @@ async function doLogin(){
         }
 
 
-        if(!data.session){
+        if(!data || !data.session){
 
             showMessage(
-                'لم يتم إنشاء جلسة تسجيل الدخول. حاول مرة أخرى.',
+                'تم قبول البيانات لكن لم يتم إنشاء جلسة تسجيل الدخول.',
                 'error'
             );
 
@@ -651,10 +604,14 @@ async function doLogin(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            'Unexpected Login Error:',
+            error
+        );
 
         showMessage(
-            'حدث خطأ أثناء تسجيل الدخول.',
+            'حدث خطأ غير متوقع:\n' +
+            (error.message || error),
             'error'
         );
 
@@ -669,10 +626,6 @@ async function doLogin(){
 
 }
 
-
-/* ==============================
-   فحص الجلسة الحالية
-================================ */
 
 async function checkExistingSession(){
 
@@ -710,7 +663,5 @@ async function checkExistingSession(){
 
 checkExistingSession();
 
-</script>
-
-</body>
-  </html>
+</script></body>
+    </html>
