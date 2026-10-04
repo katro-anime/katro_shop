@@ -1,68 +1,1138 @@
-<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>محفظتي - KATRO</title>
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>محفظتي - KATRO SHOP</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800&display=swap');
-*{font-family:'Tajawal';box-sizing:border-box;margin:0}body{background:#f4f0ff;padding-bottom:90px}
-.top{background:#6a33ff;color:#fff;padding:12px;display:flex;justify-content:space-between}
-.card{background:#fff;margin:12px;border-radius:18px;padding:16px;box-shadow:0 4px 14px #0001}
-.green{background:#e8f5e9;border-radius:14px;padding:16px;text-align:center;margin:10px 0}
-.badge{background:#c69c3a;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;display:inline-block;font-weight:800}
-.btn{width:100%;background:linear-gradient(90deg,#6a33ff,#ff8a00);color:#fff;border:none;padding:13px;border-radius:12px;font-weight:800;margin-top:8px}
-.bottom{position:fixed;bottom:10px;left:10px;right:10px;height:62px;background:#16112e;border-radius:30px;display:flex;justify-content:space-around;align-items:center}
-.bottom a{color:#8d8da6;text-decoration:none;font-size:10px;display:flex;flex-direction:column;align-items:center}.bottom a.active{color:#bda7ff}
-</style></head><body>
-<div class="top"><b>KATRO SHOP</b><span>MY ACCOUNT</span></div>
 
-<div class="card" style="background:linear-gradient(135deg,#7c4dff,#ff8a00);color:#fff">
-<div id="greet">مساء الخير 👋</div>
-<small>رقم محفظتك الخاص</small>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
+
+*{
+    font-family:'Tajawal',sans-serif;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#f4f0ff;
+    padding-bottom:95px;
+    color:#222;
+}
+
+.top{
+    background:#6a33ff;
+    color:#fff;
+    padding:13px 14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.top a{
+    color:#fff;
+    text-decoration:none;
+    font-size:20px;
+}
+
+.card{
+    background:#fff;
+    margin:12px;
+    border-radius:18px;
+    padding:16px;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+}
+
+.hero{
+    background:linear-gradient(135deg,#7c4dff,#ff8a00);
+    color:#fff;
+    min-height:125px;
+}
+
+.greet{
+    font-size:18px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.small{
+    font-size:12px;
+    opacity:.9;
+}
+
+.wallet-number{
+    display:inline-block;
+    margin-top:12px;
+    background:rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.35);
+    padding:8px 14px;
+    border-radius:12px;
+    font-weight:800;
+}
+
+.balance{
+    background:#e8f5e9;
+    border-radius:15px;
+    padding:18px;
+    text-align:center;
+    margin-top:12px;
+}
+
+.balance-title{
+    font-size:13px;
+    color:#555;
+}
+
+.balance-value{
+    display:block;
+    font-size:31px;
+    font-weight:900;
+    color:#16833c;
+    margin-top:6px;
+}
+
+.btn{
+    width:100%;
+    border:none;
+    padding:13px;
+    border-radius:13px;
+    font-weight:800;
+    font-size:14px;
+    margin-top:9px;
+    cursor:pointer;
+}
+
+.primary{
+    background:linear-gradient(90deg,#6a33ff,#ff8a00);
+    color:#fff;
+}
+
+.secondary{
+    background:#f0eaff;
+    color:#5130bd;
+}
+
+.logout{
+    background:#ffebee;
+    color:#c62828;
+}
+
+.section-title{
+    font-size:16px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.item{
+    border:1px dashed #d7c9ff;
+    background:#faf8ff;
+    border-radius:12px;
+    padding:11px;
+    margin-top:9px;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.status{
+    display:inline-block;
+    padding:2px 9px;
+    border-radius:10px;
+    font-size:11px;
+    background:#ff9800;
+    color:#fff;
+}
+
+.status.completed{
+    background:#00a843;
+}
+
+.status.rejected{
+    background:#d50000;
+}
+
+.status.processing{
+    background:#1976d2;
+}
+
+.empty{
+    text-align:center;
+    color:#888;
+    padding:18px 5px;
+    font-size:13px;
+}
+
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#666;
+}
+
+.error{
+    background:#ffebee;
+    color:#c62828;
+    padding:12px;
+    margin:12px;
+    border-radius:12px;
+    display:none;
+    text-align:center;
+    font-size:13px;
+}
+
+.bottom{
+    position:fixed;
+    bottom:10px;
+    left:10px;
+    right:10px;
+    height:64px;
+    background:#16112e;
+    border-radius:32px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:100;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+
+.bottom a{
+    color:#8d8da6;
+    text-decoration:none;
+    font-size:10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px;
+}
+
+.bottom a.active{
+    color:#bda7ff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top">
+
+    <b>KATRO SHOP</b>
+
+    <a href="index.html">🏠</a>
+
 </div>
 
-<div class="card">
-<div class="badge">رقم حسابك: <span id="accNum">-----</span></div>
-<h3 style="margin-top:10px">محفظتي</h3>
-<div class="green">
-<b>رصيد محفظتك هو</b><br>
-<span id="bal" style="font-size:30px;font-weight:900">0.00 ج.س</span>
-</div>
-<button class="btn" onclick="location.href='wallet-topup.html'">تحويل الرصيد + شحن المحفظة</button>
-<button class="btn" style="background:#f0eaff;color:#333" onclick="showOrders()">سجل المعاملات و الطلبات</button>
+
+<div id="loading" class="loading">
+    جاري تحميل بيانات محفظتك...
 </div>
 
-<div class="card" id="ordersBox">
-<h3>طلباتي</h3>
-<div id="ordersList">لا يوجد طلبات بعد</div>
+
+<div id="errorBox" class="error"></div>
+
+
+<div id="content" style="display:none">
+
+
+    <div class="card hero">
+
+        <div class="greet" id="greet">
+            مرحباً 👋
+        </div>
+
+        <div class="small">
+            رقم محفظتك الخاص
+        </div>
+
+        <div class="wallet-number">
+            <span id="walletNumber">-----</span>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="section-title">
+            💳 محفظتي
+        </div>
+
+        <div class="balance">
+
+            <div class="balance-title">
+                رصيد محفظتك الحالي
+            </div>
+
+            <span
+                id="balance"
+                class="balance-value">
+                0 ج.س
+            </span>
+
+        </div>
+
+
+        <button
+            class="btn primary"
+            onclick="location.href='wallet-topup.html'">
+            💰 شحن المحفظة
+        </button>
+
+
+        <button
+            class="btn secondary"
+            onclick="loadAllData()">
+            🔄 تحديث الرصيد
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="section-title">
+            📋 طلبات شحن المحفظة
+        </div>
+
+        <div id="topupsList">
+            <div class="empty">
+                لا توجد طلبات شحن حتى الآن
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="section-title">
+            🛒 طلباتي
+        </div>
+
+        <div id="ordersList">
+            <div class="empty">
+                لا توجد طلبات حتى الآن
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="section-title">
+            👤 بيانات الحساب
+        </div>
+
+        <div class="item">
+
+            <b>الاسم:</b>
+            <span id="fullName">-</span>
+
+            <br>
+
+            <b>البريد:</b>
+            <span id="email">-</span>
+
+            <br>
+
+            <b>الهاتف:</b>
+            <span id="phone">-</span>
+
+        </div>
+
+
+        <button
+            class="btn logout"
+            onclick="logout()">
+            🚪 تسجيل الخروج
+        </button>
+
+    </div>
+
+
 </div>
+
 
 <div class="bottom">
-<a href="login.html"><div>👤</div>دخول</a>
-<a href="wallet.html"><div>🧾</div>الطلبات</a>
-<a class="active"><div>💳</div>المحفظة</a>
-<a href="index.html"><div>🏠</div>الرئيسية</a>
+
+    <a href="login.html">
+        <div style="font-size:18px">👤</div>
+        دخول
+    </a>
+
+    <a href="#orders">
+        <div style="font-size:18px">🧾</div>
+        الطلبات
+    </a>
+
+    <a class="active" href="wallet.html">
+        <div style="font-size:18px">💳</div>
+        المحفظة
+    </a>
+
+    <a href="index.html">
+        <div style="font-size:18px">🏠</div>
+        الرئيسية
+    </a>
+
 </div>
 
-<script>
-let acc = localStorage.getItem('user_acc') || Math.floor(10000+Math.random()*89999);
-if(!localStorage.getItem('user_acc')){localStorage.setItem('user_acc',acc)}
-document.getElementById('accNum').innerText=acc;
-let email=localStorage.getItem('user_email')||'زائر';
-document.getElementById('greet').innerText='مساء الخير يا '+email+' 👋';
-document.getElementById('bal').innerText=(localStorage.getItem('wallet')||0)+'.00 ج.س';
 
-function showOrders(){
-let pend=JSON.parse(localStorage.getItem('pending')||'[]');
-let html='';
-pend.reverse().forEach(o=>{
-html+=`<div style="border:1px dashed #6a33ff;border-radius:10px;padding:10px;margin:8px 0;background:#faf5ff">
-<b>طلب #${o.id}</b><br>
-<small>${o.date}</small><br>
-الإجمالي: <b>${o.amount} ج.س</b><br>
-الحالة: <span style="background:orange;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px">${o.status}</span><br>
-محول إلى: بنكك ${o.bankAcc}
-</div>`;
-});
-document.getElementById('ordersList').innerHTML=html||'لا يوجد طلبات';
+<script>
+
+/* =====================================
+   إعداد Supabase
+===================================== */
+
+const SUPABASE_URL =
+    'https://uwmrzvsygeoequscpinx.supabase.co';
+
+const SUPABASE_PUBLISHABLE_KEY =
+    'sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts';
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+/* =====================================
+   تنسيق الرصيد
+===================================== */
+
+function formatMoney(value){
+
+    const number =
+        Number(value || 0);
+
+    return number.toLocaleString('ar-EG') +
+        ' ج.س';
+
 }
-showOrders();
+
+
+/* =====================================
+   رسالة الخطأ
+===================================== */
+
+function showError(message){
+
+    document.getElementById('loading').style.display =
+        'none';
+
+    const box =
+        document.getElementById('errorBox');
+
+    box.innerText = message;
+
+    box.style.display = 'block';
+
+}
+
+
+/* =====================================
+   تحميل بيانات المستخدم
+===================================== */
+
+async function loadAllData(){
+
+    document.getElementById('errorBox').style.display =
+        'none';
+
+    try{
+
+        const {
+            data:sessionData,
+            error:sessionError
+        } =
+        await supabaseClient.auth.getSession();
+
+
+        if(sessionError){
+
+            showError(
+                'حدث خطأ أثناء التحقق من تسجيل الدخول.'
+            );
+
+            return;
+        }
+
+
+        const session =
+            sessionData.session;
+
+
+        if(!session){
+
+            window.location.href =
+                'login.html';
+
+            return;
+        }
+
+
+        const user =
+            session.user;
+
+
+        /* ==========================
+           بيانات الملف الشخصي
+        ========================== */
+
+        const {
+            data:profile,
+            error:profileError
+        } =
+        await supabaseClient
+        .from('profiles')
+        .select('full_name,phone,wallet_number,role')
+        .eq('id',user.id)
+        .single();
+
+
+        if(profileError){
+
+            console.error(profileError);
+
+            showError(
+                'لم نستطع تحميل بيانات المحفظة.'
+            );
+
+            return;
+        }
+
+
+        /* ==========================
+           بيانات المحفظة
+        ========================== */
+
+        const {
+            data:wallet,
+            error:walletError
+        } =
+        await supabaseClient
+        .from('wallets')
+        .select('balance,updated_at')
+        .eq('user_id',user.id)
+        .single();
+
+
+        if(walletError){
+
+            console.error(walletError);
+
+            showError(
+                'لم نستطع تحميل رصيد المحفظة.'
+            );
+
+            return;
+        }
+
+
+        /* ==========================
+           عرض البيانات
+        ========================== */
+
+        const name =
+            profile.full_name ||
+            'عميل KATRO';
+
+
+        document.getElementById('greet').innerText =
+            'مرحباً يا ' + name + ' 👋';
+
+
+        document.getElementById('walletNumber').innerText =
+            profile.wallet_number || '-----';
+
+
+        document.getElementById('balance').innerText =
+            formatMoney(wallet.balance);
+
+
+        document.getElementById('fullName').innerText =
+            name;
+
+
+        document.getElementById('email').innerText =
+            user.email || '-';
+
+
+        document.getElementById('phone').innerText =
+            profile.phone || '-';
+
+
+        await loadTopups(user.id);
+
+        await loadOrders(user.id);
+
+        await loadTransactions(user.id);
+
+
+        document.getElementById('loading').style.display =
+            'none';
+
+        document.getElementById('content').style.display =
+            'block';
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showError(
+            'حدث خطأ غير متوقع. أعد تحميل الصفحة.'
+        );
+
+    }
+
+}
+
+
+/* =====================================
+   طلبات شحن المحفظة
+===================================== */
+
+async function loadTopups(userId){
+
+    const box =
+        document.getElementById('topupsList');
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from('topup_requests')
+    .select(
+        'id,request_number,amount,payment_method,sender_name,sender_phone,status,admin_note,created_at'
+    )
+    .eq('user_id',userId)
+    .order('created_at',{
+        ascending:false
+    })
+    .limit(10);
+
+
+    if(error){
+
+        console.error(error);
+
+        box.innerHTML =
+            '<div class="empty">تعذر تحميل طلبات الشحن</div>';
+
+        return;
+    }
+
+
+    if(!data || data.length === 0){
+
+        box.innerHTML =
+            '<div class="empty">لا توجد طلبات شحن حتى الآن</div>';
+
+        return;
+    }
+
+
+    let html = '';
+
+
+    data.forEach(function(item){
+
+        let statusClass = '';
+
+        if(item.status === 'approved'){
+            statusClass = 'completed';
+        }
+
+        if(item.status === 'rejected'){
+            statusClass = 'rejected';
+        }
+
+
+        let statusText =
+            'معلق ⏳';
+
+
+        if(item.status === 'approved'){
+            statusText =
+                'تم القبول ✅';
+        }
+
+        if(item.status === 'rejected'){
+            statusText =
+                'مرفوض ❌';
+        }
+
+
+        if(item.status === 'pending'){
+            statusText =
+                'قيد المراجعة ⏳';
+        }
+
+
+        const date =
+            new Date(item.created_at)
+            .toLocaleString('ar-EG');
+
+
+        html += `
+
+        <div class="item">
+
+            <b>
+                طلب شحن #${item.request_number || item.id}
+            </b>
+
+            <br>
+
+            المبلغ:
+            <b>${formatMoney(item.amount)}</b>
+
+            <br>
+
+            طريقة الدفع:
+            ${item.payment_method || 'Bankak'}
+
+            <br>
+
+            التاريخ:
+            ${date}
+
+            <br>
+
+            الحالة:
+            <span class="status ${statusClass}">
+                ${statusText}
+            </span>
+
+            ${
+                item.admin_note
+                ?
+                `<br><b>ملاحظة الأدمن:</b> ${escapeHtml(item.admin_note)}`
+                :
+                ''
+            }
+
+        </div>
+
+        `;
+
+    });
+
+
+    box.innerHTML = html;
+
+}
+
+
+/* =====================================
+   طلبات الشراء
+===================================== */
+
+async function loadOrders(userId){
+
+    const box =
+        document.getElementById('ordersList');
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from('orders')
+    .select(
+        'id,order_number,product_name,total_price,quantity,player_id,account_info,status,admin_note,created_at'
+    )
+    .eq('user_id',userId)
+    .order('created_at',{
+        ascending:false
+    })
+    .limit(10);
+
+
+    if(error){
+
+        console.error(error);
+
+        box.innerHTML =
+            '<div class="empty">تعذر تحميل الطلبات</div>';
+
+        return;
+    }
+
+
+    if(!data || data.length === 0){
+
+        box.innerHTML =
+            '<div class="empty">لا توجد طلبات حتى الآن</div>';
+
+        return;
+    }
+
+
+    let html = '';
+
+
+    data.forEach(function(item){
+
+        let statusClass = '';
+
+        let statusText =
+            'قيد الانتظار ⏳';
+
+
+        if(item.status === 'completed'){
+
+            statusClass =
+                'completed';
+
+            statusText =
+                'مكتمل ✅';
+
+        }
+
+
+        if(item.status === 'rejected'){
+
+            statusClass =
+                'rejected';
+
+            statusText =
+                'مرفوض ❌';
+
+        }
+
+
+        if(item.status === 'processing'){
+
+            statusClass =
+                'processing';
+
+            statusText =
+                'جاري التنفيذ 🔄';
+
+        }
+
+
+        if(item.status === 'cancelled'){
+
+            statusClass =
+                'rejected';
+
+            statusText =
+                'ملغي ❌';
+
+        }
+
+
+        const date =
+            new Date(item.created_at)
+            .toLocaleString('ar-EG');
+
+
+        html += `
+
+        <div class="item">
+
+            <b>
+                طلب #${item.order_number || item.id}
+            </b>
+
+            <br>
+
+            المنتج:
+            ${escapeHtml(item.product_name)}
+
+            <br>
+
+            الكمية:
+            ${item.quantity || 1}
+
+            <br>
+
+            الإجمالي:
+            <b>${formatMoney(item.total_price)}</b>
+
+            ${
+                item.player_id
+                ?
+                `<br>معرف اللاعب: ${escapeHtml(item.player_id)}`
+                :
+                ''
+            }
+
+            ${
+                item.account_info
+                ?
+                `<br>بيانات الحساب: ${escapeHtml(item.account_info)}`
+                :
+                ''
+            }
+
+            <br>
+
+            التاريخ:
+            ${date}
+
+            <br>
+
+            الحالة:
+            <span class="status ${statusClass}">
+                ${statusText}
+            </span>
+
+            ${
+                item.admin_note
+                ?
+                `<br><b>ملاحظة:</b> ${escapeHtml(item.admin_note)}`
+                :
+                ''
+            }
+
+        </div>
+
+        `;
+
+    });
+
+
+    box.innerHTML = html;
+
+}
+
+
+/* =====================================
+   سجل معاملات المحفظة
+===================================== */
+
+async function loadTransactions(userId){
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from('wallet_transactions')
+    .select(
+        'id,type,amount,balance_before,balance_after,description,created_at'
+    )
+    .eq('user_id',userId)
+    .order('created_at',{
+        ascending:false
+    })
+    .limit(10);
+
+
+    if(error){
+
+        console.error(error);
+
+        return;
+    }
+
+
+    if(!data || data.length === 0){
+
+        return;
+    }
+
+
+    const card =
+        document.createElement('div');
+
+    card.className =
+        'card';
+
+
+    let html =
+        '<div class="section-title">💰 آخر معاملات المحفظة</div>';
+
+
+    data.forEach(function(item){
+
+        const isTopup =
+            item.type === 'topup';
+
+
+        const sign =
+            isTopup ? '+' : '-';
+
+
+        const date =
+            new Date(item.created_at)
+            .toLocaleString('ar-EG');
+
+
+        html += `
+
+        <div class="item">
+
+            <b>
+                ${escapeHtml(item.description || (isTopup ? 'شحن محفظة' : 'شراء'))}
+            </b>
+
+            <br>
+
+            المبلغ:
+
+            <span style="
+                color:${isTopup ? '#16833c' : '#c62828'};
+                font-weight:800;
+            ">
+                ${sign}${formatMoney(item.amount)}
+            </span>
+
+            <br>
+
+            الرصيد بعد العملية:
+            <b>${formatMoney(item.balance_after)}</b>
+
+            <br>
+
+            ${date}
+
+        </div>
+
+        `;
+
+    });
+
+
+    card.innerHTML =
+        html;
+
+
+    const content =
+        document.getElementById('content');
+
+
+    const lastCard =
+        content.querySelector('.card:nth-child(3)');
+
+
+    if(lastCard){
+
+        content.insertBefore(
+            card,
+            lastCard
+        );
+
+    }else{
+
+        content.appendChild(card);
+
+    }
+
+}
+
+
+/* =====================================
+   حماية عرض النصوص
+===================================== */
+
+function escapeHtml(value){
+
+    if(value === null ||
+       value === undefined){
+
+        return '';
+
+    }
+
+
+    return String(value)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+
+}
+
+
+/* =====================================
+   تسجيل الخروج
+===================================== */
+
+async function logout(){
+
+    const yes =
+        confirm(
+            'هل تريد تسجيل الخروج؟'
+        );
+
+
+    if(!yes){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+    await supabaseClient.auth.signOut();
+
+
+    if(error){
+
+        alert(
+            'حدث خطأ أثناء تسجيل الخروج.'
+        );
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    window.location.href =
+        'login.html';
+
+}
+
+
+/* =====================================
+   مراقبة تسجيل الدخول
+===================================== */
+
+supabaseClient.auth.onAuthStateChange(
+    function(event,session){
+
+        if(
+            event === 'SIGNED_OUT'
+        ){
+
+            window.location.href =
+                'login.html';
+
+        }
+
+    }
+);
+
+
+/* =====================================
+   بدء الصفحة
+===================================== */
+
+loadAllData();
+
 </script>
-</body></html>
+
+</body>
+          </html>
