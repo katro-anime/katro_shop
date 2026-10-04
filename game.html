@@ -1,40 +1,1128 @@
-<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>المنتج</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-<style>*{font-family:Tajawal;box-sizing:border-box}body{margin:0;background:#f8f8ff;padding-bottom:90px}.top{background:#6c3cff;color:#fff;padding:10px 12px;display:flex;justify-content:space-between}.price{color:#6c3cff;font-weight:800;text-align:center;padding:10px}.opt{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}.opt label{border:1px solid #ddd;border-radius:10px;padding:10px;text-align:center;background:#fff;cursor:pointer}.opt input{display:none}.opt input:checked+label{border-color:#6c3cff;background:#ede6ff}
-.detail{background:#efeef6;margin:12px;border-radius:14px;padding:12px}.detail.row{display:flex;justify-content:space-between;background:#fff;border-radius:10px;padding:10px;margin-top:8px}
-.inp{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:8px 0}
-.btn{width:94%;margin:10px auto;display:block;background:linear-gradient(90deg,#6c3cff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:16px}
-.bottom{position:fixed;bottom:10px;left:10px;right:10px;background:#1a1333;border-radius:30px;display:flex;justify-content:space-around;padding:10px;z-index:100}
-.bottom a{color:#8a8a9a;text-decoration:none;text-align:center;font-size:12px;display:flex;flex-direction:column;align-items:center}
-</style></head><body>
-<div class="top"><div>☰</div><div>ALHBANI SHOP</div><div>🛒</div></div>
-<h3 id="gtitle" style="padding:12px">شحن فري فاير مباشر 24 ساعة</h3>
-<div class="price" id="prange">ج.س. 2,900 - ج.س. 162,000</div>
-<p style="text-align:center;font-size:13px">تسليم فوري ⚡</p>
-<h4 style="padding:12px">قيمة البطاقة</h4>
-<div class="opt" id="options"></div>
-<div class="detail"><b>تفاصيل الاختيار</b><div class="row"><span>السعر</span><span id="selPrice">-</span></div><button style="width:100%;margin-top:8px;background:#6c3cff;color:#fff;border:none;padding:8px;border-radius:8px" onclick="document.getElementById('selPrice').innerText='-'">إعادة التعيين</button></div>
-<div style="padding:12px">
-<label>* معرف اللاعب (ID)</label><input id="pid" class="inp" placeholder="مثال 12345678">
-<label>* واتساب للتواصل</label><input id="wpp" class="inp" placeholder="09xxxxxxxx">
-<button class="btn" onclick="buy()">إضافة إلى السلة - شراء فوري</button>
-</div>
-<div class="bottom"><a href="wallet.html"><div>👤</div>دخول</a><a href="wallet.html"><div>🧾</div>الطلبات</a><a href="wallet.html"><div>💳</div>المحفظة</a><a href="index.html"><div>🏠</div>الرئيسية</a></div>
-<script>
-let params=new URLSearchParams(location.search); let g=params.get('g')||'freefire';
-let packs={freefire:[{n:'110 جوهرة',p:2900},{n:'231 جوهرة',p:5800},{n:'583 جوهرة',p:11600},{n:'1180 جوهرة',p:22000},{n:'عضوية أسبوعية',p:6000},{n:'عضوية شهرية',p:28000}],pubg:[{n:'60 UC',p:3500},{n:'325 UC',p:17000},{n:'660 UC',p:34000}],tiktok:[{n:'350 عملة',p:32500},{n:'700 عملة',p:65000},{n:'1400 عملة',p:130000}],playstation:[{n:'10$ PSN',p:45000},{n:'25$ PSN',p:110000}]};
-let cur=packs[g]||packs.freefire;
-document.getElementById('gtitle').innerText=g=='freefire'?'شحن فري فاير مباشر 24ساعة':g=='pubg'?'شحن ببجي UC':g=='tiktok'?'عملات تيك توك':'بلايستيشن';
-let html='';cur.forEach((x,i)=>{html+=`<input type=radio name=pack id=p${i} onchange="document.getElementById('selPrice').innerText='${x.p} ج.س';window.sel=x"><label for=p${i}>${x.n}</label>`});document.getElementById('options').innerHTML=html;
-function buy(){
-let id=document.getElementById('pid').value; if(!id){alert('اكتب الـID');return}
-if(!window.sel){alert('اختار الباقة');return}
-let wallet=parseInt(localStorage.getItem('wallet')||0);
-if(wallet<window.sel.p){alert('رصيد محفظتك غير كافي، اشحن المحفظة أولا'); location.href='wallet.html'; return}
-localStorage.setItem('wallet',wallet-window.sel.p);
-let orders=JSON.parse(localStorage.getItem('orders')||'[]');
-orders.push({pack:window.sel.n,price:window.sel.p,id:id,status:'قيد التنفيذ',date:new Date().toLocaleString()});
-localStorage.setItem('orders',JSON.stringify(orders));
-alert('تم الشراء بنجاح، تابع طلباتك'); location.href='wallet.html';
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>KATRO SHOP</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
-</script></body></html>
+
+body{
+    font-family:Arial,Tahoma,sans-serif;
+    background:#f5f5fb;
+    color:#222;
+    padding-bottom:80px;
+}
+
+header{
+    background:linear-gradient(135deg,#5b22ff,#7a2cff);
+    color:white;
+    padding:15px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header{
+    width:94%;
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.back{
+    color:white;
+    text-decoration:none;
+    font-size:15px;
+}
+
+.container{
+    width:94%;
+    max-width:1100px;
+    margin:20px auto;
+}
+
+.game-header{
+    background:#111827;
+    color:white;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:20px;
+}
+
+.game-header h1{
+    margin-bottom:8px;
+    font-size:24px;
+}
+
+.game-header p{
+    color:#cbd5e1;
+    line-height:1.8;
+}
+
+.message{
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:15px;
+    display:none;
+}
+
+.error{
+    background:#ffe4e4;
+    color:#a40000;
+}
+
+.success{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.balance{
+    background:white;
+    border:1px solid #eee;
+    border-radius:13px;
+    padding:15px;
+    margin-bottom:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.balance span{
+    color:#777;
+}
+
+.balance strong{
+    color:#5b22ff;
+    font-size:18px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+    gap:14px;
+}
+
+.product{
+    background:white;
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:16px;
+    box-shadow:0 2px 9px rgba(0,0,0,.06);
+}
+
+.product h3{
+    font-size:16px;
+    line-height:1.5;
+    margin-bottom:8px;
+}
+
+.description{
+    color:#777;
+    font-size:13px;
+    line-height:1.6;
+    min-height:40px;
+}
+
+.price{
+    color:#5b22ff;
+    font-weight:bold;
+    font-size:17px;
+    margin:12px 0;
+}
+
+.buy{
+    width:100%;
+    border:0;
+    background:#5b22ff;
+    color:white;
+    padding:11px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.buy:disabled{
+    background:#aaa;
+    cursor:not-allowed;
+}
+
+.loading,
+.empty{
+    background:white;
+    border-radius:15px;
+    padding:35px;
+    text-align:center;
+    color:#777;
+}
+
+.form-box{
+    background:white;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:20px;
+}
+
+.form-box h3{
+    margin-bottom:12px;
+}
+
+.form-box label{
+    display:block;
+    margin:10px 0 6px;
+    font-size:14px;
+}
+
+.form-box input,
+.form-box textarea{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:9px;
+    padding:11px;
+    outline:none;
+    font-family:inherit;
+}
+
+.form-box textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:200;
+}
+
+.modal-box{
+    width:min(500px,100%);
+    background:white;
+    border-radius:17px;
+    padding:20px;
+}
+
+.modal-box h2{
+    margin-bottom:15px;
+}
+
+.modal-price{
+    color:#5b22ff;
+    font-weight:bold;
+    font-size:20px;
+    margin:10px 0 18px;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.confirm{
+    flex:1;
+    background:#16a34a;
+    color:white;
+    padding:12px;
+    border-radius:9px;
+}
+
+.cancel{
+    flex:1;
+    background:#ddd;
+    color:#222;
+    padding:12px;
+    border-radius:9px;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:65px;
+    background:white;
+    border-top:1px solid #ddd;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:100;
+}
+
+.nav-item{
+    text-decoration:none;
+    color:#777;
+    text-align:center;
+    font-size:12px;
+}
+
+.nav-item .icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#5b22ff;
+}
+
+@media(max-width:500px){
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .product{
+        padding:13px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="header">
+
+<a href="index.html" class="back">
+‹ الرئيسية
+</a>
+
+<div class="logo">
+KATRO SHOP
+</div>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="game-header">
+
+<h1 id="gameTitle">
+جاري التحميل...
+</h1>
+
+<p id="gameDescription">
+جاري تحميل الخدمات...
+</p>
+
+</div>
+
+
+<div id="errorBox"
+class="message error">
+</div>
+
+<div id="successBox"
+class="message success">
+</div>
+
+
+<div class="balance">
+
+<span>
+رصيد محفظتك
+</span>
+
+<strong id="balance">
+جارٍ التحقق...
+</strong>
+
+</div>
+
+
+<div id="productsContainer">
+
+<div class="loading">
+جاري تحميل المنتجات...
+</div>
+
+</div>
+
+</div>
+
+
+<div id="buyModal" class="modal">
+
+<div class="modal-box">
+
+<h2 id="modalTitle">
+شراء المنتج
+</h2>
+
+<div class="modal-price"
+id="modalPrice">
+</div>
+
+
+<div class="form-box"
+style="padding:0;margin:0;">
+
+<label>
+ID اللاعب / الحساب
+</label>
+
+<input
+type="text"
+id="playerId"
+placeholder="اكتب ID اللاعب أو الحساب">
+
+
+<label>
+رقم الهاتف للتواصل
+</label>
+
+<input
+type="text"
+id="contactPhone"
+placeholder="رقم الهاتف">
+
+
+<label>
+ملاحظات إضافية
+</label>
+
+<textarea
+id="accountInfo"
+placeholder="اكتب أي معلومات يحتاجها تنفيذ الطلب"></textarea>
+
+</div>
+
+
+<div class="modal-actions">
+
+<button
+class="confirm"
+onclick="confirmPurchase()">
+
+تأكيد الشراء
+
+</button>
+
+<button
+class="cancel"
+onclick="closeModal()">
+
+إلغاء
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<nav class="bottom-nav">
+
+<a href="index.html"
+class="nav-item">
+
+<span class="icon">🏠</span>
+الرئيسية
+
+</a>
+
+<a href="wallet.html"
+class="nav-item active">
+
+<span class="icon">💰</span>
+المحفظة
+
+</a>
+
+<a href="wallet-topup.html"
+class="nav-item">
+
+<span class="icon">➕</span>
+شحن
+
+</a>
+
+<a href="login.html"
+class="nav-item">
+
+<span class="icon">👤</span>
+حسابي
+
+</a>
+
+</nav>
+
+
+<script>
+
+const SUPABASE_URL =
+"https://uwmrzvsygeoequscpinx.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+let currentUser = null;
+let currentBalance = 0;
+let selectedProduct = null;
+
+
+/* أسماء الخدمات */
+
+const gameNames = {
+
+    freefire:"Free Fire",
+    pubg:"PUBG Mobile",
+    codm:"Call of Duty Mobile",
+    efootball:"eFootball",
+    jawaker:"Jawaker",
+    mobilelegends:"Mobile Legends",
+    yallaludo:"Yalla Ludo",
+    tiktok:"TikTok",
+    googleplay:"Google Play",
+    itunes:"iTunes",
+    playstation:"PlayStation",
+    xbox:"Xbox",
+    razergold:"Razer Gold",
+    netflix:"Netflix",
+    visa:"Visa",
+    mastercard:"Mastercard",
+    zain:"Zain",
+    mtn:"MTN",
+    sudani:"Sudani",
+    cashi:"Cashi",
+    starlink:"Starlink",
+    katro:"KATRO CARD",
+    pyypl:"Pyypl"
+
+};
+
+
+/* قراءة game من الرابط */
+
+const params =
+new URLSearchParams(
+    window.location.search
+);
+
+const gameKey =
+params.get("g");
+
+
+/* بدء الصفحة */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    init
+);
+
+
+async function init(){
+
+    if(!gameKey){
+
+        showError(
+            "لم يتم تحديد الخدمة."
+        );
+
+        document.getElementById(
+            "productsContainer"
+        ).innerHTML =
+        `<div class="empty">
+        الخدمة غير محددة.
+        </div>`;
+
+        return;
+
+    }
+
+
+    const sessionResult =
+    await supabaseClient.auth.getSession();
+
+
+    currentUser =
+    sessionResult.data.session?.user
+    || null;
+
+
+    if(currentUser){
+
+        await loadBalance();
+
+    }else{
+
+        document.getElementById(
+            "balance"
+        ).textContent =
+        "سجّل الدخول للشراء";
+
+    }
+
+
+    await loadGameProducts();
+
+}
+
+
+/* الرصيد */
+
+async function loadBalance(){
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("wallets")
+        .select("balance")
+        .eq("user_id",currentUser.id)
+        .single();
+
+
+    if(error){
+
+        console.error(error);
+
+        currentBalance = 0;
+
+        document.getElementById(
+            "balance"
+        ).textContent =
+        "0 ج.س";
+
+        return;
+
+    }
+
+
+    currentBalance =
+    Number(data.balance || 0);
+
+
+    document.getElementById(
+        "balance"
+    ).textContent =
+    formatPrice(currentBalance);
+
+}
+
+
+/* تحميل منتجات اللعبة */
+
+async function loadGameProducts(){
+
+    const container =
+    document.getElementById(
+        "productsContainer"
+    );
+
+
+    const title =
+    gameNames[gameKey]
+    || gameKey;
+
+
+    document.getElementById(
+        "gameTitle"
+    ).textContent =
+    title;
+
+
+    document.getElementById(
+        "gameDescription"
+    ).textContent =
+    "اختر الباقة المناسبة لك من الخدمات المتوفرة.";
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("products")
+        .select(`
+            id,
+            game_key,
+            name,
+            description,
+            price,
+            image_url,
+            active
+        `)
+        .eq("game_key",gameKey)
+        .eq("active",true)
+        .order("id",{
+            ascending:true
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+        container.innerHTML =
+        `<div class="empty">
+        تعذر تحميل المنتجات.
+        </div>`;
+
+        showError(
+            "حدث خطأ أثناء تحميل المنتجات."
+        );
+
+        return;
+
+    }
+
+
+    if(!data || !data.length){
+
+        container.innerHTML =
+        `<div class="empty">
+        لا توجد باقات متاحة لهذه الخدمة حالياً.
+        </div>`;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    `<div class="products">
+        ${data.map(product => productCard(product)).join("")}
+    </div>`;
+
+}
+
+
+/* بطاقة المنتج */
+
+function productCard(product){
+
+    return `
+
+    <div class="product">
+
+        <h3>
+            ${escapeHtml(product.name)}
+        </h3>
+
+        <div class="description">
+            ${escapeHtml(
+                product.description || ""
+            )}
+        </div>
+
+        <div class="price">
+            ${formatPrice(product.price)}
+        </div>
+
+        <button
+        class="buy"
+        onclick='openBuyModal(${JSON.stringify(product)})'>
+
+            شراء
+
+        </button>
+
+    </div>
+
+    `;
+
+}
+
+
+/* فتح نافذة الشراء */
+
+function openBuyModal(product){
+
+    if(!currentUser){
+
+        showError(
+            "يجب تسجيل الدخول أولاً حتى تستطيع الشراء."
+        );
+
+        setTimeout(()=>{
+            window.location.href =
+            "login.html";
+        },1200);
+
+        return;
+
+    }
+
+
+    selectedProduct =
+    product;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+    "شراء: " + product.name;
+
+
+    document.getElementById(
+        "modalPrice"
+    ).textContent =
+    formatPrice(product.price);
+
+
+    document.getElementById(
+        "playerId"
+    ).value = "";
+
+
+    document.getElementById(
+        "contactPhone"
+    ).value = "";
+
+
+    document.getElementById(
+        "accountInfo"
+    ).value = "";
+
+
+    document.getElementById(
+        "buyModal"
+    ).style.display =
+    "flex";
+
+}
+
+
+function closeModal(){
+
+    document.getElementById(
+        "buyModal"
+    ).style.display =
+    "none";
+
+    selectedProduct =
+    null;
+
+}
+
+
+/* تأكيد الشراء */
+
+async function confirmPurchase(){
+
+    if(!currentUser){
+
+        showError(
+            "يجب تسجيل الدخول أولاً."
+        );
+
+        return;
+
+    }
+
+
+    if(!selectedProduct){
+
+        showError(
+            "لم يتم تحديد المنتج."
+        );
+
+        return;
+
+    }
+
+
+    const playerId =
+    document.getElementById(
+        "playerId"
+    ).value.trim();
+
+
+    const phone =
+    document.getElementById(
+        "contactPhone"
+    ).value.trim();
+
+
+    const accountInfo =
+    document.getElementById(
+        "accountInfo"
+    ).value.trim();
+
+
+    const price =
+    Number(selectedProduct.price);
+
+
+    if(
+        !Number.isFinite(price)
+        ||
+        price <= 0
+    ){
+
+        showError(
+            "سعر المنتج غير صحيح."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        currentBalance < price
+    ){
+
+        showError(
+            "رصيد المحفظة غير كافٍ. يرجى شحن المحفظة أولاً."
+        );
+
+        return;
+
+    }
+
+
+    const confirmed =
+    confirm(
+        "تأكيد شراء:\n\n" +
+        selectedProduct.name +
+        "\n" +
+        formatPrice(price) +
+        "\n\n" +
+        "سيتم إرسال الطلب للتنفيذ."
+    );
+
+
+    if(!confirmed) return;
+
+
+    const button =
+    document.querySelector(
+        ".confirm"
+    );
+
+
+    button.disabled = true;
+    button.textContent =
+    "جاري تنفيذ الطلب...";
+
+
+    try{
+
+        /*
+         * ملاحظة:
+         * إنشاء الطلب والخصم من الرصيد
+         * يجب أن يتم لاحقاً بواسطة RPC آمنة.
+         * هنا ننشئ الطلب فقط.
+         */
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("orders")
+            .insert({
+                user_id:currentUser.id,
+                product_id:selectedProduct.id,
+                product_name:selectedProduct.name,
+                game_key:selectedProduct.game_key,
+                quantity:1,
+                unit_price:price,
+                total_price:price,
+                player_id:playerId || null,
+                account_info:accountInfo || null,
+                contact_phone:phone || null,
+                status:"pending"
+            })
+            .select()
+            .single();
+
+
+        if(error){
+
+            console.error(error);
+
+            showError(
+                "تعذر إنشاء الطلب: " +
+                error.message
+            );
+
+            return;
+
+        }
+
+
+        closeModal();
+
+
+        showSuccess(
+            "تم إنشاء طلبك بنجاح. رقم الطلب: #" +
+            (
+                data.order_number
+                || data.id
+            )
+        );
+
+
+        /*
+         * إعادة تحميل الرصيد
+         */
+
+        await loadBalance();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showError(
+            "حدث خطأ أثناء إنشاء الطلب."
+        );
+
+    }finally{
+
+        button.disabled = false;
+        button.textContent =
+        "تأكيد الشراء";
+
+    }
+
+}
+
+
+/* رسائل */
+
+function showError(message){
+
+    const box =
+    document.getElementById(
+        "errorBox"
+    );
+
+    box.textContent =
+    message;
+
+    box.style.display =
+    "block";
+
+
+    document.getElementById(
+        "successBox"
+    ).style.display =
+    "none";
+
+
+    setTimeout(()=>{
+        box.style.display =
+        "none";
+    },5000);
+
+}
+
+
+function showSuccess(message){
+
+    const box =
+    document.getElementById(
+        "successBox"
+    );
+
+    box.textContent =
+    message;
+
+    box.style.display =
+    "block";
+
+
+    document.getElementById(
+        "errorBox"
+    ).style.display =
+    "none";
+
+
+    setTimeout(()=>{
+        box.style.display =
+        "none";
+    },5000);
+
+}
+
+
+/* السعر */
+
+function formatPrice(price){
+
+    const number =
+    Number(price);
+
+
+    if(!Number.isFinite(number))
+        return "0 ج.س";
+
+
+    return number.toLocaleString(
+        "en-US"
+    ) + " ج.س";
+
+}
+
+
+/* حماية HTML */
+
+function escapeHtml(value){
+
+    if(
+        value === null ||
+        value === undefined
+    )
+        return "";
+
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+
+  </html>
