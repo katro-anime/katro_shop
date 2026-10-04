@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head>
-<meta charset="UTF-8"><meta name="viewport"
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>KATRO SHOP</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
@@ -26,11 +25,12 @@ header{
 }
 
 .header-top{
+    max-width:1100px;
+    margin:auto;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    max-width:1100px;
-    margin:auto;
 }
 
 .logo{
@@ -44,7 +44,7 @@ header{
 }
 
 .header-btn{
-    border:none;
+    border:0;
     background:rgba(255,255,255,.18);
     color:white;
     padding:9px 13px;
@@ -53,25 +53,23 @@ header{
     font-size:14px;
 }
 
-.header-btn:hover{
-    background:rgba(255,255,255,.28);
-}
-
 /* SEARCH */
 
 .search-box{
     max-width:900px;
     margin:18px auto 0;
-    position:relative;
 }
 
 .search-box input{
     width:100%;
     padding:14px 18px;
-    border:none;
-    border-radius:13px;
+
+    border:0;
     outline:none;
+    border-radius:13px;
+
     font-size:15px;
+
     box-shadow:0 3px 10px rgba(0,0,0,.12);
 }
 
@@ -80,9 +78,13 @@ header{
 .banner{
     max-width:1100px;
     margin:18px auto;
+
     background:white;
+
     border-radius:16px;
+
     padding:20px;
+
     box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
@@ -96,12 +98,14 @@ header{
     line-height:1.7;
 }
 
-/* SECTION */
+/* TITLE */
 
 .section-title{
     max-width:1100px;
     margin:25px auto 14px;
+
     padding:0 12px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -120,19 +124,28 @@ header{
 
 .services{
     max-width:1100px;
+
     margin:auto;
+
     padding:0 12px 100px;
 
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(180px,1fr));
+
     gap:15px;
 }
 
 .service-card{
+
     background:white;
+
     border-radius:16px;
+
     padding:18px 14px;
-    min-height:155px;
+
+    min-height:160px;
 
     display:flex;
     flex-direction:column;
@@ -141,37 +154,45 @@ header{
 
     cursor:pointer;
 
+    border:1px solid #eee;
+
     box-shadow:0 3px 12px rgba(0,0,0,.07);
 
     transition:.2s;
-    border:1px solid #eee;
 }
 
 .service-card:hover{
     transform:translateY(-4px);
-    box-shadow:0 7px 20px rgba(0,0,0,.12);
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.12);
 }
 
 .service-icon{
+
     width:75px;
     height:75px;
+
     border-radius:18px;
 
     background:#f0f2ff;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     margin-bottom:12px;
-
-    overflow:hidden;
 }
 
 .service-icon img{
+
     width:100%;
     height:100%;
+
     object-fit:cover;
+
+    border-radius:18px;
 }
 
 .service-emoji{
@@ -179,62 +200,89 @@ header{
 }
 
 .service-name{
+
     font-size:17px;
+
     font-weight:bold;
+
     text-align:center;
-    margin-bottom:6px;
+
+    margin-bottom:7px;
 }
 
 .service-count{
-    font-size:12px;
+
     color:#888;
+
+    font-size:12px;
 }
 
 /* LOADING */
 
 .loading{
-    max-width:1100px;
+
+    max-width:900px;
+
     margin:30px auto;
+
     padding:30px;
+
     text-align:center;
+
     color:#777;
 }
 
 /* ERROR */
 
 .error-box{
+
     max-width:900px;
+
     margin:25px auto;
-    background:#fff0f0;
-    border:1px solid #ffbcbc;
-    color:#b00020;
-    border-radius:14px;
+
     padding:18px;
+
+    border-radius:14px;
+
+    background:#fff0f0;
+
+    border:1px solid #ffbcbc;
+
+    color:#b00020;
+
     line-height:1.8;
-    direction:rtl;
 }
 
 .error-title{
+
     font-weight:bold;
+
     margin-bottom:8px;
 }
 
 /* EMPTY */
 
 .empty{
-    max-width:700px;
-    margin:30px auto;
+
+    grid-column:1/-1;
+
     background:white;
-    padding:30px;
+
+    padding:35px;
+
     text-align:center;
+
     border-radius:15px;
+
     color:#777;
 }
 
 /* BOTTOM NAV */
 
 .bottom-nav{
+
     position:fixed;
+
     bottom:0;
     right:0;
     left:0;
@@ -244,48 +292,55 @@ header{
     background:white;
 
     display:flex;
+
     justify-content:center;
-    gap:5px;
 
     border-top:1px solid #ddd;
 
-    box-shadow:0 -3px 12px rgba(0,0,0,.08);
+    box-shadow:
+    0 -3px 12px rgba(0,0,0,.08);
 
     z-index:1000;
 }
 
 .nav-item{
+
     flex:1;
+
     max-width:180px;
 
     text-decoration:none;
+
     color:#666;
 
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:12px;
 }
 
 .nav-icon{
+
     font-size:21px;
+
     margin-bottom:3px;
 }
 
 .nav-item.active{
+
     color:#2575fc;
+
     font-weight:bold;
 }
 
 /* MOBILE */
 
 @media(max-width:600px){
-
-    header{
-        padding:15px 12px 18px;
-    }
 
     .logo{
         font-size:21px;
@@ -306,7 +361,10 @@ header{
     }
 
     .services{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+        repeat(2,1fr);
+
         gap:10px;
     }
 
@@ -328,56 +386,65 @@ header{
 
 </style></head><body><header><div class="header-top"><div class="logo">
 KATRO SHOP
-</div><div class="header-buttons"><button class="header-btn"
+</div><div class="header-buttons"><button
+class="header-btn"
 onclick="goWallet()">
+
 💰 المحفظة
-</button>
 
-<button class="header-btn"
+</button><button
+class="header-btn"
 onclick="goLogin()">
-👤 الحساب
-</button>
 
-</div></div><div class="search-box"><input
-type="text"
+👤 الحساب
+
+</button></div></div><div class="search-box"><input
 id="searchInput"
-placeholder="🔍 ابحث عن خدمة مثل Free Fire أو Netflix..."
+type="text"
+placeholder="🔍 ابحث عن خدمة..."
 oninput="searchServices()">
 
 </div></header><div class="banner"><h1>
 مرحباً بك في KATRO SHOP 🛒
 </h1><p>
-اختر الخدمة التي تريدها للوصول إلى الباقات والمنتجات المتوفرة.
+اختر الخدمة التي تريدها لعرض جميع الباقات والمنتجات الخاصة بها.
 </p></div><div class="section-title"><h2>
 الخدمات
 </h2><span id="serviceCount">
 جاري التحميل...
-</span></div><div id="servicesContainer"
-class="services"></div><div id="loading"
+</span></div><div
+id="servicesContainer"
+class="services"></div><div
+id="loading"
 class="loading">جاري تحميل الخدمات...
 
-</div><div id="errorContainer"></div><nav class="bottom-nav"><a href="index.html"
+</div><div
+id="errorContainer"></div><nav class="bottom-nav"><a
+href="index.html"
 class="nav-item active">
 
 <div class="nav-icon">
 🏠
 </div>الرئيسية
 
-</a><a href="wallet.html"
+</a><a
+href="wallet.html"
 class="nav-item">
 
 <div class="nav-icon">
 💰
 </div>المحفظة
 
-</a><a href="wallet-topup.html"
+</a><a
+href="wallet-topup.html"
 class="nav-item">
 
 <div class="nav-icon">
 ➕
 </div>شحن المحفظة
 
-</a><a href="login.html"
+</a><a
+href="login.html"
 class="nav-item">
 
 <div class="nav-icon">
@@ -386,15 +453,15 @@ class="nav-item">
 
 </a></nav><script>
 
-/* =========================
+/* ==========================
    SUPABASE
-========================= */
+========================== */
 
 const SUPABASE_URL =
 "https://uwmrzvsygeoequscpinx.supabase.co";
 
 const SUPABASE_KEY =
-sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts
+"sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
 
 const supabaseClient =
 window.supabase.createClient(
@@ -403,9 +470,9 @@ window.supabase.createClient(
 );
 
 
-/* =========================
+/* ==========================
    SERVICE NAMES
-========================= */
+========================== */
 
 const gameNames = {
 
@@ -460,9 +527,9 @@ const gameNames = {
 };
 
 
-/* =========================
-   SERVICE ICONS
-========================= */
+/* ==========================
+   ICONS
+========================== */
 
 const serviceIcons = {
 
@@ -470,7 +537,7 @@ const serviceIcons = {
 
     pubg:"🎮",
 
-    codm:"🔫",
+    codm:"🎯",
 
     efootball:"⚽",
 
@@ -517,83 +584,120 @@ const serviceIcons = {
 };
 
 
-/* =========================
-   DATA
-========================= */
+/* ==========================
+   VARIABLES
+========================== */
 
 let allServices = [];
 
 
-/* =========================
-   LOAD SERVICES
-========================= */
+/* ==========================
+   LOAD
+========================== */
 
 async function loadServices(){
 
-    const container =
-        document.getElementById("servicesContainer");
-
     const loading =
-        document.getElementById("loading");
+        document.getElementById(
+            "loading"
+        );
+
+    const container =
+        document.getElementById(
+            "servicesContainer"
+        );
 
     const errorContainer =
-        document.getElementById("errorContainer");
+        document.getElementById(
+            "errorContainer"
+        );
 
-    const serviceCount =
-        document.getElementById("serviceCount");
+    const count =
+        document.getElementById(
+            "serviceCount"
+        );
 
 
-    container.innerHTML = "";
+    loading.style.display =
+        "block";
 
-    errorContainer.innerHTML = "";
+    container.innerHTML =
+        "";
 
-    loading.style.display = "block";
+    errorContainer.innerHTML =
+        "";
 
 
     try{
 
         /*
-         * نطلب game_key و active فقط
-         * حتى تكون العملية أخف وأكثر توافقاً.
+         * نجلب game_key فقط.
+         * لا نحتاج باقي بيانات المنتجات
+         * في الصفحة الرئيسية.
          */
 
-        const { data, error } =
-            await supabaseClient
-                .from("products")
-                .select("game_key,active")
-                .eq("active",true);
+        const result =
+            await Promise.race([
+
+                supabaseClient
+                    .from("products")
+                    .select("game_key,active")
+                    .eq("active",true),
+
+                new Promise(resolve =>
+                    setTimeout(
+                        () => resolve({
+                            data:null,
+                            error:{
+                                message:
+                                "انتهت مهلة الاتصال بـ Supabase."
+                            }
+                        }),
+                        10000
+                    )
+                )
+
+            ]);
+
+
+        const data =
+            result.data;
+
+        const error =
+            result.error;
 
 
         if(error){
 
             console.error(
-                "Supabase Error:",
+                "Supabase:",
                 error
             );
 
-            loading.style.display = "none";
+            loading.style.display =
+                "none";
 
-            serviceCount.textContent =
+            count.textContent =
                 "خطأ";
+
 
             errorContainer.innerHTML = `
 
                 <div class="error-box">
 
                     <div class="error-title">
+
                         حدث خطأ أثناء تحميل الخدمات
+
                     </div>
 
                     <div>
+
                         ${escapeHtml(
                             error.message ||
-                            "تعذر الاتصال بقاعدة البيانات"
+                            "خطأ غير معروف"
                         )}
-                    </div>
 
-                    <div style="margin-top:8px;font-size:13px;">
-                        إذا ظهر هذا الخطأ مرة أخرى،
-                        أرسل لي صورة الخطأ أو نصه وسأصلحه لك.
                     </div>
 
                 </div>
@@ -605,20 +709,21 @@ async function loadServices(){
 
 
         /*
-         * تجميع المنتجات حسب game_key
+         * تجميع الخدمات
          */
 
         const grouped = {};
 
 
-        (data || []).forEach(product => {
+        (data || []).forEach(item => {
 
-            if(!product.game_key){
+            if(!item.game_key){
                 return;
             }
 
+
             const key =
-                String(product.game_key)
+                String(item.game_key)
                 .trim()
                 .toLowerCase();
 
@@ -627,13 +732,14 @@ async function loadServices(){
                 grouped[key] = 0;
             }
 
+
             grouped[key]++;
 
         });
 
 
         /*
-         * تحويل الخدمات إلى مصفوفة
+         * إنشاء قائمة الخدمات
          */
 
         allServices =
@@ -644,7 +750,7 @@ async function loadServices(){
 
                 name:
                     gameNames[key] ||
-                    formatGameName(key),
+                    formatName(key),
 
                 count:
                     grouped[key],
@@ -653,19 +759,14 @@ async function loadServices(){
                     serviceIcons[key] ||
                     "🛍️"
 
-            }))
-            .sort((a,b) =>
-                a.name.localeCompare(
-                    b.name,
-                    "ar"
-                )
-            );
+            }));
 
 
-        loading.style.display = "none";
+        loading.style.display =
+            "none";
 
 
-        serviceCount.textContent =
+        count.textContent =
             allServices.length +
             " خدمة";
 
@@ -676,7 +777,7 @@ async function loadServices(){
 
                 <div class="empty">
 
-                    لا توجد خدمات متاحة حالياً.
+                    لا توجد خدمات نشطة في جدول المنتجات حالياً.
 
                 </div>
 
@@ -686,32 +787,40 @@ async function loadServices(){
         }
 
 
-        renderServices(allServices);
+        renderServices(
+            allServices
+        );
 
     }
 
-    catch(err){
+    catch(error){
 
-        console.error(err);
+        console.error(error);
 
-        loading.style.display = "none";
+        loading.style.display =
+            "none";
 
-        serviceCount.textContent =
+        count.textContent =
             "خطأ";
+
 
         errorContainer.innerHTML = `
 
             <div class="error-box">
 
                 <div class="error-title">
+
                     حدث خطأ أثناء تحميل الخدمات
+
                 </div>
 
                 <div>
+
                     ${escapeHtml(
-                        err.message ||
-                        String(err)
+                        error.message ||
+                        String(error)
                     )}
+
                 </div>
 
             </div>
@@ -723,11 +832,13 @@ async function loadServices(){
 }
 
 
-/* =========================
-   RENDER SERVICES
-========================= */
+/* ==========================
+   RENDER
+========================== */
 
-function renderServices(services){
+function renderServices(
+    services
+){
 
     const container =
         document.getElementById(
@@ -741,7 +852,7 @@ function renderServices(services){
 
             <div class="empty">
 
-                لا توجد خدمة بهذا الاسم.
+                لا توجد خدمة مطابقة للبحث.
 
             </div>
 
@@ -762,20 +873,27 @@ function renderServices(services){
                 <div class="service-icon">
 
                     <span class="service-emoji">
+
                         ${service.icon}
+
                     </span>
 
                 </div>
 
+
                 <div class="service-name">
 
-                    ${escapeHtml(service.name)}
+                    ${escapeHtml(
+                        service.name
+                    )}
 
                 </div>
 
+
                 <div class="service-count">
 
-                    ${service.count} باقة متوفرة
+                    ${service.count}
+                    باقة متوفرة
 
                 </div>
 
@@ -786,22 +904,26 @@ function renderServices(services){
 }
 
 
-/* =========================
+/* ==========================
    OPEN SERVICE
-========================= */
+========================== */
 
-function openService(gameKey){
+function openService(
+    gameKey
+){
 
     window.location.href =
         "game.html?g=" +
-        encodeURIComponent(gameKey);
+        encodeURIComponent(
+            gameKey
+        );
 
 }
 
 
-/* =========================
+/* ==========================
    SEARCH
-========================= */
+========================== */
 
 function searchServices(){
 
@@ -809,6 +931,7 @@ function searchServices(){
         document.getElementById(
             "searchInput"
         );
+
 
     const query =
         input.value
@@ -818,14 +941,17 @@ function searchServices(){
 
     if(!query){
 
-        renderServices(allServices);
+        renderServices(
+            allServices
+        );
 
         return;
     }
 
 
     const filtered =
-        allServices.filter(service =>
+        allServices.filter(
+            service =>
 
             service.name
             .toLowerCase()
@@ -836,65 +962,79 @@ function searchServices(){
             service.key
             .toLowerCase()
             .includes(query)
-
         );
 
 
-    renderServices(filtered);
+    renderServices(
+        filtered
+    );
 
 }
 
 
-/* =========================
-   FORMAT UNKNOWN NAME
-========================= */
+/* ==========================
+   FORMAT NAME
+========================== */
 
-function formatGameName(key){
+function formatName(
+    key
+){
 
     return key
         .replace(/[-_]/g," ")
-        .replace(/\b\w/g,char =>
+        .replace(/\b\w/g,
+            char =>
             char.toUpperCase()
         );
 
 }
 
 
-/* =========================
-   ESCAPE HTML
-========================= */
+/* ==========================
+   SECURITY
+========================== */
 
-function escapeHtml(value){
+function escapeHtml(
+    value
+){
 
     return String(value)
+
         .replace(/&/g,"&amp;")
+
         .replace(/</g,"&lt;")
+
         .replace(/>/g,"&gt;")
+
         .replace(/"/g,"&quot;")
+
         .replace(/'/g,"&#039;");
 
 }
 
 
-/* =========================
-   ESCAPE JAVASCRIPT
-========================= */
-
-function escapeJs(value){
+function escapeJs(
+    value
+){
 
     return String(value)
+
         .replace(/\\/g,"\\\\")
+
         .replace(/'/g,"\\'")
+
         .replace(/"/g,'\\"')
+
         .replace(/\n/g,"\\n")
+
         .replace(/\r/g,"\\r");
 
 }
 
 
-/* =========================
+/* ==========================
    NAVIGATION
-========================= */
+========================== */
 
 function goWallet(){
 
@@ -912,11 +1052,10 @@ function goLogin(){
 }
 
 
-/* =========================
+/* ==========================
    START
-========================= */
+========================== */
 
 loadServices();
 
-</script></body>
-    </html>
+</script></body></html>
