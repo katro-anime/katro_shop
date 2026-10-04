@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>KATRO SHOP</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
+<title>KATRO SHOP</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
 
 *{
     box-sizing:border-box;
@@ -22,457 +12,379 @@ content="width=device-width, initial-scale=1.0">
 
 body{
     font-family:Arial,Tahoma,sans-serif;
-    background:#f5f5fb;
+    background:#f5f6fa;
     color:#222;
-    min-height:100vh;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header{
-    background:linear-gradient(135deg,#5b22ff,#7a2cff);
-    color:#fff;
-    padding:15px;
-    position:sticky;
-    top:0;
-    z-index:100;
-    box-shadow:0 3px 12px rgba(0,0,0,.15);
+    background:linear-gradient(135deg,#6a11cb,#2575fc);
+    color:white;
+    padding:18px 15px 22px;
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
 }
 
 .header-top{
-    max-width:1100px;
-    margin:auto;
     display:flex;
     align-items:center;
     justify-content:space-between;
+    max-width:1100px;
+    margin:auto;
 }
 
 .logo{
-    font-size:23px;
+    font-size:25px;
     font-weight:bold;
 }
 
-.header-icon{
-    font-size:25px;
+.header-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.header-btn{
+    border:none;
+    background:rgba(255,255,255,.18);
+    color:white;
+    padding:9px 13px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.header-btn:hover{
+    background:rgba(255,255,255,.28);
 }
 
 /* SEARCH */
 
 .search-box{
-    max-width:1100px;
-    margin:14px auto 0;
+    max-width:900px;
+    margin:18px auto 0;
     position:relative;
 }
 
 .search-box input{
     width:100%;
+    padding:14px 18px;
     border:none;
+    border-radius:13px;
     outline:none;
-    padding:13px 45px 13px 15px;
-    border-radius:12px;
     font-size:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
 }
 
-.search-icon{
-    position:absolute;
-    right:15px;
-    top:10px;
-    color:#777;
-    font-size:20px;
-}
-
-/* =========================
-   BANNER
-========================= */
+/* BANNER */
 
 .banner{
     max-width:1100px;
     margin:18px auto;
-    width:94%;
-    border-radius:18px;
-    padding:25px 20px;
-    background:linear-gradient(135deg,#111827,#222c48);
-    color:#fff;
-    overflow:hidden;
+    background:white;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
 .banner h1{
-    font-size:25px;
+    font-size:23px;
     margin-bottom:8px;
 }
 
 .banner p{
-    color:#d4d9e5;
-    line-height:1.8;
+    color:#666;
+    line-height:1.7;
 }
 
-/* =========================
-   CONTAINER
-========================= */
-
-.container{
-    width:94%;
-    max-width:1100px;
-    margin:auto;
-    padding-bottom:90px;
-}
+/* SECTION */
 
 .section-title{
+    max-width:1100px;
+    margin:25px auto 14px;
+    padding:0 12px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin:25px 0 15px;
 }
 
 .section-title h2{
-    font-size:21px;
+    font-size:20px;
 }
 
 .section-title span{
-    color:#7040ff;
+    color:#777;
     font-size:13px;
 }
 
-/* =========================
-   CATEGORIES
-========================= */
+/* SERVICES */
 
-.categories{
+.services{
+    max-width:1100px;
+    margin:auto;
+    padding:0 12px 100px;
+
     display:grid;
-    grid-template-columns:
-        repeat(auto-fill,minmax(150px,1fr));
-    gap:14px;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:15px;
 }
 
-.category{
-    background:#fff;
-    border:1px solid #eee;
+.service-card{
+    background:white;
     border-radius:16px;
-    overflow:hidden;
+    padding:18px 14px;
+    min-height:155px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
     cursor:pointer;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+
     transition:.2s;
-    box-shadow:0 2px 10px rgba(0,0,0,.07);
+    border:1px solid #eee;
 }
 
-.category:hover{
+.service-card:hover{
     transform:translateY(-4px);
-    box-shadow:0 7px 18px rgba(0,0,0,.13);
-    border-color:#7040ff;
+    box-shadow:0 7px 20px rgba(0,0,0,.12);
 }
 
-.category-image{
-    height:135px;
-    background:#eee;
+.service-icon{
+    width:75px;
+    height:75px;
+    border-radius:18px;
+
+    background:#f0f2ff;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    margin-bottom:12px;
+
     overflow:hidden;
 }
 
-.category-image img{
+.service-icon img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-.category-icon{
-    font-size:48px;
+.service-emoji{
+    font-size:40px;
 }
 
-.category-info{
-    padding:12px;
+.service-name{
+    font-size:17px;
+    font-weight:bold;
     text-align:center;
-}
-
-.category-info h3{
-    font-size:16px;
     margin-bottom:6px;
 }
 
-.category-info p{
-    color:#888;
+.service-count{
     font-size:12px;
+    color:#888;
 }
 
-.category-button{
-    margin-top:9px;
-    width:100%;
-    border:none;
-    background:#5b22ff;
-    color:#fff;
-    padding:9px;
-    border-radius:9px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* =========================
-   LOADING / ERROR
-========================= */
+/* LOADING */
 
 .loading{
+    max-width:1100px;
+    margin:30px auto;
+    padding:30px;
     text-align:center;
-    padding:45px 10px;
     color:#777;
 }
 
-.error{
-    background:#ffe4e4;
-    color:#b42323;
-    padding:15px;
-    border-radius:12px;
-    text-align:center;
-    margin:20px 0;
-    display:none;
+/* ERROR */
+
+.error-box{
+    max-width:900px;
+    margin:25px auto;
+    background:#fff0f0;
+    border:1px solid #ffbcbc;
+    color:#b00020;
+    border-radius:14px;
+    padding:18px;
+    line-height:1.8;
+    direction:rtl;
 }
+
+.error-title{
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+/* EMPTY */
 
 .empty{
-    background:#fff;
-    border-radius:15px;
-    padding:35px;
+    max-width:700px;
+    margin:30px auto;
+    background:white;
+    padding:30px;
     text-align:center;
-    color:#888;
+    border-radius:15px;
+    color:#777;
 }
 
-/* =========================
-   BOTTOM NAV
-========================= */
+/* BOTTOM NAV */
 
 .bottom-nav{
     position:fixed;
     bottom:0;
-    left:0;
     right:0;
+    left:0;
+
     height:65px;
-    background:#fff;
-    border-top:1px solid #ddd;
+
+    background:white;
+
     display:flex;
-    justify-content:space-around;
-    align-items:center;
-    z-index:100;
+    justify-content:center;
+    gap:5px;
+
+    border-top:1px solid #ddd;
+
+    box-shadow:0 -3px 12px rgba(0,0,0,.08);
+
+    z-index:1000;
 }
 
 .nav-item{
+    flex:1;
+    max-width:180px;
+
     text-decoration:none;
-    color:#777;
-    text-align:center;
+    color:#666;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
     font-size:12px;
 }
 
-.nav-item .icon{
-    display:block;
-    font-size:22px;
+.nav-icon{
+    font-size:21px;
     margin-bottom:3px;
 }
 
 .nav-item.active{
-    color:#5b22ff;
+    color:#2575fc;
+    font-weight:bold;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* MOBILE */
 
-footer{
-    margin-top:35px;
-    margin-bottom:80px;
-    background:#111827;
-    color:#aaa;
-    text-align:center;
-    padding:25px 15px;
-}
+@media(max-width:600px){
 
-footer strong{
-    color:#fff;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:500px){
-
-    .categories{
-        grid-template-columns:
-            repeat(2,1fr);
-        gap:10px;
+    header{
+        padding:15px 12px 18px;
     }
 
-    .category-image{
-        height:120px;
-    }
-
-    .category-info{
-        padding:10px;
-    }
-
-    .category-info h3{
-        font-size:14px;
-    }
-
-    .category-button{
-        font-size:12px;
-        padding:8px;
-    }
-
-    .banner h1{
+    .logo{
         font-size:21px;
     }
 
+    .header-btn{
+        padding:8px 10px;
+        font-size:12px;
+    }
+
+    .banner{
+        margin:12px;
+        padding:17px;
+    }
+
+    .banner h1{
+        font-size:20px;
+    }
+
+    .services{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .service-card{
+        min-height:145px;
+        padding:14px 8px;
+    }
+
+    .service-icon{
+        width:65px;
+        height:65px;
+    }
+
+    .service-name{
+        font-size:15px;
+    }
+
 }
 
-</style>
-
-</head>
-
-<body>
-
-<header>
-
-<div class="header-top">
-
-<div class="header-icon">
-🛒
-</div>
-
-<div class="logo">
+</style></head><body><header><div class="header-top"><div class="logo">
 KATRO SHOP
-</div>
+</div><div class="header-buttons"><button class="header-btn"
+onclick="goWallet()">
+💰 المحفظة
+</button>
 
-</div>
+<button class="header-btn"
+onclick="goLogin()">
+👤 الحساب
+</button>
 
-<div class="search-box">
-
-<span class="search-icon">
-🔍
-</span>
-
-<input
+</div></div><div class="search-box"><input
 type="text"
 id="searchInput"
-placeholder="ابحث عن لعبة أو خدمة..."
-autocomplete="off">
+placeholder="🔍 ابحث عن خدمة مثل Free Fire أو Netflix..."
+oninput="searchServices()">
 
-</div>
-
-</header>
-
-
-<section class="banner">
-
-<h1>
-مرحباً بك في KATRO SHOP
-</h1>
-
-<p>
-اختر القسم الذي تريد الدخول إليه
-ثم اختر الخدمة أو الباقة المناسبة لك.
-</p>
-
-</section>
-
-
-<div class="container">
-
-<div id="errorBox" class="error"></div>
-
-
-<div class="section-title">
-
-<h2>
-الأقسام والخدمات
-</h2>
-
-<span id="categoryCount">
+</div></header><div class="banner"><h1>
+مرحباً بك في KATRO SHOP 🛒
+</h1><p>
+اختر الخدمة التي تريدها للوصول إلى الباقات والمنتجات المتوفرة.
+</p></div><div class="section-title"><h2>
+الخدمات
+</h2><span id="serviceCount">
 جاري التحميل...
-</span>
+</span></div><div id="servicesContainer"
+class="services"></div><div id="loading"
+class="loading">جاري تحميل الخدمات...
 
-</div>
-
-
-<div id="categoriesContainer">
-
-<div class="loading">
-جاري تحميل الأقسام...
-</div>
-
-</div>
-
-</div>
-
-
-<footer>
-
-<p>
-© 2026 <strong>KATRO SHOP</strong>
-</p>
-
-<p style="margin-top:8px;">
-جميع الحقوق محفوظة
-</p>
-
-</footer>
-
-
-<nav class="bottom-nav">
-
-<a
-href="index.html"
+</div><div id="errorContainer"></div><nav class="bottom-nav"><a href="index.html"
 class="nav-item active">
 
-<span class="icon">
+<div class="nav-icon">
 🏠
-</span>
+</div>الرئيسية
 
-الرئيسية
-
-</a>
-
-
-<a
-href="wallet.html"
+</a><a href="wallet.html"
 class="nav-item">
 
-<span class="icon">
+<div class="nav-icon">
 💰
-</span>
+</div>المحفظة
 
-المحفظة
-
-</a>
-
-
-<a
-href="wallet-topup.html"
+</a><a href="wallet-topup.html"
 class="nav-item">
 
-<span class="icon">
+<div class="nav-icon">
 ➕
-</span>
+</div>شحن المحفظة
 
-شحن الرصيد
-
-</a>
-
-
-<a
-href="login.html"
+</a><a href="login.html"
 class="nav-item">
 
-<span class="icon">
+<div class="nav-icon">
 👤
-</span>
+</div>الحساب
 
-حسابي
-
-</a>
-
-</nav>
-
-
-<script>
+</a></nav><script>
 
 /* =========================
    SUPABASE
@@ -492,401 +404,393 @@ window.supabase.createClient(
 
 
 /* =========================
-   أسماء الأقسام
+   SERVICE NAMES
 ========================= */
 
 const gameNames = {
 
     freefire:"Free Fire",
+
     pubg:"PUBG Mobile",
+
     codm:"Call of Duty Mobile",
+
     efootball:"eFootball",
+
     jawaker:"Jawaker",
+
     mobilelegends:"Mobile Legends",
+
     yallaludo:"Yalla Ludo",
+
     tiktok:"TikTok",
+
     googleplay:"Google Play",
+
     itunes:"iTunes",
+
     playstation:"PlayStation",
+
     xbox:"Xbox",
+
     razergold:"Razer Gold",
+
     netflix:"Netflix",
+
     visa:"Visa",
-    mastercard:"Mastercard",
+
+    mastercard:"MasterCard",
+
     zain:"Zain",
+
     mtn:"MTN",
+
     sudani:"Sudani",
+
     cashi:"Cashi",
+
     starlink:"Starlink",
-    katro:"KATRO CARD",
-    katrocard:"KATRO CARD",
+
+    katro:"KATRO",
+
+    katrocard:"KATRO Card",
+
     pyypl:"Pyypl"
 
 };
 
 
 /* =========================
-   أيقونات الأقسام
+   SERVICE ICONS
 ========================= */
 
-const gameIcons = {
+const serviceIcons = {
 
     freefire:"🔥",
-    pubg:"🎯",
-    codm:"🎮",
+
+    pubg:"🎮",
+
+    codm:"🔫",
+
     efootball:"⚽",
+
     jawaker:"🃏",
+
     mobilelegends:"⚔️",
+
     yallaludo:"🎲",
+
     tiktok:"🎵",
+
     googleplay:"▶️",
+
     itunes:"🎵",
+
     playstation:"🎮",
+
     xbox:"🎮",
-    razergold:"🟢",
+
+    razergold:"💳",
+
     netflix:"🎬",
+
     visa:"💳",
+
     mastercard:"💳",
+
     zain:"📱",
+
     mtn:"📱",
+
     sudani:"📱",
+
     cashi:"💰",
+
     starlink:"🛰️",
-    katro:"💳",
+
+    katro:"🛒",
+
     katrocard:"💳",
+
     pyypl:"💳"
 
 };
 
 
-let allProducts = [];
+/* =========================
+   DATA
+========================= */
 
-let categories = [];
+let allServices = [];
 
 
 /* =========================
-   تحميل المنتجات
+   LOAD SERVICES
 ========================= */
 
-async function loadProducts(){
+async function loadServices(){
 
     const container =
-        document.getElementById(
-            "categoriesContainer"
-        );
+        document.getElementById("servicesContainer");
+
+    const loading =
+        document.getElementById("loading");
+
+    const errorContainer =
+        document.getElementById("errorContainer");
+
+    const serviceCount =
+        document.getElementById("serviceCount");
 
 
-    container.innerHTML = `
-        <div class="loading">
-            جاري تحميل الأقسام...
-        </div>
-    `;
+    container.innerHTML = "";
+
+    errorContainer.innerHTML = "";
+
+    loading.style.display = "block";
 
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .from("products")
-        .select(`
-            id,
-            game_key,
-            name,
-            description,
-            price,
-            image_url,
-            active
-        `)
-        .eq("active",true)
-        .order("id",{
-            ascending:true
-        });
+    try{
+
+        /*
+         * نطلب game_key و active فقط
+         * حتى تكون العملية أخف وأكثر توافقاً.
+         */
+
+        const { data, error } =
+            await supabaseClient
+                .from("products")
+                .select("game_key,active")
+                .eq("active",true);
 
 
-    if(error){
+        if(error){
 
-        console.error(
-            "Products Error:",
-            error
-        );
-
-
-        const errorBox =
-            document.getElementById(
-                "errorBox"
+            console.error(
+                "Supabase Error:",
+                error
             );
 
+            loading.style.display = "none";
 
-        errorBox.textContent =
-            "حدث خطأ أثناء تحميل الخدمات.";
+            serviceCount.textContent =
+                "خطأ";
 
+            errorContainer.innerHTML = `
 
-        errorBox.style.display =
-            "block";
+                <div class="error-box">
 
+                    <div class="error-title">
+                        حدث خطأ أثناء تحميل الخدمات
+                    </div>
 
-        container.innerHTML = `
-            <div class="empty">
-                تعذر تحميل الخدمات حالياً.
-            </div>
-        `;
+                    <div>
+                        ${escapeHtml(
+                            error.message ||
+                            "تعذر الاتصال بقاعدة البيانات"
+                        )}
+                    </div>
 
-        return;
+                    <div style="margin-top:8px;font-size:13px;">
+                        إذا ظهر هذا الخطأ مرة أخرى،
+                        أرسل لي صورة الخطأ أو نصه وسأصلحه لك.
+                    </div>
 
-    }
+                </div>
 
+            `;
 
-    allProducts =
-        data || [];
-
-
-    buildCategories();
-
-}
-
-
-/* =========================
-   إنشاء الأقسام
-========================= */
-
-function buildCategories(){
-
-    const map = {};
-
-
-    allProducts.forEach(product => {
-
-        const key =
-            String(
-                product.game_key || ""
-            )
-            .trim()
-            .toLowerCase();
-
-
-        if(!key){
             return;
         }
 
 
-        if(!map[key]){
+        /*
+         * تجميع المنتجات حسب game_key
+         */
 
-            map[key] = {
+        const grouped = {};
 
-                game_key:key,
 
-                name:
-                    gameNames[key]
-                    ||
-                    key,
+        (data || []).forEach(product => {
 
-                image_url:
-                    product.image_url
-                    ||
-                    "",
-
-                count:1
-
-            };
-
-        }else{
-
-            map[key].count++;
-
-            if(
-                !map[key].image_url &&
-                product.image_url
-            ){
-
-                map[key].image_url =
-                    product.image_url;
-
+            if(!product.game_key){
+                return;
             }
 
+            const key =
+                String(product.game_key)
+                .trim()
+                .toLowerCase();
+
+
+            if(!grouped[key]){
+                grouped[key] = 0;
+            }
+
+            grouped[key]++;
+
+        });
+
+
+        /*
+         * تحويل الخدمات إلى مصفوفة
+         */
+
+        allServices =
+            Object.keys(grouped)
+            .map(key => ({
+
+                key:key,
+
+                name:
+                    gameNames[key] ||
+                    formatGameName(key),
+
+                count:
+                    grouped[key],
+
+                icon:
+                    serviceIcons[key] ||
+                    "🛍️"
+
+            }))
+            .sort((a,b) =>
+                a.name.localeCompare(
+                    b.name,
+                    "ar"
+                )
+            );
+
+
+        loading.style.display = "none";
+
+
+        serviceCount.textContent =
+            allServices.length +
+            " خدمة";
+
+
+        if(allServices.length === 0){
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    لا توجد خدمات متاحة حالياً.
+
+                </div>
+
+            `;
+
+            return;
         }
 
-    });
 
+        renderServices(allServices);
 
-    categories =
-        Object.values(map);
+    }
 
+    catch(err){
 
-    document.getElementById(
-        "categoryCount"
-    ).textContent =
-        categories.length +
-        " قسم";
+        console.error(err);
 
+        loading.style.display = "none";
 
-    renderCategories(
-        categories
-    );
+        serviceCount.textContent =
+            "خطأ";
+
+        errorContainer.innerHTML = `
+
+            <div class="error-box">
+
+                <div class="error-title">
+                    حدث خطأ أثناء تحميل الخدمات
+                </div>
+
+                <div>
+                    ${escapeHtml(
+                        err.message ||
+                        String(err)
+                    )}
+                </div>
+
+            </div>
+
+        `;
+
+    }
 
 }
 
 
 /* =========================
-   عرض الأقسام
+   RENDER SERVICES
 ========================= */
 
-function renderCategories(list){
+function renderServices(services){
 
     const container =
         document.getElementById(
-            "categoriesContainer"
+            "servicesContainer"
         );
 
 
-    if(!list.length){
+    if(!services.length){
 
         container.innerHTML = `
+
             <div class="empty">
-                لا توجد خدمات متاحة حالياً.
+
+                لا توجد خدمة بهذا الاسم.
+
             </div>
+
         `;
 
         return;
-
     }
 
 
-    container.innerHTML = `
+    container.innerHTML =
+        services.map(service => `
 
-        <div class="categories">
+            <div
+                class="service-card"
+                onclick="openService('${escapeJs(service.key)}')"
+            >
 
-            ${list.map(category => {
+                <div class="service-icon">
 
-                const key =
-                    category.game_key;
+                    <span class="service-emoji">
+                        ${service.icon}
+                    </span>
 
+                </div>
 
-                const image =
-                    category.image_url;
+                <div class="service-name">
 
+                    ${escapeHtml(service.name)}
 
-                const imageHTML =
-                    image
-                    ?
+                </div>
 
-                    `
-                    <img
-                        src="${escapeHtml(image)}"
-                        alt="${escapeHtml(category.name)}"
-                        loading="lazy"
-                        onerror="
-                            this.style.display='none';
-                            this.parentElement
-                                .querySelector('.category-icon')
-                                .style.display='block';
-                        ">
-                    `
+                <div class="service-count">
 
-                    :
+                    ${service.count} باقة متوفرة
 
-                    "";
+                </div>
 
+            </div>
 
-                const icon =
-                    gameIcons[key]
-                    ||
-                    "🎮";
-
-
-                return `
-
-                    <div
-                        class="category"
-                        onclick="openCategory('${escapeJs(key)}')">
-
-                        <div class="category-image">
-
-                            ${imageHTML}
-
-                            <span
-                                class="category-icon"
-                                style="
-                                    ${image
-                                        ? "display:none;"
-                                        : "display:block;"
-                                    }
-                                ">
-
-                                ${icon}
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="category-info">
-
-                            <h3>
-                                ${escapeHtml(
-                                    category.name
-                                )}
-                            </h3>
-
-
-                            <p>
-                                ${category.count}
-                                خدمة متاحة
-                            </p>
-
-
-                            <button
-                                class="category-button"
-                                type="button">
-
-                                عرض الخدمات
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }).join("")}
-
-        </div>
-
-    `;
+        `).join("");
 
 }
 
 
 /* =========================
-   فتح القسم
+   OPEN SERVICE
 ========================= */
 
-function openCategory(gameKey){
-
-    if(!gameKey){
-        return;
-    }
-
-
-    /*
-       شحن الهاتف له صفحة مستقلة
-    */
-
-    if(
-        gameKey === "zain" ||
-        gameKey === "mtn" ||
-        gameKey === "sudani"
-    ){
-
-        window.location.href =
-            "mobile-topup.html?network=" +
-            encodeURIComponent(gameKey);
-
-        return;
-
-    }
-
+function openService(gameKey){
 
     window.location.href =
         "game.html?g=" +
@@ -896,86 +800,73 @@ function openCategory(gameKey){
 
 
 /* =========================
-   البحث عن الأقسام
+   SEARCH
 ========================= */
 
-document.getElementById(
-    "searchInput"
-).addEventListener(
-    "input",
-    function(){
+function searchServices(){
 
-        const search =
-            this.value
-                .trim()
-                .toLowerCase();
-
-
-        if(!search){
-
-            renderCategories(
-                categories
-            );
-
-            return;
-
-        }
-
-
-        const filtered =
-            categories.filter(
-                category => {
-
-                    const name =
-                        String(
-                            category.name || ""
-                        )
-                        .toLowerCase();
-
-
-                    const key =
-                        String(
-                            category.game_key || ""
-                        )
-                        .toLowerCase();
-
-
-                    return (
-                        name.includes(search)
-                        ||
-                        key.includes(search)
-                    );
-
-                }
-            );
-
-
-        renderCategories(
-            filtered
+    const input =
+        document.getElementById(
+            "searchInput"
         );
 
+    const query =
+        input.value
+        .trim()
+        .toLowerCase();
+
+
+    if(!query){
+
+        renderServices(allServices);
+
+        return;
     }
-);
+
+
+    const filtered =
+        allServices.filter(service =>
+
+            service.name
+            .toLowerCase()
+            .includes(query)
+
+            ||
+
+            service.key
+            .toLowerCase()
+            .includes(query)
+
+        );
+
+
+    renderServices(filtered);
+
+}
 
 
 /* =========================
-   حماية النص
+   FORMAT UNKNOWN NAME
+========================= */
+
+function formatGameName(key){
+
+    return key
+        .replace(/[-_]/g," ")
+        .replace(/\b\w/g,char =>
+            char.toUpperCase()
+        );
+
+}
+
+
+/* =========================
+   ESCAPE HTML
 ========================= */
 
 function escapeHtml(value){
 
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return "";
-
-    }
-
-
     return String(value)
-
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -985,39 +876,47 @@ function escapeHtml(value){
 }
 
 
+/* =========================
+   ESCAPE JAVASCRIPT
+========================= */
+
 function escapeJs(value){
 
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return "";
-
-    }
-
-
     return String(value)
-
         .replace(/\\/g,"\\\\")
         .replace(/'/g,"\\'")
-        .replace(/\r/g,"\\r")
-        .replace(/\n/g,"\\n");
+        .replace(/"/g,'\\"')
+        .replace(/\n/g,"\\n")
+        .replace(/\r/g,"\\r");
 
 }
 
 
 /* =========================
-   التشغيل
+   NAVIGATION
 ========================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    loadProducts
-);
+function goWallet(){
 
-</script>
+    window.location.href =
+        "wallet.html";
 
-</body>
+}
 
+
+function goLogin(){
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadServices();
+
+</script></body>
     </html>
