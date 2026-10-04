@@ -1,66 +1,1377 @@
-<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>لوحة الأدمن - KATRO</title>
-<style>
-*{font-family:Tahoma;box-sizing:border-box;margin:0}body{background:#0f0c1f;color:#fff;padding:12px}
-.top{background:#6a33ff;padding:12px;border-radius:12px;display:flex;justify-content:space-between}
-.card{background:#1e1940;border-radius:14px;padding:12px;margin:10px 0;border:1px solid #3a2f7a}
-.card img{width:100%;border-radius:10px;margin-top:8px;max-height:300px;object-fit:contain;background:#000}
-.btn{padding:10px 14px;border:none;border-radius:10px;font-weight:800;margin:4px;cursor:pointer}
-.ok{background:#00c853;color:#fff}.no{background:#d50000;color:#fff}
-.badge{background:#ff8a00;padding:4px 10px;border-radius:20px;font-size:12px}
-</style></head><body>
-<div class="top"><b>👑 لوحة تحكم KATRO SHOP</b><span>حسابك: 2673843</span></div>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
-<div style="background:#fff;color:#000;padding:10px;border-radius:10px;margin-top:12px">
-<b>إجمالي الطلبات المعلقة: <span id="count">0</span></b>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>لوحة الإدارة | KATRO SHOP</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Tahoma,sans-serif;
+    background:#080b12;
+    color:#fff;
+    min-height:100vh;
+}
+
+header{
+    background:#111827;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid #263044;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:bold;
+    color:#00b7ff;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+}
+
+.logout{
+    background:#ef4444;
+    color:#fff;
+    padding:10px 15px;
+    border-radius:9px;
+}
+
+.container{
+    width:min(1100px,94%);
+    margin:25px auto;
+}
+
+.welcome{
+    background:linear-gradient(135deg,#111827,#0d1524);
+    border:1px solid #263044;
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:20px;
+}
+
+.welcome h1{
+    font-size:24px;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#aeb8c9;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:#111827;
+    border:1px solid #263044;
+    border-radius:14px;
+    padding:20px;
+}
+
+.stat-title{
+    color:#9ca8bb;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.stat-number{
+    color:#00b7ff;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.section{
+    background:#111827;
+    border:1px solid #263044;
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:25px;
+}
+
+.section-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.empty{
+    text-align:center;
+    color:#9ca8bb;
+    padding:30px 10px;
+}
+
+.card{
+    background:#0b111d;
+    border:1px solid #263044;
+    border-radius:13px;
+    padding:17px;
+    margin-bottom:12px;
+}
+
+.card:last-child{
+    margin-bottom:0;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.info{
+    flex:1;
+    min-width:230px;
+}
+
+.info h3{
+    margin-bottom:9px;
+    font-size:17px;
+}
+
+.info p{
+    color:#aeb8c9;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.amount{
+    color:#22c55e;
+    font-weight:bold;
+    font-size:20px;
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:13px;
+}
+
+.approve{
+    background:#16a34a;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+}
+
+.reject{
+    background:#dc2626;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+}
+
+.view{
+    background:#2563eb;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+}
+
+.refresh{
+    background:#00b7ff;
+    color:#00131c;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.status{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:7px;
+    font-size:12px;
+    margin-top:7px;
+}
+
+.pending{
+    background:#854d0e;
+    color:#fde68a;
+}
+
+.processing{
+    background:#1e40af;
+    color:#bfdbfe;
+}
+
+.completed{
+    background:#166534;
+    color:#bbf7d0;
+}
+
+.rejected{
+    background:#991b1b;
+    color:#fecaca;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:100;
+}
+
+.modal-box{
+    width:min(600px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#111827;
+    border:1px solid #263044;
+    border-radius:16px;
+    padding:20px;
+}
+
+.modal-box img{
+    width:100%;
+    max-height:500px;
+    object-fit:contain;
+    background:#080b12;
+    border-radius:10px;
+    margin-top:15px;
+}
+
+.close{
+    background:#374151;
+    color:#fff;
+    padding:9px 14px;
+    border-radius:8px;
+    margin-top:15px;
+}
+
+.loading{
+    text-align:center;
+    color:#00b7ff;
+    padding:30px;
+}
+
+.error{
+    background:#451a1a;
+    color:#fecaca;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+    display:none;
+}
+
+.success{
+    background:#12351f;
+    color:#bbf7d0;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+    display:none;
+}
+
+@media(max-width:700px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    header{
+        padding:14px;
+    }
+
+    .logo{
+        font-size:19px;
+    }
+
+    .container{
+        width:94%;
+    }
+
+    .welcome h1{
+        font-size:21px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+KATRO SHOP
 </div>
 
-<div id="list"></div>
+<div class="header-left">
+
+<button class="refresh" onclick="loadAll()" style="margin:0;">
+تحديث
+</button>
+
+<button class="logout" onclick="logout()">
+تسجيل الخروج
+</button>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div id="errorBox" class="error"></div>
+<div id="successBox" class="success"></div>
+
+<div class="welcome">
+
+<h1>
+لوحة تحكم KATRO SHOP
+</h1>
+
+<p id="adminName">
+جاري التحقق من الحساب...
+</p>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<div class="stat-title">
+طلبات الشحن المعلقة
+</div>
+
+<div class="stat-number" id="pendingCount">
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+طلبات الشراء
+</div>
+
+<div class="stat-number" id="ordersCount">
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+إجمالي الشحنات المعلقة
+</div>
+
+<div class="stat-number" id="pendingAmount">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">
+طلبات شحن المحفظة
+</div>
+
+<div id="topupsContainer">
+
+<div class="loading">
+جاري تحميل الطلبات...
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="section-title">
+طلبات الشراء
+</div>
+
+<div id="ordersContainer">
+
+<div class="loading">
+جاري تحميل الطلبات...
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="proofModal" class="modal">
+
+<div class="modal-box">
+
+<h2>
+إيصال التحويل
+</h2>
+
+<img id="proofImage" src="" alt="إيصال التحويل">
+
+<button class="close" onclick="closeProof()">
+إغلاق
+</button>
+
+</div>
+
+</div>
+
 
 <script>
-function load(){
-let pend=JSON.parse(localStorage.getItem('pending')||'[]');
-document.getElementById('count').innerText=pend.filter(x=>x.status.includes('معلق')).length;
-let html='';
-pend.reverse().forEach((o,i)=>{
-let realIndex = pend.length-1-i;
-html+=`
-<div class="card">
-<div style="display:flex;justify-content:space-between"><b>طلب #${o.id}</b><span class="badge">${o.status}</span></div>
-<small>${o.date} - ${o.email||'بدون ايميل'}</small><br>
-<b>المبلغ: ${o.amount} ج.س</b> - محول إلى: ${o.bankAcc||'2673843 - خالد حسين محمد حامد'}<br>
-رقم هاتف العميل: ${o.phone||'0100454995'}<br>
-رقم محفظة العميل: ${o.userAcc||'غير معروف'}<br>
-${o.proofImg? `<img src="${o.proofImg}">` : `<div style="background:#333;padding:20px;text-align:center;border-radius:10px;margin-top:8px">📷 الإشعار: ${o.proofName||'لم يرفع صورة'}</div>`}
-<div style="margin-top:10px">
-<button class="btn ok" onclick="approve(${realIndex})">✅ قبول وشحن المحفظة</button>
-<button class="btn no" onclick="reject(${realIndex})">❌ رفض</button>
-</div>
-</div>`;
-});
-document.getElementById('list').innerHTML=html||'لا يوجد طلبات';
+
+const SUPABASE_URL =
+"https://uwmrzvsygeoequscpinx.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+let currentUser = null;
+
+
+function showError(message){
+
+    const box =
+    document.getElementById("errorBox");
+
+    box.textContent = message;
+    box.style.display = "block";
+
+    document.getElementById("successBox")
+        .style.display = "none";
+
 }
 
-function approve(idx){
-let pend=JSON.parse(localStorage.getItem('pending')||'[]');
-let o=pend[idx];
-o.status='تم التأكيد ✅';
-pend[idx]=o;
-// زيد الرصيد
-let users=JSON.parse(localStorage.getItem('katro_users')||'[]');
-let u=users.find(x=>x.acc==o.userAcc);
-if(u){u.wallet=(parseInt(u.wallet||0)+parseInt(o.amount)).toString();localStorage.setItem('katro_users',JSON.stringify(users));}
-localStorage.setItem('pending',JSON.stringify(pend));
-alert('تم شحن '+o.amount+' لصاحب المحفظة '+o.userAcc);
-load();
+
+function showSuccess(message){
+
+    const box =
+    document.getElementById("successBox");
+
+    box.textContent = message;
+    box.style.display = "block";
+
+    document.getElementById("errorBox")
+        .style.display = "none";
+
+    setTimeout(()=>{
+        box.style.display = "none";
+    },4000);
+
 }
 
-function reject(idx){
-let pend=JSON.parse(localStorage.getItem('pending')||'[]');
-pend[idx].status='مرفوض ❌';
-localStorage.setItem('pending',JSON.stringify(pend));
-load();
+
+async function checkAdmin(){
+
+    const {
+        data:{
+            session
+        }
+    } =
+    await supabaseClient.auth.getSession();
+
+    if(!session){
+
+        window.location.href =
+        "login.html";
+
+        return false;
+
+    }
+
+    currentUser =
+    session.user;
+
+
+    const {
+        data:profile,
+        error
+    } =
+    await supabaseClient
+        .from("profiles")
+        .select("full_name,phone,wallet_number,role")
+        .eq("id",currentUser.id)
+        .single();
+
+
+    if(error){
+
+        showError(
+            "تعذر قراءة بيانات الحساب"
+        );
+
+        return false;
+
+    }
+
+
+    if(profile.role !== "admin"){
+
+        document.body.innerHTML = `
+
+        <div style="
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:20px;
+        text-align:center;
+        background:#080b12;
+        color:white;
+        font-family:Arial;
+        ">
+
+            <div>
+
+                <h1 style="color:#ef4444;">
+                    غير مصرح
+                </h1>
+
+                <p style="
+                color:#aaa;
+                margin:15px 0;
+                ">
+                    هذا الحساب ليس حساب مدير.
+                </p>
+
+                <button
+                onclick="location.href='wallet.html'"
+                style="
+                background:#00b7ff;
+                border:0;
+                padding:12px 20px;
+                border-radius:8px;
+                cursor:pointer;
+                ">
+                    العودة للمحفظة
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+        return false;
+
+    }
+
+
+    document.getElementById("adminName").textContent =
+        "مرحباً " +
+        (profile.full_name || "مدير المتجر");
+
+
+    return true;
+
 }
 
-load();
+
+async function loadTopups(){
+
+    const container =
+    document.getElementById(
+        "topupsContainer"
+    );
+
+    container.innerHTML =
+        `<div class="loading">
+        جاري تحميل الطلبات...
+        </div>`;
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("topup_requests")
+        .select(`
+            id,
+            request_number,
+            user_id,
+            amount,
+            payment_method,
+            sender_name,
+            sender_phone,
+            proof_url,
+            status,
+            admin_note,
+            created_at
+        `)
+        .order("created_at",{
+            ascending:false
+        });
+
+
+    if(error){
+
+        container.innerHTML =
+        `<div class="empty">
+        تعذر تحميل طلبات الشحن
+        </div>`;
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    const pending =
+    data.filter(
+        item => item.status === "pending"
+    );
+
+
+    document.getElementById(
+        "pendingCount"
+    ).textContent =
+        pending.length;
+
+
+    const total =
+    pending.reduce(
+        (sum,item)=>
+        sum + Number(item.amount),
+        0
+    );
+
+
+    document.getElementById(
+        "pendingAmount"
+    ).textContent =
+        total.toLocaleString("en-US")
+        + " ج.س";
+
+
+    if(!data.length){
+
+        container.innerHTML =
+        `<div class="empty">
+        لا توجد طلبات شحن حالياً
+        </div>`;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    data.forEach(item=>{
+
+        const card =
+        document.createElement("div");
+
+        card.className = "card";
+
+
+        let statusClass =
+        item.status === "pending"
+        ? "pending"
+        : item.status === "approved"
+        ? "completed"
+        : "rejected";
+
+
+        let statusText =
+        item.status === "pending"
+        ? "قيد المراجعة"
+        : item.status === "approved"
+        ? "تمت الموافقة"
+        : "مرفوض";
+
+
+        card.innerHTML = `
+
+        <div class="row">
+
+            <div class="info">
+
+                <h3>
+                    طلب شحن #${item.request_number || item.id}
+                </h3>
+
+                <p>
+                    المبلغ:
+                    <strong>
+                    ${Number(item.amount).toLocaleString("en-US")}
+                    ج.س
+                    </strong>
+                </p>
+
+                <p>
+                    الاسم:
+                    ${escapeHtml(item.sender_name || "غير متوفر")}
+                </p>
+
+                <p>
+                    الهاتف:
+                    ${escapeHtml(item.sender_phone || "غير متوفر")}
+                </p>
+
+                <p>
+                    طريقة الدفع:
+                    ${escapeHtml(item.payment_method || "غير متوفر")}
+                </p>
+
+                <p>
+                    التاريخ:
+                    ${formatDate(item.created_at)}
+                </p>
+
+                <span class="status ${statusClass}">
+                    ${statusText}
+                </span>
+
+            </div>
+
+            <div class="amount">
+
+                ${Number(item.amount).toLocaleString("en-US")}
+                ج.س
+
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            ${
+                item.proof_url
+                ?
+                `<button
+                class="view"
+                onclick='showProof(${JSON.stringify(item.proof_url)})'>
+                    مشاهدة الإيصال
+                </button>`
+                :
+                ""
+            }
+
+            ${
+                item.status === "pending"
+                ?
+                `
+                <button
+                class="approve"
+                onclick="approveTopup(${item.id})">
+                    قبول الشحن
+                </button>
+
+                <button
+                class="reject"
+                onclick="rejectTopup(${item.id})">
+                    رفض
+                </button>
+                `
+                :
+                ""
+            }
+
+        </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+async function approveTopup(id){
+
+    const confirmed =
+    confirm(
+        "هل أنت متأكد من قبول طلب الشحن؟\n\nسيتم إضافة المبلغ إلى محفظة العميل."
+    );
+
+
+    if(!confirmed) return;
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.rpc(
+            "approve_topup_request",
+            {
+                p_request_id:id
+            }
+        );
+
+
+        if(error){
+
+            console.error(error);
+
+            showError(
+                error.message ||
+                "تعذر قبول الطلب"
+            );
+
+            return;
+
+        }
+
+
+        showSuccess(
+            "تم قبول الشحن وإضافة الرصيد إلى محفظة العميل."
+        );
+
+
+        await loadTopups();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        showError(
+            "حدث خطأ أثناء قبول الطلب."
+        );
+
+    }
+
+}
+
+
+async function rejectTopup(id){
+
+    const reason =
+    prompt(
+        "اكتب سبب رفض طلب الشحن:"
+    );
+
+
+    if(reason === null) return;
+
+
+    try{
+
+        const {
+            error
+        } =
+        await supabaseClient
+            .from("topup_requests")
+            .update({
+                status:"rejected",
+                admin_note:reason || "تم رفض الطلب",
+                reviewed_at:new Date().toISOString()
+            })
+            .eq("id",id)
+            .eq("status","pending");
+
+
+        if(error){
+
+            console.error(error);
+
+            showError(
+                "تعذر رفض الطلب: " +
+                error.message
+            );
+
+            return;
+
+        }
+
+
+        showSuccess(
+            "تم رفض طلب الشحن."
+        );
+
+
+        await loadTopups();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        showError(
+            "حدث خطأ أثناء رفض الطلب."
+        );
+
+    }
+
+}
+
+
+async function loadOrders(){
+
+    const container =
+    document.getElementById(
+        "ordersContainer"
+    );
+
+
+    container.innerHTML =
+    `<div class="loading">
+    جاري تحميل الطلبات...
+    </div>`;
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("orders")
+        .select(`
+            id,
+            order_number,
+            user_id,
+            product_name,
+            game_key,
+            quantity,
+            unit_price,
+            total_price,
+            player_id,
+            account_info,
+            contact_phone,
+            status,
+            admin_note,
+            created_at
+        `)
+        .order("created_at",{
+            ascending:false
+        });
+
+
+    if(error){
+
+        container.innerHTML =
+        `<div class="empty">
+        تعذر تحميل طلبات الشراء
+        </div>`;
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "ordersCount"
+    ).textContent =
+        data.length;
+
+
+    if(!data.length){
+
+        container.innerHTML =
+        `<div class="empty">
+        لا توجد طلبات شراء حالياً
+        </div>`;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    data.forEach(item=>{
+
+        const card =
+        document.createElement("div");
+
+        card.className = "card";
+
+
+        let statusClass =
+        item.status === "pending"
+        ? "pending"
+        : item.status === "processing"
+        ? "processing"
+        : item.status === "completed"
+        ? "completed"
+        : "rejected";
+
+
+        let statusText =
+        item.status === "pending"
+        ? "جديد"
+        : item.status === "processing"
+        ? "جاري التنفيذ"
+        : item.status === "completed"
+        ? "مكتمل"
+        : "مرفوض";
+
+
+        card.innerHTML = `
+
+        <div class="info">
+
+            <h3>
+                طلب شراء #${item.order_number || item.id}
+            </h3>
+
+            <p>
+                المنتج:
+                <strong>
+                ${escapeHtml(item.product_name)}
+                </strong>
+            </p>
+
+            <p>
+                الكمية:
+                ${item.quantity}
+            </p>
+
+            <p>
+                السعر:
+                <strong>
+                ${Number(item.total_price).toLocaleString("en-US")}
+                ج.س
+                </strong>
+            </p>
+
+            ${
+                item.player_id
+                ?
+                `<p>
+                    ID اللاعب:
+                    ${escapeHtml(item.player_id)}
+                </p>`
+                :
+                ""
+            }
+
+            ${
+                item.contact_phone
+                ?
+                `<p>
+                    الهاتف:
+                    ${escapeHtml(item.contact_phone)}
+                </p>`
+                :
+                ""
+            }
+
+            <p>
+                التاريخ:
+                ${formatDate(item.created_at)}
+            </p>
+
+            <span class="status ${statusClass}">
+                ${statusText}
+            </span>
+
+        </div>
+
+
+        <div class="actions">
+
+            ${
+                item.status === "pending"
+                ?
+                `
+                <button
+                class="view"
+                onclick="updateOrder(${item.id},'processing')">
+                    بدء التنفيذ
+                </button>
+                `
+                :
+                ""
+            }
+
+            ${
+                item.status === "processing"
+                ?
+                `
+                <button
+                class="approve"
+                onclick="updateOrder(${item.id},'completed')">
+                    إكمال الطلب
+                </button>
+                `
+                :
+                ""
+            }
+
+            ${
+                item.status === "pending"
+                ?
+                `
+                <button
+                class="reject"
+                onclick="rejectOrder(${item.id})">
+                    رفض الطلب
+                </button>
+                `
+                :
+                ""
+            }
+
+        </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+async function updateOrder(id,status){
+
+    const {
+        error
+    } =
+    await supabaseClient
+        .from("orders")
+        .update({
+            status:status,
+            updated_at:new Date().toISOString()
+        })
+        .eq("id",id);
+
+
+    if(error){
+
+        console.error(error);
+
+        showError(
+            "تعذر تحديث حالة الطلب: " +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    showSuccess(
+        status === "completed"
+        ? "تم إكمال الطلب."
+        : "تم تحويل الطلب إلى قيد التنفيذ."
+    );
+
+
+    await loadOrders();
+
+}
+
+
+async function rejectOrder(id){
+
+    const reason =
+    prompt(
+        "اكتب سبب رفض الطلب:"
+    );
+
+
+    if(reason === null) return;
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+        .from("orders")
+        .update({
+            status:"rejected",
+            admin_note:reason || "تم رفض الطلب",
+            updated_at:new Date().toISOString()
+        })
+        .eq("id",id);
+
+
+    if(error){
+
+        console.error(error);
+
+        showError(
+            "تعذر رفض الطلب: " +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    showSuccess(
+        "تم رفض الطلب."
+    );
+
+
+    await loadOrders();
+
+}
+
+
+async function loadAll(){
+
+    const admin =
+    await checkAdmin();
+
+
+    if(!admin) return;
+
+
+    await Promise.all([
+        loadTopups(),
+        loadOrders()
+    ]);
+
+}
+
+
+function showProof(url){
+
+    if(!url) return;
+
+
+    document.getElementById(
+        "proofImage"
+    ).src = url;
+
+
+    document.getElementById(
+        "proofModal"
+    ).style.display = "flex";
+
+}
+
+
+function closeProof(){
+
+    document.getElementById(
+        "proofModal"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "proofImage"
+    ).src = "";
+
+}
+
+
+function formatDate(date){
+
+    if(!date) return "غير متوفر";
+
+
+    return new Date(date)
+        .toLocaleString(
+            "ar-SD",
+            {
+                dateStyle:"medium",
+                timeStyle:"short"
+            }
+        );
+
+}
+
+
+function escapeHtml(value){
+
+    if(value === null || value === undefined)
+        return "";
+
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+async function logout(){
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadAll
+);
+
 </script>
-</body></html>
+
+</body>
+
+  </html>
