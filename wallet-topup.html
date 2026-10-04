@@ -1,119 +1,1021 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>شحن المحفظة - KATRO SHOP</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800&display=swap');
-*{font-family:'Tajawal',sans-serif;box-sizing:border-box;margin:0}
-body{background:#f4f0ff;padding-bottom:20px}
-.top{background:#6a33ff;color:#fff;padding:12px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99}
-.box{background:#fff;margin:12px;border-radius:16px;padding:14px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
-.inp{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:6px 0;background:#faf8ff;outline:none}
-.bank{border:2px solid #6a33ff;background:#f0eaff;border-radius:14px;padding:14px;margin:10px 0}
-.btn{width:100%;background:linear-gradient(90deg,#6a33ff,#ff8a00);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800;font-size:16px;cursor:pointer}
-.okbox{background:#e8f5e9;border:2px dashed #00c853;border-radius:12px;padding:10px;margin-top:8px;text-align:center;display:none}
-.preview{width:100%;border-radius:12px;margin-top:10px;display:none;max-height:320px;object-fit:contain;background:#000}
+
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
+
+*{
+    font-family:'Tajawal',sans-serif;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#f4f0ff;
+    padding-bottom:30px;
+    color:#222;
+}
+
+.top{
+    background:#6a33ff;
+    color:#fff;
+    padding:13px 14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.top a{
+    color:#fff;
+    text-decoration:none;
+    font-size:20px;
+}
+
+.box{
+    background:#fff;
+    margin:12px;
+    border-radius:18px;
+    padding:16px;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+}
+
+.title{
+    font-size:17px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.bank{
+    border:2px solid #6a33ff;
+    background:#f0eaff;
+    border-radius:15px;
+    padding:15px;
+    line-height:2;
+}
+
+.account{
+    display:inline-block;
+    background:#ffe58a;
+    padding:5px 12px;
+    border-radius:9px;
+    font-size:19px;
+    font-weight:900;
+}
+
+.copy{
+    background:#16112e;
+    color:#fff;
+    border:none;
+    padding:9px 14px;
+    border-radius:9px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.inp{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:11px;
+    margin:6px 0 10px;
+    background:#faf8ff;
+    outline:none;
+    font-size:14px;
+}
+
+.inp:focus{
+    border-color:#6a33ff;
+}
+
+.amounts{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin:8px 0 12px;
+}
+
+.amount{
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:10px;
+    padding:10px 5px;
+    text-align:center;
+    cursor:pointer;
+    font-weight:700;
+    font-size:12px;
+}
+
+.amount.active{
+    background:#6a33ff;
+    color:#fff;
+    border-color:#6a33ff;
+}
+
+.filebox{
+    border:2px dashed #b9a8ff;
+    background:#faf8ff;
+    border-radius:13px;
+    padding:14px;
+    text-align:center;
+    margin-top:6px;
+}
+
+.filebox input{
+    width:100%;
+    margin-top:10px;
+}
+
+.preview{
+    width:100%;
+    max-height:300px;
+    object-fit:contain;
+    border-radius:12px;
+    margin-top:12px;
+    background:#111;
+    display:none;
+}
+
+.btn{
+    width:100%;
+    background:linear-gradient(90deg,#6a33ff,#ff8a00);
+    color:#fff;
+    border:none;
+    padding:14px;
+    border-radius:14px;
+    font-weight:800;
+    font-size:15px;
+    cursor:pointer;
+    margin-top:12px;
+}
+
+.btn:disabled{
+    opacity:.6;
+}
+
+.notice{
+    background:#fff8e1;
+    color:#6d5200;
+    border-radius:12px;
+    padding:11px;
+    margin-top:12px;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.msg{
+    display:none;
+    padding:12px;
+    border-radius:11px;
+    margin-top:12px;
+    text-align:center;
+    font-size:13px;
+    line-height:1.7;
+    white-space:pre-line;
+}
+
+.error{
+    background:#ffebee;
+    color:#c62828;
+}
+
+.success{
+    background:#e8f5e9;
+    color:#2e7d32;
+}
+
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#666;
+}
+
+.success-page{
+    display:none;
+    text-align:center;
+}
+
+.success-icon{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#e8f5e9;
+    color:#00a843;
+    display:grid;
+    place-items:center;
+    font-size:40px;
+    margin:0 auto 15px;
+}
+
+.order-number{
+    background:#f0eaff;
+    color:#5b32cf;
+    padding:12px;
+    border-radius:12px;
+    margin-top:12px;
+    font-weight:800;
+}
+
 </style>
 </head>
+
 <body>
-<div class="top"><b>KATRO SHOP</b><span>شحن المحفظة</span></div>
 
-<div class="box">
-<b>💳 حسابك الرسمي للتحويل</b><br><br>
-<div class="bank">
-<b>🏦 بنك الخرطوم - بنكك</b><br><br>
-اسم الحساب: <b>خالد حسين محمد حامد</b><br>
-رقم الحساب: <b style="font-size:20px;background:#ffe58a;padding:6px 14px;border-radius:10px">2673843</b><br><br>
-<button onclick="navigator.clipboard.writeText('2673843');alert('تم نسخ رقم الحساب 2673843')" style="background:#000;color:#fff;border:none;padding:8px 14px;border-radius:8px">📋 نسخ رقم الحساب</button>
-<br><br><small>حول المبلغ على الرقم ده وارفع صورة الإشعار تحت</small>
-</div>
+<div class="top">
+
+    <b>KATRO SHOP</b>
+
+    <a href="wallet.html">💳</a>
+
 </div>
 
-<div class="box">
-<b>تفاصيل الفاتورة</b>
-<input id="fn" class="inp" placeholder="الاسم الأول *">
-<input id="ln" class="inp" placeholder="الاسم الأخير *">
-<input id="ph" class="inp" placeholder="رقم الهاتف * 0100454995" value="0100454995">
-<input id="em" class="inp" placeholder="البريد الالكتروني *">
-<input id="am" class="inp" type="number" placeholder="المبلغ المراد شحنه - مثلا 10000" value="10000">
 
-<br><br><b>📷 ارفق صورة الإشعار البنكي *</b>
-<input id="proof" type="file" accept="image/*" class="inp" onchange="previewFile(event)">
-<img id="prev" class="preview">
-<div id="ok" class="okbox">✅ تم رفع الإشعار بنجاح - جاهز للإرسال للأدمن</div>
-
-<br><br><label><input type="checkbox" checked> لقد قرأت الشروط وأوافق عليها</label><br><br>
-<button class="btn" onclick="confirmOrder()">تأكيد الطلب ✅</button>
+<div id="loading" class="loading">
+    جاري التحقق من الحساب...
 </div>
+
+
+<div id="page" style="display:none">
+
+    <div class="box">
+
+        <div class="title">
+            💳 شحن محفظة KATRO SHOP
+        </div>
+
+        <div style="font-size:13px;color:#777">
+            رقم محفظتك:
+            <b id="walletNumber">-----</b>
+        </div>
+
+    </div>
+
+
+    <div class="box">
+
+        <div class="title">
+            🏦 حساب التحويل
+        </div>
+
+        <div class="bank">
+
+            <b>🏦 بنك الخرطوم - بنكك</b>
+
+            <br>
+
+            اسم الحساب:
+            <b id="accountName">
+                خالد حسين محمد حامد
+            </b>
+
+            <br>
+
+            رقم الحساب:
+
+            <span class="account" id="bankAccount">
+                2673843
+            </span>
+
+            <br><br>
+
+            <button
+                class="copy"
+                onclick="copyAccount()">
+                📋 نسخ رقم الحساب
+            </button>
+
+            <br><br>
+
+            <small>
+                قم بتحويل المبلغ إلى الحساب أعلاه،
+                ثم ارفع صورة إشعار التحويل.
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="box">
+
+        <div class="title">
+            🧾 بيانات طلب الشحن
+        </div>
+
+
+        <label>
+            الاسم
+        </label>
+
+        <input
+            id="senderName"
+            class="inp"
+            type="text"
+            placeholder="اسم صاحب التحويل">
+
+
+        <label>
+            رقم الهاتف
+        </label>
+
+        <input
+            id="senderPhone"
+            class="inp"
+            type="tel"
+            placeholder="09xxxxxxxx">
+
+
+        <label>
+            المبلغ المراد شحنه
+        </label>
+
+        <input
+            id="amount"
+            class="inp"
+            type="number"
+            min="1"
+            placeholder="مثلاً 10000"
+            oninput="clearAmountButtons()">
+
+
+        <div class="amounts">
+
+            <button
+                class="amount"
+                onclick="setAmount(5000,this)">
+                5,000
+            </button>
+
+            <button
+                class="amount"
+                onclick="setAmount(10000,this)">
+                10,000
+            </button>
+
+            <button
+                class="amount"
+                onclick="setAmount(20000,this)">
+                20,000
+            </button>
+
+            <button
+                class="amount"
+                onclick="setAmount(50000,this)">
+                50,000
+            </button>
+
+            <button
+                class="amount"
+                onclick="setAmount(100000,this)">
+                100,000
+            </button>
+
+            <button
+                class="amount"
+                onclick="setAmount(200000,this)">
+                200,000
+            </button>
+
+        </div>
+
+
+        <label>
+            📷 إشعار التحويل
+        </label>
+
+        <div class="filebox">
+
+            <b>
+                ارفع صورة إشعار بنكك
+            </b>
+
+            <br>
+
+            <small>
+                JPG / PNG
+            </small>
+
+            <input
+                id="proof"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onchange="previewFile(event)">
+
+            <img
+                id="preview"
+                class="preview">
+
+        </div>
+
+
+        <div class="notice">
+
+            ⚠️ بعد إرسال الطلب، سيقوم الأدمن
+            بمراجعة إشعار التحويل.
+            <br>
+            عند قبول الطلب سيتم إضافة المبلغ
+            إلى محفظتك.
+
+        </div>
+
+
+        <div id="msg" class="msg"></div>
+
+
+        <button
+            id="submitBtn"
+            class="btn"
+            onclick="submitTopup()">
+
+            إرسال طلب الشحن ✅
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="successPage" class="box success-page">
+
+    <div class="success-icon">
+        ✓
+    </div>
+
+    <h2>
+        تم إرسال طلبك بنجاح
+    </h2>
+
+    <p style="margin-top:8px;color:#666;font-size:13px">
+        طلبك الآن قيد المراجعة من الأدمن.
+    </p>
+
+    <div class="order-number">
+
+        رقم الطلب:
+        <span id="requestNumber">
+            -----
+        </span>
+
+    </div>
+
+    <button
+        class="btn"
+        onclick="location.href='wallet.html'">
+
+        العودة إلى المحفظة
+
+    </button>
+
+</div>
+
 
 <script>
-let proofBase64='';
-let proofName='';
 
-function previewFile(e){
-let file=e.target.files[0];
-if(!file)return;
-proofName=file.name;
-let reader=new FileReader();
-reader.onload=function(){
-proofBase64=reader.result;
-document.getElementById('prev').src=proofBase64;
-document.getElementById('prev').style.display='block';
-document.getElementById('ok').style.display='block';
-};
-reader.readAsDataURL(file);
+/* =====================================
+   Supabase
+===================================== */
+
+const SUPABASE_URL =
+    'https://uwmrzvsygeoequscpinx.supabase.co';
+
+const SUPABASE_PUBLISHABLE_KEY =
+    'sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts';
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+let currentUser = null;
+let selectedFile = null;
+
+
+/* =====================================
+   التحقق من المستخدم
+===================================== */
+
+async function init(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.auth.getSession();
+
+
+        if(error){
+
+            showError(
+                'حدث خطأ أثناء التحقق من الحساب.'
+            );
+
+            return;
+        }
+
+
+        if(!data.session){
+
+            window.location.href =
+                'login.html';
+
+            return;
+        }
+
+
+        currentUser =
+            data.session.user;
+
+
+        await loadUser();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showError(
+            'حدث خطأ غير متوقع.'
+        );
+
+    }
+
 }
 
-function confirmOrder(){
-let am=document.getElementById('am').value;
-let ph=document.getElementById('ph').value;
-let em=document.getElementById('em').value;
 
-if(!am){alert('اكتب المبلغ');return}
-if(!proofBase64){alert('ارفع صورة الإشعار أولاً 📷');return}
+/* =====================================
+   تحميل بيانات المستخدم
+===================================== */
 
-let orderId=Math.floor(60000+Math.random()*39999);
-let date=new Date().toLocaleDateString('ar-EG');
-let userAcc=localStorage.getItem('user_acc')||Math.floor(10000+Math.random()*89999);
+async function loadUser(){
 
-let pending=JSON.parse(localStorage.getItem('pending')||'[]');
-pending.push({
-id:orderId,
-amount:am,
-bank:'بنك الخرطوم',
-bankAcc:'2673843 - خالد حسين محمد حامد',
-date:date,
-status:'معلق - بانتظار التأكيد',
-email:em||localStorage.getItem('user_email')||'بدون ايميل',
-phone:ph,
-userAcc:userAcc,
-proofImg:proofBase64,
-proofName:proofName
-});
-localStorage.setItem('pending',JSON.stringify(pending));
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from('profiles')
+    .select('full_name,phone,wallet_number')
+    .eq('id',currentUser.id)
+    .single();
 
-document.body.innerHTML=`
-<div style="padding:16px;text-align:center;font-family:Tajawal">
-<div style="background:#6a33ff;color:#fff;border-radius:18px;padding:20px">
-<div style="width:64px;height:64px;background:#fff;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:32px;color:#6a33ff">✓</div>
-<h2 style="margin-top:10px">شكراً لطلبك!</h2>
-<p>تم استلام طلبك بنجاح<br>رقم الطلب الخاص بك: <b>#${orderId}</b></p>
-</div>
-<div style="background:#fff;border-radius:14px;padding:14px;margin-top:12px;border:1px dashed #6a33ff;text-align:right">
-<b>تفاصيل الطلب #${orderId}</b><br>
-التاريخ: ${date}<br>
-المبلغ: ${am} ج.س<br>
-رقم محفظتك: ${userAcc}<br>
-محول إلى: 2673843 - خالد حسين محمد حامد<br>
-الحالة: <span style="background:orange;color:#fff;padding:2px 8px;border-radius:10px">معلق</span><br><br>
-<img src="${proofBase64}" style="width:100%;border-radius:10px;max-height:250px;object-fit:contain;background:#000">
-<br><br><small>سيتم تأكيد رصيدك بعد مراجعة الإشعار في لوحة الأدمن</small>
-</div><br>
-<button onclick="location.href='wallet.html'" style="width:100%;background:#6a33ff;color:#fff;border:none;padding:14px;border-radius:14px;font-weight:800">الذهاب لطلباتي</button>
-</div>`;
+
+    if(error){
+
+        console.error(error);
+
+        showError(
+            'تعذر تحميل بيانات محفظتك.'
+        );
+
+        return;
+    }
+
+
+    document.getElementById('walletNumber').innerText =
+        data.wallet_number || '-----';
+
+
+    document.getElementById('senderName').value =
+        data.full_name || '';
+
+
+    document.getElementById('senderPhone').value =
+        data.phone || '';
+
+
+    document.getElementById('loading').style.display =
+        'none';
+
+    document.getElementById('page').style.display =
+        'block';
+
 }
+
+
+/* =====================================
+   اختيار مبلغ
+===================================== */
+
+function setAmount(amount,button){
+
+    document.getElementById('amount').value =
+        amount;
+
+
+    document
+    .querySelectorAll('.amount')
+    .forEach(function(item){
+
+        item.classList.remove('active');
+
+    });
+
+
+    button.classList.add('active');
+
+}
+
+
+function clearAmountButtons(){
+
+    document
+    .querySelectorAll('.amount')
+    .forEach(function(item){
+
+        item.classList.remove('active');
+
+    });
+
+}
+
+
+/* =====================================
+   رفع الصورة ومعاينتها
+===================================== */
+
+function previewFile(event){
+
+    const file =
+        event.target.files[0];
+
+
+    if(!file){
+
+        selectedFile = null;
+
+        return;
+    }
+
+
+    const allowedTypes = [
+        'image/jpeg',
+        'image/png',
+        'image/webp'
+    ];
+
+
+    if(!allowedTypes.includes(file.type)){
+
+        alert(
+            'يرجى اختيار صورة JPG أو PNG أو WEBP.'
+        );
+
+        event.target.value = '';
+
+        selectedFile = null;
+
+        return;
+    }
+
+
+    if(file.size > 5 * 1024 * 1024){
+
+        alert(
+            'حجم الصورة يجب ألا يتجاوز 5MB.'
+        );
+
+        event.target.value = '';
+
+        selectedFile = null;
+
+        return;
+    }
+
+
+    selectedFile = file;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(e){
+
+            const preview =
+                document.getElementById('preview');
+
+            preview.src =
+                e.target.result;
+
+            preview.style.display =
+                'block';
+
+        };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================
+   نسخ رقم الحساب
+===================================== */
+
+async function copyAccount(){
+
+    const account =
+        document.getElementById('bankAccount').innerText.trim();
+
+
+    try{
+
+        await navigator.clipboard.writeText(account);
+
+        alert(
+            'تم نسخ رقم الحساب ✅'
+        );
+
+    }catch(error){
+
+        alert(
+            'رقم الحساب: ' + account
+        );
+
+    }
+
+}
+
+
+/* =====================================
+   إرسال الطلب
+===================================== */
+
+async function submitTopup(){
+
+    clearMessage();
+
+
+    const amount =
+        Number(
+            document.getElementById('amount').value
+        );
+
+
+    const senderName =
+        document.getElementById('senderName').value.trim();
+
+
+    const senderPhone =
+        document.getElementById('senderPhone').value.trim();
+
+
+    const button =
+        document.getElementById('submitBtn');
+
+
+    if(!senderName){
+
+        showError(
+            'اكتب اسم صاحب التحويل.'
+        );
+
+        return;
+    }
+
+
+    if(!senderPhone){
+
+        showError(
+            'اكتب رقم الهاتف.'
+        );
+
+        return;
+    }
+
+
+    if(!amount || amount <= 0){
+
+        showError(
+            'اكتب مبلغ الشحن.'
+        );
+
+        return;
+    }
+
+
+    if(!selectedFile){
+
+        showError(
+            'ارفع صورة إشعار التحويل أولاً.'
+        );
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    button.innerText =
+        'جاري إرسال الطلب...';
+
+
+    try{
+
+        /* ==========================
+           رفع الإشعار إلى Storage
+        ========================== */
+
+        const extension =
+            selectedFile.name
+            .split('.')
+            .pop()
+            .toLowerCase();
+
+
+        const filePath =
+            currentUser.id +
+            '/' +
+            Date.now() +
+            '.' +
+            extension;
+
+
+        const {
+            error:uploadError
+        } =
+        await supabaseClient
+        .storage
+        .from('payment-proofs')
+        .upload(
+            filePath,
+            selectedFile,
+            {
+                cacheControl:'3600',
+                upsert:false
+            }
+        );
+
+
+        if(uploadError){
+
+            console.error(uploadError);
+
+            showError(
+                'تعذر رفع صورة الإشعار.\nتأكد من إنشاء Storage Bucket باسم payment-proofs في Supabase.'
+            );
+
+            return;
+        }
+
+
+        /* ==========================
+           الحصول على رابط الصورة
+        ========================== */
+
+        const {
+            data:publicData
+        } =
+        supabaseClient
+        .storage
+        .from('payment-proofs')
+        .getPublicUrl(filePath);
+
+
+        const proofUrl =
+            publicData.publicUrl;
+
+
+        /* ==========================
+           إنشاء طلب الشحن
+        ========================== */
+
+        const {
+            data:requestData,
+            error:requestError
+        } =
+        await supabaseClient
+        .from('topup_requests')
+        .insert({
+
+            user_id:currentUser.id,
+
+            amount:amount,
+
+            payment_method:'Bankak',
+
+            sender_name:senderName,
+
+            sender_phone:senderPhone,
+
+            proof_url:proofUrl,
+
+            status:'pending'
+
+        })
+        .select('id,request_number')
+        .single();
+
+
+        if(requestError){
+
+            console.error(requestError);
+
+            showError(
+                'تعذر إنشاء طلب الشحن.\nتم رفع الصورة لكن لم يتم إنشاء الطلب.'
+            );
+
+            return;
+        }
+
+
+        /* ==========================
+           إظهار نجاح الطلب
+        ========================== */
+
+        document.getElementById('page').style.display =
+            'none';
+
+
+        document.getElementById('successPage').style.display =
+            'block';
+
+
+        document.getElementById('requestNumber').innerText =
+            requestData.request_number ||
+            requestData.id;
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showError(
+            'حدث خطأ أثناء إرسال الطلب.'
+        );
+
+    }finally{
+
+        button.disabled = false;
+
+        button.innerText =
+            'إرسال طلب الشحن ✅';
+
+    }
+
+}
+
+
+/* =====================================
+   الرسائل
+===================================== */
+
+function showError(message){
+
+    const box =
+        document.getElementById('msg');
+
+    box.innerText =
+        message;
+
+    box.className =
+        'msg error';
+
+    box.style.display =
+        'block';
+
+}
+
+
+function clearMessage(){
+
+    const box =
+        document.getElementById('msg');
+
+    box.style.display =
+        'none';
+
+    box.innerText =
+        '';
+
+}
+
+
+/* =====================================
+   تشغيل الصفحة
+===================================== */
+
+init();
+
 </script>
+
 </body>
-</html>
+  </html>
