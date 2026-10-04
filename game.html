@@ -2,14 +2,18 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>KATRO SHOP</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -29,7 +33,7 @@ header{
     padding:15px;
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:20;
 }
 
 .header-inner{
@@ -47,12 +51,42 @@ header{
     font-weight:bold;
 }
 
-.back{
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.back,
+.cart-button{
     color:#fff;
     text-decoration:none;
     background:#151c2b;
     padding:9px 14px;
     border-radius:10px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.cart-button{
+    position:relative;
+}
+
+.cart-count{
+    position:absolute;
+    top:-7px;
+    left:-7px;
+    min-width:20px;
+    height:20px;
+    border-radius:50%;
+    background:#ff3b30;
+    color:#fff;
+    font-size:11px;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
 }
 
 .container{
@@ -111,12 +145,32 @@ header{
     border-color:#00b7ff;
 }
 
-.product img{
-    width:80px;
-    height:80px;
-    object-fit:cover;
-    border-radius:14px;
+.product-image-box{
+    width:100%;
+    height:130px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     margin-bottom:10px;
+    background:#151c2b;
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.product img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border-radius:14px;
+}
+
+.image-fallback{
+    font-size:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100%;
 }
 
 .product h3{
@@ -161,11 +215,16 @@ header{
     color:#9ca8ba;
 }
 
+
+/* =========================
+   السلة
+========================= */
+
 .modal{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.75);
+    background:rgba(0,0,0,.78);
     z-index:100;
     align-items:center;
     justify-content:center;
@@ -174,7 +233,9 @@ header{
 
 .modal-box{
     width:100%;
-    max-width:450px;
+    max-width:500px;
+    max-height:90vh;
+    overflow-y:auto;
     background:#0d111c;
     border:1px solid #263149;
     border-radius:18px;
@@ -185,6 +246,118 @@ header{
     color:#00b7ff;
     margin-bottom:15px;
 }
+
+.close-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.close-btn{
+    background:#252d3d;
+    border:none;
+    color:#fff;
+    width:35px;
+    height:35px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+
+/* =========================
+   عناصر السلة
+========================= */
+
+.cart-item{
+    background:#151c2b;
+    border:1px solid #263149;
+    border-radius:13px;
+    padding:12px;
+    margin-bottom:10px;
+}
+
+.cart-item-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.cart-item-name{
+    font-weight:bold;
+}
+
+.cart-item-price{
+    color:#00e1ff;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.cart-controls{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:10px;
+}
+
+.quantity-controls{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.quantity-btn{
+    width:32px;
+    height:32px;
+    border:none;
+    border-radius:8px;
+    background:#252d3d;
+    color:#fff;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.quantity-number{
+    min-width:25px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.remove-btn{
+    background:#421b22;
+    color:#ff8995;
+    border:none;
+    padding:7px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.cart-total{
+    background:#151c2b;
+    border:1px solid #263149;
+    padding:14px;
+    border-radius:12px;
+    margin-top:15px;
+    text-align:center;
+}
+
+.cart-total strong{
+    color:#00b7ff;
+    font-size:21px;
+}
+
+.cart-empty{
+    text-align:center;
+    padding:30px 10px;
+    color:#9ca8ba;
+}
+
+
+/* =========================
+   النموذج
+========================= */
 
 .selected-product{
     background:#151c2b;
@@ -209,7 +382,8 @@ label{
     color:#cbd3df;
 }
 
-input{
+input,
+select{
     width:100%;
     padding:12px;
     background:#080b12;
@@ -219,8 +393,16 @@ input{
     outline:none;
 }
 
-input:focus{
+input:focus,
+select:focus{
     border-color:#00b7ff;
+}
+
+.info-note{
+    color:#8f9bad;
+    font-size:12px;
+    margin-top:6px;
+    line-height:1.6;
 }
 
 .modal-buttons{
@@ -240,6 +422,10 @@ input:focus{
     cursor:pointer;
 }
 
+.confirm:disabled{
+    opacity:.6;
+}
+
 .cancel{
     flex:1;
     border:none;
@@ -256,6 +442,7 @@ input:focus{
     border-radius:10px;
     display:none;
     text-align:center;
+    line-height:1.6;
 }
 
 .success{
@@ -274,197 +461,1033 @@ footer{
     padding:25px 15px;
     border-top:1px solid #1c2435;
 }
+
+
+/* =========================
+   استجابة الهاتف
+========================= */
+
+@media(max-width:500px){
+
+    .logo{
+        font-size:20px;
+    }
+
+    .back,
+    .cart-button{
+        padding:8px 10px;
+        font-size:12px;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .product{
+        padding:10px;
+    }
+
+    .product-image-box{
+        height:110px;
+    }
+
+    .product h3{
+        font-size:14px;
+    }
+
+    .price{
+        font-size:15px;
+    }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
+
 <header>
-    <div class="header-inner">
-        <div class="logo">KATRO SHOP</div>
-        <a href="index.html" class="back">الرئيسية</a>
-    </div>
+
+<div class="header-inner">
+
+<div class="logo">
+KATRO SHOP
+</div>
+
+<div class="header-actions">
+
+<button
+class="cart-button"
+onclick="openCart()">
+
+🛒 السلة
+
+<span
+id="cartCount"
+class="cart-count">
+0
+</span>
+
+</button>
+
+<a
+href="index.html"
+class="back">
+
+الرئيسية
+
+</a>
+
+</div>
+
+</div>
+
 </header>
+
 
 <div class="container">
 
-    <div class="game-title">
-        <h1 id="gameName">جاري التحميل...</h1>
-        <p>اختر المنتج الذي تريد شراءه</p>
-    </div>
 
-    <div class="balance" id="balanceBox" style="display:none;">
-        رصيد محفظتك:
-        <span id="balance">0</span>
-        ج.س
-    </div>
+<div class="game-title">
 
-    <div id="products" class="products">
-        <div class="loading">جاري تحميل المنتجات...</div>
-    </div>
+<h1 id="gameName">
+جاري التحميل...
+</h1>
+
+<p>
+اختر المنتج الذي تريد إضافته إلى السلة
+</p>
 
 </div>
 
+
+<div
+class="balance"
+id="balanceBox"
+style="display:none;">
+
+رصيد محفظتك:
+
+<span id="balance">
+0
+</span>
+
+ج.س
+
+</div>
+
+
+<div
+id="products"
+class="products">
+
+<div class="loading">
+جاري تحميل المنتجات...
+</div>
+
+</div>
+
+
+</div>
+
+
 <footer>
-    © 2026 KATRO SHOP
+
+© 2026 KATRO SHOP
+
 </footer>
 
 
-<!-- نافذة الشراء -->
 
-<div class="modal" id="buyModal">
+<!-- =========================
+     نافذة السلة
+========================= -->
 
-    <div class="modal-box">
+<div
+class="modal"
+id="cartModal">
 
-        <h2>تأكيد الشراء</h2>
+<div class="modal-box">
 
-        <div class="selected-product">
-            <strong id="selectedName"></strong>
-            <span id="selectedPrice"></span> ج.س
-        </div>
+<div class="close-top">
 
-        <label>معرف اللاعب / ID</label>
-        <input
-            type="text"
-            id="playerId"
-            placeholder="أدخل ID اللاعب"
-        >
+<h2>
+🛒 سلة المشتريات
+</h2>
 
-        <label>معلومات الحساب</label>
-        <input
-            type="text"
-            id="accountInfo"
-            placeholder="اختياري"
-        >
+<button
+class="close-btn"
+onclick="closeCart()">
 
-        <label>رقم الهاتف للتواصل</label>
-        <input
-            type="text"
-            id="contactPhone"
-            placeholder="أدخل رقم الهاتف"
-        >
+×
 
-        <div
-            id="modalMessage"
-            class="message"
-        ></div>
-
-        <div class="modal-buttons">
-
-            <button
-                class="confirm"
-                id="confirmBtn"
-                onclick="confirmPurchase()"
-            >
-                تأكيد الشراء
-            </button>
-
-            <button
-                class="cancel"
-                onclick="closeModal()"
-            >
-                إلغاء
-            </button>
-
-        </div>
-
-    </div>
+</button>
 
 </div>
+
+
+<div id="cartItems">
+
+</div>
+
+
+<div
+id="cartTotal"
+class="cart-total"
+style="display:none;">
+
+الإجمالي:
+
+<br>
+
+<strong id="cartTotalPrice">
+0
+</strong>
+
+ج.س
+
+</div>
+
+
+<div
+id="cartButtons"
+class="modal-buttons"
+style="display:none;">
+
+<button
+class="confirm"
+onclick="openCheckout()">
+
+إتمام الشراء
+
+</button>
+
+<button
+class="cancel"
+onclick="closeCart()">
+
+متابعة التسوق
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     نافذة إتمام الشراء
+========================= -->
+
+<div
+class="modal"
+id="checkoutModal">
+
+<div class="modal-box">
+
+
+<div class="close-top">
+
+<h2>
+🧾 بيانات الشحن
+</h2>
+
+<button
+class="close-btn"
+onclick="closeCheckout()">
+
+×
+
+</button>
+
+</div>
+
+
+<div
+class="selected-product">
+
+<strong>
+المنتجات في السلة
+</strong>
+
+<span id="checkoutTotal">
+0 ج.س
+</span>
+
+</div>
+
+
+<label>
+معرف اللاعب / ID
+</label>
+
+<input
+type="text"
+id="playerId"
+placeholder="أدخل ID أو UID اللاعب">
+
+
+<label>
+نوع الحساب
+</label>
+
+<select id="accountType">
+
+<option value="">
+اختر نوع الحساب
+</option>
+
+<option value="Player ID">
+Player ID
+</option>
+
+<option value="UID">
+UID
+</option>
+
+<option value="User ID">
+User ID
+</option>
+
+<option value="Account">
+حساب
+</option>
+
+<option value="Phone">
+رقم الهاتف
+</option>
+
+<option value="Email">
+البريد الإلكتروني
+</option>
+
+<option value="Other">
+أخرى
+</option>
+
+</select>
+
+
+<label>
+معلومات الحساب الإضافية
+</label>
+
+<input
+type="text"
+id="accountInfo"
+placeholder="مثلاً اسم الحساب أو السيرفر">
+
+
+<div class="info-note">
+
+إذا كان المنتج يحتاج ID أو بيانات حساب، اكتبها بدقة حتى يتم تنفيذ الطلب بشكل صحيح.
+
+</div>
+
+
+<label>
+رقم الهاتف للتواصل
+</label>
+
+<input
+type="text"
+id="contactPhone"
+placeholder="أدخل رقم الهاتف">
+
+
+<div
+id="modalMessage"
+class="message">
+</div>
+
+
+<div class="modal-buttons">
+
+<button
+class="confirm"
+id="confirmBtn"
+onclick="confirmPurchase()">
+
+تأكيد الشراء
+
+</button>
+
+
+<button
+class="cancel"
+onclick="closeCheckout()">
+
+إلغاء
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 
 
 <script>
 
+
+/* =====================================
+   Supabase
+===================================== */
+
 const SUPABASE_URL =
-    "https://uwmrzvsygeoequscpinx.supabase.co";
+"https://uwmrzvsygeoequscpinx.supabase.co";
+
 
 const SUPABASE_KEY =
-    "sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
+"sb_publishable_26b3KzpWkLqltiLTyTSpIg_gTgexDts";
+
 
 const supabaseClient =
-    supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
+
+
+/* =====================================
+   قراءة اللعبة
+===================================== */
 
 const params =
-    new URLSearchParams(window.location.search);
+new URLSearchParams(
+    window.location.search
+);
+
 
 const gameKey =
-    params.get("g");
+params.get("g");
+
 
 
 let currentUser = null;
-let selectedProduct = null;
+
 let currentBalance = 0;
 
+let cart = [];
 
-/* أسماء الألعاب */
+
+
+/* =====================================
+   أسماء الألعاب
+===================================== */
 
 const gameNames = {
 
-    freefire: "Free Fire",
+    freefire:"Free Fire",
 
-    pubg: "PUBG Mobile",
+    pubg:"PUBG Mobile",
 
-    codm: "Call of Duty Mobile",
+    codm:"Call of Duty Mobile",
 
-    efootball: "eFootball",
+    efootball:"eFootball",
 
-    jawaker: "Jawaker",
+    jawaker:"Jawaker",
 
-    mobilelegends: "Mobile Legends",
+    mobilelegends:"Mobile Legends",
 
-    yallaludo: "Yalla Ludo",
+    yallaludo:"Yalla Ludo",
 
-    tiktok: "TikTok",
+    tiktok:"TikTok",
 
-    googleplay: "Google Play",
+    googleplay:"Google Play",
 
-    itunes: "iTunes",
+    itunes:"iTunes",
 
-    playstation: "PlayStation",
+    playstation:"PlayStation",
 
-    xbox: "Xbox",
+    xbox:"Xbox",
 
-    razergold: "Razer Gold",
+    razergold:"Razer Gold",
 
-    netflix: "Netflix",
+    netflix:"Netflix",
 
-    visa: "Visa",
+    visa:"Visa",
 
-    mastercard: "Mastercard",
+    mastercard:"Mastercard",
 
-    zain: "Zain",
+    zain:"Zain",
 
-    mtn: "MTN",
+    mtn:"MTN",
 
-    sudani: "Sudani",
+    sudani:"Sudani",
 
-    cashi: "Cashi",
+    cashi:"Cashi",
 
-    starlink: "Starlink",
+    starlink:"Starlink",
 
-    katrocard: "KATRO CARD",
+    katrocard:"KATRO CARD",
 
-    pyypl: "Pyypl"
+    pyypl:"Pyypl"
 
 };
 
 
-document.getElementById("gameName").textContent =
-    gameNames[gameKey] || "منتجات KATRO SHOP";
+
+document.getElementById("gameName")
+.textContent =
+gameNames[gameKey]
+|| "منتجات KATRO SHOP";
 
 
-/* التحقق من تسجيل الدخول */
+
+/* =====================================
+   تحميل السلة
+===================================== */
+
+function loadCart(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                "katro_cart"
+            );
+
+
+        if(saved){
+
+            const parsed =
+                JSON.parse(saved);
+
+
+            if(Array.isArray(parsed)){
+
+                cart = parsed;
+
+            }
+
+        }
+
+    }catch(error){
+
+        console.error(
+            "Cart Load Error:",
+            error
+        );
+
+        cart = [];
+
+    }
+
+
+    updateCartUI();
+
+}
+
+
+
+/* =====================================
+   حفظ السلة
+===================================== */
+
+function saveCart(){
+
+    localStorage.setItem(
+        "katro_cart",
+        JSON.stringify(cart)
+    );
+
+    updateCartUI();
+
+}
+
+
+
+/* =====================================
+   تحديث عداد السلة
+===================================== */
+
+function updateCartUI(){
+
+    const count =
+        cart.reduce(
+            (total,item) =>
+                total + Number(item.quantity || 0),
+            0
+        );
+
+
+    const badge =
+        document.getElementById(
+            "cartCount"
+        );
+
+
+    badge.textContent =
+        count;
+
+
+    badge.style.display =
+        count > 0
+        ? "flex"
+        : "none";
+
+}
+
+
+
+/* =====================================
+   إضافة للسلة
+===================================== */
+
+function addToCart(product){
+
+    if(!currentUser){
+
+        alert(
+            "يجب تسجيل الدخول أولاً"
+        );
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    const existing =
+        cart.find(
+            item =>
+                Number(item.id)
+                === Number(product.id)
+        );
+
+
+    if(existing){
+
+        existing.quantity =
+            Number(existing.quantity || 1)
+            + 1;
+
+    }else{
+
+        cart.push({
+
+            id:product.id,
+
+            game_key:product.game_key,
+
+            name:product.name,
+
+            description:
+                product.description || "",
+
+            price:Number(product.price),
+
+            image_url:
+                product.image_url || "",
+
+            quantity:1
+
+        });
+
+    }
+
+
+    saveCart();
+
+
+    alert(
+        "تمت إضافة المنتج إلى السلة 🛒"
+    );
+
+}
+
+
+
+/* =====================================
+   فتح السلة
+===================================== */
+
+function openCart(){
+
+    renderCart();
+
+    document.getElementById(
+        "cartModal"
+    ).style.display = "flex";
+
+}
+
+
+
+/* =====================================
+   إغلاق السلة
+===================================== */
+
+function closeCart(){
+
+    document.getElementById(
+        "cartModal"
+    ).style.display = "none";
+
+}
+
+
+
+/* =====================================
+   عرض السلة
+===================================== */
+
+function renderCart(){
+
+    const box =
+        document.getElementById(
+            "cartItems"
+        );
+
+
+    const totalBox =
+        document.getElementById(
+            "cartTotal"
+        );
+
+
+    const buttons =
+        document.getElementById(
+            "cartButtons"
+        );
+
+
+    if(!cart.length){
+
+        box.innerHTML = `
+
+            <div class="cart-empty">
+
+                🛒 السلة فارغة
+
+                <br><br>
+
+                أضف المنتجات التي تريد شراءها.
+
+            </div>
+
+        `;
+
+
+        totalBox.style.display =
+            "none";
+
+
+        buttons.style.display =
+            "none";
+
+
+        return;
+
+    }
+
+
+    box.innerHTML = "";
+
+
+    let total = 0;
+
+
+    cart.forEach(
+        (item,index) => {
+
+            const quantity =
+                Number(item.quantity || 1);
+
+
+            const itemTotal =
+                Number(item.price)
+                * quantity;
+
+
+            total += itemTotal;
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "cart-item";
+
+
+            div.innerHTML = `
+
+                <div class="cart-item-top">
+
+                    <div class="cart-item-name">
+
+                        ${escapeHtml(
+                            item.name
+                        )}
+
+                    </div>
+
+                    <div class="cart-item-price">
+
+                        ${itemTotal.toLocaleString("ar-EG")}
+
+                        ج.س
+
+                    </div>
+
+                </div>
+
+
+                <div class="cart-controls">
+
+                    <div class="quantity-controls">
+
+                        <button
+                            class="quantity-btn"
+                            onclick="changeQuantity(${index},-1)">
+
+                            −
+
+                        </button>
+
+
+                        <span class="quantity-number">
+
+                            ${quantity}
+
+                        </span>
+
+
+                        <button
+                            class="quantity-btn"
+                            onclick="changeQuantity(${index},1)">
+
+                            +
+
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        class="remove-btn"
+                        onclick="removeFromCart(${index})">
+
+                        حذف
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            box.appendChild(div);
+
+        }
+    );
+
+
+    document.getElementById(
+        "cartTotalPrice"
+    ).textContent =
+        total.toLocaleString("ar-EG");
+
+
+    totalBox.style.display =
+        "block";
+
+
+    buttons.style.display =
+        "flex";
+
+}
+
+
+
+/* =====================================
+   تغيير الكمية
+===================================== */
+
+function changeQuantity(
+    index,
+    change
+){
+
+    if(!cart[index]){
+
+        return;
+
+    }
+
+
+    cart[index].quantity =
+        Number(cart[index].quantity || 1)
+        + change;
+
+
+    if(cart[index].quantity <= 0){
+
+        cart.splice(
+            index,
+            1
+        );
+
+    }
+
+
+    saveCart();
+
+    renderCart();
+
+}
+
+
+
+/* =====================================
+   حذف منتج
+===================================== */
+
+function removeFromCart(index){
+
+    cart.splice(
+        index,
+        1
+    );
+
+    saveCart();
+
+    renderCart();
+
+}
+
+
+
+/* =====================================
+   فتح صفحة الدفع
+===================================== */
+
+function openCheckout(){
+
+    if(!cart.length){
+
+        alert(
+            "السلة فارغة"
+        );
+
+        return;
+
+    }
+
+
+    if(!currentUser){
+
+        alert(
+            "يجب تسجيل الدخول أولاً"
+        );
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+
+    cart.forEach(item => {
+
+        total +=
+            Number(item.price)
+            *
+            Number(item.quantity || 1);
+
+    });
+
+
+    document.getElementById(
+        "checkoutTotal"
+    ).textContent =
+        total.toLocaleString("ar-EG")
+        + " ج.س";
+
+
+    document.getElementById(
+        "playerId"
+    ).value = "";
+
+
+    document.getElementById(
+        "accountType"
+    ).value = "";
+
+
+    document.getElementById(
+        "accountInfo"
+    ).value = "";
+
+
+    document.getElementById(
+        "contactPhone"
+    ).value = "";
+
+
+    hideMessage();
+
+
+    closeCart();
+
+
+    document.getElementById(
+        "checkoutModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+
+/* =====================================
+   إغلاق الدفع
+===================================== */
+
+function closeCheckout(){
+
+    document.getElementById(
+        "checkoutModal"
+    ).style.display =
+        "none";
+
+}
+
+
+
+/* =====================================
+   التحقق من تسجيل الدخول
+===================================== */
 
 async function checkUser(){
 
     const {
         data,
         error
-    } = await supabaseClient.auth.getSession();
+    } =
+    await supabaseClient
+    .auth
+    .getSession();
+
 
     if(error){
 
@@ -474,29 +1497,40 @@ async function checkUser(){
 
     }
 
+
     if(!data.session){
 
         currentUser = null;
 
-        document.getElementById("balanceBox").style.display =
+        document.getElementById(
+            "balanceBox"
+        ).style.display =
             "none";
 
         return;
 
     }
 
+
     currentUser =
         data.session.user;
 
-    document.getElementById("balanceBox").style.display =
+
+    document.getElementById(
+        "balanceBox"
+    ).style.display =
         "block";
+
 
     await loadBalance();
 
 }
 
 
-/* تحميل الرصيد */
+
+/* =====================================
+   تحميل الرصيد
+===================================== */
 
 async function loadBalance(){
 
@@ -506,14 +1540,19 @@ async function loadBalance(){
 
     }
 
+
     const {
         data,
         error
-    } = await supabaseClient
-        .from("wallets")
-        .select("balance")
-        .eq("user_id", currentUser.id)
-        .single();
+    } =
+    await supabaseClient
+    .from("wallets")
+    .select("balance")
+    .eq(
+        "user_id",
+        currentUser.id
+    )
+    .single();
 
 
     if(error){
@@ -526,21 +1565,32 @@ async function loadBalance(){
 
 
     currentBalance =
-        Number(data.balance || 0);
+        Number(
+            data.balance || 0
+        );
 
 
-    document.getElementById("balance").textContent =
-        currentBalance.toLocaleString("ar-EG");
+    document.getElementById(
+        "balance"
+    ).textContent =
+        currentBalance.toLocaleString(
+            "ar-EG"
+        );
 
 }
 
 
-/* تحميل المنتجات */
+
+/* =====================================
+   تحميل المنتجات
+===================================== */
 
 async function loadProducts(){
 
     const productsBox =
-        document.getElementById("products");
+        document.getElementById(
+            "products"
+        );
 
 
     if(!gameKey){
@@ -556,12 +1606,19 @@ async function loadProducts(){
     const {
         data,
         error
-    } = await supabaseClient
-        .from("products")
-        .select("*")
-        .eq("game_key", gameKey)
-        .eq("active", true)
-        .order("id");
+    } =
+    await supabaseClient
+    .from("products")
+    .select("*")
+    .eq(
+        "game_key",
+        gameKey
+    )
+    .eq(
+        "active",
+        true
+    )
+    .order("id");
 
 
     if(error){
@@ -576,7 +1633,7 @@ async function loadProducts(){
     }
 
 
-    if(!data || data.length === 0){
+    if(!data || !data.length){
 
         productsBox.innerHTML =
             '<div class="empty">لا توجد منتجات متاحة حالياً</div>';
@@ -592,7 +1649,10 @@ async function loadProducts(){
     data.forEach(product => {
 
         const card =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         card.className =
             "product";
@@ -600,107 +1660,163 @@ async function loadProducts(){
 
         const image =
             product.image_url
-            || "https://via.placeholder.com/100";
+            ? String(product.image_url)
+            : "";
+
+
+        const imageHTML =
+            image
+            ? `
+
+                <img
+                    src="${escapeHtml(image)}"
+                    alt="${escapeHtml(product.name)}"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                >
+
+                <div
+                    class="image-fallback"
+                    style="display:none;">
+                    ${getGameEmoji(gameKey)}
+                </div>
+
+            `
+            : `
+
+                <div class="image-fallback">
+
+                    ${getGameEmoji(gameKey)}
+
+                </div>
+
+            `;
 
 
         card.innerHTML = `
 
-            <img
-                src="${escapeHtml(image)}"
-                alt="${escapeHtml(product.name)}"
-            >
+            <div class="product-image-box">
+
+                ${imageHTML}
+
+            </div>
+
 
             <h3>
-                ${escapeHtml(product.name)}
+
+                ${escapeHtml(
+                    product.name
+                )}
+
             </h3>
 
+
             <div class="description">
-                ${escapeHtml(product.description || "")}
+
+                ${escapeHtml(
+                    product.description || ""
+                )}
+
             </div>
 
+
             <div class="price">
-                ${Number(product.price).toLocaleString("ar-EG")}
+
+                ${Number(
+                    product.price
+                ).toLocaleString("ar-EG")}
+
                 ج.س
+
             </div>
+
 
             <button
                 class="buy-btn"
-                onclick='openBuyModal(${JSON.stringify(product)})'
-            >
-                شراء
+                onclick='addToCart(${JSON.stringify(product).replace(/'/g,"&#039;")})'>
+
+                🛒 إضافة إلى السلة
+
             </button>
 
         `;
 
 
-        productsBox.appendChild(card);
+        productsBox.appendChild(
+            card
+        );
 
     });
 
 }
 
 
-/* فتح نافذة الشراء */
 
-function openBuyModal(product){
+/* =====================================
+   رموز احتياطية
+===================================== */
 
-    if(!currentUser){
+function getGameEmoji(key){
 
-        alert("يجب تسجيل الدخول أولاً");
+    const emojis = {
 
-        window.location.href =
-            "login.html";
+        freefire:"🔥",
 
-        return;
+        pubg:"🎯",
 
-    }
+        codm:"🔫",
+
+        efootball:"⚽",
+
+        jawaker:"🃏",
+
+        mobilelegends:"⚔️",
+
+        yallaludo:"🎲",
+
+        tiktok:"🎵",
+
+        googleplay:"▶️",
+
+        itunes:"🎵",
+
+        playstation:"🎮",
+
+        xbox:"🎮",
+
+        razergold:"🟢",
+
+        netflix:"🎬",
+
+        visa:"💳",
+
+        mastercard:"💳",
+
+        zain:"📱",
+
+        mtn:"📱",
+
+        sudani:"📱",
+
+        cashi:"💰",
+
+        starlink:"🛰️",
+
+        katrocard:"💳",
+
+        pyypl:"💳"
+
+    };
 
 
-    selectedProduct =
-        product;
-
-
-    document.getElementById("selectedName")
-        .textContent =
-        product.name;
-
-
-    document.getElementById("selectedPrice")
-        .textContent =
-        Number(product.price)
-        .toLocaleString("ar-EG");
-
-
-    document.getElementById("playerId").value =
-        "";
-
-    document.getElementById("accountInfo").value =
-        "";
-
-    document.getElementById("contactPhone").value =
-        "";
-
-
-    hideMessage();
-
-
-    document.getElementById("buyModal").style.display =
-        "flex";
+    return emojis[key] || "🎮";
 
 }
 
 
-/* إغلاق النافذة */
 
-function closeModal(){
-
-    document.getElementById("buyModal").style.display =
-        "none";
-
-}
-
-
-/* تنفيذ الشراء */
+/* =====================================
+   تنفيذ الشراء
+===================================== */
 
 async function confirmPurchase(){
 
@@ -716,7 +1832,12 @@ async function confirmPurchase(){
     }
 
 
-    if(!selectedProduct){
+    if(!cart.length){
+
+        showMessage(
+            "السلة فارغة",
+            false
+        );
 
         return;
 
@@ -724,21 +1845,35 @@ async function confirmPurchase(){
 
 
     const playerId =
-        document.getElementById("playerId")
-            .value
-            .trim();
+        document.getElementById(
+            "playerId"
+        )
+        .value
+        .trim();
+
+
+    const accountType =
+        document.getElementById(
+            "accountType"
+        )
+        .value
+        .trim();
 
 
     const accountInfo =
-        document.getElementById("accountInfo")
-            .value
-            .trim();
+        document.getElementById(
+            "accountInfo"
+        )
+        .value
+        .trim();
 
 
     const contactPhone =
-        document.getElementById("contactPhone")
-            .value
-            .trim();
+        document.getElementById(
+            "contactPhone"
+        )
+        .value
+        .trim();
 
 
     if(!contactPhone){
@@ -753,11 +1888,53 @@ async function confirmPurchase(){
     }
 
 
-    const price =
-        Number(selectedProduct.price);
+    /*
+       تجميع معلومات الحساب
+       داخل العمود الموجود عندك
+       account_info
+    */
+
+    let finalAccountInfo = "";
 
 
-    if(currentBalance < price){
+    if(accountType){
+
+        finalAccountInfo +=
+            "نوع الحساب: "
+            + accountType;
+
+    }
+
+
+    if(accountInfo){
+
+        if(finalAccountInfo){
+
+            finalAccountInfo +=
+                " | ";
+
+        }
+
+        finalAccountInfo +=
+            "معلومات إضافية: "
+            + accountInfo;
+
+    }
+
+
+    const total =
+        cart.reduce(
+            (sum,item) =>
+                sum
+                +
+                Number(item.price)
+                *
+                Number(item.quantity || 1),
+            0
+        );
+
+
+    if(currentBalance < total){
 
         showMessage(
             "رصيدك غير كافٍ. يرجى شحن المحفظة أولاً.",
@@ -770,14 +1947,17 @@ async function confirmPurchase(){
 
 
     const button =
-        document.getElementById("confirmBtn");
+        document.getElementById(
+            "confirmBtn"
+        );
 
 
     button.disabled =
         true;
 
+
     button.textContent =
-        "جاري تنفيذ الشراء...";
+        "جاري تنفيذ الطلب...";
 
 
     hideMessage();
@@ -785,86 +1965,162 @@ async function confirmPurchase(){
 
     try{
 
-        const {
-            data,
-            error
-        } = await supabaseClient.rpc(
+        /*
+           تنفيذ المنتجات واحداً واحداً
+        */
 
-            "create_order_and_charge",
+        const createdOrders = [];
 
-            {
-                p_product_id:
-                    selectedProduct.id,
 
-                p_player_id:
-                    playerId || null,
+        for(
+            const item
+            of cart
+        ){
 
-                p_account_info:
-                    accountInfo || null,
+            const quantity =
+                Number(
+                    item.quantity || 1
+                );
 
-                p_contact_phone:
-                    contactPhone || null,
 
-                p_quantity:
-                    1
+            /*
+               تنفيذ الكمية المطلوبة
+               كطلبات منفصلة
+            */
+
+            for(
+                let i = 0;
+                i < quantity;
+                i++
+            ){
+
+                const {
+                    data,
+                    error
+                } =
+                await supabaseClient.rpc(
+
+                    "create_order_and_charge",
+
+                    {
+
+                        p_product_id:
+                            item.id,
+
+                        p_player_id:
+                            playerId || null,
+
+                        p_account_info:
+                            finalAccountInfo || null,
+
+                        p_contact_phone:
+                            contactPhone || null,
+
+                        p_quantity:
+                            1
+
+                    }
+
+                );
+
+
+                if(error){
+
+                    throw error;
+
+                }
+
+
+                if(
+                    !data
+                    ||
+                    !data.success
+                ){
+
+                    throw new Error(
+                        "تعذر تنفيذ أحد الطلبات"
+                    );
+
+                }
+
+
+                createdOrders.push(
+                    data.order_number
+                );
+
+
+                currentBalance =
+                    Number(
+                        data.new_balance
+                    );
+
             }
 
-        );
-
-
-        if(error){
-
-            throw error;
-
         }
 
 
-        if(!data || !data.success){
-
-            throw new Error(
-                "تعذر تنفيذ عملية الشراء"
+        document.getElementById(
+            "balance"
+        ).textContent =
+            currentBalance.toLocaleString(
+                "ar-EG"
             );
 
-        }
+
+        /*
+           تفريغ السلة بعد نجاح الطلبات
+        */
+
+        cart = [];
+
+        saveCart();
 
 
-        currentBalance =
-            Number(data.new_balance);
-
-
-        document.getElementById("balance").textContent =
-            currentBalance.toLocaleString("ar-EG");
+        let orderText =
+            createdOrders.join(" ، #");
 
 
         showMessage(
 
-            "تم الشراء بنجاح! رقم الطلب: #" +
-            data.order_number,
+            "تم الشراء بنجاح ✅\n"
+            +
+            "أرقام الطلبات: #"
+            +
+            orderText,
 
             true
 
         );
 
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            closeModal();
+                closeCheckout();
 
-        }, 2500);
+            },
+            3000
+        );
 
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Purchase Error:",
+            error
+        );
 
 
         let message =
-            error.message ||
+            error.message
+            ||
             "حدث خطأ أثناء عملية الشراء";
 
 
         if(
-            message.includes("رصيدك غير كافٍ")
+            message.includes(
+                "رصيدك غير كافٍ"
+            )
         ){
 
             message =
@@ -874,7 +2130,9 @@ async function confirmPurchase(){
 
 
         if(
-            message.includes("يجب تسجيل الدخول")
+            message.includes(
+                "يجب تسجيل الدخول"
+            )
         ){
 
             message =
@@ -894,6 +2152,7 @@ async function confirmPurchase(){
         button.disabled =
             false;
 
+
         button.textContent =
             "تأكيد الشراء";
 
@@ -902,7 +2161,10 @@ async function confirmPurchase(){
 }
 
 
-/* رسالة النافذة */
+
+/* =====================================
+   الرسائل
+===================================== */
 
 function showMessage(
     message,
@@ -910,7 +2172,9 @@ function showMessage(
 ){
 
     const box =
-        document.getElementById("modalMessage");
+        document.getElementById(
+            "modalMessage"
+        );
 
 
     box.textContent =
@@ -918,8 +2182,13 @@ function showMessage(
 
 
     box.className =
-        "message " +
-        (success ? "success" : "fail");
+        "message "
+        +
+        (
+            success
+            ? "success"
+            : "fail"
+        );
 
 
     box.style.display =
@@ -928,34 +2197,113 @@ function showMessage(
 }
 
 
+
 function hideMessage(){
 
     const box =
-        document.getElementById("modalMessage");
+        document.getElementById(
+            "modalMessage"
+        );
+
 
     box.style.display =
         "none";
 
+
+    box.textContent =
+        "";
+
 }
 
 
-/* حماية النصوص */
+
+/* =====================================
+   حماية النصوص
+===================================== */
 
 function escapeHtml(value){
 
     return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
-/* التشغيل */
+
+/* =====================================
+   إغلاق النوافذ عند الضغط خارجها
+===================================== */
+
+document.getElementById(
+    "cartModal"
+).addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target ===
+            this
+        ){
+
+            closeCart();
+
+        }
+
+    }
+);
+
+
+document.getElementById(
+    "checkoutModal"
+).addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target ===
+            this
+        ){
+
+            closeCheckout();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================
+   التشغيل
+===================================== */
 
 async function init(){
+
+    loadCart();
 
     await checkUser();
 
@@ -969,4 +2317,4 @@ init();
 </script>
 
 </body>
-</html>
+    </html>
