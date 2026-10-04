@@ -1,75 +1,870 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>KATRO SHOP</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800&display=swap');
-*{font-family:'Tajawal',sans-serif;box-sizing:border-box;margin:0;padding:0}
-body{background:#f4f0ff}
-.header{background:#673bff;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;color:#fff;position:sticky;top:0;z-index:10}
-.header .circle{width:38px;height:38px;background:#4c24c4;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.search{display:flex;margin:12px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e8e0ff;height:46px}
-.search input{flex:1;border:none;outline:none;padding:0 14px}
-.search button{background:#ff8c00;border:none;color:#fff;width:56px;font-size:18px}
-.banner{margin:12px;background:linear-gradient(105deg,#ffe600 0% 55%,#673bff 55% 100%);border-radius:18px;height:96px;display:flex;align-items:center;padding:0 16px}
-.banner .white{background:#fff;border-radius:14px;padding:10px 14px}
-.banner .white b{font-size:14px}
-.banner .white span{font-size:11px;color:#666}
-.title{text-align:center;margin:20px 0 10px;color:#673bff;font-weight:800;font-size:13px}
-.title span{border-top:2px dashed #b9a8ff;border-bottom:2px dashed #b9a8ff;padding:6px 20px;border-radius:2px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px}
-.card{background:#fff;border-radius:20px;text-align:center;padding-top:18px;position:relative;box-shadow:0 4px 14px rgba(0,0,0,.06);text-decoration:none;color:#000;padding-bottom:10px}
-.card:before{content:'';position:absolute;top:9px;left:50%;transform:translateX(-50%);width:28px;height:10px;background:#e9e3ff;border-radius:20px}
-.card img{width:84%;aspect-ratio:1;border-radius:14px;background:#f5f5f5;object-fit:cover}
-.card h3{font-size:13px;margin-top:6px}
-.card p{font-size:11px;color:#673bff;margin-top:2px;font-weight:700}
-.bottom{position:fixed;bottom:12px;left:12px;right:12px;height:64px;background:#19142e;border-radius:32px;display:flex;justify-content:space-around;align-items:center;z-index:20}
-.bottom a{color:#8b8ba0;text-decoration:none;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:3px}
-.bottom a.active{color:#bda7ff}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Tahoma,sans-serif;
+    background:#f5f5fb;
+    color:#222;
+}
+
+/* HEADER */
+
+header{
+    background:linear-gradient(135deg,#5b22ff,#7a2cff);
+    color:white;
+    padding:15px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    max-width:1100px;
+    margin:auto;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:bold;
+}
+
+.header-icon{
+    font-size:25px;
+}
+
+.search-box{
+    max-width:1100px;
+    margin:14px auto 0;
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    padding:13px 45px 13px 15px;
+    border-radius:12px;
+    font-size:15px;
+}
+
+.search-icon{
+    position:absolute;
+    right:15px;
+    top:11px;
+    color:#777;
+    font-size:20px;
+}
+
+/* BANNER */
+
+.banner{
+    max-width:1100px;
+    margin:18px auto;
+    width:94%;
+    border-radius:18px;
+    padding:25px 20px;
+    background:linear-gradient(135deg,#111827,#222c48);
+    color:white;
+    overflow:hidden;
+}
+
+.banner h1{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.banner p{
+    color:#d4d9e5;
+    line-height:1.8;
+}
+
+/* CONTENT */
+
+.container{
+    width:94%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:25px 0 15px;
+}
+
+.section-title h2{
+    font-size:21px;
+}
+
+.section-title span{
+    color:#7040ff;
+    font-size:13px;
+}
+
+/* PRODUCTS */
+
+.products{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fill,minmax(145px,1fr));
+    gap:13px;
+}
+
+.product{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,.07);
+    border:1px solid #eee;
+    transition:.2s;
+    cursor:pointer;
+}
+
+.product:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 16px rgba(0,0,0,.12);
+}
+
+.product-image{
+    height:135px;
+    background:#eee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.no-image{
+    font-size:42px;
+}
+
+.product-info{
+    padding:12px;
+}
+
+.product-info h3{
+    font-size:15px;
+    margin-bottom:7px;
+    line-height:1.5;
+}
+
+.product-price{
+    color:#5b22ff;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.product-game{
+    color:#999;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* LOADING */
+
+.loading{
+    text-align:center;
+    padding:40px 10px;
+    color:#777;
+}
+
+.error{
+    background:#ffe4e4;
+    color:#b42323;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+    margin:20px 0;
+    display:none;
+}
+
+.empty{
+    background:white;
+    border-radius:15px;
+    padding:35px;
+    text-align:center;
+    color:#888;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:65px;
+    background:white;
+    border-top:1px solid #ddd;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:100;
+}
+
+.nav-item{
+    text-decoration:none;
+    color:#777;
+    text-align:center;
+    font-size:12px;
+}
+
+.nav-item .icon{
+    display:block;
+    font-size:22px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#5b22ff;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:35px;
+    margin-bottom:80px;
+    background:#111827;
+    color:#aaa;
+    text-align:center;
+    padding:25px 15px;
+}
+
+footer strong{
+    color:#fff;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .products{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .product-image{
+        height:125px;
+    }
+
+    .banner h1{
+        font-size:21px;
+    }
+
+}
+
 </style>
+
 </head>
+
 <body>
 
-<div class="header">
-<div class="circle">☰</div>
-<div style="font-weight:800;letter-spacing:1px">KATRO SHOP</div>
-<a href="wallet.html" style="color:#fff;text-decoration:none"><div class="circle">🛒</div></a>
+
+<header>
+
+<div class="header-top">
+
+<div class="header-icon">
+🛒
 </div>
 
-<div class="search">
-<input placeholder="البحث عن المنتجات...">
-<button>🔍</button>
+<div class="logo">
+KATRO SHOP
 </div>
 
-<div class="banner">
-<div class="white"><b>شحن فوري بضغطة زر</b><br><span>ادخل ID والباقي علينا</span></div>
-<div style="font-size:40px">🎮</div>
 </div>
 
-<div class="title"><span>〰️ شحن الألعاب 〰️</span></div>
-<div class="grid">
-<a class="card" href="game.html?g=freefire"><img src="https://i.imgur.com/8Qf5a4A.png"><h3>Free Fire</h3><p>فري فاير</p></a>
-<a class="card" href="game.html?g=pubg"><img src="https://i.imgur.com/1n3wK3t.png"><h3>PUBG UC</h3><p>ببجي</p></a>
-<a class="card" href="game.html?g=tiktok"><img src="https://i.imgur.com/L3a1Q1T.png"><h3>TikTok</h3><p>عملات تيك توك</p></a>
-<a class="card" href="game.html?g=delta"><img src="https://i.imgur.com/2y5o1xQ.png"><h3>Delta Force</h3><p>دلتا فورس</p></a>
-<a class="card" href="game.html?g=efootball"><img src="https://i.imgur.com/QpE8k5b.png"><h3>eFootball</h3><p>اي فوتبول</p></a>
-<a class="card" href="game.html?g=jawaker"><img src="https://i.imgur.com/8Km9tLL.png"><h3>Jawaker</h3><p>جواكر</p></a>
+<div class="search-box">
+
+<span class="search-icon">
+🔍
+</span>
+
+<input
+type="text"
+id="searchInput"
+placeholder="ابحث عن لعبة أو خدمة..."
+autocomplete="off">
+
 </div>
 
-<div class="title"><span>〰️ بطاقات المتجر 〰️</span></div>
-<div class="grid" style="padding-bottom:90px">
-<a class="card" href="game.html?g=googleplay"><img src="https://i.imgur.com/6s5s2cO.png"><h3>Google Play</h3><p>قوقل بلاي</p></a>
-<a class="card" href="game.html?g=visa"><img src="https://i.imgur.com/8yK9b6a.png"><h3>VISA</h3><p>فيزا</p></a>
+</header>
+
+
+<section class="banner">
+
+<h1>
+مرحباً بك في KATRO SHOP
+</h1>
+
+<p>
+متجر كاترو لشحن الألعاب والخدمات الرقمية
+بسرعة وسهولة.
+</p>
+
+</section>
+
+
+<div class="container">
+
+<div id="errorBox" class="error"></div>
+
+
+<div class="section-title">
+
+<h2>
+الخدمات والمنتجات
+</h2>
+
+<span id="productCount">
+جاري التحميل...
+</span>
+
 </div>
 
-<div class="bottom">
-<a href="wallet.html"><div style="font-size:18px">👤</div>دخول</a>
-<a href="wallet.html"><div style="font-size:18px">🧾</div>الطلبات</a>
-<a href="wallet.html"><div style="font-size:18px">💳</div>المحفظة</a>
-<a class="active" href="index.html"><div style="font-size:18px">🏠</div>الرئيسية</a>
+
+<div id="productsContainer">
+
+<div class="loading">
+جاري تحميل المنتجات...
 </div>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<p>
+© 2026 <strong>KATRO SHOP</strong>
+</p>
+
+<p style="margin-top:8px;">
+جميع الحقوق محفوظة
+</p>
+
+</footer>
+
+
+<nav class="bottom-nav">
+
+<a
+href="index.html"
+class="nav-item active">
+
+<span class="icon">
+🏠
+</span>
+
+الرئيسية
+
+</a>
+
+
+<a
+href="wallet.html"
+class="nav-item">
+
+<span class="icon">
+💰
+</span>
+
+المحفظة
+
+</a>
+
+
+<a
+href="wallet-topup.html"
+class="nav-item">
+
+<span class="icon">
+➕
+</span>
+
+شحن الرصيد
+
+</a>
+
+
+<a
+href="login.html"
+class="nav-item">
+
+<span class="icon">
+👤
+</span>
+
+حسابي
+
+</a>
+
+</nav>
+
+
+<script>
+
+const SUPABASE_URL =
+"https://uwmrzvsygeoequscpinx.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
+
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+let allProducts = [];
+
+
+/* أسماء الألعاب والخدمات */
+
+const gameNames = {
+
+    freefire:
+    "Free Fire",
+
+    pubg:
+    "PUBG Mobile",
+
+    codm:
+    "Call of Duty Mobile",
+
+    efootball:
+    "eFootball",
+
+    jawaker:
+    "Jawaker",
+
+    mobilelegends:
+    "Mobile Legends",
+
+    yallaludo:
+    "Yalla Ludo",
+
+    tiktok:
+    "TikTok",
+
+    googleplay:
+    "Google Play",
+
+    itunes:
+    "iTunes",
+
+    playstation:
+    "PlayStation",
+
+    xbox:
+    "Xbox",
+
+    razergold:
+    "Razer Gold",
+
+    netflix:
+    "Netflix",
+
+    visa:
+    "Visa",
+
+    mastercard:
+    "Mastercard",
+
+    zain:
+    "Zain",
+
+    mtn:
+    "MTN",
+
+    sudani:
+    "Sudani",
+
+    cashi:
+    "Cashi",
+
+    starlink:
+    "Starlink",
+
+    katro:
+    "KATRO CARD",
+
+    pyypl:
+    "Pyypl"
+
+};
+
+
+/* تحميل المنتجات */
+
+async function loadProducts(){
+
+    const container =
+    document.getElementById(
+        "productsContainer"
+    );
+
+
+    container.innerHTML =
+    `
+    <div class="loading">
+        جاري تحميل المنتجات...
+    </div>
+    `;
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("products")
+        .select(`
+            id,
+            game_key,
+            name,
+            description,
+            price,
+            image_url,
+            active
+        `)
+        .eq("active",true)
+        .order("id",{
+            ascending:true
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+        document.getElementById(
+            "errorBox"
+        ).textContent =
+        "حدث خطأ أثناء تحميل المنتجات.";
+
+        document.getElementById(
+            "errorBox"
+        ).style.display =
+        "block";
+
+
+        container.innerHTML =
+        `
+        <div class="empty">
+            تعذر تحميل المنتجات حالياً.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    allProducts =
+    data || [];
+
+
+    document.getElementById(
+        "productCount"
+    ).textContent =
+    allProducts.length +
+    " منتج";
+
+
+    renderProducts(
+        allProducts
+    );
+
+}
+
+
+/* عرض المنتجات */
+
+function renderProducts(products){
+
+    const container =
+    document.getElementById(
+        "productsContainer"
+    );
+
+
+    if(!products.length){
+
+        container.innerHTML =
+        `
+        <div class="empty">
+            لا توجد منتجات مطابقة للبحث.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    `
+    <div class="products">
+
+        ${products.map(product => {
+
+            const gameName =
+            gameNames[product.game_key]
+            ||
+            product.game_key
+            ||
+            "خدمة";
+
+
+            const image =
+            product.image_url
+            ?
+            `
+            <img
+                src="${escapeHtml(product.image_url)}"
+                alt="${escapeHtml(product.name)}"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.innerHTML='<span class=&quot;no-image&quot;>🎮</span>';">
+            `
+            :
+            `
+            <span class="no-image">
+                🎮
+            </span>
+            `;
+
+
+            return `
+
+            <div
+                class="product"
+                onclick="openProduct('${escapeJs(product.game_key)}')">
+
+                <div class="product-image">
+                    ${image}
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        ${escapeHtml(product.name)}
+                    </h3>
+
+                    <div class="product-price">
+                        ${formatPrice(product.price)}
+                    </div>
+
+                    <div class="product-game">
+                        ${escapeHtml(gameName)}
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("")}
+
+    </div>
+    `;
+
+}
+
+
+/* فتح صفحة اللعبة */
+
+function openProduct(gameKey){
+
+    if(!gameKey) return;
+
+
+    window.location.href =
+    "game.html?g=" +
+    encodeURIComponent(gameKey);
+
+}
+
+
+/* البحث */
+
+document.getElementById(
+    "searchInput"
+).addEventListener(
+    "input",
+    function(){
+
+        const search =
+        this.value
+            .trim()
+            .toLowerCase();
+
+
+        if(!search){
+
+            renderProducts(
+                allProducts
+            );
+
+            return;
+
+        }
+
+
+        const filtered =
+        allProducts.filter(product => {
+
+            const name =
+            String(
+                product.name || ""
+            ).toLowerCase();
+
+
+            const description =
+            String(
+                product.description || ""
+            ).toLowerCase();
+
+
+            const game =
+            String(
+                product.game_key || ""
+            ).toLowerCase();
+
+
+            return (
+                name.includes(search)
+                ||
+                description.includes(search)
+                ||
+                game.includes(search)
+            );
+
+        });
+
+
+        renderProducts(
+            filtered
+        );
+
+    }
+);
+
+
+/* تنسيق السعر */
+
+function formatPrice(price){
+
+    const number =
+    Number(price);
+
+
+    if(
+        Number.isNaN(number)
+    ){
+
+        return "السعر غير محدد";
+
+    }
+
+
+    return number.toLocaleString(
+        "en-US"
+    ) + " ج.س";
+
+}
+
+
+/* حماية النص */
+
+function escapeHtml(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "";
+
+    }
+
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* حماية القيمة داخل JavaScript */
+
+function escapeJs(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "";
+
+    }
+
+
+    return String(value)
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/\r/g,"\\r")
+        .replace(/\n/g,"\\n");
+
+}
+
+
+/* تشغيل الصفحة */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadProducts
+);
+
+</script>
 
 </body>
+
   </html>
