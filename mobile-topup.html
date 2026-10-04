@@ -1,0 +1,585 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>شحن الرصيد | KATRO SHOP</title><style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+body{
+    background:#080b12;
+    color:#fff;
+    min-height:100vh;
+}
+
+header{
+    background:#0d111c;
+    border-bottom:1px solid #1d2638;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.logo{
+    color:#00b7ff;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.cart-btn{
+    border:none;
+    background:#00b7ff;
+    color:#fff;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.cart-count{
+    background:#fff;
+    color:#00a7eb;
+    border-radius:50%;
+    padding:2px 7px;
+    margin-right:4px;
+    font-weight:bold;
+}
+
+.container{
+    width:92%;
+    max-width:600px;
+    margin:30px auto;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.title h1{
+    font-size:27px;
+    margin-bottom:8px;
+}
+
+.title p{
+    color:#9ca8bb;
+    font-size:14px;
+}
+
+.networks{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.network{
+    background:#0d111c;
+    border:2px solid #1d2638;
+    border-radius:14px;
+    padding:17px 5px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.network:hover{
+    border-color:#00b7ff;
+}
+
+.network.active{
+    border-color:#00b7ff;
+    background:#101b2a;
+}
+
+.network-icon{
+    font-size:28px;
+    margin-bottom:7px;
+}
+
+.network-name{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.form-box{
+    background:#0d111c;
+    border:1px solid #1d2638;
+    border-radius:16px;
+    padding:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    color:#d9e0eb;
+}
+
+input{
+    width:100%;
+    background:#080b12;
+    border:1px solid #29354b;
+    color:#fff;
+    border-radius:10px;
+    padding:13px;
+    font-size:16px;
+    outline:none;
+    margin-bottom:18px;
+}
+
+input:focus{
+    border-color:#00b7ff;
+}
+
+.summary{
+    background:#080b12;
+    border:1px solid #1d2638;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:18px;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+    color:#aeb9c9;
+}
+
+.row:last-child{
+    margin-bottom:0;
+}
+
+.total{
+    border-top:1px solid #29354b;
+    padding-top:12px;
+    margin-top:12px;
+    color:#fff;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.add-btn{
+    width:100%;
+    border:none;
+    background:#00b7ff;
+    color:#fff;
+    padding:14px;
+    border-radius:11px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.add-btn:hover{
+    background:#009ddd;
+}
+
+.message{
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+    display:none;
+}
+
+.success{
+    color:#35d07f;
+}
+
+.error{
+    color:#ff6b6b;
+}
+
+footer{
+    text-align:center;
+    color:#667389;
+    padding:30px 10px;
+    font-size:13px;
+}
+
+@media(max-width:450px){
+
+    .networks{
+        gap:7px;
+    }
+
+    .network{
+        padding:14px 3px;
+    }
+
+    .network-name{
+        font-size:14px;
+    }
+
+}
+
+</style></head><body><header><div class="logo">
+KATRO SHOP
+</div><button class="cart-btn" onclick="goCart()">
+🛒 السلة
+<span class="cart-count" id="cartCount">0</span>
+</button></header><div class="container"><div class="title"><h1>📱 شحن الرصيد</h1><p>
+اختر شركة الاتصالات ثم أدخل رقم الهاتف ومبلغ الشحن
+</p></div><div class="networks"><div class="network"
+onclick="selectNetwork('zain',this)"><div class="network-icon">🔴</div><div class="network-name">
+زين
+</div></div><div class="network"
+onclick="selectNetwork('sudani',this)"><div class="network-icon">🟢</div><div class="network-name">
+سوداني
+</div></div><div class="network"
+onclick="selectNetwork('mtn',this)"><div class="network-icon">🔵</div><div class="network-name">
+MTN
+</div></div></div><div class="form-box"><label>
+شركة الاتصالات
+</label><input
+type="text"
+id="networkDisplay"
+placeholder="اختر الشركة أعلاه"
+readonly
+
+«»
+
+<label>
+📱 رقم الهاتف المراد شحنه
+</label><input
+type="tel"
+id="phoneNumber"
+placeholder="مثال: 0912345678"
+inputmode="numeric"
+maxlength="10"
+
+«»
+
+<label>
+💰 مبلغ الشحن
+</label><input
+type="number"
+id="amount"
+placeholder="أدخل مبلغ الشحن"
+min="1"
+step="1"
+oninput="calculateTotal()"
+
+«»
+
+<div class="summary"><div class="row"><span>
+مبلغ الشحن
+</span><strong id="baseAmount">
+0 ج.س
+</strong></div><div class="row"><span>
+الرسوم 5%
+</span><strong id="fee">
+0 ج.س
+</strong></div><div class="row total"><span>
+الإجمالي
+</span><strong id="total">
+0 ج.س
+</strong></div></div><button
+class="add-btn"
+onclick="addToCart()">
+
+🛒 إضافة إلى السلة
+
+</button><div
+id="message"
+class="message">
+</div></div></div><footer>© 2026 KATRO SHOP
+
+</footer><script>
+
+let selectedNetwork = "";
+
+const networkNames = {
+    zain: "زين",
+    sudani: "سوداني",
+    mtn: "MTN"
+};
+
+
+function selectNetwork(network, element){
+
+    selectedNetwork = network;
+
+    document.querySelectorAll(".network")
+    .forEach(item => {
+        item.classList.remove("active");
+    });
+
+    element.classList.add("active");
+
+    document.getElementById("networkDisplay").value =
+        networkNames[network];
+
+}
+
+
+function formatNumber(number){
+
+    return Number(number).toLocaleString("en-US");
+
+}
+
+
+function calculateTotal(){
+
+    const amount =
+        Number(document.getElementById("amount").value) || 0;
+
+    const fee =
+        amount * 0.05;
+
+    const total =
+        amount + fee;
+
+    document.getElementById("baseAmount").textContent =
+        formatNumber(amount) + " ج.س";
+
+    document.getElementById("fee").textContent =
+        formatNumber(fee) + " ج.س";
+
+    document.getElementById("total").textContent =
+        formatNumber(total) + " ج.س";
+
+}
+
+
+function showMessage(text,type){
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+    message.style.display = "block";
+
+}
+
+
+function addToCart(){
+
+    const phone =
+        document.getElementById("phoneNumber").value.trim();
+
+    const amount =
+        Number(document.getElementById("amount").value);
+
+    if(!selectedNetwork){
+
+        showMessage(
+            "اختر شركة الاتصالات أولاً",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!phone){
+
+        showMessage(
+            "أدخل رقم الهاتف المراد شحنه",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!/^\d{10}$/.test(phone)){
+
+        showMessage(
+            "أدخل رقم هاتف صحيح مكون من 10 أرقام",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!amount || amount <= 0){
+
+        showMessage(
+            "أدخل مبلغ الشحن",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const fee =
+        amount * 0.05;
+
+    const total =
+        amount + fee;
+
+
+    const product = {
+
+        id:
+            "mobile_" +
+            selectedNetwork +
+            "_" +
+            Date.now(),
+
+        game_key:
+            "mobile_topup",
+
+        name:
+            "شحن " +
+            networkNames[selectedNetwork],
+
+        description:
+            "شحن رصيد رقم " + phone,
+
+        price:
+            total,
+
+        quantity:
+            1,
+
+        image_url:
+            "",
+
+        active:
+            true,
+
+        mobile_topup:
+            true,
+
+        network:
+            selectedNetwork,
+
+        network_name:
+            networkNames[selectedNetwork],
+
+        phone:
+            phone,
+
+        recharge_amount:
+            amount,
+
+        fee:
+            fee,
+
+        total_price:
+            total
+
+    };
+
+
+    let cart = [];
+
+    try{
+
+        cart =
+            JSON.parse(
+                localStorage.getItem("katro_cart")
+            ) || [];
+
+    }catch(error){
+
+        cart = [];
+
+    }
+
+
+    cart.push(product);
+
+
+    localStorage.setItem(
+        "katro_cart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+
+    showMessage(
+        "تمت إضافة طلب الشحن إلى السلة ✓",
+        "success"
+    );
+
+
+    document.getElementById("phoneNumber").value = "";
+
+    document.getElementById("amount").value = "";
+
+    document.getElementById("networkDisplay").value = "";
+
+    document.querySelectorAll(".network")
+    .forEach(item => {
+        item.classList.remove("active");
+    });
+
+    selectedNetwork = "";
+
+    calculateTotal();
+
+}
+
+
+function updateCartCount(){
+
+    let cart = [];
+
+    try{
+
+        cart =
+            JSON.parse(
+                localStorage.getItem("katro_cart")
+            ) || [];
+
+    }catch(error){
+
+        cart = [];
+
+    }
+
+
+    let count = 0;
+
+    cart.forEach(item => {
+
+        count +=
+            Number(item.quantity) || 1;
+
+    });
+
+
+    document.getElementById("cartCount")
+    .textContent = count;
+
+}
+
+
+function goCart(){
+
+    /*
+      إذا كانت صفحة السلة لديك اسمها قيم.html
+      سيتم الانتقال إليها.
+    */
+
+    window.location.href =
+        "قيم.html";
+
+}
+
+
+updateCartCount();
+
+calculateTotal();
+
+</script></body></html>
