@@ -24,13 +24,16 @@ body{
     font-family:Arial,Tahoma,sans-serif;
     background:#f5f5fb;
     color:#222;
+    min-height:100vh;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
     background:linear-gradient(135deg,#5b22ff,#7a2cff);
-    color:white;
+    color:#fff;
     padding:15px;
     position:sticky;
     top:0;
@@ -39,11 +42,11 @@ header{
 }
 
 .header-top{
+    max-width:1100px;
+    margin:auto;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    max-width:1100px;
-    margin:auto;
 }
 
 .logo{
@@ -54,6 +57,8 @@ header{
 .header-icon{
     font-size:25px;
 }
+
+/* SEARCH */
 
 .search-box{
     max-width:1100px;
@@ -73,12 +78,14 @@ header{
 .search-icon{
     position:absolute;
     right:15px;
-    top:11px;
+    top:10px;
     color:#777;
     font-size:20px;
 }
 
-/* BANNER */
+/* =========================
+   BANNER
+========================= */
 
 .banner{
     max-width:1100px;
@@ -87,7 +94,7 @@ header{
     border-radius:18px;
     padding:25px 20px;
     background:linear-gradient(135deg,#111827,#222c48);
-    color:white;
+    color:#fff;
     overflow:hidden;
 }
 
@@ -101,12 +108,15 @@ header{
     line-height:1.8;
 }
 
-/* CONTENT */
+/* =========================
+   CONTAINER
+========================= */
 
 .container{
     width:94%;
     max-width:1100px;
     margin:auto;
+    padding-bottom:90px;
 }
 
 .section-title{
@@ -125,31 +135,34 @@ header{
     font-size:13px;
 }
 
-/* PRODUCTS */
+/* =========================
+   CATEGORIES
+========================= */
 
-.products{
+.categories{
     display:grid;
     grid-template-columns:
-        repeat(auto-fill,minmax(145px,1fr));
-    gap:13px;
+        repeat(auto-fill,minmax(150px,1fr));
+    gap:14px;
 }
 
-.product{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 2px 10px rgba(0,0,0,.07);
+.category{
+    background:#fff;
     border:1px solid #eee;
-    transition:.2s;
+    border-radius:16px;
+    overflow:hidden;
     cursor:pointer;
+    transition:.2s;
+    box-shadow:0 2px 10px rgba(0,0,0,.07);
 }
 
-.product:hover{
-    transform:translateY(-3px);
-    box-shadow:0 5px 16px rgba(0,0,0,.12);
+.category:hover{
+    transform:translateY(-4px);
+    box-shadow:0 7px 18px rgba(0,0,0,.13);
+    border-color:#7040ff;
 }
 
-.product-image{
+.category-image{
     height:135px;
     background:#eee;
     display:flex;
@@ -158,43 +171,50 @@ header{
     overflow:hidden;
 }
 
-.product-image img{
+.category-image img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-.no-image{
-    font-size:42px;
+.category-icon{
+    font-size:48px;
 }
 
-.product-info{
+.category-info{
     padding:12px;
+    text-align:center;
 }
 
-.product-info h3{
-    font-size:15px;
-    margin-bottom:7px;
-    line-height:1.5;
+.category-info h3{
+    font-size:16px;
+    margin-bottom:6px;
 }
 
-.product-price{
-    color:#5b22ff;
-    font-weight:bold;
-    font-size:15px;
-}
-
-.product-game{
-    color:#999;
+.category-info p{
+    color:#888;
     font-size:12px;
-    margin-top:5px;
 }
 
-/* LOADING */
+.category-button{
+    margin-top:9px;
+    width:100%;
+    border:none;
+    background:#5b22ff;
+    color:#fff;
+    padding:9px;
+    border-radius:9px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =========================
+   LOADING / ERROR
+========================= */
 
 .loading{
     text-align:center;
-    padding:40px 10px;
+    padding:45px 10px;
     color:#777;
 }
 
@@ -209,14 +229,16 @@ header{
 }
 
 .empty{
-    background:white;
+    background:#fff;
     border-radius:15px;
     padding:35px;
     text-align:center;
     color:#888;
 }
 
-/* BOTTOM NAV */
+/* =========================
+   BOTTOM NAV
+========================= */
 
 .bottom-nav{
     position:fixed;
@@ -224,7 +246,7 @@ header{
     left:0;
     right:0;
     height:65px;
-    background:white;
+    background:#fff;
     border-top:1px solid #ddd;
     display:flex;
     justify-content:space-around;
@@ -249,7 +271,9 @@ header{
     color:#5b22ff;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
     margin-top:35px;
@@ -264,17 +288,33 @@ footer strong{
     color:#fff;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:500px){
 
-    .products{
+    .categories{
         grid-template-columns:
             repeat(2,1fr);
+        gap:10px;
     }
 
-    .product-image{
-        height:125px;
+    .category-image{
+        height:120px;
+    }
+
+    .category-info{
+        padding:10px;
+    }
+
+    .category-info h3{
+        font-size:14px;
+    }
+
+    .category-button{
+        font-size:12px;
+        padding:8px;
     }
 
     .banner h1{
@@ -288,7 +328,6 @@ footer strong{
 </head>
 
 <body>
-
 
 <header>
 
@@ -328,8 +367,8 @@ autocomplete="off">
 </h1>
 
 <p>
-متجر كاترو لشحن الألعاب والخدمات الرقمية
-بسرعة وسهولة.
+اختر القسم الذي تريد الدخول إليه
+ثم اختر الخدمة أو الباقة المناسبة لك.
 </p>
 
 </section>
@@ -343,20 +382,20 @@ autocomplete="off">
 <div class="section-title">
 
 <h2>
-الخدمات والمنتجات
+الأقسام والخدمات
 </h2>
 
-<span id="productCount">
+<span id="categoryCount">
 جاري التحميل...
 </span>
 
 </div>
 
 
-<div id="productsContainer">
+<div id="categoriesContainer">
 
 <div class="loading">
-جاري تحميل المنتجات...
+جاري تحميل الأقسام...
 </div>
 
 </div>
@@ -435,12 +474,15 @@ class="nav-item">
 
 <script>
 
+/* =========================
+   SUPABASE
+========================= */
+
 const SUPABASE_URL =
 "https://uwmrzvsygeoequscpinx.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
-
+"sb_publishable_26b3KzpWkLqltiLTyTSpIg_gTgexDts";
 
 const supabaseClient =
 window.supabase.createClient(
@@ -449,100 +491,95 @@ window.supabase.createClient(
 );
 
 
-let allProducts = [];
-
-
-/* أسماء الألعاب والخدمات */
+/* =========================
+   أسماء الأقسام
+========================= */
 
 const gameNames = {
 
-    freefire:
-    "Free Fire",
-
-    pubg:
-    "PUBG Mobile",
-
-    codm:
-    "Call of Duty Mobile",
-
-    efootball:
-    "eFootball",
-
-    jawaker:
-    "Jawaker",
-
-    mobilelegends:
-    "Mobile Legends",
-
-    yallaludo:
-    "Yalla Ludo",
-
-    tiktok:
-    "TikTok",
-
-    googleplay:
-    "Google Play",
-
-    itunes:
-    "iTunes",
-
-    playstation:
-    "PlayStation",
-
-    xbox:
-    "Xbox",
-
-    razergold:
-    "Razer Gold",
-
-    netflix:
-    "Netflix",
-
-    visa:
-    "Visa",
-
-    mastercard:
-    "Mastercard",
-
-    zain:
-    "Zain",
-
-    mtn:
-    "MTN",
-
-    sudani:
-    "Sudani",
-
-    cashi:
-    "Cashi",
-
-    starlink:
-    "Starlink",
-
-    katro:
-    "KATRO CARD",
-
-    pyypl:
-    "Pyypl"
+    freefire:"Free Fire",
+    pubg:"PUBG Mobile",
+    codm:"Call of Duty Mobile",
+    efootball:"eFootball",
+    jawaker:"Jawaker",
+    mobilelegends:"Mobile Legends",
+    yallaludo:"Yalla Ludo",
+    tiktok:"TikTok",
+    googleplay:"Google Play",
+    itunes:"iTunes",
+    playstation:"PlayStation",
+    xbox:"Xbox",
+    razergold:"Razer Gold",
+    netflix:"Netflix",
+    visa:"Visa",
+    mastercard:"Mastercard",
+    zain:"Zain",
+    mtn:"MTN",
+    sudani:"Sudani",
+    cashi:"Cashi",
+    starlink:"Starlink",
+    katro:"KATRO CARD",
+    katrocard:"KATRO CARD",
+    pyypl:"Pyypl"
 
 };
 
 
-/* تحميل المنتجات */
+/* =========================
+   أيقونات الأقسام
+========================= */
+
+const gameIcons = {
+
+    freefire:"🔥",
+    pubg:"🎯",
+    codm:"🎮",
+    efootball:"⚽",
+    jawaker:"🃏",
+    mobilelegends:"⚔️",
+    yallaludo:"🎲",
+    tiktok:"🎵",
+    googleplay:"▶️",
+    itunes:"🎵",
+    playstation:"🎮",
+    xbox:"🎮",
+    razergold:"🟢",
+    netflix:"🎬",
+    visa:"💳",
+    mastercard:"💳",
+    zain:"📱",
+    mtn:"📱",
+    sudani:"📱",
+    cashi:"💰",
+    starlink:"🛰️",
+    katro:"💳",
+    katrocard:"💳",
+    pyypl:"💳"
+
+};
+
+
+let allProducts = [];
+
+let categories = [];
+
+
+/* =========================
+   تحميل المنتجات
+========================= */
 
 async function loadProducts(){
 
     const container =
-    document.getElementById(
-        "productsContainer"
-    );
+        document.getElementById(
+            "categoriesContainer"
+        );
 
 
-    container.innerHTML =
-    `
-    <div class="loading">
-        جاري تحميل المنتجات...
-    </div>
+    container.innerHTML = `
+        <div class="loading">
+            جاري تحميل الأقسام...
+        </div>
     `;
 
 
@@ -569,24 +606,30 @@ async function loadProducts(){
 
     if(error){
 
-        console.error(error);
-
-        document.getElementById(
-            "errorBox"
-        ).textContent =
-        "حدث خطأ أثناء تحميل المنتجات.";
-
-        document.getElementById(
-            "errorBox"
-        ).style.display =
-        "block";
+        console.error(
+            "Products Error:",
+            error
+        );
 
 
-        container.innerHTML =
-        `
-        <div class="empty">
-            تعذر تحميل المنتجات حالياً.
-        </div>
+        const errorBox =
+            document.getElementById(
+                "errorBox"
+            );
+
+
+        errorBox.textContent =
+            "حدث خطأ أثناء تحميل الخدمات.";
+
+
+        errorBox.style.display =
+            "block";
+
+
+        container.innerHTML = `
+            <div class="empty">
+                تعذر تحميل الخدمات حالياً.
+            </div>
         `;
 
         return;
@@ -595,40 +638,113 @@ async function loadProducts(){
 
 
     allProducts =
-    data || [];
+        data || [];
+
+
+    buildCategories();
+
+}
+
+
+/* =========================
+   إنشاء الأقسام
+========================= */
+
+function buildCategories(){
+
+    const map = {};
+
+
+    allProducts.forEach(product => {
+
+        const key =
+            String(
+                product.game_key || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+        if(!key){
+            return;
+        }
+
+
+        if(!map[key]){
+
+            map[key] = {
+
+                game_key:key,
+
+                name:
+                    gameNames[key]
+                    ||
+                    key,
+
+                image_url:
+                    product.image_url
+                    ||
+                    "",
+
+                count:1
+
+            };
+
+        }else{
+
+            map[key].count++;
+
+            if(
+                !map[key].image_url &&
+                product.image_url
+            ){
+
+                map[key].image_url =
+                    product.image_url;
+
+            }
+
+        }
+
+    });
+
+
+    categories =
+        Object.values(map);
 
 
     document.getElementById(
-        "productCount"
+        "categoryCount"
     ).textContent =
-    allProducts.length +
-    " منتج";
+        categories.length +
+        " قسم";
 
 
-    renderProducts(
-        allProducts
+    renderCategories(
+        categories
     );
 
 }
 
 
-/* عرض المنتجات */
+/* =========================
+   عرض الأقسام
+========================= */
 
-function renderProducts(products){
+function renderCategories(list){
 
     const container =
-    document.getElementById(
-        "productsContainer"
-    );
+        document.getElementById(
+            "categoriesContainer"
+        );
 
 
-    if(!products.length){
+    if(!list.length){
 
-        container.innerHTML =
-        `
-        <div class="empty">
-            لا توجد منتجات مطابقة للبحث.
-        </div>
+        container.innerHTML = `
+            <div class="empty">
+                لا توجد خدمات متاحة حالياً.
+            </div>
         `;
 
         return;
@@ -636,91 +752,152 @@ function renderProducts(products){
     }
 
 
-    container.innerHTML =
-    `
-    <div class="products">
+    container.innerHTML = `
 
-        ${products.map(product => {
+        <div class="categories">
 
-            const gameName =
-            gameNames[product.game_key]
-            ||
-            product.game_key
-            ||
-            "خدمة";
+            ${list.map(category => {
+
+                const key =
+                    category.game_key;
 
 
-            const image =
-            product.image_url
-            ?
-            `
-            <img
-                src="${escapeHtml(product.image_url)}"
-                alt="${escapeHtml(product.name)}"
-                loading="lazy"
-                onerror="this.style.display='none';this.parentElement.innerHTML='<span class=&quot;no-image&quot;>🎮</span>';">
-            `
-            :
-            `
-            <span class="no-image">
-                🎮
-            </span>
-            `;
+                const image =
+                    category.image_url;
 
 
-            return `
+                const imageHTML =
+                    image
+                    ?
 
-            <div
-                class="product"
-                onclick="openProduct('${escapeJs(product.game_key)}')">
+                    `
+                    <img
+                        src="${escapeHtml(image)}"
+                        alt="${escapeHtml(category.name)}"
+                        loading="lazy"
+                        onerror="
+                            this.style.display='none';
+                            this.parentElement
+                                .querySelector('.category-icon')
+                                .style.display='block';
+                        ">
+                    `
 
-                <div class="product-image">
-                    ${image}
-                </div>
+                    :
 
-                <div class="product-info">
+                    "";
 
-                    <h3>
-                        ${escapeHtml(product.name)}
-                    </h3>
 
-                    <div class="product-price">
-                        ${formatPrice(product.price)}
+                const icon =
+                    gameIcons[key]
+                    ||
+                    "🎮";
+
+
+                return `
+
+                    <div
+                        class="category"
+                        onclick="openCategory('${escapeJs(key)}')">
+
+                        <div class="category-image">
+
+                            ${imageHTML}
+
+                            <span
+                                class="category-icon"
+                                style="
+                                    ${image
+                                        ? "display:none;"
+                                        : "display:block;"
+                                    }
+                                ">
+
+                                ${icon}
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="category-info">
+
+                            <h3>
+                                ${escapeHtml(
+                                    category.name
+                                )}
+                            </h3>
+
+
+                            <p>
+                                ${category.count}
+                                خدمة متاحة
+                            </p>
+
+
+                            <button
+                                class="category-button"
+                                type="button">
+
+                                عرض الخدمات
+
+                            </button>
+
+                        </div>
+
                     </div>
 
-                    <div class="product-game">
-                        ${escapeHtml(gameName)}
-                    </div>
+                `;
 
-                </div>
+            }).join("")}
 
-            </div>
+        </div>
 
-            `;
-
-        }).join("")}
-
-    </div>
     `;
 
 }
 
 
-/* فتح صفحة اللعبة */
+/* =========================
+   فتح القسم
+========================= */
 
-function openProduct(gameKey){
+function openCategory(gameKey){
 
-    if(!gameKey) return;
+    if(!gameKey){
+        return;
+    }
+
+
+    /*
+       شحن الهاتف له صفحة مستقلة
+    */
+
+    if(
+        gameKey === "zain" ||
+        gameKey === "mtn" ||
+        gameKey === "sudani"
+    ){
+
+        window.location.href =
+            "mobile-topup.html?network=" +
+            encodeURIComponent(gameKey);
+
+        return;
+
+    }
 
 
     window.location.href =
-    "game.html?g=" +
-    encodeURIComponent(gameKey);
+        "game.html?g=" +
+        encodeURIComponent(gameKey);
 
 }
 
 
-/* البحث */
+/* =========================
+   البحث عن الأقسام
+========================= */
 
 document.getElementById(
     "searchInput"
@@ -729,15 +906,15 @@ document.getElementById(
     function(){
 
         const search =
-        this.value
-            .trim()
-            .toLowerCase();
+            this.value
+                .trim()
+                .toLowerCase();
 
 
         if(!search){
 
-            renderProducts(
-                allProducts
+            renderCategories(
+                categories
             );
 
             return;
@@ -746,38 +923,34 @@ document.getElementById(
 
 
         const filtered =
-        allProducts.filter(product => {
+            categories.filter(
+                category => {
 
-            const name =
-            String(
-                product.name || ""
-            ).toLowerCase();
-
-
-            const description =
-            String(
-                product.description || ""
-            ).toLowerCase();
+                    const name =
+                        String(
+                            category.name || ""
+                        )
+                        .toLowerCase();
 
 
-            const game =
-            String(
-                product.game_key || ""
-            ).toLowerCase();
+                    const key =
+                        String(
+                            category.game_key || ""
+                        )
+                        .toLowerCase();
 
 
-            return (
-                name.includes(search)
-                ||
-                description.includes(search)
-                ||
-                game.includes(search)
+                    return (
+                        name.includes(search)
+                        ||
+                        key.includes(search)
+                    );
+
+                }
             );
 
-        });
 
-
-        renderProducts(
+        renderCategories(
             filtered
         );
 
@@ -785,31 +958,9 @@ document.getElementById(
 );
 
 
-/* تنسيق السعر */
-
-function formatPrice(price){
-
-    const number =
-    Number(price);
-
-
-    if(
-        Number.isNaN(number)
-    ){
-
-        return "السعر غير محدد";
-
-    }
-
-
-    return number.toLocaleString(
-        "en-US"
-    ) + " ج.س";
-
-}
-
-
-/* حماية النص */
+/* =========================
+   حماية النص
+========================= */
 
 function escapeHtml(value){
 
@@ -824,6 +975,7 @@ function escapeHtml(value){
 
 
     return String(value)
+
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -832,8 +984,6 @@ function escapeHtml(value){
 
 }
 
-
-/* حماية القيمة داخل JavaScript */
 
 function escapeJs(value){
 
@@ -848,6 +998,7 @@ function escapeJs(value){
 
 
     return String(value)
+
         .replace(/\\/g,"\\\\")
         .replace(/'/g,"\\'")
         .replace(/\r/g,"\\r")
@@ -856,7 +1007,9 @@ function escapeJs(value){
 }
 
 
-/* تشغيل الصفحة */
+/* =========================
+   التشغيل
+========================= */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -867,4 +1020,4 @@ document.addEventListener(
 
 </body>
 
-  </html>
+    </html>
