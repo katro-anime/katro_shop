@@ -1,7 +1,18 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport"
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>KATRO SHOP</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
+<title>OMER SHOP</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
 
 *{
     box-sizing:border-box;
@@ -183,6 +194,8 @@ header{
     justify-content:center;
 
     margin-bottom:12px;
+
+    overflow:hidden;
 }
 
 .service-icon img{
@@ -193,11 +206,15 @@ header{
     object-fit:cover;
 
     border-radius:18px;
+
+    display:block;
 }
 
 .service-emoji{
     font-size:40px;
 }
+
+/* اسم الخدمة */
 
 .service-name{
 
@@ -384,74 +401,160 @@ header{
 
 }
 
-</style></head><body><header><div class="header-top"><div class="logo">
-KATRO SHOP
-</div><div class="header-buttons"><button
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<div class="header-top">
+
+<div class="logo">
+OMER SHOP
+</div>
+
+<div class="header-buttons">
+
+<button
 class="header-btn"
 onclick="goWallet()">
 
 💰 المحفظة
 
-</button><button
+</button>
+
+<button
 class="header-btn"
 onclick="goLogin()">
 
 👤 الحساب
 
-</button></div></div><div class="search-box"><input
+</button>
+
+</div>
+
+</div>
+
+
+<div class="search-box">
+
+<input
 id="searchInput"
 type="text"
 placeholder="🔍 ابحث عن خدمة..."
 oninput="searchServices()">
 
-</div></header><div class="banner"><h1>
-مرحباً بك في KATRO SHOP 🛒
-</h1><p>
-اختر الخدمة التي تريدها لعرض جميع الباقات والمنتجات الخاصة بها.
-</p></div><div class="section-title"><h2>
-الخدمات
-</h2><span id="serviceCount">
-جاري التحميل...
-</span></div><div
-id="servicesContainer"
-class="services"></div><div
-id="loading"
-class="loading">جاري تحميل الخدمات...
+</div>
 
-</div><div
-id="errorContainer"></div><nav class="bottom-nav"><a
+</header>
+
+
+<div class="banner">
+
+<h1>
+مرحباً بك في KATRO SHOP 🛒
+</h1>
+
+<p>
+اختر الخدمة التي تريدها لعرض جميع الباقات والمنتجات الخاصة بها.
+</p>
+
+</div>
+
+
+<div class="section-title">
+
+<h2>
+الخدمات
+</h2>
+
+<span id="serviceCount">
+جاري التحميل...
+</span>
+
+</div>
+
+
+<div
+id="servicesContainer"
+class="services">
+</div>
+
+
+<div
+id="loading"
+class="loading">
+
+جاري تحميل الخدمات...
+
+</div>
+
+
+<div
+id="errorContainer">
+</div>
+
+
+<nav class="bottom-nav">
+
+<a
 href="index.html"
 class="nav-item active">
 
 <div class="nav-icon">
 🏠
-</div>الرئيسية
+</div>
 
-</a><a
+الرئيسية
+
+</a>
+
+
+<a
 href="wallet.html"
 class="nav-item">
 
 <div class="nav-icon">
 💰
-</div>المحفظة
+</div>
 
-</a><a
+المحفظة
+
+</a>
+
+
+<a
 href="wallet-topup.html"
 class="nav-item">
 
 <div class="nav-icon">
 ➕
-</div>شحن المحفظة
+</div>
 
-</a><a
+شحن المحفظة
+
+</a>
+
+
+<a
 href="login.html"
 class="nav-item">
 
 <div class="nav-icon">
 👤
-</div>الحساب
+</div>
 
-</a></nav><script>
+الحساب
+
+</a>
+
+</nav>
+
+
+<script>
 
 /* ==========================
    SUPABASE
@@ -585,6 +688,26 @@ const serviceIcons = {
 
 
 /* ==========================
+   SERVICE IMAGES
+========================== */
+
+/*
+   هنا نضع صور أغلفة الخدمات.
+
+   PUBG موجودة في نفس مكان index.html
+   لذلك نكتب فقط:
+
+   pubg.jpg
+*/
+
+const serviceImages = {
+
+    pubg:"pubg.jpg"
+
+};
+
+
+/* ==========================
    VARIABLES
 ========================== */
 
@@ -629,12 +752,6 @@ async function loadServices(){
 
 
     try{
-
-        /*
-         * نجلب game_key فقط.
-         * لا نحتاج باقي بيانات المنتجات
-         * في الصفحة الرئيسية.
-         */
 
         const result =
             await Promise.race([
@@ -863,43 +980,88 @@ function renderServices(
 
 
     container.innerHTML =
-        services.map(service => `
+        services.map(service => {
 
-            <div
-                class="service-card"
-                onclick="openService('${escapeJs(service.key)}')"
-            >
+            /*
+             * نبحث أولاً عن صورة الخدمة.
+             *
+             * إذا وجدنا صورة:
+             * نعرضها.
+             *
+             * إذا لم نجد:
+             * نعرض الإيموجي القديم.
+             */
 
-                <div class="service-icon">
+            const image =
+                serviceImages[
+                    service.key
+                ];
 
-                    <span class="service-emoji">
 
-                        ${service.icon}
+            const iconHTML =
+                image
 
-                    </span>
+                ?
+
+                `
+                <img
+                    src="${escapeHtml(image)}"
+                    alt="${escapeHtml(service.name)}"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"
+                >
+
+                <span
+                    class="service-emoji"
+                    style="display:none;"
+                >
+                    ${service.icon}
+                </span>
+                `
+
+                :
+
+                `
+                <span class="service-emoji">
+                    ${service.icon}
+                </span>
+                `;
+
+
+            return `
+
+                <div
+                    class="service-card"
+                    onclick="openService('${escapeJs(service.key)}')"
+                >
+
+                    <div class="service-icon">
+
+                        ${iconHTML}
+
+                    </div>
+
+
+                    <div class="service-name">
+
+                        ${escapeHtml(
+                            service.name
+                        )}
+
+                    </div>
+
+
+                    <div class="service-count">
+
+                        ${service.count}
+                        باقة متوفرة
+
+                    </div>
 
                 </div>
 
+            `;
 
-                <div class="service-name">
-
-                    ${escapeHtml(
-                        service.name
-                    )}
-
-                </div>
-
-
-                <div class="service-count">
-
-                    ${service.count}
-                    باقة متوفرة
-
-                </div>
-
-            </div>
-
-        `).join("");
+        }).join("");
 
 }
 
@@ -1058,4 +1220,8 @@ function goLogin(){
 
 loadServices();
 
-</script></body></html>
+</script>
+
+</body>
+
+</html>
