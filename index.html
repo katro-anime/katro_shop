@@ -8,7 +8,7 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>OMER SHOP</title>
+<title>KATRO SHOP</title>
 
 <style>
 
@@ -19,589 +19,355 @@ content="width=device-width, initial-scale=1.0">
 }
 
 body{
-    font-family:
-    Tahoma,
-    Arial,
-    sans-serif;
-
+    font-family:Tahoma,Arial,sans-serif;
     background:#f5f7fa;
     color:#222;
-
     min-height:100vh;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 header{
-
-    background:
-    linear-gradient(
-        135deg,
-        #111827,
-        #2563eb
-    );
-
+    background:linear-gradient(135deg,#111827,#2563eb);
     color:white;
-
-    padding:
-    22px
-    18px
-    25px;
-
-    border-radius:
-    0 0 25px 25px;
-
-    box-shadow:
-    0 4px 15px
-    rgba(0,0,0,.12);
+    padding:22px 18px 25px;
+    border-radius:0 0 25px 25px;
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
 }
 
 .header-content{
-
     max-width:1100px;
-
     margin:auto;
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:15px;
 }
 
 .logo{
-
     font-size:25px;
-
     font-weight:bold;
-
     letter-spacing:1px;
 }
 
 .logo span{
-
     color:#60a5fa;
 }
 
 .login-btn{
-
     text-decoration:none;
-
     color:white;
-
-    background:
-    rgba(255,255,255,.15);
-
-    padding:
-    10px 16px;
-
+    background:rgba(255,255,255,.15);
+    padding:10px 16px;
     border-radius:12px;
-
     font-size:14px;
-
-    border:
-    1px solid
-    rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.2);
 }
 
-/* ================= SEARCH ================= */
+/* SEARCH */
 
 .search-box{
-
     max-width:1100px;
-
-    margin:
-    18px auto
-    0;
-
+    margin:18px auto 0;
     position:relative;
 }
 
 .search-box input{
-
     width:100%;
-
     border:none;
-
     outline:none;
-
     background:white;
-
-    padding:
-    15px
-    18px;
-
+    padding:15px 18px;
     border-radius:15px;
-
     font-size:15px;
-
-    box-shadow:
-    0 3px 12px
-    rgba(0,0,0,.08);
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
 .search-box input:focus{
-
-    box-shadow:
-    0 0 0 2px
-    #2563eb;
+    box-shadow:0 0 0 2px #2563eb;
 }
 
-/* ================= MAIN ================= */
+/* MAIN */
 
 main{
-
     max-width:1100px;
-
     margin:auto;
-
-    padding:
-    22px
-    15px
-    90px;
+    padding:22px 15px 90px;
 }
 
-/* ================= BANNER ================= */
+/* BANNER */
 
 .banner{
-
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #1d4ed8
-    );
-
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
     color:white;
-
-    padding:
-    22px;
-
+    padding:22px;
     border-radius:20px;
-
     margin-bottom:25px;
-
-    box-shadow:
-    0 5px 15px
-    rgba(37,99,235,.2);
+    box-shadow:0 5px 15px rgba(37,99,235,.2);
 }
 
 .banner h1{
-
     font-size:23px;
-
     margin-bottom:8px;
 }
 
 .banner p{
-
     font-size:14px;
-
     opacity:.92;
-
     line-height:1.8;
 }
 
-/* ================= SECTION ================= */
+/* SECTION */
 
 .section-title{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     margin-bottom:15px;
 }
 
 .section-title h2{
-
     font-size:20px;
 }
 
 .section-title span{
-
     color:#777;
-
     font-size:13px;
 }
 
-/* ================= SERVICES ================= */
+/* SERVICES */
 
 .services-grid{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(
+    grid-template-columns:repeat(
         auto-fill,
         minmax(145px,1fr)
     );
-
     gap:14px;
 }
 
-/* ================= SERVICE CARD ================= */
+/* CARD */
 
 .service-card{
-
     background:white;
-
     border-radius:18px;
-
     padding:15px;
-
     min-height:175px;
-
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     justify-content:center;
-
     text-align:center;
-
     cursor:pointer;
-
-    border:
-    1px solid
-    #e5e7eb;
-
-    box-shadow:
-    0 3px 12px
-    rgba(0,0,0,.06);
-
-    transition:
-    .2s;
+    border:1px solid #e5e7eb;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+    transition:.2s;
 }
 
 .service-card:hover{
-
-    transform:
-    translateY(-4px);
-
-    box-shadow:
-    0 7px 20px
-    rgba(0,0,0,.12);
+    transform:translateY(-4px);
+    box-shadow:0 7px 20px rgba(0,0,0,.12);
 }
 
 .service-card:active{
-
-    transform:
-    scale(.97);
+    transform:scale(.97);
 }
 
-/* ================= IMAGE ================= */
+/* IMAGE */
 
 .service-image{
-
     width:85px;
-
     height:85px;
-
     border-radius:18px;
-
     object-fit:cover;
-
     display:block;
-
     margin-bottom:12px;
-
-    border:
-    1px solid
-    #e5e7eb;
+    border:1px solid #e5e7eb;
 }
 
-/* ================= EMOJI ================= */
+/* EMOJI */
 
 .service-emoji{
-
     width:85px;
-
     height:85px;
-
     border-radius:18px;
-
     background:#f1f5f9;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     font-size:42px;
-
     margin-bottom:12px;
 }
 
 .service-card h3{
-
     font-size:15px;
-
     margin-bottom:6px;
-
     color:#111827;
 }
 
 .service-card p{
-
     font-size:12px;
-
     color:#777;
 }
 
-/* ================= LOADING ================= */
+/* LOADING */
 
 .loading{
-
     background:white;
-
     border-radius:18px;
-
     padding:35px;
-
     text-align:center;
-
     color:#777;
-
-    grid-column:
-    1 / -1;
+    grid-column:1 / -1;
 }
 
-/* ================= ERROR ================= */
+/* ERROR */
 
 .error{
-
     background:#fff1f2;
-
     color:#be123c;
-
     padding:20px;
-
     border-radius:15px;
-
     text-align:center;
-
-    grid-column:
-    1 / -1;
-
+    grid-column:1 / -1;
     line-height:1.8;
 }
 
 .debug-info{
-
     margin-top:8px;
-
     font-size:12px;
-
     color:#777;
-
     direction:ltr;
-
     word-break:break-word;
 }
 
-/* ================= EMPTY ================= */
+/* EMPTY */
 
 .empty{
-
     background:white;
-
     padding:30px;
-
     border-radius:18px;
-
     text-align:center;
-
     color:#777;
-
-    grid-column:
-    1 / -1;
+    grid-column:1 / -1;
 }
 
-/* ================= BOTTOM NAV ================= */
+/* BOTTOM NAV */
 
 .bottom-nav{
-
     position:fixed;
-
     bottom:0;
-
     right:0;
-
     left:0;
-
     height:65px;
-
     background:white;
-
-    border-top:
-    1px solid
-    #e5e7eb;
-
+    border-top:1px solid #e5e7eb;
     display:flex;
-
     justify-content:center;
-
     z-index:1000;
-
-    box-shadow:
-    0 -3px 12px
-    rgba(0,0,0,.08);
+    box-shadow:0 -3px 12px rgba(0,0,0,.08);
 }
 
 .bottom-nav-inner{
-
     width:100%;
-
     max-width:600px;
-
     display:flex;
-
-    justify-content:
-    space-around;
-
+    justify-content:space-around;
     align-items:center;
 }
 
 .nav-item{
-
     text-decoration:none;
-
     color:#777;
-
     font-size:12px;
-
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
-
     gap:4px;
-
     padding:6px 15px;
 }
 
 .nav-item .icon{
-
     font-size:21px;
 }
 
 .nav-item.active{
-
     color:#2563eb;
-
     font-weight:bold;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media(max-width:600px){
 
     header{
-
-        padding:
-        18px
-        14px
-        22px;
+        padding:18px 14px 22px;
     }
 
     .logo{
-
         font-size:22px;
     }
 
     .login-btn{
-
-        padding:
-        8px 12px;
-
+        padding:8px 12px;
         font-size:13px;
     }
 
     main{
-
-        padding:
-        18px
-        12px
-        85px;
+        padding:18px 12px 85px;
     }
 
     .banner h1{
-
         font-size:20px;
     }
 
     .services-grid{
-
-        grid-template-columns:
-        repeat(2,1fr);
-
+        grid-template-columns:repeat(2,1fr);
         gap:11px;
     }
 
     .service-card{
-
         min-height:165px;
-
         padding:12px;
     }
 
     .service-image,
     .service-emoji{
-
         width:75px;
-
         height:75px;
     }
 
     .service-emoji{
-
         font-size:36px;
     }
-
 }
-
-/* ================= VERY SMALL ================= */
 
 @media(max-width:350px){
 
     .services-grid{
-
-        grid-template-columns:
-        repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
     .service-card h3{
-
         font-size:13px;
     }
-
 }
 
 </style>
 
 </head>
 
-
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 
 <header>
 
     <div class="header-content">
 
         <div class="logo">
-            OMER <span>SHOP</span>
+            KATRO <span>SHOP</span>
         </div>
 
         <a
@@ -626,16 +392,14 @@ main{
 </header>
 
 
-
-<!-- ================= MAIN ================= -->
+<!-- MAIN -->
 
 <main>
-
 
     <div class="banner">
 
         <h1>
-            مرحباً بك في OMER SHOP
+            مرحباً بك في KATRO SHOP
         </h1>
 
         <p>
@@ -643,7 +407,6 @@ main{
         </p>
 
     </div>
-
 
 
     <div class="section-title">
@@ -659,7 +422,6 @@ main{
     </div>
 
 
-
     <div
         id="services"
         class="services-grid">
@@ -670,12 +432,10 @@ main{
 
     </div>
 
-
 </main>
 
 
-
-<!-- ================= BOTTOM NAV ================= -->
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
@@ -724,19 +484,13 @@ main{
 </nav>
 
 
+<!-- SUPABASE -->
 
-<!-- ================= SUPABASE ================= -->
-
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-/* ==========================================
-   SUPABASE
-========================================== */
+/* SUPABASE */
 
 const SUPABASE_URL =
 "https://uwmrzvsygeoequscpinx.supabase.co";
@@ -751,9 +505,7 @@ window.supabase.createClient(
 );
 
 
-/* ==========================================
-   ELEMENTS
-========================================== */
+/* ELEMENTS */
 
 const servicesBox =
 document.getElementById("services");
@@ -765,90 +517,62 @@ const servicesCount =
 document.getElementById("servicesCount");
 
 
-/* ==========================================
-   SERVICE NAMES
-========================================== */
+/* SERVICE NAMES */
 
 const serviceNames = {
 
-    freefire:
-    "Free Fire",
+    freefire:"Free Fire",
 
-    pubg:
-    "PUBG Mobile",
+    pubg:"PUBG Mobile",
 
-    codm:
-    "Call of Duty Mobile",
+    codm:"Call of Duty Mobile",
 
-    efootball:
-    "eFootball",
+    efootball:"eFootball",
 
-    jawaker:
-    "جواكر",
+    jawaker:"جواكر",
 
-    mobilelegends:
-    "Mobile Legends",
+    mobilelegends:"Mobile Legends",
 
-    yallaludo:
-    "Yalla Ludo",
+    yallaludo:"Yalla Ludo",
 
-    tiktok:
-    "TikTok",
+    tiktok:"TikTok",
 
-    googleplay:
-    "Google Play",
+    googleplay:"Google Play",
 
-    itunes:
-    "iTunes",
+    itunes:"iTunes",
 
-    playstation:
-    "PlayStation",
+    playstation:"PlayStation",
 
-    xbox:
-    "Xbox",
+    xbox:"Xbox",
 
-    razergold:
-    "Razer Gold",
+    razergold:"Razer Gold",
 
-    netflix:
-    "Netflix",
+    netflix:"Netflix",
 
-    visa:
-    "Visa",
+    visa:"Visa",
 
-    mastercard:
-    "Mastercard",
+    mastercard:"Mastercard",
 
-    zain:
-    "زين",
+    zain:"زين",
 
-    mtn:
-    "MTN",
+    mtn:"MTN",
 
-    sudani:
-    "سوداني",
+    sudani:"سوداني",
 
-    cashi:
-    "Cashi",
+    cashi:"Cashi",
 
-    starlink:
-    "Starlink",
+    starlink:"Starlink",
 
-    katro:
-    "KATRO",
+    katro:"KATRO",
 
-    katrocard:
-    "KATRO Card",
+    katrocard:"KATRO Card",
 
-    pyypl:
-    "Pyypl"
+    pyypl:"Pyypl"
 
 };
 
 
-/* ==========================================
-   SERVICE ICONS
-========================================== */
+/* SERVICE ICONS */
 
 const serviceIcons = {
 
@@ -903,30 +627,28 @@ const serviceIcons = {
 };
 
 
-/* ==========================================
-   الصور الأربعة فقط
-========================================== */
+/* الصور الموجودة فعلياً */
 
 const serviceImages = {
 
-    freefire:
-    "freefire.jpg",
+    freefire:"freefire.jpg",
 
-    pubg:
-    "pubg.jpg",
+    pubg:"pubg.jpg",
 
-    tiktok:
-    "tiktok.jpg",
+    codm:"collofduty.jpg",
 
-    netflix:
-    "netflix.jpg"
+    efootball:"efootball.jpg",
+
+    tiktok:"tiktok.jpg",
+
+    netflix:"netflix.jpg",
+
+    xbox:"xbox.jpg"
 
 };
 
 
-/* ==========================================
-   ESCAPE HTML
-========================================== */
+/* ESCAPE HTML */
 
 function escapeHtml(value){
 
@@ -940,16 +662,12 @@ function escapeHtml(value){
 }
 
 
-/* ==========================================
-   SERVICES DATA
-========================================== */
+/* ALL SERVICES */
 
 let allServices = [];
 
 
-/* ==========================================
-   LOAD SERVICES
-========================================== */
+/* LOAD SERVICES */
 
 async function loadServices(){
 
@@ -959,7 +677,6 @@ async function loadServices(){
         </div>
     `;
 
-
     try{
 
         const {
@@ -967,17 +684,9 @@ async function loadServices(){
             error
         } =
         await supabaseClient
-
-            .from("products")
-
-            .select(
-                "game_key,active"
-            )
-
-            .eq(
-                "active",
-                true
-            );
+        .from("products")
+        .select("game_key,active")
+        .eq("active",true);
 
 
         if(error){
@@ -1013,9 +722,7 @@ async function loadServices(){
 
             servicesBox.innerHTML = `
                 <div class="empty">
-
                     لا توجد خدمات متاحة حالياً.
-
                 </div>
             `;
 
@@ -1025,10 +732,6 @@ async function loadServices(){
             return;
         }
 
-
-        /* ==================================
-           تجميع الأقسام
-        ================================== */
 
         const serviceMap = {};
 
@@ -1051,8 +754,11 @@ async function loadServices(){
             if(!serviceMap[key]){
 
                 serviceMap[key] = {
+
                     key:key,
+
                     count:0
+
                 };
 
             }
@@ -1067,13 +773,9 @@ async function loadServices(){
             Object.values(serviceMap);
 
 
-        /* ترتيب الأقسام */
-
         allServices.sort(
             (a,b) =>
-            a.key.localeCompare(
-                b.key
-            )
+            a.key.localeCompare(b.key)
         );
 
 
@@ -1085,9 +787,7 @@ async function loadServices(){
 
     catch(error){
 
-        console.error(
-            error
-        );
+        console.error(error);
 
         servicesBox.innerHTML = `
             <div class="error">
@@ -1112,9 +812,7 @@ async function loadServices(){
 }
 
 
-/* ==========================================
-   RENDER SERVICES
-========================================== */
+/* RENDER SERVICES */
 
 function renderServices(
     services
@@ -1125,9 +823,7 @@ function renderServices(
 
         servicesBox.innerHTML = `
             <div class="empty">
-
                 لا توجد نتائج.
-
             </div>
         `;
 
@@ -1139,8 +835,7 @@ function renderServices(
 
 
     servicesCount.textContent =
-        services.length +
-        " خدمة";
+        services.length + " خدمة";
 
 
     servicesBox.innerHTML =
@@ -1169,8 +864,6 @@ function renderServices(
 
                 let visual;
 
-
-                /* الصور الأربعة فقط */
 
                 if(image){
 
@@ -1248,9 +941,7 @@ function renderServices(
 }
 
 
-/* ==========================================
-   OPEN SERVICE
-========================================== */
+/* OPEN SERVICE */
 
 function openService(
     gameKey
@@ -1270,9 +961,7 @@ function openService(
 }
 
 
-/* ==========================================
-   SEARCH
-========================================== */
+/* SEARCH */
 
 searchInput.addEventListener(
     "input",
@@ -1334,15 +1023,12 @@ searchInput.addEventListener(
 );
 
 
-/* ==========================================
-   START
-========================================== */
+/* START */
 
 loadServices();
 
 </script>
 
-
 </body>
 
-                </html>
+    </html>
