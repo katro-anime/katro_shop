@@ -8,7 +8,7 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>OMER SHOP</title>
+<title>KATRO SHOP</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1104,12 +1104,6 @@ async function loadProducts(){
     `;
 
 
-    /*
-       نستخدم ilike حتى يعمل القسم
-       سواء كان game_key مكتوباً
-       بحروف كبيرة أو صغيرة.
-    */
-
     const {
         data,
         error
@@ -1196,6 +1190,7 @@ async function loadProducts(){
 
 /* =========================
    RENDER PRODUCTS
+   الأغلفة الجديدة
 ========================= */
 
 function renderProducts(products){
@@ -1211,18 +1206,121 @@ function renderProducts(products){
 
     products.forEach(product => {
 
-        const card =
-            document.createElement(
-                "div"
-            );
+        /*
+         * الغلاف الموجود في قاعدة البيانات
+         * هو الافتراضي.
+         */
 
-        card.className =
-            "product";
-
-
-        const image =
+        let image =
             product.image_url ||
             "https://via.placeholder.com/500x300?text=KATRO+SHOP";
+
+
+        const key =
+            String(
+                product.game_key || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+        const name =
+            String(
+                product.name || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+        /* =========================
+           FREE FIRE
+        ========================= */
+
+        if(key === "freefire"){
+
+            /*
+             * الأسبوعية W
+             */
+
+            if(
+                name.includes("weekly") ||
+                name.includes("week") ||
+                name.includes("أسبوع") ||
+                name.includes("اسبوع") ||
+                name.includes("سبوع")
+            ){
+
+                image =
+                    "freefire-weekly.jpg";
+
+            }
+
+
+            /*
+             * الشهرية M
+             */
+
+            else if(
+                name.includes("monthly") ||
+                name.includes("month") ||
+                name.includes("شهر") ||
+                name.includes("شهري")
+            ){
+
+                image =
+                    "freefire-monthly.jpg";
+
+            }
+
+
+            /*
+             * الباقات العادية
+             */
+
+            else{
+
+                image =
+                    "freefired.jpg";
+
+            }
+
+        }
+
+
+        /* =========================
+           PUBG
+        ========================= */
+
+        else if(key === "pubg"){
+
+            image =
+                "pubg-uc.jpg";
+
+        }
+
+
+        /* =========================
+           eFOOTBALL
+        ========================= */
+
+        else if(key === "efootball"){
+
+            image =
+                "efootball-coins.jpg";
+
+        }
+
+
+        /* =========================
+           TIKTOK
+        ========================= */
+
+        else if(key === "tiktok"){
+
+            image =
+                "tiktok.jpg";
+
+        }
 
 
         const price =
@@ -1231,13 +1329,26 @@ function renderProducts(products){
             );
 
 
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "product";
+
+
         card.innerHTML = `
 
             <img
                 class="product-image"
                 src="${escapeHtml(image)}"
                 alt="${escapeHtml(product.name)}"
-                onerror="this.src='https://via.placeholder.com/500x300?text=KATRO+SHOP'"
+
+                onerror="
+                    this.src='https://via.placeholder.com/500x300?text=KATRO+SHOP'
+                "
             >
 
             <div class="product-content">
@@ -1761,10 +1872,6 @@ function changeAccountType(){
     );
 
 
-    /*
-       Player ID / UID
-    */
-
     if(
         type === "player_id" ||
         type === "uid" ||
@@ -1779,10 +1886,6 @@ function changeAccountType(){
     }
 
 
-    /*
-       Phone
-    */
-
     if(type === "phone"){
 
         document.getElementById(
@@ -1792,11 +1895,6 @@ function changeAccountType(){
 
     }
 
-
-    /*
-       Email
-       يظهر البريد وكلمة المرور
-    */
 
     if(type === "email"){
 
@@ -1814,10 +1912,6 @@ function changeAccountType(){
     }
 
 
-    /*
-       Account
-    */
-
     if(type === "account"){
 
         document.getElementById(
@@ -1833,10 +1927,6 @@ function changeAccountType(){
 
     }
 
-
-    /*
-       Other
-    */
 
     if(type === "other"){
 
@@ -1957,10 +2047,6 @@ async function completePurchase(){
         ).value.trim();
 
 
-    /*
-       التحقق
-    */
-
     if(
         (
             accountType === "player_id" ||
@@ -2057,10 +2143,6 @@ async function completePurchase(){
         getCartTotal();
 
 
-    /*
-       التأكد من الرصيد
-    */
-
     await loadBalance();
 
 
@@ -2099,12 +2181,6 @@ async function completePurchase(){
         for(
             const item of cart
         ){
-
-            /*
-               الخدمات الخاصة بالشحن
-               عبر صفحة الهاتف لا تستخدم
-               RPC الشراء العادي.
-            */
 
             if(
                 item.mobile_topup === true
@@ -2196,20 +2272,12 @@ async function completePurchase(){
         }
 
 
-        /*
-           إفراغ السلة
-        */
-
         cart = [];
 
         saveCart();
 
         updateCartUI();
 
-
-        /*
-           تحديث الرصيد
-        */
 
         await loadBalance();
 
@@ -2253,7 +2321,7 @@ async function completePurchase(){
 
 
 /* =========================
-   MOBILE TOPUP REDIRECT
+   MOBILE TOPUP
 ========================= */
 
 function checkMobileTopup(){
@@ -2278,8 +2346,7 @@ function checkMobileTopup(){
 
 
 /* =========================
-   CLOSE MODAL WHEN CLICK
-   OUTSIDE
+   CLOSE MODALS
 ========================= */
 
 window.addEventListener(
@@ -2325,10 +2392,6 @@ async function init(){
     setGameTitle();
 
 
-    /*
-       تحويل خدمات الاتصالات
-    */
-
     if(checkMobileTopup()){
 
         return;
@@ -2336,23 +2399,12 @@ async function init(){
     }
 
 
-    /*
-       فحص تسجيل الدخول والرصيد
-    */
-
     await checkUser();
-
-
-    /*
-       تحميل الخدمات
-    */
 
     await loadProducts();
 
 }
 
-
-/* START */
 
 init();
 
