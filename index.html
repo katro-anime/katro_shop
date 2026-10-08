@@ -23,17 +23,15 @@ body{
     background:#f5f7fa;
     color:#222;
     min-height:100vh;
+    padding-bottom:85px;
 }
 
-
-/* =========================
-   HEADER
-========================= */
+/* ================= HEADER ================= */
 
 header{
     background:linear-gradient(135deg,#111827,#2563eb);
     color:white;
-    padding:18px 18px 25px;
+    padding:22px 18px 25px;
     border-radius:0 0 25px 25px;
     box-shadow:0 4px 15px rgba(0,0,0,.12);
 }
@@ -57,9 +55,6 @@ header{
     color:#60a5fa;
 }
 
-
-/* LOGIN */
-
 .login-btn{
     text-decoration:none;
     color:white;
@@ -70,37 +65,7 @@ header{
     border:1px solid rgba(255,255,255,.2);
 }
 
-
-/* MENU BUTTON */
-
-.menu-button{
-    width:48px;
-    height:48px;
-    border:none;
-    border-radius:50%;
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:27px;
-
-    box-shadow:0 4px 12px rgba(0,0,0,.2);
-
-    transition:.2s;
-}
-
-.menu-button:active{
-    transform:scale(.92);
-}
-
-
-/* =========================
-   SEARCH
-========================= */
+/* ================= SEARCH ================= */
 
 .search-box{
     max-width:1100px;
@@ -123,21 +88,15 @@ header{
     box-shadow:0 0 0 2px #2563eb;
 }
 
-
-/* =========================
-   MAIN
-========================= */
+/* ================= MAIN ================= */
 
 main{
     max-width:1100px;
     margin:auto;
-    padding:22px 15px 100px;
+    padding:22px 15px 90px;
 }
 
-
-/* =========================
-   BANNER
-========================= */
+/* ================= BANNER ================= */
 
 .banner{
     background:linear-gradient(135deg,#2563eb,#1d4ed8);
@@ -159,10 +118,7 @@ main{
     line-height:1.8;
 }
 
-
-/* =========================
-   SECTION
-========================= */
+/* ================= SECTION ================= */
 
 .section-title{
     display:flex;
@@ -180,10 +136,7 @@ main{
     font-size:13px;
 }
 
-
-/* =========================
-   SERVICES
-========================= */
+/* ================= SERVICES ================= */
 
 .services-grid{
     display:grid;
@@ -194,80 +147,56 @@ main{
     gap:14px;
 }
 
-
-/* =========================
-   CARD
-========================= */
+/* ================= CARD ================= */
 
 .service-card{
     background:white;
     border-radius:18px;
     padding:15px;
     min-height:175px;
-
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
     text-align:center;
-
     cursor:pointer;
-
     border:1px solid #e5e7eb;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.06);
-
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
     transition:.2s;
 }
 
 .service-card:hover{
     transform:translateY(-4px);
-
-    box-shadow:
-        0 7px 20px rgba(0,0,0,.12);
+    box-shadow:0 7px 20px rgba(0,0,0,.12);
 }
 
 .service-card:active{
     transform:scale(.97);
 }
 
-
-/* IMAGE */
+/* ================= IMAGE ================= */
 
 .service-image{
     width:85px;
     height:85px;
-
     border-radius:18px;
-
     object-fit:cover;
-
     display:block;
-
     margin-bottom:12px;
-
     border:1px solid #e5e7eb;
 }
 
-
-/* EMOJI */
+/* ================= EMOJI ================= */
 
 .service-emoji{
     width:85px;
     height:85px;
-
     border-radius:18px;
-
     background:#f1f5f9;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     font-size:42px;
-
     margin-bottom:12px;
 }
 
@@ -282,10 +211,7 @@ main{
     color:#777;
 }
 
-
-/* =========================
-   LOADING
-========================= */
+/* ================= LOADING ================= */
 
 .loading{
     background:white;
@@ -296,10 +222,7 @@ main{
     grid-column:1 / -1;
 }
 
-
-/* =========================
-   ERROR
-========================= */
+/* ================= ERROR ================= */
 
 .error{
     background:#fff1f2;
@@ -319,10 +242,7 @@ main{
     word-break:break-word;
 }
 
-
-/* =========================
-   EMPTY
-========================= */
+/* ================= EMPTY ================= */
 
 .empty{
     background:white;
@@ -333,40 +253,93 @@ main{
     grid-column:1 / -1;
 }
 
+/* ================= WHATSAPP ================= */
 
-/* =========================
-   BOTTOM NAV
-========================= */
+.whatsapp-float{
+    position:fixed;
+
+    left:18px;
+    bottom:82px;
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    z-index:9999;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.25);
+
+    transition:.2s;
+}
+
+.whatsapp-float:hover{
+    transform:scale(1.08);
+}
+
+.whatsapp-icon{
+    width:37px;
+    height:37px;
+}
+
+/* ================= WHATSAPP LABEL ================= */
+
+.whatsapp-label{
+    position:fixed;
+
+    left:88px;
+    bottom:92px;
+
+    background:white;
+    color:#555;
+
+    padding:9px 13px;
+
+    border-radius:8px;
+
+    font-size:12px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.12);
+
+    z-index:9998;
+}
+
+/* ================= BOTTOM NAV ================= */
 
 .bottom-nav{
     position:fixed;
-
     bottom:0;
     right:0;
     left:0;
 
-    height:65px;
+    height:70px;
 
-    background:white;
-
-    border-top:1px solid #e5e7eb;
+    background:#0b0718;
 
     display:flex;
-
     justify-content:center;
 
-    z-index:1000;
+    z-index:9000;
 
     box-shadow:
-        0 -3px 12px rgba(0,0,0,.08);
+        0 -5px 18px rgba(0,0,0,.18);
 }
 
 .bottom-nav-inner{
     width:100%;
-    max-width:600px;
+    max-width:650px;
 
     display:flex;
-
     justify-content:space-around;
     align-items:center;
 }
@@ -374,23 +347,24 @@ main{
 .nav-item{
     text-decoration:none;
 
-    color:#777;
+    color:#aaa;
 
-    font-size:12px;
+    font-size:11px;
 
     display:flex;
-
     flex-direction:column;
 
     align-items:center;
 
     gap:4px;
 
-    padding:6px 15px;
+    padding:6px 12px;
+
+    min-width:70px;
 }
 
 .nav-item .icon{
-    font-size:21px;
+    font-size:22px;
 }
 
 .nav-item.active{
@@ -398,337 +372,12 @@ main{
     font-weight:bold;
 }
 
-
-/* ==================================================
-   WHATSAPP FLOAT
-================================================== */
-
-.whatsapp-float{
-    position:fixed;
-
-    left:18px;
-
-    bottom:82px;
-
-    width:62px;
-    height:62px;
-
-    border-radius:50%;
-
-    background:#25D366;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    text-decoration:none;
-
-    z-index:2000;
-
-    box-shadow:
-        0 5px 18px rgba(0,0,0,.25);
-
-    transition:
-        transform .2s,
-        box-shadow .2s;
-}
-
-.whatsapp-float:hover{
-    transform:scale(1.06);
-
-    box-shadow:
-        0 7px 24px rgba(0,0,0,.3);
-}
-
-.whatsapp-float:active{
-    transform:scale(.92);
-}
-
-
-/* WHATSAPP SVG */
-
-.whatsapp-icon{
-    width:38px;
-    height:38px;
-
-    fill:white;
-}
-
-
-/* SUPPORT LABEL */
-
-.whatsapp-label{
-    position:fixed;
-
-    left:88px;
-
-    bottom:91px;
-
-    background:white;
-
-    color:#555;
-
-    padding:9px 13px;
-
-    border-radius:7px;
-
-    font-size:12px;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.12);
-
-    z-index:1999;
-
-    white-space:nowrap;
-}
-
-
-/* ==================================================
-   SIDE MENU OVERLAY
-================================================== */
-
-.menu-overlay{
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.58);
-
-    z-index:5000;
-
-    opacity:0;
-
-    visibility:hidden;
-
-    transition:.25s;
-}
-
-.menu-overlay.show{
-    opacity:1;
-    visibility:visible;
-}
-
-
-/* SIDE MENU */
-
-.side-menu{
-    position:absolute;
-
-    top:0;
-    right:0;
-
-    width:min(390px,88%);
-
-    height:100%;
-
-    background:white;
-
-    box-shadow:
-        -5px 0 25px rgba(0,0,0,.18);
-
-    transform:translateX(100%);
-
-    transition:.3s;
-
-    overflow-y:auto;
-}
-
-.menu-overlay.show .side-menu{
-    transform:translateX(0);
-}
-
-
-/* MENU HEADER */
-
-.side-menu-header{
-    height:75px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:0 20px;
-
-    border-bottom:1px solid #eee;
-
-    background:white;
-}
-
-.side-menu-header h3{
-    font-size:21px;
-
-    color:#222;
-}
-
-.close-menu{
-    border:none;
-
-    background:none;
-
-    font-size:31px;
-
-    color:#333;
-
-    cursor:pointer;
-
-    line-height:1;
-}
-
-
-/* MENU SEARCH */
-
-.menu-search{
-    display:flex;
-
-    height:80px;
-
-    border-bottom:1px solid #eee;
-}
-
-.menu-search input{
-    flex:1;
-
-    border:none;
-
-    outline:none;
-
-    padding:0 22px;
-
-    font-family:inherit;
-
-    font-size:16px;
-
-    text-align:right;
-}
-
-.menu-search-button{
-    width:78px;
-
-    border:none;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #f97316
-        );
-
-    font-size:29px;
-
-    cursor:pointer;
-}
-
-
-/* MENU ITEMS */
-
-.menu-links{
-    display:flex;
-
-    flex-direction:column;
-}
-
-.menu-link{
-    min-height:65px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:flex-start;
-
-    padding:0 25px;
-
-    border-bottom:1px solid #eee;
-
-    color:#222;
-
-    text-decoration:none;
-
-    font-size:18px;
-
-    transition:.15s;
-}
-
-.menu-link:hover{
-    background:#f5f7fa;
-}
-
-.menu-link:active{
-    background:#e9eef7;
-}
-
-.menu-link-icon{
-    width:35px;
-
-    margin-left:12px;
-
-    font-size:20px;
-
-    text-align:center;
-}
-
-
-/* BALANCE */
-
-.menu-balance{
-    min-height:65px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:flex-start;
-
-    padding:0 25px;
-
-    border-bottom:1px solid #eee;
-
-    color:#f28c28;
-
-    font-size:18px;
-
-    font-weight:bold;
-}
-
-.menu-balance-icon{
-    width:35px;
-
-    margin-left:12px;
-
-    font-size:20px;
-
-    color:#777;
-}
-
-
-/* MOBILE MENU */
-
-@media(max-width:600px){
-
-    .side-menu{
-        width:88%;
-    }
-
-    .menu-link{
-        font-size:17px;
-    }
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:600px){
 
     header{
-        padding:15px 14px 22px;
+        padding:18px 14px 22px;
     }
 
     .logo{
@@ -740,14 +389,8 @@ main{
         font-size:13px;
     }
 
-    .menu-button{
-        width:44px;
-        height:44px;
-        font-size:25px;
-    }
-
     main{
-        padding:18px 12px 100px;
+        padding:18px 12px 95px;
     }
 
     .banner h1{
@@ -775,19 +418,24 @@ main{
     }
 
     .whatsapp-float{
-        left:18px;
+        left:15px;
         bottom:82px;
-        width:60px;
-        height:60px;
+
+        width:58px;
+        height:58px;
+    }
+
+    .whatsapp-icon{
+        width:35px;
+        height:35px;
     }
 
     .whatsapp-label{
-        left:83px;
+        left:82px;
         bottom:91px;
     }
 
 }
-
 
 @media(max-width:350px){
 
@@ -805,41 +453,22 @@ main{
 
 </head>
 
-
 <body>
 
 
-<!-- ==================================================
-     HEADER
-================================================== -->
+<!-- ================= HEADER ================= -->
 
 <header>
 
     <div class="header-content">
 
-
-        <!-- MENU -->
-
-        <button
-            class="menu-button"
-            id="menuButton"
-            aria-label="فتح القائمة">
-
-            ☰
-
-        </button>
-
-
-        <!-- LOGO -->
-
         <div class="logo">
 
-            KATRO <span>SHOP</span>
+            KATRO
+            <span>SHOP</span>
 
         </div>
 
-
-        <!-- LOGIN -->
 
         <a
             href="login.html"
@@ -848,7 +477,6 @@ main{
             تسجيل الدخول
 
         </a>
-
 
     </div>
 
@@ -868,10 +496,7 @@ main{
 </header>
 
 
-
-<!-- ==================================================
-     MAIN
-================================================== -->
+<!-- ================= MAIN ================= -->
 
 <main>
 
@@ -891,8 +516,7 @@ main{
     </div>
 
 
-
-    <!-- SECTION -->
+    <!-- SERVICES TITLE -->
 
     <div class="section-title">
 
@@ -907,7 +531,6 @@ main{
     </div>
 
 
-
     <!-- SERVICES -->
 
     <div
@@ -915,21 +538,15 @@ main{
         class="services-grid">
 
         <div class="loading">
-
             جاري تحميل الخدمات...
-
         </div>
 
     </div>
 
-
 </main>
 
 
-
-<!-- ==================================================
-     WHATSAPP
-================================================== -->
+<!-- ================= WHATSAPP ================= -->
 
 <a
     class="whatsapp-float"
@@ -938,264 +555,40 @@ main{
     rel="noopener"
     aria-label="التواصل عبر واتساب">
 
-
-    <!-- ORIGINAL STYLE WHATSAPP SVG -->
-
     <svg
         class="whatsapp-icon"
         viewBox="0 0 32 32"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg">
 
-        <path d="
-        M16 3
-        C8.82 3 3 8.82 3 16
-        C3 18.29 3.59 20.44 4.63 22.31
-        L3.05 28.95
-        L9.84 27.38
-        C11.68 28.41 13.81 29
-        16 29
-        C23.18 29 29 23.18 29 16
-        C29 8.82 23.18 3 16 3
-        Z
+        <path
+            d="M16 3C8.82 3 3 8.82 3 16c0 2.29.6 4.45 1.75 6.34L3 29l6.82-1.7A12.93 12.93 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3Z"
+            stroke="white"
+            stroke-width="2"
+            fill="none"/>
 
-        M16 5
-        C22.08 5 27 9.92 27 16
-        C27 22.08 22.08 27 16 27
-        C13.95 27 12.02 26.44 10.37 25.47
-        L9.91 25.2
-        L5.88 26.13
-        L6.82 22.19
-        L6.55 21.72
-        C5.57 20.05 5 18.1 5 16
-        C5 9.92 9.92 5 16 5
-        Z
-
-        M12.17 9.15
-        C11.82 9.15 11.45 9.16 11.13 9.88
-        C10.81 10.6 9.9 11.49 9.9 13.3
-        C9.9 15.11 11.16 16.86 11.34 17.1
-        C11.52 17.34 13.79 21.03 17.39 22.46
-        C20.37 23.64 20.98 23.41 21.62 23.35
-        C22.26 23.29 23.69 22.46 23.98 21.6
-        C24.27 20.74 24.27 19.99 24.18 19.84
-        C24.09 19.69 23.83 19.61 23.45 19.42
-        C23.07 19.23 21.18 18.3 20.84 18.17
-        C20.5 18.04 20.25 17.98 20 18.36
-        C19.75 18.74 19.03 19.61 18.82 19.86
-        C18.61 20.11 18.4 20.14 18.02 19.95
-        C17.64 19.76 16.42 19.36 14.97 18.07
-        C13.84 17.06 13.08 15.82 12.87 15.44
-        C12.66 15.06 12.85 14.85 13.04 14.66
-        C13.21 14.49 13.42 14.22 13.61 14
-        C13.8 13.78 13.86 13.62 13.99 13.37
-        C14.12 13.12 14.05 12.9 13.96 12.71
-        C13.87 12.52 13.11 10.62 12.79 9.86
-        C12.51 9.19 12.23 9.17 12.17 9.15
-        Z"/>
+        <path
+            d="M11.4 9.9c.35-.38.74-.4 1.12-.17l1.72 1.02c.37.22.48.62.3 1l-.63 1.3c-.12.25-.1.5.06.72.57.78 1.26 1.47 2.04 2.04.22.16.47.18.72.06l1.3-.63c.38-.18.78-.07 1 .3l1.02 1.72c.23.38.21.77-.17 1.12-.53.49-1.2.75-1.91.75-1.64 0-3.7-.94-5.57-2.81-1.87-1.87-2.81-3.93-2.81-5.57 0-.71.26-1.38.75-1.91Z"
+            fill="white"/>
 
     </svg>
 
 </a>
 
 
-<!-- WHATSAPP LABEL -->
-
 <div class="whatsapp-label">
     الدعم الفني
 </div>
 
 
-
-<!-- ==================================================
-     SIDE MENU
-================================================== -->
-
-<div
-    class="menu-overlay"
-    id="menuOverlay">
-
-
-    <aside class="side-menu">
-
-
-        <!-- MENU HEADER -->
-
-        <div class="side-menu-header">
-
-            <h3>
-                القائمة
-            </h3>
-
-            <button
-                class="close-menu"
-                id="closeMenu"
-                aria-label="إغلاق">
-
-                ×
-
-            </button>
-
-        </div>
-
-
-
-        <!-- MENU SEARCH -->
-
-        <div class="menu-search">
-
-            <input
-                type="text"
-                id="menuSearch"
-                placeholder="البحث عن المنتجات"
-                autocomplete="off">
-
-            <button
-                class="menu-search-button"
-                onclick="focusMainSearch()"
-                aria-label="بحث">
-
-                ⌕
-
-            </button>
-
-        </div>
-
-
-
-        <!-- MENU LINKS -->
-
-        <div class="menu-links">
-
-
-            <a
-                href="index.html"
-                class="menu-link">
-
-                <span class="menu-link-icon">
-                    🏠
-                </span>
-
-                الرئيسية
-
-            </a>
-
-
-
-            <a
-                href="index.html"
-                class="menu-link">
-
-                <span class="menu-link-icon">
-                    🎮
-                </span>
-
-                بطاقات الألعاب
-
-            </a>
-
-
-
-            <a
-                href="index.html"
-                class="menu-link">
-
-                <span class="menu-link-icon">
-                    📱
-                </span>
-
-                شحن الألعاب
-
-            </a>
-
-
-
-            <a
-                href="game.html"
-                class="menu-link">
-
-                <span class="menu-link-icon">
-                    💳
-                </span>
-
-                فحص رصيد بطاقتي
-
-            </a>
-
-
-
-            <a
-                href="wallet-topup.html"
-                class="menu-link">
-
-                <span class="menu-link-icon">
-                    💰
-                </span>
-
-                وكلاء شحن المحفظة
-
-            </a>
-
-
-
-            <a
-                href="#"
-                class="menu-link"
-                onclick="showAbout(event)">
-
-                <span class="menu-link-icon">
-                    ℹ️
-                </span>
-
-                من نحن
-
-            </a>
-
-
-
-            <a
-                href="login.html"
-                class="menu-link">
-
-                <span class="menu-link-icon">
-                    👤
-                </span>
-
-                حسابي
-
-            </a>
-
-
-
-            <a
-                href="wallet.html"
-                class="menu-balance">
-
-                <span class="menu-balance-icon">
-                    👛
-                </span>
-
-                رصيد المحفظة
-
-            </a>
-
-
-        </div>
-
-
-    </aside>
-
-</div>
-
-
-
-<!-- ==================================================
-     BOTTOM NAV
-================================================== -->
+<!-- ================= BOTTOM NAV ================= -->
 
 <nav class="bottom-nav">
 
     <div class="bottom-nav-inner">
 
+
+        <!-- الرئيسية -->
 
         <a
             href="index.html"
@@ -1212,6 +605,7 @@ main{
         </a>
 
 
+        <!-- المحفظة -->
 
         <a
             href="wallet.html"
@@ -1228,9 +622,27 @@ main{
         </a>
 
 
+        <!-- الطلبات -->
 
         <a
-            href="login.html"
+            href="game.html"
+            class="nav-item">
+
+            <span class="icon">
+                🛍️
+            </span>
+
+            <span>
+                الطلبات
+            </span>
+
+        </a>
+
+
+        <!-- حسابي -->
+
+        <a
+            href="account.html"
             class="nav-item">
 
             <span class="icon">
@@ -1249,28 +661,20 @@ main{
 </nav>
 
 
-
-<!-- ==================================================
-     SUPABASE
-================================================== -->
+<!-- ================= SUPABASE ================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <script>
 
 
-/* ==================================================
-   SUPABASE
-================================================== */
+/* ================= SUPABASE ================= */
 
 const SUPABASE_URL =
 "https://uwmrzvsygeoequscpinx.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
-
 
 const supabaseClient =
 window.supabase.createClient(
@@ -1279,202 +683,19 @@ window.supabase.createClient(
 );
 
 
-
-/* ==================================================
-   ELEMENTS
-================================================== */
+/* ================= ELEMENTS ================= */
 
 const servicesBox =
 document.getElementById("services");
 
-
 const searchInput =
 document.getElementById("searchInput");
-
 
 const servicesCount =
 document.getElementById("servicesCount");
 
 
-const menuButton =
-document.getElementById("menuButton");
-
-
-const menuOverlay =
-document.getElementById("menuOverlay");
-
-
-const closeMenu =
-document.getElementById("closeMenu");
-
-
-const menuSearch =
-document.getElementById("menuSearch");
-
-
-
-/* ==================================================
-   OPEN MENU
-================================================== */
-
-function openMenu(){
-
-    menuOverlay.classList.add("show");
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-
-/* ==================================================
-   CLOSE MENU
-================================================== */
-
-function closeSideMenu(){
-
-    menuOverlay.classList.remove("show");
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-
-/* BUTTON */
-
-menuButton.addEventListener(
-    "click",
-    openMenu
-);
-
-
-
-closeMenu.addEventListener(
-    "click",
-    closeSideMenu
-);
-
-
-
-/* CLICK OUTSIDE */
-
-menuOverlay.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target ===
-            menuOverlay
-        ){
-
-            closeSideMenu();
-
-        }
-
-    }
-);
-
-
-
-/* ESC */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-
-            closeSideMenu();
-
-        }
-
-    }
-);
-
-
-
-/* ==================================================
-   MENU SEARCH
-================================================== */
-
-menuSearch.addEventListener(
-    "input",
-    function(){
-
-        const value =
-            this.value
-                .trim()
-                .toLowerCase();
-
-
-        if(value){
-
-            closeSideMenu();
-
-            searchInput.value =
-                value;
-
-            searchInput.dispatchEvent(
-                new Event("input")
-            );
-
-            window.scrollTo({
-                top:0,
-                behavior:"smooth"
-            });
-
-        }
-
-    }
-);
-
-
-
-/* SEARCH BUTTON */
-
-function focusMainSearch(){
-
-    closeSideMenu();
-
-    setTimeout(
-        function(){
-
-            searchInput.focus();
-
-        },
-        300
-    );
-
-}
-
-
-
-/* ==================================================
-   ABOUT
-================================================== */
-
-function showAbout(event){
-
-    event.preventDefault();
-
-    closeSideMenu();
-
-    alert(
-        "KATRO SHOP\n\n" +
-        "متجر لشحن الألعاب والاشتراكات " +
-        "والخدمات الرقمية بسهولة وسرعة."
-    );
-
-}
-
-
-
-/* ==================================================
-   SERVICE NAMES
-================================================== */
+/* ================= SERVICE NAMES ================= */
 
 const serviceNames = {
 
@@ -1529,10 +750,7 @@ const serviceNames = {
 };
 
 
-
-/* ==================================================
-   SERVICE ICONS
-================================================== */
+/* ================= SERVICE ICONS ================= */
 
 const serviceIcons = {
 
@@ -1587,10 +805,7 @@ const serviceIcons = {
 };
 
 
-
-/* ==================================================
-   SERVICE IMAGES
-================================================== */
+/* ================= SERVICE IMAGES ================= */
 
 const serviceImages = {
 
@@ -1611,68 +826,36 @@ const serviceImages = {
 };
 
 
-
-/* ==================================================
-   ESCAPE HTML
-================================================== */
+/* ================= ESCAPE HTML ================= */
 
 function escapeHtml(value){
 
     return String(value ?? "")
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
-
-/* ==================================================
-   ALL SERVICES
-================================================== */
+/* ================= ALL SERVICES ================= */
 
 let allServices = [];
 
 
-
-/* ==================================================
-   LOAD SERVICES
-================================================== */
+/* ================= LOAD SERVICES ================= */
 
 async function loadServices(){
 
     servicesBox.innerHTML = `
 
         <div class="loading">
-
             جاري تحميل الخدمات...
-
         </div>
 
     `;
-
 
     try{
 
@@ -1680,19 +863,10 @@ async function loadServices(){
             data,
             error
         } =
-
         await supabaseClient
-
         .from("products")
-
-        .select(
-            "game_key,active"
-        )
-
-        .eq(
-            "active",
-            true
-        );
+        .select("game_key,active")
+        .eq("active",true);
 
 
         if(error){
@@ -1701,7 +875,6 @@ async function loadServices(){
                 "Supabase Error:",
                 error
             );
-
 
             servicesBox.innerHTML = `
 
@@ -1722,7 +895,6 @@ async function loadServices(){
 
             `;
 
-
             servicesCount.textContent =
                 "خطأ";
 
@@ -1731,22 +903,15 @@ async function loadServices(){
         }
 
 
-
-        if(
-            !data ||
-            data.length === 0
-        ){
+        if(!data || data.length === 0){
 
             servicesBox.innerHTML = `
 
                 <div class="empty">
-
                     لا توجد خدمات متاحة حالياً.
-
                 </div>
 
             `;
-
 
             servicesCount.textContent =
                 "0 خدمة";
@@ -1756,71 +921,50 @@ async function loadServices(){
         }
 
 
-
         const serviceMap = {};
 
 
+        data.forEach(product => {
 
-        data.forEach(
-            product => {
-
-
-                const key =
-
-                    String(
-                        product.game_key ||
-                        ""
-                    )
-
-                    .trim()
-
-                    .toLowerCase();
+            const key =
+                String(
+                    product.game_key || ""
+                )
+                .trim()
+                .toLowerCase();
 
 
-
-                if(!key){
-                    return;
-                }
-
+            if(!key){
+                return;
+            }
 
 
-                if(
-                    !serviceMap[key]
-                ){
+            if(!serviceMap[key]){
 
-                    serviceMap[key] = {
+                serviceMap[key] = {
 
-                        key:key,
+                    key:key,
 
-                        count:0
+                    count:0
 
-                    };
-
-                }
-
-
-
-                serviceMap[key].count++;
+                };
 
             }
-        );
 
+
+            serviceMap[key].count++;
+
+        });
 
 
         allServices =
-            Object.values(
-                serviceMap
-            );
-
+            Object.values(serviceMap);
 
 
         allServices.sort(
             (a,b) =>
-                a.key.localeCompare(
-                    b.key
-                )
+            a.key.localeCompare(b.key)
         );
-
 
 
         renderServices(
@@ -1832,7 +976,6 @@ async function loadServices(){
     catch(error){
 
         console.error(error);
-
 
         servicesBox.innerHTML = `
 
@@ -1853,7 +996,6 @@ async function loadServices(){
 
         `;
 
-
         servicesCount.textContent =
             "خطأ";
 
@@ -1862,10 +1004,7 @@ async function loadServices(){
 }
 
 
-
-/* ==================================================
-   RENDER SERVICES
-================================================== */
+/* ================= RENDER SERVICES ================= */
 
 function renderServices(
     services
@@ -1879,13 +1018,10 @@ function renderServices(
         servicesBox.innerHTML = `
 
             <div class="empty">
-
                 لا توجد نتائج.
-
             </div>
 
         `;
-
 
         servicesCount.textContent =
             "0 خدمة";
@@ -1895,53 +1031,35 @@ function renderServices(
     }
 
 
-
     servicesCount.textContent =
-        services.length +
-        " خدمة";
-
+        services.length + " خدمة";
 
 
     servicesBox.innerHTML =
-
         services.map(
             service => {
 
-
                 const name =
-
                     serviceNames[
                         service.key
-                    ]
-
-                    ||
-
+                    ] ||
                     service.key;
 
 
-
                 const icon =
-
                     serviceIcons[
                         service.key
-                    ]
-
-                    ||
-
+                    ] ||
                     "🛍️";
 
 
-
                 const image =
-
                     serviceImages[
                         service.key
                     ];
 
 
-
                 let visual;
-
 
 
                 if(image){
@@ -1949,34 +1067,21 @@ function renderServices(
                     visual = `
 
                         <img
-
                             class="service-image"
-
                             src="${escapeHtml(image)}"
-
                             alt="${escapeHtml(name)}"
 
                             onerror="
-
                                 this.style.display='none';
-
                                 this.nextElementSibling.style.display='flex';
-
                             "
-
                         >
-
 
                         <span
-
                             class="service-emoji"
-
                             style="display:none;"
-
                         >
-
                             ${icon}
-
                         </span>
 
                     `;
@@ -1988,13 +1093,9 @@ function renderServices(
                     visual = `
 
                         <span
-
                             class="service-emoji"
-
                         >
-
                             ${icon}
-
                         </span>
 
                     `;
@@ -2002,38 +1103,22 @@ function renderServices(
                 }
 
 
-
                 return `
 
                     <div
-
                         class="service-card"
-
                         onclick="
-
                             openService(
-
-                                '${escapeHtml(
-                                    service.key
-                                )}'
-
+                                '${escapeHtml(service.key)}'
                             )
-
                         "
-
                     >
 
                         ${visual}
 
-
                         <h3>
-
-                            ${escapeHtml(
-                                name
-                            )}
-
+                            ${escapeHtml(name)}
                         </h3>
-
 
                         <p>
 
@@ -2041,9 +1126,7 @@ function renderServices(
 
                             ${
                                 service.count === 1
-
                                 ? "خدمة"
-
                                 : "خدمات"
                             }
 
@@ -2054,18 +1137,13 @@ function renderServices(
                 `;
 
             }
-
         )
-
         .join("");
 
 }
 
 
-
-/* ==================================================
-   OPEN SERVICE
-================================================== */
+/* ================= OPEN SERVICE ================= */
 
 function openService(
     gameKey
@@ -2077,9 +1155,7 @@ function openService(
 
 
     window.location.href =
-
         "game.html?g=" +
-
         encodeURIComponent(
             gameKey
         );
@@ -2087,23 +1163,16 @@ function openService(
 }
 
 
-
-/* ==================================================
-   SEARCH
-================================================== */
+/* ================= SEARCH ================= */
 
 searchInput.addEventListener(
     "input",
     function(){
 
         const search =
-
             this.value
-
                 .trim()
-
                 .toLowerCase();
-
 
 
         if(!search){
@@ -2117,27 +1186,18 @@ searchInput.addEventListener(
         }
 
 
-
         const filtered =
-
             allServices.filter(
                 service => {
 
-
                     const name =
-
                         (
                             serviceNames[
                                 service.key
-                            ]
-
-                            ||
-
+                            ] ||
                             service.key
                         )
-
                         .toLowerCase();
-
 
 
                     return (
@@ -2155,9 +1215,7 @@ searchInput.addEventListener(
                     );
 
                 }
-
             );
-
 
 
         renderServices(
@@ -2165,21 +1223,15 @@ searchInput.addEventListener(
         );
 
     }
-
 );
 
 
-
-/* ==================================================
-   START
-================================================== */
+/* ================= START ================= */
 
 loadServices();
 
-
 </script>
-
 
 </body>
 
-    </html>
+        </html>
