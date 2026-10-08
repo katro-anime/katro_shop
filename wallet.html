@@ -2,6 +2,7 @@
 <html dir="rtl" lang="ar">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -11,144 +12,166 @@
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
 
 *{
-    font-family:'Tajawal',sans-serif;
     box-sizing:border-box;
     margin:0;
     padding:0;
+    font-family:'Tajawal',sans-serif;
 }
 
 body{
-    background:#f4f0ff;
-    padding-bottom:95px;
+    background:#f7f7f7;
     color:#222;
+    padding-bottom:95px;
 }
 
 .top{
-    background:#6a33ff;
-    color:#fff;
-    padding:13px 14px;
+    height:70px;
+    background:#fff;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
     position:sticky;
     top:0;
-    z-index:50;
+    z-index:100;
+    box-shadow:0 3px 15px rgba(0,0,0,.10);
+    border-radius:0 0 25px 25px;
+}
+
+.logo{
+    color:#5723c9;
+    font-size:22px;
+    font-weight:900;
 }
 
 .top a{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:#5723c9;
     color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-decoration:none;
-    font-size:20px;
+    font-size:22px;
 }
 
-.card{
-    background:#fff;
-    margin:12px;
-    border-radius:18px;
-    padding:16px;
-    box-shadow:0 4px 14px rgba(0,0,0,.07);
+.container{
+    max-width:650px;
+    margin:auto;
+    padding:15px;
 }
 
 .hero{
-    background:linear-gradient(135deg,#7c4dff,#ff8a00);
+    background:linear-gradient(135deg,#762bd7,#ff7b21);
     color:#fff;
-    min-height:125px;
+    border-radius:25px;
+    padding:23px;
+    margin-bottom:15px;
+    box-shadow:0 8px 25px rgba(100,40,200,.18);
 }
 
 .greet{
-    font-size:18px;
-    font-weight:800;
-    margin-bottom:10px;
+    font-size:19px;
+    font-weight:900;
 }
 
 .small{
-    font-size:12px;
+    margin-top:8px;
     opacity:.9;
 }
 
 .wallet-number{
     display:inline-block;
-    margin-top:12px;
-    background:rgba(255,255,255,.2);
-    border:1px solid rgba(255,255,255,.35);
-    padding:8px 14px;
-    border-radius:12px;
-    font-weight:800;
+    margin-top:14px;
+    background:rgba(255,255,255,.18);
+    padding:9px 16px;
+    border-radius:13px;
+    font-weight:900;
+}
+
+.card{
+    background:#fff;
+    border-radius:22px;
+    padding:18px;
+    margin-bottom:15px;
+    box-shadow:0 4px 18px rgba(0,0,0,.06);
+}
+
+.section-title{
+    font-size:19px;
+    font-weight:900;
+    margin-bottom:13px;
 }
 
 .balance{
-    background:#e8f5e9;
-    border-radius:15px;
-    padding:18px;
+    background:linear-gradient(135deg,#e8fff2,#f4f9ff);
+    border-radius:18px;
+    padding:22px;
     text-align:center;
-    margin-top:12px;
+    border:1px solid #e0eee5;
 }
 
 .balance-title{
+    color:#777;
     font-size:13px;
-    color:#555;
 }
 
 .balance-value{
     display:block;
-    font-size:31px;
-    font-weight:900;
+    margin-top:7px;
     color:#16833c;
-    margin-top:6px;
+    font-size:32px;
+    font-weight:900;
 }
 
 .btn{
     width:100%;
     border:none;
-    padding:13px;
-    border-radius:13px;
-    font-weight:800;
+    padding:14px;
+    border-radius:15px;
+    margin-top:10px;
+    font-weight:900;
     font-size:14px;
-    margin-top:9px;
     cursor:pointer;
 }
 
 .primary{
-    background:linear-gradient(90deg,#6a33ff,#ff8a00);
     color:#fff;
+    background:linear-gradient(90deg,#7024d9,#ff7b21);
 }
 
 .secondary{
+    color:#5723c9;
     background:#f0eaff;
-    color:#5130bd;
 }
 
 .logout{
-    background:#ffebee;
     color:#c62828;
-}
-
-.section-title{
-    font-size:16px;
-    font-weight:800;
-    margin-bottom:10px;
+    background:#ffebee;
 }
 
 .item{
-    border:1px dashed #d7c9ff;
-    background:#faf8ff;
-    border-radius:12px;
-    padding:11px;
-    margin-top:9px;
+    background:#fafafa;
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:13px;
+    margin-top:10px;
+    line-height:1.9;
     font-size:13px;
-    line-height:1.8;
 }
 
 .status{
     display:inline-block;
-    padding:2px 9px;
+    padding:3px 9px;
     border-radius:10px;
-    font-size:11px;
-    background:#ff9800;
     color:#fff;
+    background:#ff9800;
+    font-size:11px;
 }
 
 .status.completed{
@@ -167,25 +190,45 @@ body{
     text-align:center;
     color:#888;
     padding:18px 5px;
-    font-size:13px;
 }
 
 .loading{
     text-align:center;
-    padding:30px;
+    padding:50px;
     color:#666;
 }
 
 .error{
     background:#ffebee;
     color:#c62828;
-    padding:12px;
-    margin:12px;
-    border-radius:12px;
-    display:none;
+    padding:13px;
+    margin:15px;
+    border-radius:13px;
     text-align:center;
-    font-size:13px;
+    display:none;
 }
+
+/* واتساب */
+
+.whatsapp{
+    position:fixed;
+    right:18px;
+    bottom:88px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25D366;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:31px;
+    z-index:999;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+}
+
+/* الشريط السفلي */
 
 .bottom{
     position:fixed;
@@ -198,34 +241,44 @@ body{
     display:flex;
     justify-content:space-around;
     align-items:center;
-    z-index:100;
-    box-shadow:0 5px 20px rgba(0,0,0,.2);
+    z-index:900;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
 }
 
 .bottom a{
-    color:#8d8da6;
     text-decoration:none;
+    color:#9995b1;
+    text-align:center;
     font-size:10px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:3px;
 }
 
 .bottom a.active{
-    color:#bda7ff;
+    color:#b987ff;
+}
+
+.icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:2px;
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <div class="top">
 
-    <b>KATRO SHOP</b>
+    <div class="logo">
+        KATRO SHOP
+    </div>
 
-    <a href="index.html">🏠</a>
+    <a href="index.html">
+        🏠
+    </a>
 
 </div>
 
@@ -238,13 +291,21 @@ body{
 <div id="errorBox" class="error"></div>
 
 
-<div id="content" style="display:none">
+<div id="content"
+     class="container"
+     style="display:none">
 
 
-    <div class="card hero">
+    <!-- الترحيب -->
 
-        <div class="greet" id="greet">
+    <div class="hero">
+
+        <div
+            class="greet"
+            id="greet">
+
             مرحباً 👋
+
         </div>
 
         <div class="small">
@@ -252,17 +313,24 @@ body{
         </div>
 
         <div class="wallet-number">
-            <span id="walletNumber">-----</span>
+
+            <span id="walletNumber">
+                -----
+            </span>
+
         </div>
 
     </div>
 
+
+    <!-- المحفظة -->
 
     <div class="card">
 
         <div class="section-title">
             💳 محفظتي
         </div>
+
 
         <div class="balance">
 
@@ -273,7 +341,9 @@ body{
             <span
                 id="balance"
                 class="balance-value">
+
                 0 ج.س
+
             </span>
 
         </div>
@@ -282,18 +352,24 @@ body{
         <button
             class="btn primary"
             onclick="location.href='wallet-topup.html'">
+
             💰 شحن المحفظة
+
         </button>
 
 
         <button
             class="btn secondary"
             onclick="loadAllData()">
+
             🔄 تحديث الرصيد
+
         </button>
 
     </div>
 
+
+    <!-- طلبات الشحن -->
 
     <div class="card">
 
@@ -302,13 +378,17 @@ body{
         </div>
 
         <div id="topupsList">
+
             <div class="empty">
                 لا توجد طلبات شحن حتى الآن
             </div>
+
         </div>
 
     </div>
 
+
+    <!-- الطلبات -->
 
     <div class="card">
 
@@ -317,13 +397,17 @@ body{
         </div>
 
         <div id="ordersList">
+
             <div class="empty">
                 لا توجد طلبات حتى الآن
             </div>
+
         </div>
 
     </div>
 
+
+    <!-- بيانات الحساب -->
 
     <div class="card">
 
@@ -352,35 +436,62 @@ body{
         <button
             class="btn logout"
             onclick="logout()">
+
             🚪 تسجيل الخروج
+
         </button>
 
     </div>
 
-
 </div>
 
+
+<!-- واتساب -->
+
+<!-- غير الرقم هنا إلى رقمك -->
+
+<a
+    class="whatsapp"
+    href="https://wa.me/249XXXXXXXXX"
+    target="_blank">
+
+    ☎
+
+</a>
+
+
+<!-- الشريط السفلي -->
 
 <div class="bottom">
 
     <a href="login.html">
-        <div style="font-size:18px">👤</div>
-        دخول
+
+        <span class="icon">👤</span>
+        حسابي
+
     </a>
 
     <a href="#orders">
-        <div style="font-size:18px">🧾</div>
+
+        <span class="icon">🧾</span>
         الطلبات
+
     </a>
 
-    <a class="active" href="wallet.html">
-        <div style="font-size:18px">💳</div>
+    <a
+        class="active"
+        href="wallet.html">
+
+        <span class="icon">💳</span>
         المحفظة
+
     </a>
 
     <a href="index.html">
-        <div style="font-size:18px">🏠</div>
+
+        <span class="icon">🏠</span>
         الرئيسية
+
     </a>
 
 </div>
@@ -388,65 +499,55 @@ body{
 
 <script>
 
-/* =====================================
-   إعداد Supabase
-===================================== */
+/* ================= SUPABASE ================= */
 
 const SUPABASE_URL =
-    'https://uwmrzvsygeoequscpinx.supabase.co';
+'https://uwmrzvsygeoequscpinx.supabase.co';
 
 const SUPABASE_PUBLISHABLE_KEY =
-    'sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts';
+'sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts';
 
 const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
 
-/* =====================================
-   تنسيق الرصيد
-===================================== */
+/* ================= MONEY ================= */
 
 function formatMoney(value){
 
-    const number =
-        Number(value || 0);
-
-    return number.toLocaleString('ar-EG') +
+    return Number(value || 0)
+        .toLocaleString('ar-EG') +
         ' ج.س';
 
 }
 
 
-/* =====================================
-   رسالة الخطأ
-===================================== */
+/* ================= ERROR ================= */
 
 function showError(message){
 
-    document.getElementById('loading').style.display =
-        'none';
+    document.getElementById('loading')
+        .style.display='none';
 
     const box =
         document.getElementById('errorBox');
 
-    box.innerText = message;
+    box.innerText=message;
 
-    box.style.display = 'block';
+    box.style.display='block';
 
 }
 
 
-/* =====================================
-   تحميل بيانات المستخدم
-===================================== */
+/* ================= LOAD ================= */
 
 async function loadAllData(){
 
-    document.getElementById('errorBox').style.display =
-        'none';
+    document.getElementById('errorBox')
+        .style.display='none';
 
     try{
 
@@ -473,8 +574,7 @@ async function loadAllData(){
 
         if(!session){
 
-            window.location.href =
-                'login.html';
+            location.href='login.html';
 
             return;
         }
@@ -484,9 +584,7 @@ async function loadAllData(){
             session.user;
 
 
-        /* ==========================
-           بيانات الملف الشخصي
-        ========================== */
+        /* PROFILE */
 
         const {
             data:profile,
@@ -494,7 +592,9 @@ async function loadAllData(){
         } =
         await supabaseClient
         .from('profiles')
-        .select('full_name,phone,wallet_number,role')
+        .select(
+            'full_name,phone,wallet_number,role'
+        )
         .eq('id',user.id)
         .single();
 
@@ -511,9 +611,7 @@ async function loadAllData(){
         }
 
 
-        /* ==========================
-           بيانات المحفظة
-        ========================== */
+        /* WALLET */
 
         const {
             data:wallet,
@@ -538,36 +636,40 @@ async function loadAllData(){
         }
 
 
-        /* ==========================
-           عرض البيانات
-        ========================== */
-
         const name =
             profile.full_name ||
             'عميل KATRO';
 
 
-        document.getElementById('greet').innerText =
-            'مرحباً يا ' + name + ' 👋';
+        document.getElementById('greet')
+            .innerText =
+            'مرحباً يا '+
+            name+
+            ' 👋';
 
 
-        document.getElementById('walletNumber').innerText =
+        document.getElementById('walletNumber')
+            .innerText =
             profile.wallet_number || '-----';
 
 
-        document.getElementById('balance').innerText =
+        document.getElementById('balance')
+            .innerText =
             formatMoney(wallet.balance);
 
 
-        document.getElementById('fullName').innerText =
+        document.getElementById('fullName')
+            .innerText =
             name;
 
 
-        document.getElementById('email').innerText =
+        document.getElementById('email')
+            .innerText =
             user.email || '-';
 
 
-        document.getElementById('phone').innerText =
+        document.getElementById('phone')
+            .innerText =
             profile.phone || '-';
 
 
@@ -578,11 +680,11 @@ async function loadAllData(){
         await loadTransactions(user.id);
 
 
-        document.getElementById('loading').style.display =
-            'none';
+        document.getElementById('loading')
+            .style.display='none';
 
-        document.getElementById('content').style.display =
-            'block';
+        document.getElementById('content')
+            .style.display='block';
 
 
     }catch(error){
@@ -598,9 +700,7 @@ async function loadAllData(){
 }
 
 
-/* =====================================
-   طلبات شحن المحفظة
-===================================== */
+/* ================= TOPUPS ================= */
 
 async function loadTopups(userId){
 
@@ -618,9 +718,10 @@ async function loadTopups(userId){
         'id,request_number,amount,payment_method,sender_name,sender_phone,status,admin_note,created_at'
     )
     .eq('user_id',userId)
-    .order('created_at',{
-        ascending:false
-    })
+    .order(
+        'created_at',
+        {ascending:false}
+    )
     .limit(10);
 
 
@@ -628,56 +729,47 @@ async function loadTopups(userId){
 
         console.error(error);
 
-        box.innerHTML =
-            '<div class="empty">تعذر تحميل طلبات الشحن</div>';
+        box.innerHTML=
+        '<div class="empty">تعذر تحميل طلبات الشحن</div>';
 
         return;
     }
 
 
-    if(!data || data.length === 0){
+    if(!data || !data.length){
 
-        box.innerHTML =
-            '<div class="empty">لا توجد طلبات شحن حتى الآن</div>';
+        box.innerHTML=
+        '<div class="empty">لا توجد طلبات شحن حتى الآن</div>';
 
         return;
     }
 
 
-    let html = '';
+    let html='';
 
 
     data.forEach(function(item){
 
-        let statusClass = '';
+        let statusClass='';
 
-        if(item.status === 'approved'){
-            statusClass = 'completed';
-        }
-
-        if(item.status === 'rejected'){
-            statusClass = 'rejected';
-        }
+        let statusText='قيد المراجعة ⏳';
 
 
-        let statusText =
-            'معلق ⏳';
+        if(item.status==='approved'){
 
+            statusClass='completed';
 
-        if(item.status === 'approved'){
-            statusText =
-                'تم القبول ✅';
-        }
+            statusText='تم القبول ✅';
 
-        if(item.status === 'rejected'){
-            statusText =
-                'مرفوض ❌';
         }
 
 
-        if(item.status === 'pending'){
-            statusText =
-                'قيد المراجعة ⏳';
+        if(item.status==='rejected'){
+
+            statusClass='rejected';
+
+            statusText='مرفوض ❌';
+
         }
 
 
@@ -686,7 +778,7 @@ async function loadTopups(userId){
             .toLocaleString('ar-EG');
 
 
-        html += `
+        html+=`
 
         <div class="item">
 
@@ -701,8 +793,8 @@ async function loadTopups(userId){
 
             <br>
 
-            طريقة الدفع:
-            ${item.payment_method || 'Bankak'}
+            البنك:
+            ${escapeHtml(item.payment_method || 'Bankak')}
 
             <br>
 
@@ -712,6 +804,7 @@ async function loadTopups(userId){
             <br>
 
             الحالة:
+
             <span class="status ${statusClass}">
                 ${statusText}
             </span>
@@ -719,7 +812,8 @@ async function loadTopups(userId){
             ${
                 item.admin_note
                 ?
-                `<br><b>ملاحظة الأدمن:</b> ${escapeHtml(item.admin_note)}`
+                `<br><b>ملاحظة الأدمن:</b>
+                ${escapeHtml(item.admin_note)}`
                 :
                 ''
             }
@@ -731,14 +825,12 @@ async function loadTopups(userId){
     });
 
 
-    box.innerHTML = html;
+    box.innerHTML=html;
 
 }
 
 
-/* =====================================
-   طلبات الشراء
-===================================== */
+/* ================= ORDERS ================= */
 
 async function loadOrders(userId){
 
@@ -756,9 +848,10 @@ async function loadOrders(userId){
         'id,order_number,product_name,total_price,quantity,player_id,account_info,status,admin_note,created_at'
     )
     .eq('user_id',userId)
-    .order('created_at',{
-        ascending:false
-    })
+    .order(
+        'created_at',
+        {ascending:false}
+    )
     .limit(10);
 
 
@@ -766,73 +859,58 @@ async function loadOrders(userId){
 
         console.error(error);
 
-        box.innerHTML =
-            '<div class="empty">تعذر تحميل الطلبات</div>';
+        box.innerHTML=
+        '<div class="empty">تعذر تحميل الطلبات</div>';
 
         return;
     }
 
 
-    if(!data || data.length === 0){
+    if(!data || !data.length){
 
-        box.innerHTML =
-            '<div class="empty">لا توجد طلبات حتى الآن</div>';
+        box.innerHTML=
+        '<div class="empty">لا توجد طلبات حتى الآن</div>';
 
         return;
     }
 
 
-    let html = '';
+    let html='';
 
 
     data.forEach(function(item){
 
-        let statusClass = '';
+        let statusClass='';
 
-        let statusText =
-            'قيد الانتظار ⏳';
+        let statusText='قيد الانتظار ⏳';
 
 
-        if(item.status === 'completed'){
+        if(item.status==='completed'){
 
-            statusClass =
-                'completed';
+            statusClass='completed';
 
-            statusText =
-                'مكتمل ✅';
+            statusText='مكتمل ✅';
 
         }
 
 
-        if(item.status === 'rejected'){
+        if(item.status==='processing'){
 
-            statusClass =
-                'rejected';
+            statusClass='processing';
 
-            statusText =
-                'مرفوض ❌';
+            statusText='جاري التنفيذ 🔄';
 
         }
 
 
-        if(item.status === 'processing'){
+        if(
+            item.status==='rejected' ||
+            item.status==='cancelled'
+        ){
 
-            statusClass =
-                'processing';
+            statusClass='rejected';
 
-            statusText =
-                'جاري التنفيذ 🔄';
-
-        }
-
-
-        if(item.status === 'cancelled'){
-
-            statusClass =
-                'rejected';
-
-            statusText =
-                'ملغي ❌';
+            statusText='ملغي ❌';
 
         }
 
@@ -842,7 +920,7 @@ async function loadOrders(userId){
             .toLocaleString('ar-EG');
 
 
-        html += `
+        html+=`
 
         <div class="item">
 
@@ -868,15 +946,8 @@ async function loadOrders(userId){
             ${
                 item.player_id
                 ?
-                `<br>معرف اللاعب: ${escapeHtml(item.player_id)}`
-                :
-                ''
-            }
-
-            ${
-                item.account_info
-                ?
-                `<br>بيانات الحساب: ${escapeHtml(item.account_info)}`
+                `<br>معرف اللاعب:
+                ${escapeHtml(item.player_id)}`
                 :
                 ''
             }
@@ -889,17 +960,10 @@ async function loadOrders(userId){
             <br>
 
             الحالة:
+
             <span class="status ${statusClass}">
                 ${statusText}
             </span>
-
-            ${
-                item.admin_note
-                ?
-                `<br><b>ملاحظة:</b> ${escapeHtml(item.admin_note)}`
-                :
-                ''
-            }
 
         </div>
 
@@ -908,14 +972,12 @@ async function loadOrders(userId){
     });
 
 
-    box.innerHTML = html;
+    box.innerHTML=html;
 
 }
 
 
-/* =====================================
-   سجل معاملات المحفظة
-===================================== */
+/* ================= TRANSACTIONS ================= */
 
 async function loadTransactions(userId){
 
@@ -929,9 +991,10 @@ async function loadTransactions(userId){
         'id,type,amount,balance_before,balance_after,description,created_at'
     )
     .eq('user_id',userId)
-    .order('created_at',{
-        ascending:false
-    })
+    .order(
+        'created_at',
+        {ascending:false}
+    )
     .limit(10);
 
 
@@ -943,7 +1006,7 @@ async function loadTransactions(userId){
     }
 
 
-    if(!data || data.length === 0){
+    if(!data || !data.length){
 
         return;
     }
@@ -952,19 +1015,17 @@ async function loadTransactions(userId){
     const card =
         document.createElement('div');
 
-    card.className =
-        'card';
+    card.className='card';
 
 
-    let html =
+    let html=
         '<div class="section-title">💰 آخر معاملات المحفظة</div>';
 
 
     data.forEach(function(item){
 
         const isTopup =
-            item.type === 'topup';
-
+            item.type==='topup';
 
         const sign =
             isTopup ? '+' : '-';
@@ -975,29 +1036,40 @@ async function loadTransactions(userId){
             .toLocaleString('ar-EG');
 
 
-        html += `
+        html+=`
 
         <div class="item">
 
             <b>
-                ${escapeHtml(item.description || (isTopup ? 'شحن محفظة' : 'شراء'))}
+                ${escapeHtml(
+                    item.description ||
+                    (isTopup ?
+                    'شحن محفظة':
+                    'شراء')
+                )}
             </b>
 
             <br>
 
             المبلغ:
 
-            <span style="
-                color:${isTopup ? '#16833c' : '#c62828'};
-                font-weight:800;
+            <b style="
+                color:${isTopup ?
+                '#16833c':
+                '#c62828'};
             ">
+
                 ${sign}${formatMoney(item.amount)}
-            </span>
+
+            </b>
 
             <br>
 
             الرصيد بعد العملية:
-            <b>${formatMoney(item.balance_after)}</b>
+
+            <b>
+                ${formatMoney(item.balance_after)}
+            </b>
 
             <br>
 
@@ -1010,47 +1082,25 @@ async function loadTransactions(userId){
     });
 
 
-    card.innerHTML =
-        html;
+    card.innerHTML=html;
 
 
-    const content =
-        document.getElementById('content');
-
-
-    const lastCard =
-        content.querySelector('.card:nth-child(3)');
-
-
-    if(lastCard){
-
-        content.insertBefore(
-            card,
-            lastCard
-        );
-
-    }else{
-
-        content.appendChild(card);
-
-    }
+    document.getElementById('content')
+        .appendChild(card);
 
 }
 
 
-/* =====================================
-   حماية عرض النصوص
-===================================== */
+/* ================= ESCAPE ================= */
 
 function escapeHtml(value){
 
-    if(value === null ||
-       value === undefined){
+    if(value===null ||
+       value===undefined){
 
         return '';
 
     }
-
 
     return String(value)
         .replace(/&/g,'&amp;')
@@ -1062,29 +1112,18 @@ function escapeHtml(value){
 }
 
 
-/* =====================================
-   تسجيل الخروج
-===================================== */
+/* ================= LOGOUT ================= */
 
 async function logout(){
 
-    const yes =
-        confirm(
-            'هل تريد تسجيل الخروج؟'
-        );
-
-
-    if(!yes){
+    if(!confirm('هل تريد تسجيل الخروج؟')){
 
         return;
-
     }
 
 
-    const {
-        error
-    } =
-    await supabaseClient.auth.signOut();
+    const {error} =
+        await supabaseClient.auth.signOut();
 
 
     if(error){
@@ -1093,32 +1132,23 @@ async function logout(){
             'حدث خطأ أثناء تسجيل الخروج.'
         );
 
-        console.error(error);
-
         return;
-
     }
 
 
-    window.location.href =
-        'login.html';
+    location.href='login.html';
 
 }
 
 
-/* =====================================
-   مراقبة تسجيل الدخول
-===================================== */
+/* ================= AUTH ================= */
 
 supabaseClient.auth.onAuthStateChange(
-    function(event,session){
+    function(event){
 
-        if(
-            event === 'SIGNED_OUT'
-        ){
+        if(event==='SIGNED_OUT'){
 
-            window.location.href =
-                'login.html';
+            location.href='login.html';
 
         }
 
@@ -1126,13 +1156,9 @@ supabaseClient.auth.onAuthStateChange(
 );
 
 
-/* =====================================
-   بدء الصفحة
-===================================== */
-
 loadAllData();
 
 </script>
 
 </body>
-          </html>
+            </html>
