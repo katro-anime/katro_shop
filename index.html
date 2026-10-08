@@ -23,7 +23,6 @@ body{
     background:#f5f7fa;
     color:#222;
     min-height:100vh;
-    padding-bottom:85px;
 }
 
 /* ================= HEADER ================= */
@@ -31,7 +30,7 @@ body{
 header{
     background:linear-gradient(135deg,#111827,#2563eb);
     color:white;
-    padding:22px 18px 25px;
+    padding:18px 15px 24px;
     border-radius:0 0 25px 25px;
     box-shadow:0 4px 15px rgba(0,0,0,.12);
 }
@@ -42,7 +41,7 @@ header{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:15px;
+    gap:12px;
 }
 
 .logo{
@@ -54,6 +53,29 @@ header{
 .logo span{
     color:#60a5fa;
 }
+
+/* زر الثلاث شرطات */
+
+.menu-btn{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:14px;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    border:1px solid rgba(255,255,255,.2);
+}
+
+.menu-btn:active{
+    transform:scale(.94);
+}
+
+/* تسجيل الدخول */
 
 .login-btn{
     text-decoration:none;
@@ -70,7 +92,6 @@ header{
 .search-box{
     max-width:1100px;
     margin:18px auto 0;
-    position:relative;
 }
 
 .search-box input{
@@ -174,8 +195,6 @@ main{
     transform:scale(.97);
 }
 
-/* ================= IMAGE ================= */
-
 .service-image{
     width:85px;
     height:85px;
@@ -185,8 +204,6 @@ main{
     margin-bottom:12px;
     border:1px solid #e5e7eb;
 }
-
-/* ================= EMOJI ================= */
 
 .service-emoji{
     width:85px;
@@ -253,65 +270,127 @@ main{
     grid-column:1 / -1;
 }
 
+/* ================= SIDE MENU ================= */
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:5000;
+    display:none;
+}
+
+.menu-overlay.show{
+    display:block;
+}
+
+.side-menu{
+    position:absolute;
+    top:0;
+    right:0;
+    width:min(360px,88%);
+    height:100%;
+    background:white;
+    box-shadow:-5px 0 20px rgba(0,0,0,.2);
+    overflow-y:auto;
+}
+
+.menu-header{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 20px;
+    border-bottom:1px solid #eee;
+}
+
+.menu-header strong{
+    font-size:21px;
+}
+
+.close-menu{
+    border:none;
+    background:none;
+    font-size:32px;
+    color:#555;
+    cursor:pointer;
+}
+
+.menu-search{
+    display:flex;
+    margin:16px;
+    border:1px solid #eee;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.menu-search input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:14px;
+    font-size:15px;
+}
+
+.menu-search button{
+    width:58px;
+    border:none;
+    background:linear-gradient(135deg,#7c3aed,#f97316);
+    color:white;
+    font-size:25px;
+}
+
+.menu-item{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 22px;
+    border:none;
+    border-bottom:1px solid #eee;
+    background:white;
+    color:#222;
+    text-decoration:none;
+    font-size:17px;
+    cursor:pointer;
+}
+
+.menu-item:hover{
+    background:#f5f7fa;
+}
+
+.menu-item .right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.menu-icon{
+    font-size:22px;
+}
+
 /* ================= WHATSAPP ================= */
 
 .whatsapp-float{
     position:fixed;
-
     left:18px;
     bottom:82px;
-
-    width:60px;
-    height:60px;
-
+    width:58px;
+    height:58px;
     border-radius:50%;
-
     background:#25D366;
-
+    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-
     text-decoration:none;
-
-    z-index:9999;
-
-    box-shadow:
-        0 5px 18px rgba(0,0,0,.25);
-
-    transition:.2s;
+    font-size:31px;
+    box-shadow:0 5px 18px rgba(0,0,0,.25);
+    z-index:3000;
 }
 
-.whatsapp-float:hover{
-    transform:scale(1.08);
-}
-
-.whatsapp-icon{
-    width:37px;
-    height:37px;
-}
-
-/* ================= WHATSAPP LABEL ================= */
-
-.whatsapp-label{
-    position:fixed;
-
-    left:88px;
-    bottom:92px;
-
-    background:white;
-    color:#555;
-
-    padding:9px 13px;
-
-    border-radius:8px;
-
-    font-size:12px;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.12);
-
-    z-index:9998;
+.whatsapp-float:active{
+    transform:scale(.93);
 }
 
 /* ================= BOTTOM NAV ================= */
@@ -321,24 +400,18 @@ main{
     bottom:0;
     right:0;
     left:0;
-
-    height:70px;
-
-    background:#0b0718;
-
+    height:65px;
+    background:white;
+    border-top:1px solid #e5e7eb;
     display:flex;
     justify-content:center;
-
-    z-index:9000;
-
-    box-shadow:
-        0 -5px 18px rgba(0,0,0,.18);
+    z-index:1000;
+    box-shadow:0 -3px 12px rgba(0,0,0,.08);
 }
 
 .bottom-nav-inner{
     width:100%;
-    max-width:650px;
-
+    max-width:600px;
     display:flex;
     justify-content:space-around;
     align-items:center;
@@ -346,25 +419,17 @@ main{
 
 .nav-item{
     text-decoration:none;
-
-    color:#aaa;
-
-    font-size:11px;
-
+    color:#777;
+    font-size:12px;
     display:flex;
     flex-direction:column;
-
     align-items:center;
-
     gap:4px;
-
-    padding:6px 12px;
-
-    min-width:70px;
+    padding:6px 15px;
 }
 
 .nav-item .icon{
-    font-size:22px;
+    font-size:21px;
 }
 
 .nav-item.active{
@@ -377,11 +442,16 @@ main{
 @media(max-width:600px){
 
     header{
-        padding:18px 14px 22px;
+        padding:15px 12px 20px;
     }
 
     .logo{
         font-size:22px;
+    }
+
+    .menu-btn{
+        width:45px;
+        height:45px;
     }
 
     .login-btn{
@@ -390,7 +460,7 @@ main{
     }
 
     main{
-        padding:18px 12px 95px;
+        padding:18px 12px 90px;
     }
 
     .banner h1{
@@ -417,24 +487,6 @@ main{
         font-size:36px;
     }
 
-    .whatsapp-float{
-        left:15px;
-        bottom:82px;
-
-        width:58px;
-        height:58px;
-    }
-
-    .whatsapp-icon{
-        width:35px;
-        height:35px;
-    }
-
-    .whatsapp-label{
-        left:82px;
-        bottom:91px;
-    }
-
 }
 
 @media(max-width:350px){
@@ -455,33 +507,31 @@ main{
 
 <body>
 
-
 <!-- ================= HEADER ================= -->
 
 <header>
 
     <div class="header-content">
 
+        <!-- زر الثلاث شرطات -->
+        <button
+            class="menu-btn"
+            onclick="openMenu()"
+            aria-label="فتح القائمة">
+            ☰
+        </button>
+
         <div class="logo">
-
-            KATRO
-            <span>SHOP</span>
-
+            KATRO <span>SHOP</span>
         </div>
-
 
         <a
             href="login.html"
             class="login-btn">
-
             تسجيل الدخول
-
         </a>
 
     </div>
-
-
-    <!-- SEARCH -->
 
     <div class="search-box">
 
@@ -496,12 +546,148 @@ main{
 </header>
 
 
+<!-- ================= SIDE MENU ================= -->
+
+<div
+    id="menuOverlay"
+    class="menu-overlay"
+    onclick="closeMenuOutside(event)">
+
+    <div class="side-menu">
+
+        <div class="menu-header">
+
+            <strong>
+                القائمة
+            </strong>
+
+            <button
+                class="close-menu"
+                onclick="closeMenu()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="menu-search">
+
+            <input
+                type="text"
+                placeholder="البحث عن المنتجات">
+
+            <button>
+                🔍
+            </button>
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="menu-item">
+
+            <span class="right">
+                <span class="menu-icon">🏠</span>
+                الرئيسية
+            </span>
+
+            <span>‹</span>
+
+        </a>
+
+
+        <a
+            href="index.html"
+            class="menu-item">
+
+            <span class="right">
+                <span class="menu-icon">🎮</span>
+                بطاقات الألعاب
+            </span>
+
+            <span>‹</span>
+
+        </a>
+
+
+        <a
+            href="mobile-topup.html"
+            class="menu-item">
+
+            <span class="right">
+                <span class="menu-icon">📱</span>
+                شحن الألعاب
+            </span>
+
+            <span>‹</span>
+
+        </a>
+
+
+        <a
+            href="wallet.html"
+            class="menu-item">
+
+            <span class="right">
+                <span class="menu-icon">💰</span>
+                محفظتي
+            </span>
+
+            <span>‹</span>
+
+        </a>
+
+
+        <a
+            href="wallet-topup.html"
+            class="menu-item">
+
+            <span class="right">
+                <span class="menu-icon">💳</span>
+                شحن المحفظة
+            </span>
+
+            <span>‹</span>
+
+        </a>
+
+
+        <a
+            href="account.html"
+            class="menu-item">
+
+            <span class="right">
+                <span class="menu-icon">👤</span>
+                حسابي
+            </span>
+
+            <span>‹</span>
+
+        </a>
+
+
+        <a
+            href="account.html"
+            class="menu-item">
+
+            <span class="right">
+                <span class="menu-icon">🚪</span>
+                تسجيل الخروج
+            </span>
+
+            <span>‹</span>
+
+        </a>
+
+    </div>
+
+</div>
+
+
 <!-- ================= MAIN ================= -->
 
 <main>
-
-
-    <!-- BANNER -->
 
     <div class="banner">
 
@@ -516,8 +702,6 @@ main{
     </div>
 
 
-    <!-- SERVICES TITLE -->
-
     <div class="section-title">
 
         <h2>
@@ -530,8 +714,6 @@ main{
 
     </div>
 
-
-    <!-- SERVICES -->
 
     <div
         id="services"
@@ -553,32 +735,11 @@ main{
     href="https://wa.me/249924064977"
     target="_blank"
     rel="noopener"
-    aria-label="التواصل عبر واتساب">
+    aria-label="واتساب">
 
-    <svg
-        class="whatsapp-icon"
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-
-        <path
-            d="M16 3C8.82 3 3 8.82 3 16c0 2.29.6 4.45 1.75 6.34L3 29l6.82-1.7A12.93 12.93 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3Z"
-            stroke="white"
-            stroke-width="2"
-            fill="none"/>
-
-        <path
-            d="M11.4 9.9c.35-.38.74-.4 1.12-.17l1.72 1.02c.37.22.48.62.3 1l-.63 1.3c-.12.25-.1.5.06.72.57.78 1.26 1.47 2.04 2.04.22.16.47.18.72.06l1.3-.63c.38-.18.78-.07 1 .3l1.02 1.72c.23.38.21.77-.17 1.12-.53.49-1.2.75-1.91.75-1.64 0-3.7-.94-5.57-2.81-1.87-1.87-2.81-3.93-2.81-5.57 0-.71.26-1.38.75-1.91Z"
-            fill="white"/>
-
-    </svg>
+    ☎
 
 </a>
-
-
-<div class="whatsapp-label">
-    الدعم الفني
-</div>
 
 
 <!-- ================= BOTTOM NAV ================= -->
@@ -586,9 +747,6 @@ main{
 <nav class="bottom-nav">
 
     <div class="bottom-nav-inner">
-
-
-        <!-- الرئيسية -->
 
         <a
             href="index.html"
@@ -605,8 +763,6 @@ main{
         </a>
 
 
-        <!-- المحفظة -->
-
         <a
             href="wallet.html"
             class="nav-item">
@@ -622,25 +778,6 @@ main{
         </a>
 
 
-        <!-- الطلبات -->
-
-        <a
-            href="game.html"
-            class="nav-item">
-
-            <span class="icon">
-                🛍️
-            </span>
-
-            <span>
-                الطلبات
-            </span>
-
-        </a>
-
-
-        <!-- حسابي -->
-
         <a
             href="account.html"
             class="nav-item">
@@ -655,7 +792,6 @@ main{
 
         </a>
 
-
     </div>
 
 </nav>
@@ -666,9 +802,6 @@ main{
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
-
-/* ================= SUPABASE ================= */
 
 const SUPABASE_URL =
 "https://uwmrzvsygeoequscpinx.supabase.co";
@@ -681,6 +814,44 @@ window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+
+
+/* ================= MENU ================= */
+
+function openMenu(){
+
+    document
+        .getElementById("menuOverlay")
+        .classList.add("show");
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+function closeMenu(){
+
+    document
+        .getElementById("menuOverlay")
+        .classList.remove("show");
+
+    document.body.style.overflow =
+        "";
+}
+
+
+function closeMenuOutside(event){
+
+    if(
+        event.target.id ===
+        "menuOverlay"
+    ){
+
+        closeMenu();
+
+    }
+
+}
 
 
 /* ================= ELEMENTS ================= */
@@ -700,51 +871,28 @@ document.getElementById("servicesCount");
 const serviceNames = {
 
     freefire:"Free Fire",
-
     pubg:"PUBG Mobile",
-
     codm:"Call of Duty Mobile",
-
     efootball:"eFootball",
-
     jawaker:"جواكر",
-
     mobilelegends:"Mobile Legends",
-
     yallaludo:"Yalla Ludo",
-
     tiktok:"TikTok",
-
     googleplay:"Google Play",
-
     itunes:"iTunes",
-
     playstation:"PlayStation",
-
     xbox:"Xbox",
-
     razergold:"Razer Gold",
-
     netflix:"Netflix",
-
     visa:"Visa",
-
     mastercard:"Mastercard",
-
     zain:"زين",
-
     mtn:"MTN",
-
     sudani:"سوداني",
-
     cashi:"Cashi",
-
     starlink:"Starlink",
-
     katro:"KATRO",
-
     katrocard:"KATRO Card",
-
     pyypl:"Pyypl"
 
 };
@@ -755,51 +903,28 @@ const serviceNames = {
 const serviceIcons = {
 
     freefire:"🔥",
-
     pubg:"🎮",
-
     codm:"🎯",
-
     efootball:"⚽",
-
     jawaker:"🃏",
-
     mobilelegends:"⚔️",
-
     yallaludo:"🎲",
-
     tiktok:"🎵",
-
     googleplay:"▶️",
-
     itunes:"🎵",
-
     playstation:"🎮",
-
     xbox:"🎮",
-
     razergold:"🟡",
-
     netflix:"🎬",
-
     visa:"💳",
-
     mastercard:"💳",
-
     zain:"📱",
-
     mtn:"📱",
-
     sudani:"📱",
-
     cashi:"💰",
-
     starlink:"🌐",
-
     katro:"🛒",
-
     katrocard:"💳",
-
     pyypl:"💳"
 
 };
@@ -810,23 +935,17 @@ const serviceIcons = {
 const serviceImages = {
 
     freefire:"freefire.jpg",
-
     pubg:"pubg.jpg",
-
     codm:"collofduty.jpg",
-
     efootball:"efootball.jpg",
-
     tiktok:"tiktok.jpg",
-
     netflix:"netflix.jpg",
-
     xbox:"xbox.jpg"
 
 };
 
 
-/* ================= ESCAPE HTML ================= */
+/* ================= ESCAPE ================= */
 
 function escapeHtml(value){
 
@@ -840,21 +959,17 @@ function escapeHtml(value){
 }
 
 
-/* ================= ALL SERVICES ================= */
+/* ================= SERVICES ================= */
 
 let allServices = [];
 
 
-/* ================= LOAD SERVICES ================= */
-
 async function loadServices(){
 
     servicesBox.innerHTML = `
-
         <div class="loading">
             جاري تحميل الخدمات...
         </div>
-
     `;
 
     try{
@@ -877,22 +992,16 @@ async function loadServices(){
             );
 
             servicesBox.innerHTML = `
-
                 <div class="error">
-
                     حدث خطأ أثناء تحميل الخدمات.
 
                     <div class="debug-info">
-
                         ${escapeHtml(
                             error.message ||
                             "خطأ غير معروف"
                         )}
-
                     </div>
-
                 </div>
-
             `;
 
             servicesCount.textContent =
@@ -903,14 +1012,15 @@ async function loadServices(){
         }
 
 
-        if(!data || data.length === 0){
+        if(
+            !data ||
+            data.length === 0
+        ){
 
             servicesBox.innerHTML = `
-
                 <div class="empty">
                     لا توجد خدمات متاحة حالياً.
                 </div>
-
             `;
 
             servicesCount.textContent =
@@ -978,22 +1088,16 @@ async function loadServices(){
         console.error(error);
 
         servicesBox.innerHTML = `
-
             <div class="error">
-
                 حدث خطأ أثناء الاتصال بالخادم.
 
                 <div class="debug-info">
-
                     ${escapeHtml(
                         error.message ||
                         "خطأ غير معروف"
                     )}
-
                 </div>
-
             </div>
-
         `;
 
         servicesCount.textContent =
@@ -1004,11 +1108,9 @@ async function loadServices(){
 }
 
 
-/* ================= RENDER SERVICES ================= */
+/* ================= RENDER ================= */
 
-function renderServices(
-    services
-){
+function renderServices(services){
 
     if(
         !services ||
@@ -1016,11 +1118,9 @@ function renderServices(
     ){
 
         servicesBox.innerHTML = `
-
             <div class="empty">
                 لا توجد نتائج.
             </div>
-
         `;
 
         servicesCount.textContent =
@@ -1093,8 +1193,7 @@ function renderServices(
                     visual = `
 
                         <span
-                            class="service-emoji"
-                        >
+                            class="service-emoji">
                             ${icon}
                         </span>
 
@@ -1109,10 +1208,11 @@ function renderServices(
                         class="service-card"
                         onclick="
                             openService(
-                                '${escapeHtml(service.key)}'
+                                '${escapeHtml(
+                                    service.key
+                                )}'
                             )
-                        "
-                    >
+                        ">
 
                         ${visual}
 
@@ -1121,15 +1221,12 @@ function renderServices(
                         </h3>
 
                         <p>
-
                             ${service.count}
-
                             ${
                                 service.count === 1
                                 ? "خدمة"
                                 : "خدمات"
                             }
-
                         </p>
 
                     </div>
@@ -1145,14 +1242,11 @@ function renderServices(
 
 /* ================= OPEN SERVICE ================= */
 
-function openService(
-    gameKey
-){
+function openService(gameKey){
 
     if(!gameKey){
         return;
     }
-
 
     window.location.href =
         "game.html?g=" +
@@ -1201,17 +1295,8 @@ searchInput.addEventListener(
 
 
                     return (
-
-                        name.includes(
-                            search
-                        )
-
-                        ||
-
-                        service.key.includes(
-                            search
-                        )
-
+                        name.includes(search) ||
+                        service.key.includes(search)
                     );
 
                 }
@@ -1233,5 +1318,4 @@ loadServices();
 </script>
 
 </body>
-
-        </html>
+    </html>
