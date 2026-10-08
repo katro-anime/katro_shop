@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>حسابي | KATRO SHOP</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:#f5f7fa;
+    color:#222;
+    min-height:100vh;
+    padding-bottom:85px;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:#080b12;
+    color:white;
+    height:82px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 22px;
+    box-shadow:0 3px 15px rgba(0,0,0,.12);
+}
+
+.logo{
+    font-size:27px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.home-button{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#111827;
+    color:white;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+}
+
+/* ================= MAIN ================= */
+
+main{
+    max-width:700px;
+    margin:auto;
+    padding:25px 16px;
+}
+
+.page-title{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+/* ================= USER CARD ================= */
+
+.user-card{
+    background:linear-gradient(
+        135deg,
+        #7c3aed,
+        #ec4899,
+        #ff6b35
+    );
+
+    color:white;
+    border-radius:25px;
+    padding:25px 20px;
+    margin-bottom:22px;
+
+    box-shadow:
+        0 8px 25px rgba(124,58,237,.20);
+}
+
+.user-card-top{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.avatar{
+    width:75px;
+    height:75px;
+    border-radius:22px;
+
+    background:rgba(255,255,255,.18);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:38px;
+    flex-shrink:0;
+}
+
+.user-info{
+    min-width:0;
+}
+
+.welcome{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.user-email{
+    font-size:13px;
+    opacity:.9;
+    word-break:break-word;
+}
+
+/* ================= ACCOUNT CARDS ================= */
+
+.account-box{
+    background:#fff;
+    border-radius:25px;
+    padding:14px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.account-item{
+    width:100%;
+    min-height:95px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:#fff;
+
+    border:1px solid #edf0f4;
+    border-radius:20px;
+
+    margin-bottom:12px;
+
+    text-decoration:none;
+    color:#222;
+
+    transition:.2s;
+
+    overflow:hidden;
+}
+
+.account-item:last-child{
+    margin-bottom:0;
+}
+
+.account-item:active{
+    transform:scale(.98);
+}
+
+.account-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.item-icon{
+    width:65px;
+    height:65px;
+
+    margin-right:12px;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    font-size:28px;
+}
+
+.wallet-icon{
+    background:linear-gradient(
+        135deg,
+        #ff8a00,
+        #ff4d00
+    );
+}
+
+.orders-icon{
+    background:linear-gradient(
+        135deg,
+        #7c3aed,
+        #4f46e5
+    );
+}
+
+.settings-icon{
+    background:linear-gradient(
+        135deg,
+        #ff7043,
+        #ec4899
+    );
+}
+
+.logout-icon{
+    background:linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+}
+
+.item-text{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.item-arrow{
+    font-size:28px;
+    color:#9ca3af;
+    margin-left:18px;
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    text-align:center;
+    padding:50px 20px;
+    color:#777;
+}
+
+/* ================= ERROR ================= */
+
+.error{
+    background:#fff1f2;
+    color:#be123c;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    line-height:1.8;
+}
+
+/* ================= WHATSAPP ================= */
+
+.whatsapp-float{
+    position:fixed;
+
+    left:22px;
+    bottom:82px;
+
+    width:62px;
+    height:62px;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    z-index:9999;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.25);
+
+    transition:.2s;
+}
+
+.whatsapp-float:hover{
+    transform:scale(1.08);
+}
+
+.whatsapp-icon{
+    width:36px;
+    height:36px;
+}
+
+/* ================= BOTTOM NAV ================= */
+
+.bottom-nav{
+    position:fixed;
+
+    bottom:0;
+    right:0;
+    left:0;
+
+    height:72px;
+
+    background:#0b0718;
+
+    display:flex;
+    justify-content:center;
+
+    z-index:9000;
+
+    box-shadow:
+        0 -5px 20px rgba(0,0,0,.18);
+}
+
+.bottom-nav-inner{
+    width:100%;
+    max-width:650px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+}
+
+.nav-item{
+    text-decoration:none;
+
+    color:#aaa;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:5px;
+
+    font-size:11px;
+
+    min-width:75px;
+}
+
+.nav-icon{
+    font-size:24px;
+}
+
+.nav-item.active{
+    color:#a855f7;
+    font-weight:bold;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    header{
+        height:78px;
+        padding:0 16px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .home-button{
+        width:45px;
+        height:45px;
+    }
+
+    main{
+        padding:22px 15px 25px;
+    }
+
+    .page-title{
+        font-size:27px;
+        margin-bottom:22px;
+    }
+
+    .user-card{
+        padding:22px 16px;
+    }
+
+    .avatar{
+        width:68px;
+        height:68px;
+        font-size:32px;
+    }
+
+    .welcome{
+        font-size:17px;
+    }
+
+    .account-item{
+        min-height:90px;
+    }
+
+    .item-icon{
+        width:58px;
+        height:58px;
+        font-size:25px;
+    }
+
+    .item-text{
+        font-size:17px;
+    }
+
+    .whatsapp-float{
+        left:18px;
+        bottom:83px;
+        width:58px;
+        height:58px;
+    }
+
+}
+
+/* ================= LOGOUT MESSAGE ================= */
+
+.logout-loading{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:20000;
+}
+
+.logout-box{
+    background:white;
+
+    width:85%;
+    max-width:350px;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 10px 40px rgba(0,0,0,.3);
+}
+
+.logout-box h3{
+    margin-bottom:10px;
+}
+
+.logout-box p{
+    color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <a
+        href="index.html"
+        class="home-button"
+        aria-label="الرئيسية">
+
+        🏠
+
+    </a>
+
+
+    <div class="logo">
+
+        KATRO
+        <span>SHOP</span>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main>
+
+    <h1 class="page-title">
+        حسابي
+    </h1>
+
+
+    <div id="pageContent">
+
+        <div class="loading">
+            جاري تحميل الحساب...
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ================= WHATSAPP ================= -->
+
+<a
+    class="whatsapp-float"
+    href="https://wa.me/249924064977"
+    target="_blank"
+    rel="noopener"
+    aria-label="التواصل عبر واتساب">
+
+    <svg
+        class="whatsapp-icon"
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <path
+            d="M16 3C8.82 3 3 8.82 3 16c0 2.29.6 4.45 1.75 6.34L3 29l6.82-1.7A12.93 12.93 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3Z"
+            stroke="white"
+            stroke-width="2"
+            fill="none"/>
+
+        <path
+            d="M11.4 9.9c.35-.38.74-.4 1.12-.17l1.72 1.02c.37.22.48.62.3 1l-.63 1.3c-.12.25-.1.5.06.72.57.78 1.26 1.47 2.04 2.04.22.16.47.18.72.06l1.3-.63c.38-.18.78-.07 1 .3l1.02 1.72c.23.38.21.77-.17 1.12-.53.49-1.2.75-1.91.75-1.64 0-3.7-.94-5.57-2.81-1.87-1.87-2.81-3.93-2.81-5.57 0-.71.26-1.38.75-1.91Z"
+            fill="white"/>
+
+    </svg>
+
+</a>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+    <div class="bottom-nav-inner">
+
+        <a
+            href="index.html"
+            class="nav-item">
+
+            <span class="nav-icon">🏠</span>
+
+            <span>
+                الرئيسية
+            </span>
+
+        </a>
+
+
+        <a
+            href="wallet.html"
+            class="nav-item">
+
+            <span class="nav-icon">💰</span>
+
+            <span>
+                المحفظة
+            </span>
+
+        </a>
+
+
+        <a
+            href="game.html"
+            class="nav-item">
+
+            <span class="nav-icon">🛍️</span>
+
+            <span>
+                الطلبات
+            </span>
+
+        </a>
+
+
+        <a
+            href="account.html"
+            class="nav-item active">
+
+            <span class="nav-icon">👤</span>
+
+            <span>
+                حسابي
+            </span>
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= LOGOUT POPUP ================= -->
+
+<div
+    id="logoutLoading"
+    class="logout-loading">
+
+    <div class="logout-box">
+
+        <h3>
+            جاري تسجيل الخروج
+        </h3>
+
+        <p>
+            يرجى الانتظار...
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SUPABASE ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* ================= SUPABASE ================= */
+
+const SUPABASE_URL =
+"https://uwmrzvsygeoequscpinx.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* ================= ELEMENTS ================= */
+
+const pageContent =
+document.getElementById("pageContent");
+
+const logoutLoading =
+document.getElementById("logoutLoading");
+
+
+/* ================= ESCAPE ================= */
+
+function escapeHtml(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ================= LOAD ACCOUNT ================= */
+
+async function loadAccount(){
+
+    try{
+
+        const {
+            data:{
+                session
+            },
+            error
+        } =
+        await supabaseClient
+        .auth
+        .getSession();
+
+
+        if(error){
+
+            console.error(error);
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        /* غير مسجل الدخول */
+
+        if(!session || !session.user){
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        const user =
+            session.user;
+
+
+        let profile = null;
+
+
+        /* ================= PROFILE ================= */
+
+        const profileResult =
+        await supabaseClient
+        .from("profiles")
+        .select(
+            "full_name,phone,wallet_number,role"
+        )
+        .eq(
+            "id",
+            user.id
+        )
+        .maybeSingle();
+
+
+        if(!profileResult.error){
+
+            profile =
+                profileResult.data;
+
+        }
+
+
+        const fullName =
+            profile?.full_name ||
+            user.user_metadata?.full_name ||
+            "العميل";
+
+
+        const phone =
+            profile?.phone ||
+            user.user_metadata?.phone ||
+            "";
+
+
+        const email =
+            user.email ||
+            "";
+
+
+        const walletNumber =
+            profile?.wallet_number ||
+            "غير متوفر";
+
+
+        /* ================= RENDER ================= */
+
+        pageContent.innerHTML = `
+
+            <!-- USER CARD -->
+
+            <div class="user-card">
+
+                <div class="user-card-top">
+
+                    <div class="avatar">
+                        👤
+                    </div>
+
+                    <div class="user-info">
+
+                        <div class="welcome">
+                            👋 مرحباً بك يا
+                            ${escapeHtml(fullName)}
+                        </div>
+
+                        <div class="user-email">
+
+                            ${
+                                escapeHtml(
+                                    email ||
+                                    phone ||
+                                    "حساب KATRO SHOP"
+                                )
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACCOUNT MENU -->
+
+            <div class="account-box">
+
+
+                <!-- WALLET -->
+
+                <a
+                    href="wallet.html"
+                    class="account-item">
+
+                    <div class="account-right">
+
+                        <div
+                            class="item-icon wallet-icon">
+
+                            💰
+
+                        </div>
+
+                        <div class="item-text">
+                            محفظتي
+                        </div>
+
+                    </div>
+
+                    <div class="item-arrow">
+                        ‹
+                    </div>
+
+                </a>
+
+
+                <!-- ORDERS -->
+
+                <a
+                    href="game.html"
+                    class="account-item">
+
+                    <div class="account-right">
+
+                        <div
+                            class="item-icon orders-icon">
+
+                            📦
+
+                        </div>
+
+                        <div class="item-text">
+                            طلباتي
+                        </div>
+
+                    </div>
+
+                    <div class="item-arrow">
+                        ‹
+                    </div>
+
+                </a>
+
+
+                <!-- SETTINGS -->
+
+                <a
+                    href="#"
+                    class="account-item"
+                    onclick="
+                        showSettings();
+                        return false;
+                    ">
+
+                    <div class="account-right">
+
+                        <div
+                            class="item-icon settings-icon">
+
+                            ⚙️
+
+                        </div>
+
+                        <div class="item-text">
+                            إعدادات الحساب
+                        </div>
+
+                    </div>
+
+                    <div class="item-arrow">
+                        ‹
+                    </div>
+
+                </a>
+
+
+                <!-- LOGOUT -->
+
+                <a
+                    href="#"
+                    class="account-item"
+                    onclick="
+                        logout();
+                        return false;
+                    ">
+
+                    <div class="account-right">
+
+                        <div
+                            class="item-icon logout-icon">
+
+                            🚪
+
+                        </div>
+
+                        <div
+                            class="item-text"
+                            style="color:#dc2626;">
+
+                            تسجيل الخروج
+
+                        </div>
+
+                    </div>
+
+                    <div class="item-arrow">
+                        ‹
+                    </div>
+
+                </a>
+
+
+            </div>
+
+
+            <!-- WALLET NUMBER -->
+
+            <div
+                style="
+                    background:white;
+                    margin-top:20px;
+                    border-radius:20px;
+                    padding:20px;
+                    text-align:center;
+                    box-shadow:0 5px 20px rgba(0,0,0,.05);
+                ">
+
+                <div
+                    style="
+                        color:#777;
+                        font-size:14px;
+                        margin-bottom:8px;
+                    ">
+
+                    رقم المحفظة
+
+                </div>
+
+                <div
+                    style="
+                        color:#2563eb;
+                        font-size:22px;
+                        font-weight:bold;
+                        direction:ltr;
+                    ">
+
+                    ${escapeHtml(walletNumber)}
+
+                </div>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            ${
+                phone
+                ?
+                `
+                <div
+                    style="
+                        background:white;
+                        margin-top:14px;
+                        border-radius:20px;
+                        padding:20px;
+                        text-align:center;
+                        box-shadow:0 5px 20px rgba(0,0,0,.05);
+                    ">
+
+                    <div
+                        style="
+                            color:#777;
+                            font-size:14px;
+                            margin-bottom:8px;
+                        ">
+
+                        رقم الهاتف
+
+                    </div>
+
+                    <div
+                        style="
+                            font-size:18px;
+                            font-weight:bold;
+                            direction:ltr;
+                        ">
+
+                        ${escapeHtml(phone)}
+
+                    </div>
+
+                </div>
+                `
+                :
+                ""
+            }
+
+        `;
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Account Error:",
+            error
+        );
+
+        pageContent.innerHTML = `
+
+            <div class="error">
+
+                حدث خطأ أثناء تحميل الحساب.
+
+                <br>
+
+                حاول تحديث الصفحة.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ================= SETTINGS ================= */
+
+function showSettings(){
+
+    alert(
+        "إعدادات الحساب سيتم إضافتها هنا لاحقاً."
+    );
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+async function logout(){
+
+    const confirmed =
+        confirm(
+            "هل تريد تسجيل الخروج من حسابك؟"
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    logoutLoading.style.display =
+        "flex";
+
+
+    try{
+
+        const {
+            error
+        } =
+        await supabaseClient
+        .auth
+        .signOut();
+
+
+        if(error){
+
+            console.error(
+                "Logout Error:",
+                error
+            );
+
+            logoutLoading.style.display =
+                "none";
+
+            alert(
+                "تعذر تسجيل الخروج. حاول مرة أخرى."
+            );
+
+            return;
+
+        }
+
+
+        /* التأكد من حذف الجلسة محلياً */
+
+        localStorage.removeItem(
+            "supabase.auth.token"
+        );
+
+
+        /* الذهاب للرئيسية */
+
+        window.location.replace(
+            "index.html"
+        );
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        logoutLoading.style.display =
+            "none";
+
+        alert(
+            "حدث خطأ أثناء تسجيل الخروج."
+        );
+
+    }
+
+}
+
+
+/* ================= START ================= */
+
+loadAccount();
+
+</script>
+
+</body>
+
+  </html>
