@@ -23,129 +23,141 @@ body{
     font-family:Arial,Tahoma,sans-serif;
     background:#f5f6f8;
     color:#151515;
-    padding-bottom:100px;
+    padding-bottom:105px;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 .header{
-    height:70px;
+    height:72px;
     background:#080b12;
     color:white;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 18px;
-    position:sticky;
-    top:0;
-    z-index:1000;
+    padding:0 20px;
 }
 
 .logo{
-    font-size:22px;
+    font-size:23px;
     font-weight:bold;
 }
 
-.menu-btn{
-    width:45px;
-    height:45px;
+.home-btn{
+    width:48px;
+    height:48px;
     border-radius:50%;
-    border:0;
     background:#151c2b;
     color:white;
-    font-size:23px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:27px;
 }
 
-/* CONTAINER */
+/* ================= PAGE ================= */
 
 .container{
     max-width:650px;
     margin:auto;
-    padding:18px;
+    padding:22px 18px;
 }
-
-/* TITLE */
 
 .page-title{
-    font-size:26px;
+    font-size:32px;
     font-weight:bold;
-    margin:10px 0 20px;
+    margin:5px 0 25px;
 }
 
-/* USER CARD */
+/* ================= USER CARD ================= */
 
 .user-card{
     background:linear-gradient(
         135deg,
-        #743cff,
-        #ff6b35
+        #7138ff,
+        #ff6840
     );
+
     color:white;
-    border-radius:25px;
-    padding:24px;
+    border-radius:28px;
+    padding:28px 25px;
     margin-bottom:18px;
-    box-shadow:0 10px 30px rgba(0,0,0,.12);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.12);
 }
 
 .user-name{
-    font-size:21px;
+    font-size:25px;
     font-weight:bold;
+    margin-bottom:13px;
 }
 
 .wallet-number{
-    margin-top:8px;
-    opacity:.9;
+    font-size:18px;
+    opacity:.95;
 }
 
-/* BALANCE */
+/* ================= BALANCE ================= */
 
 .balance-card{
     background:white;
-    border-radius:22px;
-    padding:25px;
+    border-radius:27px;
+    padding:30px 20px;
     text-align:center;
-    box-shadow:0 5px 25px rgba(0,0,0,.06);
-    margin-bottom:18px;
+    margin-bottom:20px;
+
+    box-shadow:
+        0 5px 25px rgba(0,0,0,.06);
 }
 
 .balance-title{
     color:#777;
-    margin-bottom:10px;
+    font-size:18px;
+    margin-bottom:12px;
 }
 
 .balance{
+    color:#00a86b;
     font-size:32px;
     font-weight:bold;
-    color:#00a86b;
 }
 
-/* ACTIONS */
+/* ================= ACTIONS ================= */
 
 .actions{
     background:white;
-    border-radius:25px;
-    padding:12px;
-    box-shadow:0 5px 25px rgba(0,0,0,.06);
+    border-radius:28px;
+    padding:10px;
+    box-shadow:
+        0 5px 25px rgba(0,0,0,.06);
 }
 
 .wallet-action{
     display:flex;
     align-items:center;
     justify-content:space-between;
+
+    background:white;
+
+    border:1px solid #eeeeee;
+    border-radius:20px;
+
+    padding:17px;
+    margin:9px 0;
+
     text-decoration:none;
     color:#222;
-    background:white;
-    border:1px solid #eee;
-    border-radius:18px;
-    padding:18px;
-    margin:10px 0;
-    font-size:19px;
+
+    font-size:20px;
     font-weight:bold;
+
     transition:.2s;
 }
 
-.wallet-action:hover{
-    transform:translateY(-2px);
+.wallet-action:active{
+    transform:scale(.98);
 }
 
 .wallet-action-right{
@@ -155,35 +167,43 @@ body{
 }
 
 .wallet-action-icon{
-    width:50px;
-    height:50px;
-    border-radius:15px;
+    width:56px;
+    height:56px;
+
+    border-radius:17px;
+
+    background:#e7f9ef;
+    color:#00a86b;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    background:#e7f9ef;
-    color:#00a86b;
-    font-size:25px;
+
+    font-size:30px;
+    font-weight:bold;
 }
 
 .arrow{
-    color:#aaa;
-    font-size:25px;
+    color:#999;
+    font-size:30px;
 }
 
-/* TRANSACTIONS */
+/* ================= TRANSACTIONS ================= */
 
 .section{
     background:white;
-    border-radius:22px;
-    margin-top:20px;
+    border-radius:25px;
+    margin-top:22px;
+
     overflow:hidden;
-    box-shadow:0 5px 25px rgba(0,0,0,.06);
+
+    box-shadow:
+        0 5px 25px rgba(0,0,0,.06);
 }
 
 .section-title{
     padding:20px;
-    font-size:22px;
+    font-size:23px;
     font-weight:bold;
     border-bottom:1px solid #eee;
 }
@@ -200,11 +220,27 @@ body{
 .transaction-top{
     display:flex;
     justify-content:space-between;
+    align-items:center;
     gap:10px;
 }
 
 .transaction-description{
+    font-size:16px;
     font-weight:bold;
+}
+
+.transaction-amount{
+    white-space:nowrap;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.transaction-in{
+    color:#00a86b;
+}
+
+.transaction-out{
+    color:#d62828;
 }
 
 .transaction-date{
@@ -213,87 +249,100 @@ body{
     margin-top:7px;
 }
 
-.transaction-in{
-    color:#00a86b;
-    font-weight:bold;
-}
-
-.transaction-out{
-    color:#d62828;
-    font-weight:bold;
-}
-
 .empty{
+    padding:30px;
+    text-align:center;
+    color:#888;
+}
+
+.loading{
     padding:25px;
     text-align:center;
     color:#888;
 }
 
-/* BOTTOM NAV */
+/* ================= WHATSAPP ================= */
+
+.whatsapp-float{
+    position:fixed;
+
+    left:20px;
+    bottom:92px;
+
+    width:62px;
+    height:62px;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.25);
+
+    z-index:9999;
+}
+
+.whatsapp-float svg{
+    width:39px;
+    height:39px;
+    fill:white;
+}
+
+/* ================= BOTTOM NAV ================= */
 
 .bottom-nav{
     position:fixed;
-    bottom:10px;
+
     left:14px;
     right:14px;
-    height:72px;
+    bottom:10px;
+
+    height:74px;
+
     background:#0b081b;
-    border-radius:28px;
+
+    border-radius:30px;
+
     display:flex;
     justify-content:space-around;
     align-items:center;
+
     z-index:9998;
-    box-shadow:0 8px 30px rgba(0,0,0,.25);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.3);
 }
 
 .nav-item{
-    color:#aaa;
+    width:25%;
+
+    color:#999;
+
     text-decoration:none;
+
     text-align:center;
+
     font-size:12px;
-    min-width:70px;
+
+    font-weight:bold;
 }
 
 .nav-icon{
     display:block;
-    font-size:24px;
+
+    font-size:25px;
+
     margin-bottom:4px;
 }
 
 .nav-item.active{
     color:#a855f7;
-}
-
-/* WHATSAPP */
-
-.whatsapp-float{
-    position:fixed;
-    left:18px;
-    bottom:95px;
-    width:62px;
-    height:62px;
-    border-radius:50%;
-    background:#25D366;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 5px 20px rgba(0,0,0,.25);
-    z-index:9999;
-    text-decoration:none;
-}
-
-.whatsapp-float svg{
-    width:38px;
-    height:38px;
-    fill:white;
-}
-
-/* LOADING */
-
-.loading{
-    text-align:center;
-    padding:30px;
-    color:#777;
 }
 
 </style>
@@ -302,42 +351,61 @@ body{
 
 <body>
 
+
+<!-- ================= HEADER ================= -->
+
 <header class="header">
 
 <div class="logo">
 KATRO SHOP
 </div>
 
-<button
-class="menu-btn"
-onclick="location.href='index.html'">
+<a
+href="index.html"
+class="home-btn">
+
 ⌂
-</button>
+
+</a>
 
 </header>
 
 
-<div class="container">
+<!-- ================= CONTENT ================= -->
+
+<main class="container">
+
 
 <div class="page-title">
 محفظتي
 </div>
 
 
+<!-- USER -->
+
 <div class="user-card">
 
-<div class="user-name"
+<div
+class="user-name"
 id="userName">
+
 جاري التحميل...
+
 </div>
 
-<div class="wallet-number"
+
+<div
+class="wallet-number"
 id="walletNumber">
-رقم المحفظة: ...
-</div>
+
+رقم المحفظة: جاري التحميل...
 
 </div>
 
+</div>
+
+
+<!-- BALANCE -->
 
 <div class="balance-card">
 
@@ -345,15 +413,23 @@ id="walletNumber">
 رصيد المحفظة
 </div>
 
-<div class="balance"
+<div
+class="balance"
 id="balance">
+
 جاري التحميل...
-</div>
 
 </div>
 
+</div>
+
+
+<!-- ACTIONS -->
 
 <div class="actions">
+
+
+<!-- TOP UP -->
 
 <a
 href="wallet-topup.html"
@@ -362,7 +438,7 @@ class="wallet-action">
 <div class="wallet-action-right">
 
 <div class="wallet-action-icon">
-＋
++
 </div>
 
 <span>
@@ -377,6 +453,8 @@ class="wallet-action">
 
 </a>
 
+
+<!-- TRANSFER -->
 
 <a
 href="wallet-transfer.html"
@@ -401,6 +479,8 @@ class="wallet-action">
 </a>
 
 
+<!-- TRANSACTIONS -->
+
 <a
 href="#transactions"
 class="wallet-action">
@@ -423,8 +503,11 @@ class="wallet-action">
 
 </a>
 
+
 </div>
 
+
+<!-- TRANSACTIONS -->
 
 <div
 class="section"
@@ -434,7 +517,9 @@ id="transactions">
 سجل المعاملات
 </div>
 
-<div id="transactionsList">
+
+<div
+id="transactionsList">
 
 <div class="loading">
 جاري تحميل المعاملات...
@@ -444,10 +529,11 @@ id="transactions">
 
 </div>
 
-</div>
+
+</main>
 
 
-<!-- WHATSAPP -->
+<!-- ================= WHATSAPP ================= -->
 
 <a
 class="whatsapp-float"
@@ -456,7 +542,8 @@ target="_blank"
 rel="noopener"
 aria-label="واتساب">
 
-<svg viewBox="0 0 32 32">
+<svg
+viewBox="0 0 32 32">
 
 <path d="M16 3C8.82 3 3 8.37 3 15c0 2.37.7 4.58 1.91 6.44L3.1 29l7.77-1.75A13.08 13.08 0 0 0 16 27c7.18 0 13-5.37 13-12S23.18 3 16 3zm0 21.8c-1.58 0-3.13-.42-4.49-1.21l-.32-.19-4.61 1.04 1.07-4.35-.21-.34A10.34 10.34 0 0 1 5.7 15C5.7 9.72 10.3 5.4 16 5.4S26.3 9.72 26.3 15 21.7 24.8 16 24.8zm5.65-7.19c-.31-.16-1.83-.91-2.11-1.01-.28-.1-.49-.16-.7.16-.21.31-.8 1.01-.98 1.22-.18.21-.36.23-.67.08-.31-.16-1.31-.48-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.7-1.68-.96-2.3-.25-.6-.51-.52-.7-.53h-.6c-.21 0-.55.08-.83.39-.28.31-1.09 1.07-1.09 2.61s1.12 3.03 1.27 3.24c.16.21 2.2 3.31 5.33 4.64.75.32 1.33.51 1.79.65.75.23 1.43.2 1.97.12.6-.09 1.83-.75 2.09-1.48.26-.73.26-1.35.18-1.48-.08-.13-.28-.21-.59-.37z"/>
 
@@ -465,9 +552,10 @@ aria-label="واتساب">
 </a>
 
 
-<!-- BOTTOM NAV -->
+<!-- ================= BOTTOM NAV ================= -->
 
 <nav class="bottom-nav">
+
 
 <a
 href="login.html"
@@ -520,10 +608,15 @@ class="nav-item">
 
 </a>
 
+
 </nav>
 
 
 <script>
+
+/* ==================================================
+   SUPABASE
+================================================== */
 
 const SUPABASE_URL =
 "https://uwmrzvsygeoequscpinx.supabase.co";
@@ -538,41 +631,92 @@ supabase.createClient(
 );
 
 
+/* ==================================================
+   USER
+================================================== */
+
 let currentUser = null;
 
 
-async function init(){
+/* ==================================================
+   START
+================================================== */
 
-    const {
-        data:{
-            user
-        }
-    } =
-    await supabaseClient.auth.getUser();
-
-    if(!user){
-
-        window.location.href =
-        "login.html";
-
-        return;
-    }
-
-    currentUser = user;
-
-    await loadProfile();
-    await loadBalance();
-    await loadTransactions();
-
-}
-
-
-async function loadProfile(){
+async function initWallet(){
 
     const {
         data,
         error
     } =
+    await supabaseClient
+    .auth
+    .getUser();
+
+
+    if(error){
+
+        console.error(
+            "Auth Error:",
+            error
+        );
+
+        location.href =
+        "login.html";
+
+        return;
+    }
+
+
+    const user =
+    data.user;
+
+
+    if(!user){
+
+        location.href =
+        "login.html";
+
+        return;
+    }
+
+
+    currentUser =
+    user;
+
+
+    await loadProfile();
+
+    await loadBalance();
+
+    await loadTransactions();
+
+}
+
+
+/* ==================================================
+   PROFILE
+================================================== */
+
+async function loadProfile(){
+
+    const userName =
+    document.getElementById(
+        "userName"
+    );
+
+
+    const walletNumber =
+    document.getElementById(
+        "walletNumber"
+    );
+
+
+    /*
+     * المحاولة الأولى:
+     * user_id
+     */
+
+    let result =
     await supabaseClient
     .from("profiles")
     .select(
@@ -584,36 +728,127 @@ async function loadProfile(){
     )
     .limit(1);
 
-    if(error){
-        console.error(error);
+
+    /*
+     * إذا لم نجد الملف،
+     * نجرب id
+     */
+
+    if(
+        result.error ||
+        !result.data ||
+        result.data.length === 0
+    ){
+
+        result =
+        await supabaseClient
+        .from("profiles")
+        .select(
+            "full_name,phone,wallet_number"
+        )
+        .eq(
+            "id",
+            currentUser.id
+        )
+        .limit(1);
+
+    }
+
+
+    /*
+     * إذا حدث خطأ
+     */
+
+    if(result.error){
+
+        console.error(
+            "Profile Error:",
+            result.error
+        );
+
+        userName.textContent =
+        "مرحباً بك";
+
+
+        walletNumber.textContent =
+        "رقم المحفظة غير متوفر";
+
         return;
     }
 
-    if(!data || !data.length){
+
+    /*
+     * لا يوجد Profile
+     */
+
+    if(
+        !result.data ||
+        result.data.length === 0
+    ){
+
+        userName.textContent =
+        "مرحباً بك";
+
+
+        walletNumber.textContent =
+        "رقم المحفظة غير متوفر";
+
         return;
     }
 
-    const profile = data[0];
 
-    document.getElementById(
-        "userName"
-    ).textContent =
+    const profile =
+    result.data[0];
+
+
+    /*
+     * اسم المستخدم
+     */
+
+    userName.textContent =
     profile.full_name ||
     "مرحباً بك";
 
-    document.getElementById(
-        "walletNumber"
-    ).textContent =
-    "رقم المحفظة: " +
-    (
-        profile.wallet_number ||
-        "غير متوفر"
-    );
+
+    /*
+     * رقم المحفظة
+     */
+
+    if(
+        profile.wallet_number !== null &&
+        profile.wallet_number !== undefined &&
+        String(
+            profile.wallet_number
+        ).trim() !== ""
+    ){
+
+        walletNumber.textContent =
+        "رقم المحفظة: " +
+        String(
+            profile.wallet_number
+        );
+
+    }else{
+
+        walletNumber.textContent =
+        "رقم المحفظة غير متوفر";
+
+    }
 
 }
 
 
+/* ==================================================
+   BALANCE
+================================================== */
+
 async function loadBalance(){
+
+    const balanceElement =
+    document.getElementById(
+        "balance"
+    );
+
 
     const {
         data,
@@ -628,29 +863,39 @@ async function loadBalance(){
     )
     .limit(1);
 
+
     if(error){
 
-        document.getElementById(
-            "balance"
-        ).textContent =
+        console.error(
+            "Wallet Error:",
+            error
+        );
+
+        balanceElement.textContent =
         "تعذر تحميل الرصيد";
 
         return;
     }
+
 
     const amount =
     Number(
         data?.[0]?.balance || 0
     );
 
-    document.getElementById(
-        "balance"
-    ).textContent =
-    amount.toLocaleString("ar-EG")
-    + " ج.س";
+
+    balanceElement.textContent =
+    amount.toLocaleString(
+        "ar-EG"
+    ) +
+    " ج.س";
 
 }
 
+
+/* ==================================================
+   TRANSACTIONS
+================================================== */
 
 async function loadTransactions(){
 
@@ -658,6 +903,7 @@ async function loadTransactions(){
     document.getElementById(
         "transactionsList"
     );
+
 
     const {
         data,
@@ -683,23 +929,33 @@ async function loadTransactions(){
 
     if(error){
 
-        console.error(error);
+        console.error(
+            "Transactions Error:",
+            error
+        );
 
         box.innerHTML =
-        `<div class="empty">
-        تعذر تحميل سجل المعاملات
-        </div>`;
+        `
+        <div class="empty">
+            تعذر تحميل سجل المعاملات
+        </div>
+        `;
 
         return;
     }
 
 
-    if(!data || !data.length){
+    if(
+        !data ||
+        data.length === 0
+    ){
 
         box.innerHTML =
-        `<div class="empty">
-        لا توجد معاملات
-        </div>`;
+        `
+        <div class="empty">
+            لا توجد معاملات حتى الآن
+        </div>
+        `;
 
         return;
     }
@@ -708,58 +964,77 @@ async function loadTransactions(){
     box.innerHTML = "";
 
 
-    data.forEach(transaction => {
+    data.forEach(
+        transaction => {
 
-        const amount =
-        Number(transaction.amount || 0);
-
-        const isIn =
-        transaction.type ===
-        "transfer_in"
-        ||
-        amount > 0;
-
-        const date =
-        new Date(
-            transaction.created_at
-        ).toLocaleString(
-            "ar-EG"
-        );
+            const amount =
+            Number(
+                transaction.amount || 0
+            );
 
 
-        const item =
-        document.createElement("div");
+            const isIncoming =
+                transaction.type ===
+                "transfer_in"
+                ||
+                amount > 0;
 
-        item.className =
-        "transaction";
+
+            const description =
+                transaction.description ||
+                getTransactionName(
+                    transaction.type
+                );
 
 
-        item.innerHTML = `
+            const date =
+            new Date(
+                transaction.created_at
+            ).toLocaleString(
+                "ar-EG"
+            );
+
+
+            const item =
+            document.createElement(
+                "div"
+            );
+
+
+            item.className =
+            "transaction";
+
+
+            item.innerHTML =
+            `
 
             <div class="transaction-top">
 
                 <div class="transaction-description">
+
                     ${escapeHtml(
-                        transaction.description ||
-                        getTransactionName(
-                            transaction.type
-                        )
+                        description
                     )}
+
                 </div>
 
-                <div class="${
-                    isIn
+
+                <div class="transaction-amount ${
+                    isIncoming
                     ? "transaction-in"
                     : "transaction-out"
                 }">
 
                     ${
-                        isIn ? "+" : ""
+                        isIncoming
+                        ? "+"
+                        : "-"
                     }
 
                     ${Math.abs(amount)
-                        .toLocaleString("ar-EG")
-                    }
+                        .toLocaleString(
+                            "ar-EG"
+                        )}
 
                     ج.س
 
@@ -767,49 +1042,115 @@ async function loadTransactions(){
 
             </div>
 
+
             <div class="transaction-date">
 
                 ${date}
 
             </div>
-        `;
+
+            `;
 
 
-        box.appendChild(item);
+            box.appendChild(
+                item
+            );
 
-    });
+        }
+    );
 
 }
 
 
-function getTransactionName(type){
+/* ==================================================
+   TRANSACTION NAME
+================================================== */
 
-    if(type === "transfer_in"){
+function getTransactionName(
+    type
+){
+
+    if(
+        type ===
+        "transfer_in"
+    ){
+
         return "تحويل وارد";
+
     }
 
-    if(type === "transfer_out"){
+
+    if(
+        type ===
+        "transfer_out"
+    ){
+
         return "تحويل صادر";
+
     }
+
+
+    if(
+        type ===
+        "topup"
+    ){
+
+        return "شحن المحفظة";
+
+    }
+
 
     return "معاملة مالية";
+
 }
 
 
-function escapeHtml(value){
+/* ==================================================
+   SECURITY
+================================================== */
+
+function escapeHtml(
+    value
+){
 
     return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
 
 
-init();
+/* ==================================================
+   RUN
+================================================== */
+
+initWallet();
 
 </script>
 
 </body>
+
     </html>
