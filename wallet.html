@@ -14,262 +14,463 @@ content="width=device-width, initial-scale=1.0">
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-    margin:0;
-    font-family:Arial,Tahoma,sans-serif;
+    font-family:
+        Arial,
+        Tahoma,
+        sans-serif;
+
     background:#f5f6f8;
+
     color:#151515;
+
+    min-height:100vh;
+
     padding-bottom:105px;
 }
 
-/* ================= HEADER ================= */
+
+/* =========================
+   HEADER
+========================= */
 
 .header{
+
     height:72px;
+
     background:#080b12;
+
     color:white;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     padding:0 20px;
 }
 
 .logo{
+
     font-size:23px;
+
     font-weight:bold;
+
+    letter-spacing:.5px;
 }
 
 .home-btn{
+
     width:48px;
+
     height:48px;
+
     border-radius:50%;
+
     background:#151c2b;
+
     color:white;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     text-decoration:none;
+
     font-size:27px;
+
+    transition:.2s;
 }
 
-/* ================= PAGE ================= */
+.home-btn:active{
+
+    transform:scale(.92);
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
 
 .container{
+
+    width:100%;
+
     max-width:650px;
+
     margin:auto;
-    padding:22px 18px;
+
+    padding:22px 18px 40px;
 }
+
+
+/* =========================
+   PAGE TITLE
+========================= */
 
 .page-title{
+
     font-size:32px;
+
     font-weight:bold;
+
     margin:5px 0 25px;
+
+    text-align:right;
 }
 
-/* ================= USER CARD ================= */
+
+/* =========================
+   USER CARD
+========================= */
 
 .user-card{
-    background:linear-gradient(
-        135deg,
-        #7138ff,
-        #ff6840
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #7138ff,
+            #ff6840
+        );
 
     color:white;
+
     border-radius:28px;
+
     padding:28px 25px;
+
     margin-bottom:18px;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.12);
+        0 10px 30px
+        rgba(0,0,0,.12);
 }
 
 .user-name{
+
     font-size:25px;
+
     font-weight:bold;
+
     margin-bottom:13px;
+
+    word-break:break-word;
 }
 
 .wallet-number{
+
     font-size:18px;
+
     opacity:.95;
+
+    word-break:break-word;
 }
 
-/* ================= BALANCE ================= */
+
+/* =========================
+   BALANCE
+========================= */
 
 .balance-card{
+
     background:white;
+
     border-radius:27px;
+
     padding:30px 20px;
+
     text-align:center;
+
     margin-bottom:20px;
 
     box-shadow:
-        0 5px 25px rgba(0,0,0,.06);
+        0 5px 25px
+        rgba(0,0,0,.06);
 }
 
 .balance-title{
+
     color:#777;
+
     font-size:18px;
+
     margin-bottom:12px;
 }
 
 .balance{
+
     color:#00a86b;
+
     font-size:32px;
+
     font-weight:bold;
+
+    direction:rtl;
 }
 
-/* ================= ACTIONS ================= */
+
+/* =========================
+   ACTIONS
+========================= */
 
 .actions{
+
     background:white;
+
     border-radius:28px;
+
     padding:10px;
+
     box-shadow:
-        0 5px 25px rgba(0,0,0,.06);
+        0 5px 25px
+        rgba(0,0,0,.06);
 }
 
 .wallet-action{
+
+    width:100%;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     background:white;
 
     border:1px solid #eeeeee;
+
     border-radius:20px;
 
     padding:17px;
+
     margin:9px 0;
 
     text-decoration:none;
+
     color:#222;
 
     font-size:20px;
+
     font-weight:bold;
 
     transition:.2s;
 }
 
+.wallet-action:hover{
+
+    background:#fafafa;
+}
+
 .wallet-action:active{
+
     transform:scale(.98);
 }
 
 .wallet-action-right{
+
     display:flex;
+
     align-items:center;
+
     gap:15px;
 }
 
 .wallet-action-icon{
+
     width:56px;
+
     height:56px;
 
     border-radius:17px;
 
     background:#e7f9ef;
+
     color:#00a86b;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:30px;
+
     font-weight:bold;
+
+    flex-shrink:0;
 }
 
 .arrow{
+
     color:#999;
+
     font-size:30px;
+
+    line-height:1;
 }
 
-/* ================= TRANSACTIONS ================= */
+
+/* =========================
+   TRANSACTIONS
+========================= */
 
 .section{
+
     background:white;
+
     border-radius:25px;
+
     margin-top:22px;
 
     overflow:hidden;
 
     box-shadow:
-        0 5px 25px rgba(0,0,0,.06);
+        0 5px 25px
+        rgba(0,0,0,.06);
 }
 
 .section-title{
+
     padding:20px;
+
     font-size:23px;
+
     font-weight:bold;
+
     border-bottom:1px solid #eee;
 }
 
 .transaction{
+
     padding:17px 20px;
+
     border-bottom:1px solid #eee;
 }
 
 .transaction:last-child{
+
     border-bottom:0;
 }
 
 .transaction-top{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:10px;
 }
 
 .transaction-description{
+
     font-size:16px;
+
     font-weight:bold;
+
+    line-height:1.6;
 }
 
 .transaction-amount{
+
     white-space:nowrap;
+
     font-size:17px;
+
     font-weight:bold;
 }
 
 .transaction-in{
+
     color:#00a86b;
 }
 
 .transaction-out{
+
     color:#d62828;
 }
 
 .transaction-date{
+
     color:#999;
+
     font-size:13px;
+
     margin-top:7px;
 }
 
 .empty{
+
     padding:30px;
+
     text-align:center;
+
     color:#888;
+
+    line-height:1.8;
 }
 
 .loading{
+
     padding:25px;
+
     text-align:center;
+
     color:#888;
 }
 
-/* ================= WHATSAPP ================= */
+
+/* =========================
+   ERROR
+========================= */
+
+.error-box{
+
+    background:#fff1f2;
+
+    color:#be123c;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    margin-top:15px;
+
+    line-height:1.8;
+}
+
+
+/* =========================
+   WHATSAPP
+========================= */
 
 .whatsapp-float{
+
     position:fixed;
 
     left:20px;
+
     bottom:92px;
 
     width:62px;
+
     height:62px;
 
     border-radius:50%;
@@ -277,30 +478,49 @@ body{
     background:#25D366;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     text-decoration:none;
 
     box-shadow:
-        0 5px 20px rgba(0,0,0,.25);
+        0 5px 20px
+        rgba(0,0,0,.25);
 
     z-index:9999;
+
+    transition:.2s;
+}
+
+.whatsapp-float:active{
+
+    transform:scale(.92);
 }
 
 .whatsapp-float svg{
+
     width:39px;
+
     height:39px;
+
     fill:white;
 }
 
-/* ================= BOTTOM NAV ================= */
+
+/* =========================
+   BOTTOM NAV
+========================= */
 
 .bottom-nav{
+
     position:fixed;
 
     left:14px;
+
     right:14px;
+
     bottom:10px;
 
     height:74px;
@@ -310,16 +530,20 @@ body{
     border-radius:30px;
 
     display:flex;
+
     justify-content:space-around;
+
     align-items:center;
 
     z-index:9998;
 
     box-shadow:
-        0 8px 30px rgba(0,0,0,.3);
+        0 8px 30px
+        rgba(0,0,0,.3);
 }
 
 .nav-item{
+
     width:25%;
 
     color:#999;
@@ -331,523 +555,710 @@ body{
     font-size:12px;
 
     font-weight:bold;
+
+    padding:5px 0;
 }
 
 .nav-icon{
+
     display:block;
 
     font-size:25px;
 
     margin-bottom:4px;
+
+    line-height:1;
 }
 
 .nav-item.active{
+
     color:#a855f7;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px){
+
+    .header{
+
+        height:68px;
+
+        padding:0 16px;
+    }
+
+    .logo{
+
+        font-size:21px;
+    }
+
+    .home-btn{
+
+        width:44px;
+
+        height:44px;
+
+        font-size:25px;
+    }
+
+    .container{
+
+        padding:
+            20px 14px 35px;
+    }
+
+    .page-title{
+
+        font-size:30px;
+
+        margin-bottom:22px;
+    }
+
+    .user-card{
+
+        border-radius:26px;
+
+        padding:25px 21px;
+    }
+
+    .user-name{
+
+        font-size:23px;
+    }
+
+    .wallet-number{
+
+        font-size:17px;
+    }
+
+    .balance{
+
+        font-size:29px;
+    }
+
+    .wallet-action{
+
+        font-size:18px;
+
+        padding:15px;
+    }
+
+    .wallet-action-icon{
+
+        width:52px;
+
+        height:52px;
+
+        font-size:27px;
+    }
+
+    .whatsapp-float{
+
+        left:18px;
+
+        bottom:92px;
+
+        width:60px;
+
+        height:60px;
+    }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <header class="header">
 
-<div class="logo">
-KATRO SHOP
-</div>
+    <div class="logo">
+        KATRO SHOP
+    </div>
 
-<a
-href="index.html"
-class="home-btn">
+    <a
+        href="index.html"
+        class="home-btn"
+        aria-label="الرئيسية">
 
-⌂
+        ⌂
 
-</a>
+    </a>
 
 </header>
 
 
-<!-- ================= CONTENT ================= -->
+<!-- =========================
+     CONTENT
+========================= -->
 
 <main class="container">
 
 
-<div class="page-title">
-محفظتي
-</div>
+    <div class="page-title">
+        محفظتي
+    </div>
 
 
-<!-- USER -->
+    <!-- =========================
+         USER CARD
+    ========================= -->
 
-<div class="user-card">
+    <div class="user-card">
 
-<div
-class="user-name"
-id="userName">
+        <div
+            class="user-name"
+            id="userName">
 
-جاري التحميل...
+            جاري التحميل...
 
-</div>
-
-
-<div
-class="wallet-number"
-id="walletNumber">
-
-رقم المحفظة: جاري التحميل...
-
-</div>
-
-</div>
+        </div>
 
 
-<!-- BALANCE -->
+        <div
+            class="wallet-number"
+            id="walletNumber">
 
-<div class="balance-card">
+            رقم المحفظة: جاري التحميل...
 
-<div class="balance-title">
-رصيد المحفظة
-</div>
+        </div>
 
-<div
-class="balance"
-id="balance">
-
-جاري التحميل...
-
-</div>
-
-</div>
+    </div>
 
 
-<!-- ACTIONS -->
+    <!-- =========================
+         BALANCE
+    ========================= -->
 
-<div class="actions">
+    <div class="balance-card">
 
+        <div class="balance-title">
 
-<!-- TOP UP -->
+            رصيد المحفظة
 
-<a
-href="wallet-topup.html"
-class="wallet-action">
-
-<div class="wallet-action-right">
-
-<div class="wallet-action-icon">
-+
-</div>
-
-<span>
-شحن المحفظة
-</span>
-
-</div>
-
-<span class="arrow">
-‹
-</span>
-
-</a>
+        </div>
 
 
-<!-- TRANSFER -->
+        <div
+            class="balance"
+            id="balance">
 
-<a
-href="wallet-transfer.html"
-class="wallet-action">
+            جاري التحميل...
 
-<div class="wallet-action-right">
+        </div>
 
-<div class="wallet-action-icon">
-↔
-</div>
-
-<span>
-تحويل الرصيد
-</span>
-
-</div>
-
-<span class="arrow">
-‹
-</span>
-
-</a>
+    </div>
 
 
-<!-- TRANSACTIONS -->
+    <!-- =========================
+         ACTIONS
+    ========================= -->
 
-<a
-href="#transactions"
-class="wallet-action">
-
-<div class="wallet-action-right">
-
-<div class="wallet-action-icon">
-☷
-</div>
-
-<span>
-سجل المعاملات
-</span>
-
-</div>
-
-<span class="arrow">
-‹
-</span>
-
-</a>
+    <div class="actions">
 
 
-</div>
+        <!-- شحن -->
+
+        <a
+            href="wallet-topup.html"
+            class="wallet-action">
+
+            <div class="wallet-action-right">
+
+                <div class="wallet-action-icon">
+                    +
+                </div>
+
+                <span>
+                    شحن المحفظة
+                </span>
+
+            </div>
 
 
-<!-- TRANSACTIONS -->
+            <span class="arrow">
+                ‹
+            </span>
 
-<div
-class="section"
-id="transactions">
-
-<div class="section-title">
-سجل المعاملات
-</div>
+        </a>
 
 
-<div
-id="transactionsList">
+        <!-- تحويل -->
 
-<div class="loading">
-جاري تحميل المعاملات...
-</div>
+        <a
+            href="wallet-transfer.html"
+            class="wallet-action">
 
-</div>
+            <div class="wallet-action-right">
 
-</div>
+                <div class="wallet-action-icon">
+                    ↔
+                </div>
+
+                <span>
+                    تحويل الرصيد
+                </span>
+
+            </div>
+
+
+            <span class="arrow">
+                ‹
+            </span>
+
+        </a>
+
+
+        <!-- سجل المعاملات -->
+
+        <a
+            href="#transactions"
+            class="wallet-action">
+
+            <div class="wallet-action-right">
+
+                <div class="wallet-action-icon">
+                    ☷
+                </div>
+
+                <span>
+                    سجل المعاملات
+                </span>
+
+            </div>
+
+
+            <span class="arrow">
+                ‹
+            </span>
+
+        </a>
+
+
+    </div>
+
+
+    <!-- =========================
+         TRANSACTIONS
+    ========================= -->
+
+    <div
+        class="section"
+        id="transactions">
+
+
+        <div class="section-title">
+
+            سجل المعاملات
+
+        </div>
+
+
+        <div
+            id="transactionsList">
+
+            <div class="loading">
+
+                جاري تحميل المعاملات...
+
+            </div>
+
+        </div>
+
+    </div>
 
 
 </main>
 
 
-<!-- ================= WHATSAPP ================= -->
+<!-- =========================
+     WHATSAPP
+========================= -->
 
 <a
-class="whatsapp-float"
-href="https://wa.me/249924064977"
-target="_blank"
-rel="noopener"
-aria-label="واتساب">
+    class="whatsapp-float"
+    href="https://wa.me/249924064977"
+    target="_blank"
+    rel="noopener"
+    aria-label="التواصل عبر واتساب">
 
-<svg
-viewBox="0 0 32 32">
+    <svg
+        viewBox="0 0 32 32"
+        aria-hidden="true">
 
-<path d="M16 3C8.82 3 3 8.37 3 15c0 2.37.7 4.58 1.91 6.44L3.1 29l7.77-1.75A13.08 13.08 0 0 0 16 27c7.18 0 13-5.37 13-12S23.18 3 16 3zm0 21.8c-1.58 0-3.13-.42-4.49-1.21l-.32-.19-4.61 1.04 1.07-4.35-.21-.34A10.34 10.34 0 0 1 5.7 15C5.7 9.72 10.3 5.4 16 5.4S26.3 9.72 26.3 15 21.7 24.8 16 24.8zm5.65-7.19c-.31-.16-1.83-.91-2.11-1.01-.28-.1-.49-.16-.7.16-.21.31-.8 1.01-.98 1.22-.18.21-.36.23-.67.08-.31-.16-1.31-.48-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.7-1.68-.96-2.3-.25-.6-.51-.52-.7-.53h-.6c-.21 0-.55.08-.83.39-.28.31-1.09 1.07-1.09 2.61s1.12 3.03 1.27 3.24c.16.21 2.2 3.31 5.33 4.64.75.32 1.33.51 1.79.65.75.23 1.43.2 1.97.12.6-.09 1.83-.75 2.09-1.48.26-.73.26-1.35.18-1.48-.08-.13-.28-.21-.59-.37z"/>
+        <path d="M16 3C8.82 3 3 8.37 3 15c0 2.37.7 4.58 1.91 6.44L3.1 29l7.77-1.75A13.08 13.08 0 0 0 16 27c7.18 0 13-5.37 13-12S23.18 3 16 3zm0 21.8c-1.58 0-3.13-.42-4.49-1.21l-.32-.19-4.61 1.04 1.07-4.35-.21-.34A10.34 10.34 0 0 1 5.7 15C5.7 9.72 10.3 5.4 16 5.4S26.3 9.72 26.3 15 21.7 24.8 16 24.8zm5.65-7.19c-.31-.16-1.83-.91-2.11-1.01-.28-.1-.49-.16-.7.16-.21.31-.8 1.01-.98 1.22-.18.21-.36.23-.67.08-.31-.16-1.31-.48-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.7-1.68-.96-2.3-.25-.6-.51-.52-.7-.53h-.6c-.21 0-.55.08-.83.39-.28.31-1.09 1.07-1.09 2.61s1.12 3.03 1.27 3.24c.16.21 2.2 3.31 5.33 4.64.75.32 1.33.51 1.79.65.75.23 1.43.2 1.97.12.6-.09 1.83-.75 2.09-1.48.26-.73.26-1.35.18-1.48-.08-.13-.28-.21-.59-.37z"/>
 
-</svg>
+    </svg>
 
 </a>
 
 
-<!-- ================= BOTTOM NAV ================= -->
+<!-- =========================
+     BOTTOM NAV
+========================= -->
 
 <nav class="bottom-nav">
 
 
-<a
-href="login.html"
-class="nav-item">
+    <!-- حسابي -->
 
-<span class="nav-icon">
-👤
-</span>
+    <a
+        href="account.html"
+        class="nav-item">
 
-حسابي
+        <span class="nav-icon">
+            👤
+        </span>
 
-</a>
+        حسابي
 
-
-<a
-href="index.html"
-class="nav-item">
-
-<span class="nav-icon">
-🛍
-</span>
-
-الطلبات
-
-</a>
+    </a>
 
 
-<a
-href="wallet.html"
-class="nav-item active">
+    <!-- الطلبات -->
 
-<span class="nav-icon">
-▣
-</span>
+    <a
+        href="index.html"
+        class="nav-item">
 
-المحفظة
+        <span class="nav-icon">
+            🛍
+        </span>
 
-</a>
+        الطلبات
+
+    </a>
 
 
-<a
-href="index.html"
-class="nav-item">
+    <!-- المحفظة -->
 
-<span class="nav-icon">
-⌂
-</span>
+    <a
+        href="wallet.html"
+        class="nav-item active">
 
-الرئيسية
+        <span class="nav-icon">
+            ▣
+        </span>
 
-</a>
+        المحفظة
+
+    </a>
+
+
+    <!-- الرئيسية -->
+
+    <a
+        href="index.html"
+        class="nav-item">
+
+        <span class="nav-icon">
+            ⌂
+        </span>
+
+        الرئيسية
+
+    </a>
 
 
 </nav>
 
 
+<!-- =========================
+     SUPABASE
+========================= -->
+
 <script>
 
-/* ==================================================
-   SUPABASE
-================================================== */
+/* =========================
+   SUPABASE CONFIG
+========================= */
 
 const SUPABASE_URL =
-"https://uwmrzvsygeoequscpinx.supabase.co";
+    "https://uwmrzvsygeoequscpinx.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
+    "sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
+
 
 const supabaseClient =
-supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
-/* ==================================================
-   USER
-================================================== */
+/* =========================
+   CURRENT USER
+========================= */
 
 let currentUser = null;
 
 
-/* ==================================================
-   START
-================================================== */
+/* =========================
+   ESCAPE HTML
+========================= */
 
-async function initWallet(){
+function escapeHtml(value){
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-    .auth
-    .getUser();
+    return String(value ?? "")
 
+        .replace(
+            /&/g,
+            "&amp;"
+        )
 
-    if(error){
+        .replace(
+            /</g,
+            "&lt;"
+        )
 
-        console.error(
-            "Auth Error:",
-            error
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
         );
-
-        location.href =
-        "login.html";
-
-        return;
-    }
-
-
-    const user =
-    data.user;
-
-
-    if(!user){
-
-        location.href =
-        "login.html";
-
-        return;
-    }
-
-
-    currentUser =
-    user;
-
-
-    await loadProfile();
-
-    await loadBalance();
-
-    await loadTransactions();
 
 }
 
 
-/* ==================================================
-   PROFILE
-================================================== */
+/* =========================
+   INIT
+========================= */
+
+async function initWallet(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .auth
+            .getUser();
+
+
+        if(error){
+
+            console.error(
+                "Auth Error:",
+                error
+            );
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        const user =
+            data?.user;
+
+
+        if(!user){
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        currentUser =
+            user;
+
+
+        await loadProfile();
+
+        await loadBalance();
+
+        await loadTransactions();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Wallet Init Error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================
+   LOAD PROFILE
+========================= */
 
 async function loadProfile(){
 
     const userName =
-    document.getElementById(
-        "userName"
-    );
+        document.getElementById(
+            "userName"
+        );
 
 
     const walletNumber =
-    document.getElementById(
-        "walletNumber"
-    );
+        document.getElementById(
+            "walletNumber"
+        );
 
 
     /*
-     * المحاولة الأولى:
-     * user_id
-     */
+       مهم:
+       هنا نستخدم id وليس uses_id
+       ولا user_id.
+    */
 
-    let result =
+    const {
+        data: profile,
+        error
+    } =
     await supabaseClient
-    .from("profiles")
-    .select(
-        "full_name,phone,wallet_number"
-    )
-    .eq(
-        "user_id",
-        currentUser.id
-    )
-    .limit(1);
-
-
-    /*
-     * إذا لم نجد الملف،
-     * نجرب id
-     */
-
-    if(
-        result.error ||
-        !result.data ||
-        result.data.length === 0
-    ){
-
-        result =
-        await supabaseClient
         .from("profiles")
         .select(
-            "full_name,phone,wallet_number"
+            "id,full_name,phone,wallet_number"
         )
         .eq(
             "id",
             currentUser.id
         )
-        .limit(1);
-
-    }
+        .maybeSingle();
 
 
-    /*
-     * إذا حدث خطأ
-     */
-
-    if(result.error){
+    if(error){
 
         console.error(
             "Profile Error:",
-            result.error
+            error
         );
 
+
         userName.textContent =
-        "مرحباً بك";
+            currentUser
+                .user_metadata
+                ?.full_name
+            ||
+            "مرحباً بك";
 
 
         walletNumber.textContent =
-        "رقم المحفظة غير متوفر";
+            "رقم المحفظة غير متوفر";
+
 
         return;
     }
 
 
     /*
-     * لا يوجد Profile
-     */
+       لا يوجد ملف profile
+    */
 
-    if(
-        !result.data ||
-        result.data.length === 0
-    ){
+    if(!profile){
 
         userName.textContent =
-        "مرحباً بك";
+            currentUser
+                .user_metadata
+                ?.full_name
+            ||
+            "مرحباً بك";
 
 
         walletNumber.textContent =
-        "رقم المحفظة غير متوفر";
+            "رقم المحفظة غير متوفر";
+
 
         return;
     }
 
 
-    const profile =
-    result.data[0];
-
-
     /*
-     * اسم المستخدم
-     */
+       الاسم
+    */
 
     userName.textContent =
-    profile.full_name ||
-    "مرحباً بك";
+        profile.full_name
+        ||
+        currentUser
+            .user_metadata
+            ?.full_name
+        ||
+        "مرحباً بك";
 
 
     /*
-     * رقم المحفظة
-     */
+       رقم المحفظة
+    */
 
     if(
-        profile.wallet_number !== null &&
-        profile.wallet_number !== undefined &&
+
+        profile.wallet_number !== null
+
+        &&
+
+        profile.wallet_number !== undefined
+
+        &&
+
         String(
             profile.wallet_number
         ).trim() !== ""
+
     ){
 
         walletNumber.textContent =
-        "رقم المحفظة: " +
-        String(
-            profile.wallet_number
-        );
 
-    }else{
+            "رقم المحفظة: "
+
+            +
+
+            String(
+                profile.wallet_number
+            );
+
+    }
+
+    else{
 
         walletNumber.textContent =
-        "رقم المحفظة غير متوفر";
+            "رقم المحفظة غير متوفر";
 
     }
 
 }
 
 
-/* ==================================================
-   BALANCE
-================================================== */
+/* =========================
+   LOAD BALANCE
+========================= */
 
 async function loadBalance(){
 
     const balanceElement =
-    document.getElementById(
-        "balance"
-    );
+        document.getElementById(
+            "balance"
+        );
 
 
     const {
@@ -855,13 +1266,15 @@ async function loadBalance(){
         error
     } =
     await supabaseClient
-    .from("wallets")
-    .select("balance")
-    .eq(
-        "user_id",
-        currentUser.id
-    )
-    .limit(1);
+        .from("wallets")
+        .select(
+            "balance"
+        )
+        .eq(
+            "user_id",
+            currentUser.id
+        )
+        .limit(1);
 
 
     if(error){
@@ -871,75 +1284,10 @@ async function loadBalance(){
             error
         );
 
+
         balanceElement.textContent =
-        "تعذر تحميل الرصيد";
+            "تعذر تحميل الرصيد";
 
-        return;
-    }
-
-
-    const amount =
-    Number(
-        data?.[0]?.balance || 0
-    );
-
-
-    balanceElement.textContent =
-    amount.toLocaleString(
-        "ar-EG"
-    ) +
-    " ج.س";
-
-}
-
-
-/* ==================================================
-   TRANSACTIONS
-================================================== */
-
-async function loadTransactions(){
-
-    const box =
-    document.getElementById(
-        "transactionsList"
-    );
-
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-    .from("wallet_transactions")
-    .select(
-        "id,type,amount,balance_before,balance_after,description,created_at"
-    )
-    .eq(
-        "user_id",
-        currentUser.id
-    )
-    .order(
-        "created_at",
-        {
-            ascending:false
-        }
-    )
-    .limit(50);
-
-
-    if(error){
-
-        console.error(
-            "Transactions Error:",
-            error
-        );
-
-        box.innerHTML =
-        `
-        <div class="empty">
-            تعذر تحميل سجل المعاملات
-        </div>
-        `;
 
         return;
     }
@@ -950,12 +1298,105 @@ async function loadTransactions(){
         data.length === 0
     ){
 
-        box.innerHTML =
-        `
-        <div class="empty">
-            لا توجد معاملات حتى الآن
-        </div>
+        balanceElement.textContent =
+            "0 ج.س";
+
+
+        return;
+    }
+
+
+    const amount =
+        Number(
+            data[0].balance || 0
+        );
+
+
+    balanceElement.textContent =
+
+        amount.toLocaleString(
+            "ar-EG"
+        )
+
+        +
+
+        " ج.س";
+
+}
+
+
+/* =========================
+   LOAD TRANSACTIONS
+========================= */
+
+async function loadTransactions(){
+
+    const box =
+        document.getElementById(
+            "transactionsList"
+        );
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("wallet_transactions")
+        .select(
+            "id,type,amount,balance_before,balance_after,description,created_at"
+        )
+        .eq(
+            "user_id",
+            currentUser.id
+        )
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        )
+        .limit(50);
+
+
+    if(error){
+
+        console.error(
+            "Transactions Error:",
+            error
+        );
+
+
+        box.innerHTML = `
+
+            <div class="empty">
+
+                تعذر تحميل سجل المعاملات
+
+            </div>
+
         `;
+
+
+        return;
+    }
+
+
+    if(
+        !data ||
+        data.length === 0
+    ){
+
+        box.innerHTML = `
+
+            <div class="empty">
+
+                لا توجد معاملات حتى الآن
+
+            </div>
+
+        `;
+
 
         return;
     }
@@ -967,87 +1408,115 @@ async function loadTransactions(){
     data.forEach(
         transaction => {
 
-            const amount =
-            Number(
-                transaction.amount || 0
-            );
 
+            const amount =
+                Number(
+                    transaction.amount || 0
+                );
+
+
+            /*
+               التحويل الوارد موجب
+               والتحويل الصادر سالب.
+
+               topup موجب.
+            */
 
             const isIncoming =
+
                 transaction.type ===
                 "transfer_in"
+
                 ||
+
+                transaction.type ===
+                "topup"
+
+                ||
+
                 amount > 0;
 
 
             const description =
-                transaction.description ||
+
+                transaction.description
+
+                ||
+
                 getTransactionName(
                     transaction.type
                 );
 
 
             const date =
-            new Date(
+
                 transaction.created_at
-            ).toLocaleString(
-                "ar-EG"
-            );
+
+                ?
+
+                new Date(
+                    transaction.created_at
+                ).toLocaleString(
+                    "ar-EG"
+                )
+
+                :
+
+                "";
 
 
             const item =
-            document.createElement(
-                "div"
-            );
+                document.createElement(
+                    "div"
+                );
 
 
             item.className =
-            "transaction";
+                "transaction";
 
 
-            item.innerHTML =
-            `
+            item.innerHTML = `
 
-            <div class="transaction-top">
+                <div class="transaction-top">
 
-                <div class="transaction-description">
+                    <div class="transaction-description">
 
-                    ${escapeHtml(
-                        description
-                    )}
-
-                </div>
-
-
-                <div class="transaction-amount ${
-                    isIncoming
-                    ? "transaction-in"
-                    : "transaction-out"
-                }">
-
-                    ${
-                        isIncoming
-                        ? "+"
-                        : "-"
-                    }
-
-                    ${Math.abs(amount)
-                        .toLocaleString(
-                            "ar-EG"
+                        ${escapeHtml(
+                            description
                         )}
 
-                    ج.س
+                    </div>
+
+
+                    <div class="transaction-amount ${
+                        isIncoming
+                        ? "transaction-in"
+                        : "transaction-out"
+                    }">
+
+                        ${
+                            isIncoming
+                            ? "+"
+                            : "-"
+                        }
+
+                        ${Math.abs(amount)
+                            .toLocaleString(
+                                "ar-EG"
+                            )}
+
+                        ج.س
+
+                    </div>
 
                 </div>
 
-            </div>
 
+                <div class="transaction-date">
 
-            <div class="transaction-date">
+                    ${escapeHtml(date)}
 
-                ${date}
-
-            </div>
+                </div>
 
             `;
 
@@ -1062,9 +1531,9 @@ async function loadTransactions(){
 }
 
 
-/* ==================================================
-   TRANSACTION NAME
-================================================== */
+/* =========================
+   TRANSACTION NAMES
+========================= */
 
 function getTransactionName(
     type
@@ -1100,57 +1569,40 @@ function getTransactionName(
     }
 
 
+    if(
+        type ===
+        "purchase"
+    ){
+
+        return "شراء";
+
+    }
+
+
+    if(
+        type ===
+        "refund"
+    ){
+
+        return "استرجاع مبلغ";
+
+    }
+
+
     return "معاملة مالية";
 
 }
 
 
-/* ==================================================
-   SECURITY
-================================================== */
-
-function escapeHtml(
-    value
-){
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* ==================================================
-   RUN
-================================================== */
+/* =========================
+   START
+========================= */
 
 initWallet();
 
 </script>
 
+
 </body>
 
-    </html>
+                </html>
