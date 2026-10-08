@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>إعدادات الحساب | KATRO SHOP</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#080b12;
+    color:#fff;
+    min-height:100vh;
+}
+
+header{
+    height:70px;
+    background:#0d111c;
+    border-bottom:1px solid #20283a;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+}
+
+.logo{
+    color:#00b7ff;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.home-btn{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#151c2b;
+    color:#fff;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.container{
+    width:min(500px,92%);
+    margin:30px auto 100px;
+}
+
+.card{
+    background:#101522;
+    border:1px solid #20283a;
+    border-radius:22px;
+    padding:24px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.title{
+    text-align:center;
+    font-size:25px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#9da8ba;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#dce3ef;
+    font-size:14px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border-radius:13px;
+    border:1px solid #29354b;
+    outline:none;
+    background:#080d17;
+    color:#fff;
+    font-size:16px;
+}
+
+input:focus{
+    border-color:#00b7ff;
+}
+
+.password-note{
+    color:#8793a8;
+    font-size:12px;
+    margin-top:6px;
+}
+
+.save-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#00b7ff,#0077ff);
+    color:#fff;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.save-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.message{
+    display:none;
+    margin-top:18px;
+    padding:13px;
+    border-radius:12px;
+    text-align:center;
+    font-size:14px;
+}
+
+.message.success{
+    display:block;
+    background:#0c3326;
+    border:1px solid #1c8d66;
+    color:#72f0c0;
+}
+
+.message.error{
+    display:block;
+    background:#35151a;
+    border:1px solid #9e3543;
+    color:#ff9da8;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#00b7ff;
+    text-decoration:none;
+}
+
+.whatsapp-float{
+    position:fixed;
+    left:20px;
+    bottom:92px;
+    width:62px;
+    height:62px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+    z-index:9999;
+}
+
+.whatsapp-float svg{
+    width:39px;
+    height:39px;
+    fill:white;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    right:0;
+    left:0;
+    height:70px;
+    background:#0d111c;
+    border-top:1px solid #20283a;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    z-index:9998;
+}
+
+.bottom-nav a{
+    color:#8e9aae;
+    text-decoration:none;
+    font-size:12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:5px;
+}
+
+.bottom-nav a span{
+    font-size:21px;
+}
+
+.bottom-nav a.active{
+    color:#00b7ff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<div class="logo">
+KATRO SHOP
+</div>
+
+<a href="account.html" class="home-btn">
+‹
+</a>
+
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<div class="title">
+إعدادات الحساب
+</div>
+
+<div class="subtitle">
+تغيير كلمة مرور حسابك
+</div>
+
+
+<div class="form-group">
+
+<label for="currentPassword">
+كلمة المرور الحالية
+</label>
+
+<input
+type="password"
+id="currentPassword"
+placeholder="أدخل كلمة المرور الحالية"
+autocomplete="current-password">
+
+</div>
+
+
+<div class="form-group">
+
+<label for="newPassword">
+كلمة المرور الجديدة
+</label>
+
+<input
+type="password"
+id="newPassword"
+placeholder="أدخل كلمة المرور الجديدة"
+autocomplete="new-password">
+
+<div class="password-note">
+يُفضل استخدام كلمة مرور قوية يصعب تخمينها.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="confirmPassword">
+تأكيد كلمة المرور الجديدة
+</label>
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="أعد كتابة كلمة المرور الجديدة"
+autocomplete="new-password">
+
+</div>
+
+
+<button
+class="save-btn"
+id="saveBtn"
+onclick="changePassword()">
+
+تغيير كلمة المرور
+
+</button>
+
+
+<div
+class="message"
+id="message">
+</div>
+
+
+<a
+href="account.html"
+class="back">
+
+العودة إلى حسابي
+
+</a>
+
+</div>
+
+</div>
+
+
+<a
+class="whatsapp-float"
+href="https://wa.me/249924064977"
+target="_blank"
+rel="noopener"
+aria-label="واتساب">
+
+<svg viewBox="0 0 32 32">
+
+<path d="M16 3C8.82 3 3 8.37 3 15c0 2.37.7 4.58 1.91 6.44L3.1 29l7.77-1.75A13.08 13.08 0 0 0 16 27c7.18 0 13-5.37 13-12S23.18 3 16 3zm0 21.8c-1.58 0-3.13-.42-4.49-1.21l-.32-.19-4.61 1.04 1.07-4.35-.21-.34A10.34 10.34 0 0 1 5.7 15C5.7 9.72 10.3 5.4 16 5.4S26.3 9.72 26.3 15 21.7 24.8 16 24.8zm5.65-7.19c-.31-.16-1.83-.91-2.11-1.01-.28-.1-.49-.16-.7.16-.21.31-.8 1.01-.98 1.22-.18.21-.36.23-.67.08-.31-.16-1.31-.48-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.7-1.68-.96-2.3-.25-.6-.51-.52-.7-.53h-.6c-.21 0-.55.08-.83.39-.28.31-1.09 1.07-1.09 2.61s1.12 3.03 1.27 3.24c.16.21 2.2 3.31 5.33 4.64.75.32 1.33.51 1.79.65.75.23 1.43.2 1.97.12.6-.09 1.83-.75 2.09-1.48.26-.73.26-1.35.18-1.48-.08-.13-.28-.21-.59-.37z"/>
+
+</svg>
+
+</a>
+
+
+<div class="bottom-nav">
+
+<a href="account.html" class="active">
+<span>👤</span>
+حسابي
+</a>
+
+<a href="index.html">
+<span>🛒</span>
+المتجر
+</a>
+
+<a href="wallet.html">
+<span>💰</span>
+المحفظة
+</a>
+
+<a href="index.html">
+<span>🏠</span>
+الرئيسية
+</a>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+"https://uwmrzvsygeoequscpinx.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+let currentUser = null;
+
+
+function showMessage(text,type){
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+}
+
+
+async function checkLogin(){
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .auth
+        .getUser();
+
+
+    if(error || !data.user){
+
+        showMessage(
+            "يجب تسجيل الدخول أولاً.",
+            "error"
+        );
+
+        document.getElementById("saveBtn")
+            .disabled = true;
+
+        return false;
+    }
+
+
+    currentUser = data.user;
+
+    return true;
+
+}
+
+
+async function changePassword(){
+
+    const button =
+        document.getElementById("saveBtn");
+
+
+    const currentPassword =
+        document
+        .getElementById("currentPassword")
+        .value;
+
+
+    const newPassword =
+        document
+        .getElementById("newPassword")
+        .value;
+
+
+    const confirmPassword =
+        document
+        .getElementById("confirmPassword")
+        .value;
+
+
+    document
+        .getElementById("message")
+        .className = "message";
+
+
+    if(!currentPassword){
+
+        showMessage(
+            "أدخل كلمة المرور الحالية.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!newPassword){
+
+        showMessage(
+            "أدخل كلمة المرور الجديدة.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(newPassword.length < 6){
+
+        showMessage(
+            "كلمة المرور الجديدة يجب أن تكون 6 أحرف على الأقل.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(newPassword !== confirmPassword){
+
+        showMessage(
+            "تأكيد كلمة المرور غير مطابق.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(currentPassword === newPassword){
+
+        showMessage(
+            "كلمة المرور الجديدة يجب أن تكون مختلفة عن الحالية.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "جاري التحقق...";
+
+
+    try{
+
+        /*
+         * أولاً نتحقق من كلمة المرور الحالية
+         * عن طريق تسجيل الدخول بالبريد وكلمة المرور.
+         */
+
+        const {
+            error: loginError
+        } =
+        await supabaseClient.auth.signInWithPassword({
+
+            email:
+                currentUser.email,
+
+            password:
+                currentPassword
+
+        });
+
+
+        if(loginError){
+
+            showMessage(
+                "كلمة المرور الحالية غير صحيحة.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        button.textContent =
+            "جاري تغيير كلمة المرور...";
+
+
+        const {
+            error: updateError
+        } =
+        await supabaseClient.auth.updateUser({
+
+            password:
+                newPassword
+
+        });
+
+
+        if(updateError){
+
+            console.error(
+                "Password Update Error:",
+                updateError
+            );
+
+            showMessage(
+                updateError.message ||
+                "تعذر تغيير كلمة المرور.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        showMessage(
+            "تم تغيير كلمة المرور بنجاح.",
+            "success"
+        );
+
+
+        document
+            .getElementById("currentPassword")
+            .value = "";
+
+
+        document
+            .getElementById("newPassword")
+            .value = "";
+
+
+        document
+            .getElementById("confirmPassword")
+            .value = "";
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "حدث خطأ غير متوقع.",
+            "error"
+        );
+
+    }finally{
+
+        button.disabled = false;
+
+        button.textContent =
+            "تغيير كلمة المرور";
+
+    }
+
+}
+
+
+async function init(){
+
+    const loggedIn =
+        await checkLogin();
+
+
+    if(!loggedIn){
+        return;
+    }
+
+}
+
+
+init();
+
+</script>
+
+</body>
+
+  </html>
