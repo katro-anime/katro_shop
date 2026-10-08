@@ -58,6 +58,30 @@ body{
     margin-bottom:12px;
 }
 
+.payment-methods{
+    display:grid;
+    gap:9px;
+    margin-top:10px;
+}
+
+.payment-method{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    background:#fff;
+    font-size:15px;
+    font-weight:700;
+    text-align:right;
+    cursor:pointer;
+}
+
+.payment-method.active{
+    border:2px solid #6a33ff;
+    background:#f0eaff;
+    color:#5126c7;
+}
+
 .bank{
     border:2px solid #6a33ff;
     background:#f0eaff;
@@ -228,6 +252,26 @@ body{
     font-weight:800;
 }
 
+/* واتساب */
+
+.whatsapp{
+    position:fixed;
+    left:18px;
+    bottom:22px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25D366;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:30px;
+    box-shadow:0 5px 18px rgba(0,0,0,.25);
+    z-index:999;
+}
+
 </style>
 </head>
 
@@ -263,6 +307,42 @@ body{
     </div>
 
 
+    <!-- طريقة الدفع -->
+
+    <div class="box">
+
+        <div class="title">
+            💰 اختر طريقة التحويل
+        </div>
+
+        <select
+            id="paymentMethod"
+            class="inp"
+            onchange="changePaymentMethod()">
+
+            <option value="">
+                -- اختر طريقة الدفع --
+            </option>
+
+            <option value="Bankak">
+                بنك الخرطوم - بنكك
+            </option>
+
+            <option value="MyCashi">
+                ماي كاشي
+            </option>
+
+            <option value="Fawry">
+                فوري
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- بيانات الحساب -->
+
     <div class="box">
 
         <div class="title">
@@ -271,42 +351,57 @@ body{
 
         <div class="bank">
 
-            <b>🏦 بنك الخرطوم - بنكك</b>
+            <b id="paymentTitle">
+                اختر طريقة الدفع أولاً
+            </b>
 
-            <br>
+            <br><br>
 
-            اسم الحساب:
+            <span id="accountNameLabel">
+                اسم الحساب:
+            </span>
+
             <b id="accountName">
-                خالد حسين محمد حامد
+                -
             </b>
 
             <br>
 
-            رقم الحساب:
+            <span id="accountNumberLabel">
+                رقم الحساب:
+            </span>
 
-            <span class="account" id="bankAccount">
-                2673843
+            <span
+                class="account"
+                id="bankAccount">
+                -
             </span>
 
             <br><br>
 
             <button
                 class="copy"
+                id="copyButton"
                 onclick="copyAccount()">
+
                 📋 نسخ رقم الحساب
+
             </button>
 
             <br><br>
 
-            <small>
-                قم بتحويل المبلغ إلى الحساب أعلاه،
-                ثم ارفع صورة إشعار التحويل.
+            <small id="paymentNote">
+
+                اختر طريقة الدفع لعرض بيانات التحويل.
+
             </small>
 
         </div>
 
     </div>
 
+
+    <!-- بيانات الطلب -->
 
     <div class="box">
 
@@ -398,13 +493,13 @@ body{
         <div class="filebox">
 
             <b>
-                ارفع صورة إشعار بنكك
+                ارفع صورة إشعار التحويل
             </b>
 
             <br>
 
             <small>
-                JPG / PNG
+                JPG / PNG / WEBP
             </small>
 
             <input
@@ -424,7 +519,9 @@ body{
 
             ⚠️ بعد إرسال الطلب، سيقوم الأدمن
             بمراجعة إشعار التحويل.
+
             <br>
+
             عند قبول الطلب سيتم إضافة المبلغ
             إلى محفظتك.
 
@@ -447,6 +544,8 @@ body{
 
 </div>
 
+
+<!-- صفحة النجاح -->
 
 <div id="successPage" class="box success-page">
 
@@ -482,6 +581,20 @@ body{
 </div>
 
 
+<!-- واتساب -->
+
+<a
+    class="whatsapp"
+    href="https://wa.me/249924064977"
+    target="_blank"
+    rel="noopener"
+    aria-label="واتساب">
+
+    ☎
+
+</a>
+
+
 <script>
 
 /* =====================================
@@ -503,6 +616,127 @@ const supabaseClient =
 
 let currentUser = null;
 let selectedFile = null;
+
+
+/* =====================================
+   بيانات طرق الدفع
+===================================== */
+
+const paymentAccounts = {
+
+    Bankak:{
+        title:'🏦 بنك الخرطوم - بنكك',
+
+        name:'خالد حسين محمد حامد',
+
+        number:'2673843',
+
+        note:'قم بالتحويل إلى حساب بنك الخرطوم أعلاه، ثم ارفع صورة إشعار التحويل.'
+    },
+
+    MyCashi:{
+        title:'💳 ماي كاشي',
+
+        name:'محمد خالد حسين محمد',
+
+        number:'402993679',
+
+        note:'قم بالتحويل إلى حساب ماي كاشي أعلاه، ثم ارفع صورة إشعار التحويل.'
+    },
+
+    Fawry:{
+        title:'💰 فوري',
+
+        name:'',
+
+        number:'',
+
+        note:'بيانات فوري غير مضافة حالياً.'
+    }
+
+};
+
+
+/* =====================================
+   تغيير طريقة الدفع
+===================================== */
+
+function changePaymentMethod(){
+
+    const method =
+        document.getElementById('paymentMethod').value;
+
+    const title =
+        document.getElementById('paymentTitle');
+
+    const name =
+        document.getElementById('accountName');
+
+    const number =
+        document.getElementById('bankAccount');
+
+    const note =
+        document.getElementById('paymentNote');
+
+    const copyButton =
+        document.getElementById('copyButton');
+
+
+    if(!method){
+
+        title.innerText =
+            'اختر طريقة الدفع أولاً';
+
+        name.innerText =
+            '-';
+
+        number.innerText =
+            '-';
+
+        note.innerText =
+            'اختر طريقة الدفع لعرض بيانات التحويل.';
+
+        copyButton.style.display =
+            'none';
+
+        return;
+
+    }
+
+
+    const account =
+        paymentAccounts[method];
+
+
+    title.innerText =
+        account.title;
+
+
+    name.innerText =
+        account.name || '-';
+
+
+    number.innerText =
+        account.number || '-';
+
+
+    note.innerText =
+        account.note;
+
+
+    if(account.number){
+
+        copyButton.style.display =
+            'inline-block';
+
+    }else{
+
+        copyButton.style.display =
+            'none';
+
+    }
+
+}
 
 
 /* =====================================
@@ -606,6 +840,9 @@ async function loadUser(){
     document.getElementById('page').style.display =
         'block';
 
+
+    changePaymentMethod();
+
 }
 
 
@@ -647,7 +884,7 @@ function clearAmountButtons(){
 
 
 /* =====================================
-   رفع الصورة ومعاينتها
+   رفع الصورة
 ===================================== */
 
 function previewFile(event){
@@ -727,18 +964,31 @@ function previewFile(event){
 
 
 /* =====================================
-   نسخ رقم الحساب
+   نسخ الحساب
 ===================================== */
 
 async function copyAccount(){
 
-    const account =
-        document.getElementById('bankAccount').innerText.trim();
+    const number =
+        document
+        .getElementById('bankAccount')
+        .innerText
+        .trim();
+
+
+    if(!number || number === '-'){
+
+        alert(
+            'لا يوجد رقم حساب لنسخه.'
+        );
+
+        return;
+    }
 
 
     try{
 
-        await navigator.clipboard.writeText(account);
+        await navigator.clipboard.writeText(number);
 
         alert(
             'تم نسخ رقم الحساب ✅'
@@ -747,7 +997,7 @@ async function copyAccount(){
     }catch(error){
 
         alert(
-            'رقم الحساب: ' + account
+            'رقم الحساب: ' + number
         );
 
     }
@@ -764,6 +1014,12 @@ async function submitTopup(){
     clearMessage();
 
 
+    const method =
+        document
+        .getElementById('paymentMethod')
+        .value;
+
+
     const amount =
         Number(
             document.getElementById('amount').value
@@ -771,15 +1027,31 @@ async function submitTopup(){
 
 
     const senderName =
-        document.getElementById('senderName').value.trim();
+        document
+        .getElementById('senderName')
+        .value
+        .trim();
 
 
     const senderPhone =
-        document.getElementById('senderPhone').value.trim();
+        document
+        .getElementById('senderPhone')
+        .value
+        .trim();
 
 
     const button =
         document.getElementById('submitBtn');
+
+
+    if(!method){
+
+        showError(
+            'اختر طريقة الدفع أولاً.'
+        );
+
+        return;
+    }
 
 
     if(!senderName){
@@ -830,9 +1102,7 @@ async function submitTopup(){
 
     try{
 
-        /* ==========================
-           رفع الإشعار إلى Storage
-        ========================== */
+        /* رفع الإشعار */
 
         const extension =
             selectedFile.name
@@ -877,9 +1147,7 @@ async function submitTopup(){
         }
 
 
-        /* ==========================
-           الحصول على رابط الصورة
-        ========================== */
+        /* رابط الصورة */
 
         const {
             data:publicData
@@ -894,9 +1162,7 @@ async function submitTopup(){
             publicData.publicUrl;
 
 
-        /* ==========================
-           إنشاء طلب الشحن
-        ========================== */
+        /* إنشاء طلب الشحن */
 
         const {
             data:requestData,
@@ -910,7 +1176,7 @@ async function submitTopup(){
 
             amount:amount,
 
-            payment_method:'Bankak',
+            payment_method:method,
 
             sender_name:senderName,
 
@@ -936,10 +1202,6 @@ async function submitTopup(){
             return;
         }
 
-
-        /* ==========================
-           إظهار نجاح الطلب
-        ========================== */
 
         document.getElementById('page').style.display =
             'none';
@@ -1010,7 +1272,7 @@ function clearMessage(){
 
 
 /* =====================================
-   تشغيل الصفحة
+   تشغيل
 ===================================== */
 
 init();
@@ -1018,4 +1280,4 @@ init();
 </script>
 
 </body>
-  </html>
+    </html>
