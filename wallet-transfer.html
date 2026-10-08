@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>تحويل الرصيد | KATRO SHOP</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#f5f6f8;
+    color:#222;
+    padding-bottom:100px;
+}
+
+.header{
+    height:70px;
+    background:#080b12;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.home{
+    color:white;
+    text-decoration:none;
+    font-size:25px;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:24px;
+    padding:22px;
+    box-shadow:0 5px 25px rgba(0,0,0,.07);
+}
+
+.title{
+    font-size:27px;
+    font-weight:bold;
+}
+
+.subtitle{
+    color:#777;
+    margin-top:8px;
+    margin-bottom:22px;
+    line-height:1.7;
+}
+
+.balance{
+    background:linear-gradient(
+        135deg,
+        #e8fff3,
+        #f2fbff
+    );
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.balance small{
+    display:block;
+    color:#777;
+    margin-bottom:8px;
+}
+
+.balance strong{
+    color:#00a86b;
+    font-size:28px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin:15px 0 8px;
+}
+
+input,
+textarea{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:14px;
+    padding:15px;
+    font-size:16px;
+    background:#fafafa;
+    outline:none;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#00a86b;
+}
+
+textarea{
+    min-height:90px;
+    resize:none;
+}
+
+.btn{
+    width:100%;
+    margin-top:20px;
+    border:0;
+    border-radius:15px;
+    padding:16px;
+    background:#00a86b;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.btn:disabled{
+    opacity:.6;
+}
+
+.message{
+    display:none;
+    margin-top:15px;
+    padding:14px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.success{
+    display:block;
+    color:#087443;
+    background:#e8fff2;
+}
+
+.error{
+    display:block;
+    color:#a00000;
+    background:#ffe9e9;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    color:#666;
+    text-decoration:none;
+    margin-top:20px;
+}
+
+.whatsapp-float{
+    position:fixed;
+    left:18px;
+    bottom:95px;
+    width:62px;
+    height:62px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+    z-index:9999;
+}
+
+.whatsapp-float svg{
+    width:38px;
+    height:38px;
+    fill:white;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:10px;
+    left:14px;
+    right:14px;
+    height:72px;
+    background:#0b081b;
+    border-radius:28px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:9998;
+}
+
+.nav-item{
+    color:#aaa;
+    text-decoration:none;
+    text-align:center;
+    font-size:12px;
+}
+
+.nav-icon{
+    display:block;
+    font-size:23px;
+    margin-bottom:4px;
+}
+
+.nav-item.active{
+    color:#a855f7;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header class="header">
+
+<div class="logo">
+KATRO SHOP
+</div>
+
+<a
+class="home"
+href="wallet.html">
+⌂
+</a>
+
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<div class="title">
+تحويل الرصيد
+</div>
+
+<div class="subtitle">
+حوّل الرصيد مباشرة من محفظتك إلى محفظة مستخدم آخر.
+</div>
+
+
+<div class="balance">
+
+<small>
+الرصيد المتاح
+</small>
+
+<strong id="balance">
+جاري التحميل...
+</strong>
+
+</div>
+
+
+<label>
+رقم محفظة المستلم
+</label>
+
+<input
+type="text"
+id="recipientWallet"
+placeholder="أدخل رقم المحفظة"
+inputmode="numeric">
+
+
+<label>
+المبلغ
+</label>
+
+<input
+type="number"
+id="amount"
+placeholder="أدخل المبلغ"
+min="1">
+
+
+<label>
+ملاحظة
+</label>
+
+<textarea
+id="note"
+placeholder="ملاحظة اختيارية"></textarea>
+
+
+<button
+class="btn"
+id="transferBtn"
+onclick="transferBalance()">
+
+تحويل الرصيد
+
+</button>
+
+
+<div
+id="message"
+class="message">
+</div>
+
+
+<a
+class="back"
+href="wallet.html">
+
+← العودة إلى المحفظة
+
+</a>
+
+</div>
+
+</div>
+
+
+<a
+class="whatsapp-float"
+href="https://wa.me/249924064977"
+target="_blank"
+rel="noopener">
+
+<svg viewBox="0 0 32 32">
+
+<path d="M16 3C8.82 3 3 8.37 3 15c0 2.37.7 4.58 1.91 6.44L3.1 29l7.77-1.75A13.08 13.08 0 0 0 16 27c7.18 0 13-5.37 13-12S23.18 3 16 3zm0 21.8c-1.58 0-3.13-.42-4.49-1.21l-.32-.19-4.61 1.04 1.07-4.35-.21-.34A10.34 10.34 0 0 1 5.7 15C5.7 9.72 10.3 5.4 16 5.4S26.3 9.72 26.3 15 21.7 24.8 16 24.8zm5.65-7.19c-.31-.16-1.83-.91-2.11-1.01-.28-.1-.49-.16-.7.16-.21.31-.8 1.01-.98 1.22-.18.21-.36.23-.67.08-.31-.16-1.31-.48-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.7-1.68-.96-2.3-.25-.6-.51-.52-.7-.53h-.6c-.21 0-.55.08-.83.39-.28.31-1.09 1.07-1.09 2.61s1.12 3.03 1.27 3.24c.16.21 2.2 3.31 5.33 4.64.75.32 1.33.51 1.79.65.75.23 1.43.2 1.97.12.6-.09 1.83-.75 2.09-1.48.26-.73.26-1.35.18-1.48-.08-.13-.28-.21-.59-.37z"/>
+
+</svg>
+
+</a>
+
+
+<nav class="bottom-nav">
+
+<a href="login.html" class="nav-item">
+<span class="nav-icon">👤</span>
+حسابي
+</a>
+
+<a href="index.html" class="nav-item">
+<span class="nav-icon">🛍</span>
+الطلبات
+</a>
+
+<a href="wallet.html" class="nav-item active">
+<span class="nav-icon">▣</span>
+المحفظة
+</a>
+
+<a href="index.html" class="nav-item">
+<span class="nav-icon">⌂</span>
+الرئيسية
+</a>
+
+</nav>
+
+
+<script>
+
+const SUPABASE_URL =
+"https://uwmrzvsygeoequscpinx.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+let currentUser = null;
+let currentBalance = 0;
+
+
+async function init(){
+
+    const {
+        data:{
+            user
+        }
+    } =
+    await supabaseClient.auth.getUser();
+
+    if(!user){
+
+        location.href =
+        "login.html";
+
+        return;
+    }
+
+    currentUser = user;
+
+    await loadBalance();
+
+}
+
+
+async function loadBalance(){
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+    .from("wallets")
+    .select("balance")
+    .eq(
+        "user_id",
+        currentUser.id
+    )
+    .limit(1);
+
+    if(error){
+
+        document.getElementById(
+            "balance"
+        ).textContent =
+        "تعذر تحميل الرصيد";
+
+        return;
+    }
+
+    currentBalance =
+    Number(
+        data?.[0]?.balance || 0
+    );
+
+    document.getElementById(
+        "balance"
+    ).textContent =
+    currentBalance.toLocaleString("ar-EG")
+    + " ج.س";
+
+}
+
+
+async function transferBalance(){
+
+    const recipient =
+    document.getElementById(
+        "recipientWallet"
+    ).value.trim();
+
+    const amount =
+    Number(
+        document.getElementById(
+            "amount"
+        ).value
+    );
+
+    const note =
+    document.getElementById(
+        "note"
+    ).value.trim();
+
+    const button =
+    document.getElementById(
+        "transferBtn"
+    );
+
+
+    if(!recipient){
+
+        showMessage(
+            "أدخل رقم محفظة المستلم",
+            false
+        );
+
+        return;
+    }
+
+
+    if(!amount || amount <= 0){
+
+        showMessage(
+            "أدخل مبلغاً صحيحاً",
+            false
+        );
+
+        return;
+    }
+
+
+    if(amount > currentBalance){
+
+        showMessage(
+            "رصيدك غير كافٍ",
+            false
+        );
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+    "جاري التحويل...";
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.rpc(
+        "transfer_wallet_balance",
+        {
+            p_recipient_wallet_number:
+            recipient,
+
+            p_amount:
+            amount,
+
+            p_note:
+            note || null
+        }
+    );
+
+
+    button.disabled = false;
+
+    button.textContent =
+    "تحويل الرصيد";
+
+
+    if(error){
+
+        console.error(error);
+
+        showMessage(
+            error.message ||
+            "تعذر تنفيذ التحويل",
+            false
+        );
+
+        return;
+    }
+
+
+    if(data?.success){
+
+        showMessage(
+            "تم التحويل بنجاح إلى المحفظة " +
+            data.recipient_wallet,
+            true
+        );
+
+
+        currentBalance =
+        Number(data.new_balance);
+
+
+        document.getElementById(
+            "balance"
+        ).textContent =
+        currentBalance.toLocaleString("ar-EG")
+        + " ج.س";
+
+
+        document.getElementById(
+            "recipientWallet"
+        ).value = "";
+
+        document.getElementById(
+            "amount"
+        ).value = "";
+
+        document.getElementById(
+            "note"
+        ).value = "";
+
+    }
+
+}
+
+
+function showMessage(text,success){
+
+    const box =
+    document.getElementById(
+        "message"
+    );
+
+    box.className =
+    "message " +
+    (
+        success
+        ? "success"
+        : "error"
+    );
+
+    box.textContent =
+    text;
+
+}
+
+
+init();
+
+</script>
+
+</body>
+
+  </html>
