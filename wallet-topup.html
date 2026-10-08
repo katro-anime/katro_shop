@@ -1,986 +1,710 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>شحن المحفظة - KATRO SHOP</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>شحن المحفظة | KATRO SHOP</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
-
 *{
-    font-family:'Tajawal',sans-serif;
     box-sizing:border-box;
-    margin:0;
-    padding:0;
 }
 
 body{
-    background:#f4f0ff;
-    padding-bottom:30px;
+    margin:0;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#f5f6f8;
     color:#222;
+    padding-bottom:100px;
 }
 
-.top{
-    background:#6a33ff;
-    color:#fff;
-    padding:13px 14px;
+.header{
+    height:70px;
+    background:#080b12;
+    color:white;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    position:sticky;
-    top:0;
-    z-index:50;
+    justify-content:space-between;
+    padding:0 18px;
 }
 
-.top a{
-    color:#fff;
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.back{
+    color:white;
     text-decoration:none;
-    font-size:20px;
+    font-size:25px;
 }
 
-.box{
-    background:#fff;
-    margin:12px;
-    border-radius:18px;
-    padding:16px;
-    box-shadow:0 4px 14px rgba(0,0,0,.07);
+.container{
+    max-width:650px;
+    margin:auto;
+    padding:18px;
+}
+
+.card{
+    background:white;
+    border-radius:24px;
+    padding:22px;
+    box-shadow:0 5px 25px rgba(0,0,0,.07);
 }
 
 .title{
-    font-size:17px;
-    font-weight:800;
-    margin-bottom:12px;
+    font-size:27px;
+    font-weight:bold;
 }
 
-.payment-methods{
-    display:grid;
-    gap:9px;
-    margin-top:10px;
+.description{
+    color:#777;
+    line-height:1.8;
+    margin:8px 0 20px;
 }
 
-.payment-method{
+/* PAYMENT METHOD */
+
+.payment-title{
+    font-size:19px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.payment-select{
     width:100%;
-    padding:14px;
     border:1px solid #ddd;
-    border-radius:12px;
-    background:#fff;
-    font-size:15px;
-    font-weight:700;
-    text-align:right;
-    cursor:pointer;
-}
-
-.payment-method.active{
-    border:2px solid #6a33ff;
-    background:#f0eaff;
-    color:#5126c7;
-}
-
-.bank{
-    border:2px solid #6a33ff;
-    background:#f0eaff;
     border-radius:15px;
     padding:15px;
-    line-height:2;
-}
-
-.account{
-    display:inline-block;
-    background:#ffe58a;
-    padding:5px 12px;
-    border-radius:9px;
-    font-size:19px;
-    font-weight:900;
-}
-
-.copy{
-    background:#16112e;
-    color:#fff;
-    border:none;
-    padding:9px 14px;
-    border-radius:9px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.inp{
-    width:100%;
-    padding:13px;
-    border:1px solid #ddd;
-    border-radius:11px;
-    margin:6px 0 10px;
-    background:#faf8ff;
+    font-size:17px;
+    background:white;
     outline:none;
+}
+
+/* ACCOUNT */
+
+.account-box{
+    margin-top:18px;
+    padding:18px;
+    background:#f7f8fa;
+    border-radius:18px;
+    border:1px solid #eee;
+}
+
+.account-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.account-row{
+    padding:8px 0;
+}
+
+.account-label{
+    color:#777;
     font-size:14px;
 }
 
-.inp:focus{
-    border-color:#6a33ff;
+.account-value{
+    font-size:18px;
+    font-weight:bold;
+    margin-top:4px;
 }
 
-.amounts{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-    margin:8px 0 12px;
-}
-
-.amount{
-    border:1px solid #ddd;
-    background:#fff;
+.copy-btn{
+    margin-top:8px;
+    border:0;
     border-radius:10px;
-    padding:10px 5px;
-    text-align:center;
+    padding:8px 12px;
+    background:#080b12;
+    color:white;
     cursor:pointer;
-    font-weight:700;
-    font-size:12px;
 }
 
-.amount.active{
-    background:#6a33ff;
-    color:#fff;
-    border-color:#6a33ff;
+/* FORM */
+
+label{
+    display:block;
+    margin:17px 0 8px;
+    font-weight:bold;
 }
 
-.filebox{
-    border:2px dashed #b9a8ff;
-    background:#faf8ff;
-    border-radius:13px;
-    padding:14px;
-    text-align:center;
-    margin-top:6px;
-}
-
-.filebox input{
+input{
     width:100%;
-    margin-top:10px;
-}
-
-.preview{
-    width:100%;
-    max-height:300px;
-    object-fit:contain;
-    border-radius:12px;
-    margin-top:12px;
-    background:#111;
-    display:none;
-}
-
-.btn{
-    width:100%;
-    background:linear-gradient(90deg,#6a33ff,#ff8a00);
-    color:#fff;
-    border:none;
-    padding:14px;
+    padding:15px;
+    border:1px solid #ddd;
     border-radius:14px;
-    font-weight:800;
-    font-size:15px;
-    cursor:pointer;
-    margin-top:12px;
+    background:#fafafa;
+    font-size:16px;
+    outline:none;
 }
 
-.btn:disabled{
+input:focus{
+    border-color:#00a86b;
+}
+
+/* FILE */
+
+.file-box{
+    border:2px dashed #ccc;
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+    margin-top:8px;
+}
+
+.file-box input{
+    border:0;
+    background:none;
+}
+
+/* TERMS */
+
+.terms-box{
+    margin-top:20px;
+    padding:16px;
+    background:#f8f8f8;
+    border-radius:14px;
+    border:1px solid #eee;
+}
+
+.terms-label{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    cursor:pointer;
+    line-height:1.8;
+    margin:0;
+}
+
+.terms-label input{
+    width:20px;
+    height:20px;
+    margin-top:4px;
+    flex-shrink:0;
+}
+
+.terms-label b{
+    color:red;
+}
+
+/* SUBMIT */
+
+.submit-btn{
+    width:100%;
+    margin-top:20px;
+    padding:16px;
+    border:0;
+    border-radius:15px;
+    background:#00a86b;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.submit-btn:disabled{
     opacity:.6;
 }
 
-.notice{
-    background:#fff8e1;
-    color:#6d5200;
-    border-radius:12px;
-    padding:11px;
-    margin-top:12px;
-    font-size:12px;
-    line-height:1.8;
-}
+/* MESSAGE */
 
-.msg{
+.message{
     display:none;
-    padding:12px;
-    border-radius:11px;
-    margin-top:12px;
+    margin-top:15px;
+    padding:14px;
+    border-radius:12px;
     text-align:center;
-    font-size:13px;
-    line-height:1.7;
-    white-space:pre-line;
-}
-
-.error{
-    background:#ffebee;
-    color:#c62828;
 }
 
 .success{
-    background:#e8f5e9;
-    color:#2e7d32;
+    display:block;
+    color:#087443;
+    background:#e7fff2;
 }
 
-.loading{
-    text-align:center;
-    padding:30px;
-    color:#666;
+.error{
+    display:block;
+    color:#a00000;
+    background:#ffe9e9;
 }
 
-.success-page{
-    display:none;
-    text-align:center;
-}
+/* WHATSAPP */
 
-.success-icon{
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    background:#e8f5e9;
-    color:#00a843;
-    display:grid;
-    place-items:center;
-    font-size:40px;
-    margin:0 auto 15px;
-}
-
-.order-number{
-    background:#f0eaff;
-    color:#5b32cf;
-    padding:12px;
-    border-radius:12px;
-    margin-top:12px;
-    font-weight:800;
-}
-
-/* واتساب */
-
-.whatsapp{
+.whatsapp-float{
     position:fixed;
     left:18px;
-    bottom:22px;
-    width:58px;
-    height:58px;
+    bottom:95px;
+    width:62px;
+    height:62px;
     border-radius:50%;
     background:#25D366;
-    color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+    z-index:9999;
+}
+
+.whatsapp-float svg{
+    width:38px;
+    height:38px;
+    fill:white;
+}
+
+/* NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:10px;
+    left:14px;
+    right:14px;
+    height:72px;
+    background:#0b081b;
+    border-radius:28px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:9998;
+}
+
+.nav-item{
+    color:#aaa;
     text-decoration:none;
-    font-size:30px;
-    box-shadow:0 5px 18px rgba(0,0,0,.25);
-    z-index:999;
+    text-align:center;
+    font-size:12px;
+}
+
+.nav-icon{
+    display:block;
+    font-size:23px;
+    margin-bottom:4px;
+}
+
+.nav-item.active{
+    color:#a855f7;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="top">
 
-    <b>KATRO SHOP</b>
+<header class="header">
 
-    <a href="wallet.html">💳</a>
-
+<div class="logo">
+KATRO SHOP
 </div>
-
-
-<div id="loading" class="loading">
-    جاري التحقق من الحساب...
-</div>
-
-
-<div id="page" style="display:none">
-
-    <div class="box">
-
-        <div class="title">
-            💳 شحن محفظة KATRO SHOP
-        </div>
-
-        <div style="font-size:13px;color:#777">
-            رقم محفظتك:
-            <b id="walletNumber">-----</b>
-        </div>
-
-    </div>
-
-
-    <!-- طريقة الدفع -->
-
-    <div class="box">
-
-        <div class="title">
-            💰 اختر طريقة التحويل
-        </div>
-
-        <select
-            id="paymentMethod"
-            class="inp"
-            onchange="changePaymentMethod()">
-
-            <option value="">
-                -- اختر طريقة الدفع --
-            </option>
-
-            <option value="Bankak">
-                بنك الخرطوم - بنكك
-            </option>
-
-            <option value="MyCashi">
-                ماي كاشي
-            </option>
-
-            <option value="Fawry">
-                فوري
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <!-- بيانات الحساب -->
-
-    <div class="box">
-
-        <div class="title">
-            🏦 حساب التحويل
-        </div>
-
-        <div class="bank">
-
-            <b id="paymentTitle">
-                اختر طريقة الدفع أولاً
-            </b>
-
-            <br><br>
-
-            <span id="accountNameLabel">
-                اسم الحساب:
-            </span>
-
-            <b id="accountName">
-                -
-            </b>
-
-            <br>
-
-            <span id="accountNumberLabel">
-                رقم الحساب:
-            </span>
-
-            <span
-                class="account"
-                id="bankAccount">
-                -
-            </span>
-
-            <br><br>
-
-            <button
-                class="copy"
-                id="copyButton"
-                onclick="copyAccount()">
-
-                📋 نسخ رقم الحساب
-
-            </button>
-
-            <br><br>
-
-            <small id="paymentNote">
-
-                اختر طريقة الدفع لعرض بيانات التحويل.
-
-            </small>
-
-        </div>
-
-    </div>
-
-
-    <!-- بيانات الطلب -->
-
-    <div class="box">
-
-        <div class="title">
-            🧾 بيانات طلب الشحن
-        </div>
-
-
-        <label>
-            الاسم
-        </label>
-
-        <input
-            id="senderName"
-            class="inp"
-            type="text"
-            placeholder="اسم صاحب التحويل">
-
-
-        <label>
-            رقم الهاتف
-        </label>
-
-        <input
-            id="senderPhone"
-            class="inp"
-            type="tel"
-            placeholder="09xxxxxxxx">
-
-
-        <label>
-            المبلغ المراد شحنه
-        </label>
-
-        <input
-            id="amount"
-            class="inp"
-            type="number"
-            min="1"
-            placeholder="مثلاً 10000"
-            oninput="clearAmountButtons()">
-
-
-        <div class="amounts">
-
-            <button
-                class="amount"
-                onclick="setAmount(5000,this)">
-                5,000
-            </button>
-
-            <button
-                class="amount"
-                onclick="setAmount(10000,this)">
-                10,000
-            </button>
-
-            <button
-                class="amount"
-                onclick="setAmount(20000,this)">
-                20,000
-            </button>
-
-            <button
-                class="amount"
-                onclick="setAmount(50000,this)">
-                50,000
-            </button>
-
-            <button
-                class="amount"
-                onclick="setAmount(100000,this)">
-                100,000
-            </button>
-
-            <button
-                class="amount"
-                onclick="setAmount(200000,this)">
-                200,000
-            </button>
-
-        </div>
-
-
-        <label>
-            📷 إشعار التحويل
-        </label>
-
-        <div class="filebox">
-
-            <b>
-                ارفع صورة إشعار التحويل
-            </b>
-
-            <br>
-
-            <small>
-                JPG / PNG / WEBP
-            </small>
-
-            <input
-                id="proof"
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                onchange="previewFile(event)">
-
-            <img
-                id="preview"
-                class="preview">
-
-        </div>
-
-
-        <div class="notice">
-
-            ⚠️ بعد إرسال الطلب، سيقوم الأدمن
-            بمراجعة إشعار التحويل.
-
-            <br>
-
-            عند قبول الطلب سيتم إضافة المبلغ
-            إلى محفظتك.
-
-        </div>
-
-
-        <div id="msg" class="msg"></div>
-
-
-        <button
-            id="submitBtn"
-            class="btn"
-            onclick="submitTopup()">
-
-            إرسال طلب الشحن ✅
-
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- صفحة النجاح -->
-
-<div id="successPage" class="box success-page">
-
-    <div class="success-icon">
-        ✓
-    </div>
-
-    <h2>
-        تم إرسال طلبك بنجاح
-    </h2>
-
-    <p style="margin-top:8px;color:#666;font-size:13px">
-        طلبك الآن قيد المراجعة من الأدمن.
-    </p>
-
-    <div class="order-number">
-
-        رقم الطلب:
-        <span id="requestNumber">
-            -----
-        </span>
-
-    </div>
-
-    <button
-        class="btn"
-        onclick="location.href='wallet.html'">
-
-        العودة إلى المحفظة
-
-    </button>
-
-</div>
-
-
-<!-- واتساب -->
 
 <a
-    class="whatsapp"
-    href="https://wa.me/249924064977"
-    target="_blank"
-    rel="noopener"
-    aria-label="واتساب">
+href="wallet.html"
+class="back">
+‹
+</a>
 
-    ☎
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<div class="title">
+شحن المحفظة
+</div>
+
+<div class="description">
+
+قم بتحويل المبلغ إلى أحد حساباتنا البنكية.
+يرجى استخدام رقم الطلب كمرجع للدفع، ثم ارفع صورة إشعار التحويل.
+
+</div>
+
+
+<div class="payment-title">
+اختر طريقة الدفع
+</div>
+
+<select
+id="paymentMethod"
+class="payment-select"
+onchange="showPaymentAccount()">
+
+<option value="">
+-- اختر البنك --
+</option>
+
+<option value="Bankak">
+بنك الخرطوم / بنكك
+</option>
+
+<option value="MyCashi">
+ماي كاشي
+</option>
+
+<option value="Fawry">
+فوري
+</option>
+
+</select>
+
+
+<div
+id="accountBox"
+class="account-box"
+style="display:none;">
+
+<div
+id="accountTitle"
+class="account-title">
+</div>
+
+
+<div
+id="nameRow"
+class="account-row">
+
+<div class="account-label">
+اسم الحساب
+</div>
+
+<div
+id="accountName"
+class="account-value">
+</div>
+
+</div>
+
+
+<div
+id="numberRow"
+class="account-row">
+
+<div class="account-label">
+رقم الحساب
+</div>
+
+<div
+id="accountNumber"
+class="account-value">
+</div>
+
+<button
+id="copyBtn"
+class="copy-btn"
+onclick="copyAccountNumber()">
+
+نسخ الرقم
+
+</button>
+
+</div>
+
+
+<div
+id="accountNote"
+style="color:#777;line-height:1.7;margin-top:10px;">
+</div>
+
+</div>
+
+
+<label>
+المبلغ
+</label>
+
+<input
+type="number"
+id="amount"
+placeholder="أدخل المبلغ بالجنيه السوداني"
+min="1">
+
+
+<label>
+اسم المرسل
+</label>
+
+<input
+type="text"
+id="senderName"
+placeholder="أدخل اسم صاحب التحويل">
+
+
+<label>
+رقم هاتف المرسل
+</label>
+
+<input
+type="tel"
+id="senderPhone"
+placeholder="مثال: 0924064977">
+
+
+<label>
+صورة إشعار التحويل
+</label>
+
+<div class="file-box">
+
+<input
+type="file"
+id="proof"
+accept="image/*">
+
+</div>
+
+
+<div class="terms-box">
+
+<label class="terms-label">
+
+<input
+type="checkbox"
+id="agreeTerms">
+
+<span>
+
+لقد قرأت الشروط والأحكام وأوافق عليها لهذا الموقع
+<b>*</b>
+
+</span>
+
+</label>
+
+</div>
+
+
+<button
+class="submit-btn"
+id="submitBtn"
+onclick="submitTopup()">
+
+تأكيد طلب الشحن
+
+</button>
+
+
+<div
+id="message"
+class="message">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- WHATSAPP -->
+
+<a
+class="whatsapp-float"
+href="https://wa.me/249924064977"
+target="_blank"
+rel="noopener"
+aria-label="واتساب">
+
+<svg viewBox="0 0 32 32">
+
+<path d="M16 3C8.82 3 3 8.37 3 15c0 2.37.7 4.58 1.91 6.44L3.1 29l7.77-1.75A13.08 13.08 0 0 0 16 27c7.18 0 13-5.37 13-12S23.18 3 16 3zm0 21.8c-1.58 0-3.13-.42-4.49-1.21l-.32-.19-4.61 1.04 1.07-4.35-.21-.34A10.34 10.34 0 0 1 5.7 15C5.7 9.72 10.3 5.4 16 5.4S26.3 9.72 26.3 15 21.7 24.8 16 24.8zm5.65-7.19c-.31-.16-1.83-.91-2.11-1.01-.28-.1-.49-.16-.7.16-.21.31-.8 1.01-.98 1.22-.18.21-.36.23-.67.08-.31-.16-1.31-.48-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.7-1.68-.96-2.3-.25-.6-.51-.52-.7-.53h-.6c-.21 0-.55.08-.83.39-.28.31-1.09 1.07-1.09 2.61s1.12 3.03 1.27 3.24c.16.21 2.2 3.31 5.33 4.64.75.32 1.33.51 1.79.65.75.23 1.43.2 1.97.12.6-.09 1.83-.75 2.09-1.48.26-.73.26-1.35.18-1.48-.08-.13-.28-.21-.59-.37z"/>
+
+</svg>
 
 </a>
 
 
+<nav class="bottom-nav">
+
+<a href="login.html" class="nav-item">
+<span class="nav-icon">👤</span>
+حسابي
+</a>
+
+<a href="index.html" class="nav-item">
+<span class="nav-icon">🛍</span>
+الطلبات
+</a>
+
+<a href="wallet.html" class="nav-item active">
+<span class="nav-icon">▣</span>
+المحفظة
+</a>
+
+<a href="index.html" class="nav-item">
+<span class="nav-icon">⌂</span>
+الرئيسية
+</a>
+
+</nav>
+
+
 <script>
 
-/* =====================================
-   Supabase
-===================================== */
-
 const SUPABASE_URL =
-    'https://uwmrzvsygeoequscpinx.supabase.co';
+"https://uwmrzvsygeoequscpinx.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY =
-    'sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts';
+const SUPABASE_KEY =
+"sb_publishable_26b3KZpWkLqltiLTyTSpIg_gTgexDts";
 
 const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 
 let currentUser = null;
-let selectedFile = null;
 
-
-/* =====================================
-   بيانات طرق الدفع
-===================================== */
 
 const paymentAccounts = {
 
     Bankak:{
-        title:'🏦 بنك الخرطوم - بنكك',
-
-        name:'خالد حسين محمد حامد',
-
-        number:'2673843',
-
-        note:'قم بالتحويل إلى حساب بنك الخرطوم أعلاه، ثم ارفع صورة إشعار التحويل.'
+        title:"🏦 بنك الخرطوم - بنكك",
+        name:"خالد حسين محمد حامد",
+        number:"2673843",
+        note:
+        "قم بالتحويل إلى حساب بنك الخرطوم أعلاه، ثم ارفع صورة إشعار التحويل."
     },
 
     MyCashi:{
-        title:'💳 ماي كاشي',
-
-        name:'محمد خالد حسين محمد',
-
-        number:'402993679',
-
-        note:'قم بالتحويل إلى حساب ماي كاشي أعلاه، ثم ارفع صورة إشعار التحويل.'
+        title:"💳 ماي كاشي",
+        name:"محمد خالد حسين محمد",
+        number:"402993679",
+        note:
+        "قم بالتحويل إلى حساب ماي كاشي أعلاه، ثم ارفع صورة إشعار التحويل."
     },
 
     Fawry:{
-        title:'💰 فوري',
-
-        name:'',
-
-        number:'',
-
-        note:'بيانات فوري غير مضافة حالياً.'
+        title:"💰 فوري",
+        name:"",
+        number:"",
+        note:
+        "بيانات فوري غير مضافة حالياً."
     }
 
 };
 
 
-/* =====================================
-   تغيير طريقة الدفع
-===================================== */
+async function init(){
 
-function changePaymentMethod(){
+    const {
+        data:{
+            user
+        }
+    } =
+    await supabaseClient.auth.getUser();
+
+
+    if(!user){
+
+        location.href =
+        "login.html";
+
+        return;
+    }
+
+    currentUser = user;
+
+}
+
+
+function showPaymentAccount(){
 
     const method =
-        document.getElementById('paymentMethod').value;
+    document.getElementById(
+        "paymentMethod"
+    ).value;
 
-    const title =
-        document.getElementById('paymentTitle');
-
-    const name =
-        document.getElementById('accountName');
-
-    const number =
-        document.getElementById('bankAccount');
-
-    const note =
-        document.getElementById('paymentNote');
-
-    const copyButton =
-        document.getElementById('copyButton');
+    const box =
+    document.getElementById(
+        "accountBox"
+    );
 
 
     if(!method){
 
-        title.innerText =
-            'اختر طريقة الدفع أولاً';
-
-        name.innerText =
-            '-';
-
-        number.innerText =
-            '-';
-
-        note.innerText =
-            'اختر طريقة الدفع لعرض بيانات التحويل.';
-
-        copyButton.style.display =
-            'none';
+        box.style.display =
+        "none";
 
         return;
-
     }
 
 
     const account =
-        paymentAccounts[method];
+    paymentAccounts[method];
 
 
-    title.innerText =
-        account.title;
+    box.style.display =
+    "block";
 
 
-    name.innerText =
-        account.name || '-';
+    document.getElementById(
+        "accountTitle"
+    ).textContent =
+    account.title;
 
 
-    number.innerText =
-        account.number || '-';
+    document.getElementById(
+        "accountName"
+    ).textContent =
+    account.name ||
+    "غير مضاف";
 
 
-    note.innerText =
-        account.note;
+    document.getElementById(
+        "accountNumber"
+    ).textContent =
+    account.number ||
+    "غير مضاف";
+
+
+    document.getElementById(
+        "accountNote"
+    ).textContent =
+    account.note;
+
+
+    const copy =
+    document.getElementById(
+        "copyBtn"
+    );
 
 
     if(account.number){
 
-        copyButton.style.display =
-            'inline-block';
+        copy.style.display =
+        "inline-block";
 
     }else{
 
-        copyButton.style.display =
-            'none';
+        copy.style.display =
+        "none";
 
     }
 
 }
 
 
-/* =====================================
-   التحقق من المستخدم
-===================================== */
-
-async function init(){
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient.auth.getSession();
-
-
-        if(error){
-
-            showError(
-                'حدث خطأ أثناء التحقق من الحساب.'
-            );
-
-            return;
-        }
-
-
-        if(!data.session){
-
-            window.location.href =
-                'login.html';
-
-            return;
-        }
-
-
-        currentUser =
-            data.session.user;
-
-
-        await loadUser();
-
-
-    }catch(error){
-
-        console.error(error);
-
-        showError(
-            'حدث خطأ غير متوقع.'
-        );
-
-    }
-
-}
-
-
-/* =====================================
-   تحميل بيانات المستخدم
-===================================== */
-
-async function loadUser(){
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-    .from('profiles')
-    .select('full_name,phone,wallet_number')
-    .eq('id',currentUser.id)
-    .single();
-
-
-    if(error){
-
-        console.error(error);
-
-        showError(
-            'تعذر تحميل بيانات محفظتك.'
-        );
-
-        return;
-    }
-
-
-    document.getElementById('walletNumber').innerText =
-        data.wallet_number || '-----';
-
-
-    document.getElementById('senderName').value =
-        data.full_name || '';
-
-
-    document.getElementById('senderPhone').value =
-        data.phone || '';
-
-
-    document.getElementById('loading').style.display =
-        'none';
-
-    document.getElementById('page').style.display =
-        'block';
-
-
-    changePaymentMethod();
-
-}
-
-
-/* =====================================
-   اختيار مبلغ
-===================================== */
-
-function setAmount(amount,button){
-
-    document.getElementById('amount').value =
-        amount;
-
-
-    document
-    .querySelectorAll('.amount')
-    .forEach(function(item){
-
-        item.classList.remove('active');
-
-    });
-
-
-    button.classList.add('active');
-
-}
-
-
-function clearAmountButtons(){
-
-    document
-    .querySelectorAll('.amount')
-    .forEach(function(item){
-
-        item.classList.remove('active');
-
-    });
-
-}
-
-
-/* =====================================
-   رفع الصورة
-===================================== */
-
-function previewFile(event){
-
-    const file =
-        event.target.files[0];
-
-
-    if(!file){
-
-        selectedFile = null;
-
-        return;
-    }
-
-
-    const allowedTypes = [
-        'image/jpeg',
-        'image/png',
-        'image/webp'
-    ];
-
-
-    if(!allowedTypes.includes(file.type)){
-
-        alert(
-            'يرجى اختيار صورة JPG أو PNG أو WEBP.'
-        );
-
-        event.target.value = '';
-
-        selectedFile = null;
-
-        return;
-    }
-
-
-    if(file.size > 5 * 1024 * 1024){
-
-        alert(
-            'حجم الصورة يجب ألا يتجاوز 5MB.'
-        );
-
-        event.target.value = '';
-
-        selectedFile = null;
-
-        return;
-    }
-
-
-    selectedFile = file;
-
-
-    const reader =
-        new FileReader();
-
-
-    reader.onload =
-        function(e){
-
-            const preview =
-                document.getElementById('preview');
-
-            preview.src =
-                e.target.result;
-
-            preview.style.display =
-                'block';
-
-        };
-
-
-    reader.readAsDataURL(file);
-
-}
-
-
-/* =====================================
-   نسخ الحساب
-===================================== */
-
-async function copyAccount(){
+async function copyAccountNumber(){
 
     const number =
-        document
-        .getElementById('bankAccount')
-        .innerText
-        .trim();
+    document.getElementById(
+        "accountNumber"
+    ).textContent;
 
 
-    if(!number || number === '-'){
-
-        alert(
-            'لا يوجد رقم حساب لنسخه.'
-        );
+    if(!number ||
+       number === "غير مضاف"){
 
         return;
     }
@@ -988,86 +712,68 @@ async function copyAccount(){
 
     try{
 
-        await navigator.clipboard.writeText(number);
+        await navigator.clipboard.writeText(
+            number
+        );
 
         alert(
-            'تم نسخ رقم الحساب ✅'
+            "تم نسخ رقم الحساب"
         );
 
     }catch(error){
 
-        alert(
-            'رقم الحساب: ' + number
-        );
+        console.error(error);
 
     }
 
 }
 
-
-/* =====================================
-   إرسال الطلب
-===================================== */
 
 async function submitTopup(){
 
-    clearMessage();
-
-
     const method =
-        document
-        .getElementById('paymentMethod')
-        .value;
-
+    document.getElementById(
+        "paymentMethod"
+    ).value;
 
     const amount =
-        Number(
-            document.getElementById('amount').value
-        );
-
+    Number(
+        document.getElementById(
+            "amount"
+        ).value
+    );
 
     const senderName =
-        document
-        .getElementById('senderName')
-        .value
-        .trim();
-
+    document.getElementById(
+        "senderName"
+    ).value.trim();
 
     const senderPhone =
-        document
-        .getElementById('senderPhone')
-        .value
-        .trim();
+    document.getElementById(
+        "senderPhone"
+    ).value.trim();
 
+    const proof =
+    document.getElementById(
+        "proof"
+    ).files[0];
+
+    const agree =
+    document.getElementById(
+        "agreeTerms"
+    ).checked;
 
     const button =
-        document.getElementById('submitBtn');
+    document.getElementById(
+        "submitBtn"
+    );
 
 
     if(!method){
 
-        showError(
-            'اختر طريقة الدفع أولاً.'
-        );
-
-        return;
-    }
-
-
-    if(!senderName){
-
-        showError(
-            'اكتب اسم صاحب التحويل.'
-        );
-
-        return;
-    }
-
-
-    if(!senderPhone){
-
-        showError(
-            'اكتب رقم الهاتف.'
+        showMessage(
+            "اختر طريقة الدفع أولاً",
+            false
         );
 
         return;
@@ -1076,19 +782,60 @@ async function submitTopup(){
 
     if(!amount || amount <= 0){
 
-        showError(
-            'اكتب مبلغ الشحن.'
+        showMessage(
+            "أدخل مبلغاً صحيحاً",
+            false
         );
 
         return;
     }
 
 
-    if(!selectedFile){
+    if(!senderName){
 
-        showError(
-            'ارفع صورة إشعار التحويل أولاً.'
+        showMessage(
+            "أدخل اسم المرسل",
+            false
         );
+
+        return;
+    }
+
+
+    if(!senderPhone){
+
+        showMessage(
+            "أدخل رقم هاتف المرسل",
+            false
+        );
+
+        return;
+    }
+
+
+    if(!proof){
+
+        showMessage(
+            "يرجى رفع صورة إشعار التحويل",
+            false
+        );
+
+        return;
+    }
+
+
+    if(!agree){
+
+        showMessage(
+            "يجب الموافقة على الشروط والأحكام أولاً حتى تتمكن من إرسال الطلب.",
+            false
+        );
+
+        document
+        .getElementById(
+            "agreeTerms"
+        )
+        .focus();
 
         return;
     }
@@ -1096,188 +843,187 @@ async function submitTopup(){
 
     button.disabled = true;
 
-    button.innerText =
-        'جاري إرسال الطلب...';
+    button.textContent =
+    "جاري إرسال الطلب...";
 
 
     try{
 
-        /* رفع الإشعار */
+        const fileExt =
+        proof.name
+        .split(".")
+        .pop()
+        .toLowerCase();
 
-        const extension =
-            selectedFile.name
-            .split('.')
-            .pop()
-            .toLowerCase();
+
+        const fileName =
+        currentUser.id +
+        "_" +
+        Date.now() +
+        "." +
+        fileExt;
 
 
         const filePath =
-            currentUser.id +
-            '/' +
-            Date.now() +
-            '.' +
-            extension;
+        fileName;
 
 
         const {
-            error:uploadError
+            error:
+            uploadError
         } =
         await supabaseClient
         .storage
-        .from('payment-proofs')
+        .from("payment-proofs")
         .upload(
             filePath,
-            selectedFile,
+            proof,
             {
-                cacheControl:'3600',
-                upsert:false
+                upsert:false,
+                contentType:
+                proof.type
             }
         );
 
 
         if(uploadError){
 
-            console.error(uploadError);
-
-            showError(
-                'تعذر رفع صورة الإشعار.\nتأكد من إنشاء Storage Bucket باسم payment-proofs في Supabase.'
-            );
-
-            return;
+            throw uploadError;
         }
 
 
-        /* رابط الصورة */
-
         const {
-            data:publicData
+            data:
+            publicData
         } =
         supabaseClient
         .storage
-        .from('payment-proofs')
-        .getPublicUrl(filePath);
+        .from("payment-proofs")
+        .getPublicUrl(
+            filePath
+        );
 
 
         const proofUrl =
-            publicData.publicUrl;
+        publicData.publicUrl;
 
-
-        /* إنشاء طلب الشحن */
 
         const {
-            data:requestData,
-            error:requestError
+            data,
+            error
         } =
         await supabaseClient
-        .from('topup_requests')
+        .from("topup_requests")
         .insert({
 
-            user_id:currentUser.id,
+            user_id:
+            currentUser.id,
 
-            amount:amount,
+            amount:
+            amount,
 
-            payment_method:method,
+            payment_method:
+            method,
 
-            sender_name:senderName,
+            sender_name:
+            senderName,
 
-            sender_phone:senderPhone,
+            sender_phone:
+            senderPhone,
 
-            proof_url:proofUrl,
+            proof_url:
+            proofUrl,
 
-            status:'pending'
+            status:
+            "pending"
 
         })
-        .select('id,request_number')
+        .select()
         .single();
 
 
-        if(requestError){
+        if(error){
 
-            console.error(requestError);
-
-            showError(
-                'تعذر إنشاء طلب الشحن.\nتم رفع الصورة لكن لم يتم إنشاء الطلب.'
-            );
-
-            return;
+            throw error;
         }
 
 
-        document.getElementById('page').style.display =
-            'none';
+        showMessage(
+            "تم إرسال طلب الشحن بنجاح. سيتم مراجعته من الإدارة.",
+            true
+        );
 
 
-        document.getElementById('successPage').style.display =
-            'block';
+        document.getElementById(
+            "amount"
+        ).value = "";
 
+        document.getElementById(
+            "senderName"
+        ).value = "";
 
-        document.getElementById('requestNumber').innerText =
-            requestData.request_number ||
-            requestData.id;
+        document.getElementById(
+            "senderPhone"
+        ).value = "";
+
+        document.getElementById(
+            "proof"
+        ).value = "";
+
+        document.getElementById(
+            "agreeTerms"
+        ).checked = false;
 
 
     }catch(error){
 
         console.error(error);
 
-        showError(
-            'حدث خطأ أثناء إرسال الطلب.'
+        showMessage(
+            error.message ||
+            "حدث خطأ أثناء إرسال الطلب",
+            false
         );
-
-    }finally{
-
-        button.disabled = false;
-
-        button.innerText =
-            'إرسال طلب الشحن ✅';
 
     }
 
+
+    button.disabled = false;
+
+    button.textContent =
+    "تأكيد طلب الشحن";
+
 }
 
 
-/* =====================================
-   الرسائل
-===================================== */
-
-function showError(message){
+function showMessage(
+    text,
+    success
+){
 
     const box =
-        document.getElementById('msg');
-
-    box.innerText =
-        message;
+    document.getElementById(
+        "message"
+    );
 
     box.className =
-        'msg error';
+    "message " +
+    (
+        success
+        ? "success"
+        : "error"
+    );
 
-    box.style.display =
-        'block';
-
-}
-
-
-function clearMessage(){
-
-    const box =
-        document.getElementById('msg');
-
-    box.style.display =
-        'none';
-
-    box.innerText =
-        '';
+    box.textContent =
+    text;
 
 }
 
-
-/* =====================================
-   تشغيل
-===================================== */
 
 init();
 
 </script>
 
 </body>
+
     </html>
